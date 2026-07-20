@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Logging — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat open"><a class="cat-link current" href="../chapters/18-Logging.html">Logging</a><ul class="cat-items"><li><a class="s-link" href="#Logon-Activity">Logon Activity</a></li><li><a class="s-link" href="#Task-Activity">Task Activity</a><ul class="cat-items"><li><a class="s-link" href="#Enhancing-Task-Activity">Enhancing Task Activity</a></li><li><a class="s-link" href="#Task-Activity-in-Excel">Task Activity in Excel</a></li><li><a class="s-link" href="#Enhancing-Task-Activity-Cancel-Cube-Views">Enhancing Task Activity: Cancel Cube Views</a></li><li><a class="s-link" href="#Cube-View-Paging">Cube View Paging</a></li><li><a class="s-link" href="#Quick-View-Paging">Quick View Paging</a></li></ul></li><li><a class="s-link" href="#Error-Logs">Error Logs</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Logging" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor1527"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Logging</h1>
+                                                <p>Each logging section display content - that you can sort and filter - in a grid. To sort, click a column heading and select ascending or descending. </p>
+                                                <p>Click on  <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Logging1.png" /> to filter by criteria such as the following:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Logging_4.png" />
+                                                </p>
+                                                <p>Navigate pages by clicking page numbers, the forward button, the back button and so on. These buttons are to the bottom left of a grid. To export data, right-click, select <span class="Emphasis_Bold">Export </span>and then an export file type.</p>
+                                                <p><a href="../_assets/Content/Resources/Images/Design%20and%20Reference/Logging_3.png"><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Logging_3.png" /></a>
+                                                </p>
+                                            </div></div></section><section id="Logon-Activity" class="doc-section lvl1"><p class="crumb">Logging</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor611"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Logon Activity</h2>
+                                                <p>Use the following to identify who is logged on who logged off.</p>
+                                                <p><span class="FieldName"><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Logon%20Activity1.png" />Logoff Selected Session</span>
+                                                    <br />Administrators can use this to logoff any user session</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Logon%20Activity_2.png" /> <span class="FieldName">Clear Logon Activity</span><br />Clears all logon activity </p>
+                                                <p>This grid will display:</p>
+                                                <p><span class="FieldName">Logon Status </span>
+                                                    <br />This shows when users logged on and logged off.</p>
+                                                <p><span class="FieldName">User </span>
+                                                    <br />This shows the user ID.</p>
+                                                <p><span class="FieldName">Application</span> <br />This shows the application the user is logged into. </p>
+                                                <p><span class="FieldName">Client Module </span>
+                                                    <br />This will display items such as Excel.</p>
+                                                <p><span class="FieldName">Client Version </span>
+                                                    <br />This will display the version of the application you are using.</p>
+                                                <p><span class="FieldName">Client IP Address </span>
+                                                    <br />This will display the end users IP address.</p>
+                                                <p><span class="FieldName">Logon Time </span>
+                                                    <br />A time stamp of when the user logged in.</p>
+                                                <p><span class="FieldName">Last Activity Time</span> <br />A time stamp of the user’s last activity.</p>
+                                                <p><span class="FieldName">Logoff Time </span>
+                                                    <br />A time stamp of when the user logged off.</p>
+                                                <p><span class="FieldName">Primary App Server </span>
+                                                    <br />This shows the application server the end user is utilizing. </p>
+                                            </div></div></section><section id="Task-Activity" class="doc-section lvl1"><p class="crumb">Logging</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor817"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Task Activity</h2>
+                                                <p>You can access task activity to identify user actions in two ways:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Click<span class="Emphasis_Bold"> Task Activity</span> at the top right section of the web client.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Select <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Logging </span>&gt; <span class="Emphasis_Bold">Task Activity</span>.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Task%20Activity_12.png" /> <span class="FieldName">Clear task activity for current user</span><br />Clears all activity for that user.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Task%20Activity_11.png" /> <span class="FieldName">Clear task activity for all users</span><br />Clears all activity for ALL users.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Task%20Activity_10.png" /> <span class="FieldName">Selected task information</span><br />Gives the ability to drill down through all steps for that activity.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Task%20Activity_9_26x22.png" style="width: 26;height: 22;" /> <span class="FieldName">Running task progress</span><br />Gives the ability to view progress of other users’ activities.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Task%20Activity_8.png" /> <span class="FieldName">Refresh</span><br />This refreshes the Task Activity in order to see any changes made</p>
+                                                <p><span class="FieldName">Task Type </span> <br />This shows the user’s activity. (e.g., Consolidate, Process Cube, Load and Transform, Clear Stage Data, etc.)</p>
+                                                <p><span class="FieldName">Description </span> <br />This shows the details of the activity.&#160;(e.g., the POV, Multiple Data Units, etc.)</p>
+                                                <p><span class="FieldName">Duration</span> <br />This displays the length of time the activity took.</p>
+                                                <p><span class="FieldName">Task Status </span> <br />This shows the status of the activity.&#160;(e.g., Completed, Failed, etc.)&#160;Canceling the task will transition it from Canceling to Canceled.&#160;</p>
+                                                <p><span class="FieldName">User</span> <br />This shows the user ID.</p>
+                                                <p><span class="FieldName">Application </span> <br />This shows the application to which the task was processed.</p>
+                                                <p><span class="FieldName">Server </span> <br />This shows the application server being utilized.</p>
+                                                <p><span class="FieldName">Start Time </span> <br />The starting time stamp of the activity.</p>
+                                                <p><span class="FieldName">End Time</span> <br />The ending time stamp of the activity.</p>
+                                                <p><span class="FieldName">Queued CPU</span> <br />This provides the % CPU utilization for when the task was initiated.</p>
+                                                <p><span class="FieldName">Start CPU</span> <br />This provides the % CPU utilization when the job began from the queue.</p>
+                                                <p>For more details, Task Queuing, see Data Management in <a href="13-Use-Application-Tools.html#Use-Application-Tools" class="MCXref xref">Application Tools</a>.</p>
+                                                <p>Within the grid, there are two icons on the left side of the row. If highlighted, there is the ability to drill down by clicking on them.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Task%20Activity_7.png" />
+                                                </p>
+                                                <p>The first icon shows child steps within a particular task that has run. The second shows detailed information of the error when present.</p>
+                                            </div></div></section><section id="Enhancing-Task-Activity" class="doc-section lvl2"><p class="crumb">Logging › Task Activity</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor921"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Enhancing Task Activity</h3>
+                                                <p>Task Activity allows you to cancel a long-running cube view in these areas:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#Enhancing-Task-Activity-Cancel-Cube-Views">Enhancing Task Activity: Cancel Cube Views</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Task-Activity-in-Excel">Task Activity in Excel</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Cube-View-Paging">Cube View Paging</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Quick-View-Paging">Quick View Paging</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Task-Activity-in-Excel" class="doc-section lvl2"><p class="crumb">Logging › Task Activity</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor351"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Task Activity in Excel</h3>
+                                                <p>You can cancel a long-running cube view in Excel Add-In. You do not have to be logged into the Windows application. The Task Activity in Excel Add-In allows you to cancel your task. If you are an Administrator, you can cancel another user's running task. You can access the Task Activity icon in the Excel Add-In in the Tasks section in the <span class="Emphasis_Bold">OneStream</span> ribbon. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_excel6_500x299.png" style="width: 500;height: 299;" title="Task Activity button is a loading symbol, flat designed style." alt="Yellow rectangle box around the Task Activity button that is a loading symbol, flat designed style." />
+                                                </p>
+                                                <p>You can also access the Task Activity icon in the Cube View connection dialog box. This allows you to cancel while in the process of establishing a connection to the longer-running cube view.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>This Task Activity icon in the Cube View connection dialog box is also featured in the Windows Application.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_excel5_495x231.png" style="width: 495;height: 231;" title="Select Cube View under the OneStream ribbon and click Cube View connections." alt="Yellow rectangle box on Cube View under the OneStream ribbon and click Cube View connections." />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_excel4_451x285.png" style="width: 451;height: 285;" title="Cube View connections dialog box." alt="Cube View connections dialog box with a yellow highlight on the text row." />
+                                                </p>
+                                                <p>You must click the <span class="Emphasis_Bold">Task Activity</span> icon to review all cube views. Click the <span class="Emphasis_Bold">Running Task Progress</span> button to bring the Task Progress dialog box that displays an indeterminate progress bar. In the Task Progress dialog box, you can cancel the task by clicking the <span class="Emphasis_Bold">Cancel Task</span> and <span class="Emphasis_Bold">Close</span> buttons. The <span class="Emphasis_Bold">Close</span> button does not cancel or close the actual task; it only closes the Task Progress dialog box for that specific task.</p>
+                                                <p>In Task Activity, the Task Status column will display whether the task was canceled by a User or Administrator. The Task Status also displays "Running" while the Task is still running and "Completed" if the task successfully completed without being canceled. If you are an Administrator, you have the option to show tasks for all users and show running tasks only. Non-admins have the option to show running tasks only. You can also can cancel another user's running task. Each task will have its task type, such as Quick View and Cube View.</p>
+                                                <h3>Task Activity: Cancel Quick Views</h3>
+                                                <p>In Task Activity, a User or Administrator can cancel a long-running Quick View. </p>
+                                                <p>In the <span class="mc-variable Variables.Product_Name variable">OneStream</span> spreadsheet and Excel Add-In, </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Create a Quick View or Refresh a Quick View to cancel the long running Quick View. Information will begin to populate and your cursor will start to spin.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Task Activity</span> and a Quick View task type displays in the Task Activity dialog box.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Use the <span class="Emphasis_Bold">Running Task Progress</span> button to open the Task Progress dialog box.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In the Task Progress dialog box, it will display the indeterminate load bar. Use the <span class="Emphasis_Bold">Cancel Task</span> button to cancel your task. </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Then, click <span class="Emphasis_Bold">Close</span> in the Task Progress dialog to close it, or leave it open for it to close on its own when the cancel is completed.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click the <span class="Emphasis_Bold">Refresh</span> button in the Task Activity dialog. </p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Click on <span class="Emphasis_Bold">Child Steps</span> or <span class="Emphasis_Bold">Task Information</span> to review the canceled task.</p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>You can click <span class="Emphasis_Bold">Child Steps</span> in the Task Activity to review all specific task steps for Quick Views or Cube Views.</p>
+                                                <h3>Task Activity: Cancel XFGetCell Refresh</h3>
+                                                <p>You can cancel an XFGetCell function conversion within Excel Add-In or <span class="mc-variable Variables.Product_Name variable">OneStream</span> spreadsheet.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p> In the Windows Application, under Tools, click <span class="Emphasis_Bold">Spreadsheet</span>, click on <span class="Emphasis_Bold">Cube Views </span>in the OneStream ribbon. In Excel Add-In, under the <span class="Emphasis_Bold">OneStream ribbon</span>, click <span class="Emphasis_Bold">Cube Views</span>. </p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Cube View Connection</span> and add the cube view connection. </p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Once Cube View is loaded, click on the <span class="Emphasis_Bold">Convert to XFGetCells</span> button in the OneStream ribbon or right click in the cube view and select <span class="Emphasis_Bold">OneStream</span> &gt; <span class="Emphasis_Bold">Convert to XFGetCells</span>. </p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Refresh Sheet</span>.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click <span class="Emphasis_Bold">Task Activity</span> and a Get Excel Data task type displays in the Task Activity dialog box.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Use the <span class="Emphasis_Bold">Running Task Progress</span> button to open the Task Progress dialog box.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>In the Task Progress dialog box, it will display a progress bar. Use the <span class="Emphasis_Bold">Cancel Task </span>button to cancel your task. </p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Refresh the Task Activity dialog box. The Task Activity dialog box will display the task status if the user or administrator canceled the task.</p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>In Task Activity, when canceling a task, a progress bar with a percentage load will display for XFGetCell canceled tasks.</p>
+                                            </div></div></section><section id="Enhancing-Task-Activity-Cancel-Cube-Views" class="doc-section lvl2"><p class="crumb">Logging › Task Activity</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor839"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Enhancing Task Activity: Cancel Cube Views</h3>
+                                                <p>In Task Activity, a User or Administrator can track cube view progress and cancel a long-running cube view instead of resetting IIS.</p>
+                                                <p class="Important" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;IMPORTANT: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>IMPORTANT: </b></span></span></span>Cloud and self-hosted customers can cancel their own long-running cube views and turn on detailed logging to help support troubleshooting.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>For all non-UI tasks, such as consolidation or other long-running tasks, the task activity icon will start blinking within a few minutes.</p>
+                                                <h4>Cube View</h4>
+                                                <p>When running a cube view through data explorer or clicking the refresh icon, if it takes longer than 10 seconds in the <span class="mc-variable Variables.Product_Name variable">OneStream</span> application, a dialog box will display an indeterminate progress bar and the ability to cancel the cube view or close the pop-up dialog through the <span class="Emphasis_Bold">Cancel Task</span> and <span class="Emphasis_Bold">Close</span> buttons. If you click the <span class="Emphasis_Bold">Close</span> button, the dialog box will close, the Task Activity will blink (displaying to you that a task is running in the background), and the report will open when completed. If you click the <span class="Emphasis_Bold">Cancel Task</span> button, a canceling message displays and the report will not run. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_acttivity_cube_view1.png" title="A task progress cube view dialog box will display an indeterminate progress bar and the ability to cancel the cube view or close the pop-up dialog through the Cancel Task and Close buttons." alt="A task progress cube view dialog box with dark blue rectangle boxes around the cancel task button, Canceling text, an indeterminate progress bar, and the close button." />
+                                                </p>
+                                                <p>You can also click nothing when the dialog box displays. It will close on its own once the report loads. In Task Activity, the Task Status column displays whether the task was canceled by a User or Administrator. If you are an Administrator, you have the option to show tasks for all users and show running tasks only. You can also can cancel another user's running task. Non-admins have the option to show running tasks only. In Task Activity, the <span class="Emphasis_Bold">Task Information</span> and <span class="Emphasis_Bold">Running Task Progress</span> buttons are displayed inline with each record. You can also click <span class="Emphasis_Bold">Running Task Progress</span> to cancel a task.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_cvta1_589x341.png" style="width: 589;height: 341;" title="1. Shows Tasks for all Users or Show Running Tasks Only 2. Task Information and Running Task Progress buttons are displayed inline with each record. 3. Duration, Task Status, User." alt="1.Shows Tasks for all Users or Show Running Tasks Only is an option to select how to view tasks by users with a dark blue rectangle box around it. 2. Task Information and Running Task Progress buttons are flat designed icon represented by i con and percentage icon symbols. 3. Dark blue rectangle around the Duration, Task Status, User columns." />
+                                                </p>
+                                                <p>The Task Activity icon will blink when the cube view is taking longer than 10 seconds to complete and you are not in the Task Activity dialog box. The Task Activity icon will not blink if a task activity dialog box is open. Your cursor may spin after clicking the Task Activity icon. There may also be times when the task will complete and the task activity icon continues to blink. This should only last a few seconds or until you perform an action such as clicking in the application.</p>
+                                                <h4>Show Report</h4>
+                                                <p>When running a report (Show Report), if it takes longer than 10 seconds in the <span class="mc-variable Variables.Product_Name variable">OneStream</span> application, a dialog box will display an indeterminate progress bar and the ability to cancel the cube view or close the pop-up dialog through the <span class="Emphasis_Bold"> Cancel Task</span> and <span class="Emphasis_Bold">Close</span> buttons. If you click the <span class="Emphasis_Bold">Close</span> button, the dialog box will close, the Task Activity will blink (displaying to you that a task is running in the background), and the report will open when completed. If you click the <span class="Emphasis_Bold">Cancel Task</span> button, a canceling message displays and the report will not run. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_report1.png" title="A task progress cube view report dialog box will display an indeterminate progress bar and the ability to cancel the cube view or close the pop-up dialog through the Cancel Task and Close buttons." alt="A task progress cube view report dialog box with dark blue rectangle boxes around the cancel task button, Canceling text, an indeterminate progress bar, and the close button." />
+                                                </p>
+                                                <p>You can also click nothing when the dialog box displays. It will close on its own once the report loads. In Task Activity, the Task Status column displays whether the task was canceled by a User or Administrator. If you are an Administrator, you have the option to show tasks for all users and show running tasks only. You can also can cancel another user's running task. Non-admins have the option to show running tasks only. In Task Activity, the <span class="Emphasis_Bold">Task Information</span> and <span class="Emphasis_Bold">Running Task Progress</span> buttons are displayed inline with each record. You can also click <span class="Emphasis_Bold">Running Task Progress</span> to cancel a task.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_actviity_reportta1_568x329.png" style="width: 568;height: 329;" title="1.Shows Tasks for all Users or Show Running Tasks Only 2. Task Information and Running Task Progress buttons are displayed inline with each record. 3. Duration, Task Status, User." alt="1.Shows Tasks for all Users or Show Running Tasks Only is an option to select how to view tasks by users with a dark blue rectangle box around it. 2. Task Information and Running Task Progress buttons are flat designed icon represented by i con and percentage icon symbols. 3. Dark blue rectangle around the Duration, Task Status, User columns." />
+                                                </p>
+                                                <p>The Task Activity icon will blink when the cube view is taking longer than 10 seconds to complete and you are not in the Task Activity dialog box. The Task Activity icon will not blink if a task activity dialog box is open. Your cursor may spin after clicking the Task Activity icon. There may also be times when the task will complete and the task activity icon continues to blink. This should only last a few seconds or until you perform an action such as clicking in the application.</p>
+                                                <h4>Export to Excel</h4>
+                                                <p>When running an Export to Excel, if it takes longer than 10 seconds in the <span class="mc-variable Variables.Product_Name variable">OneStream</span> application, display an indeterminate progress bar and the ability to cancel the cube view or close the pop-up dialog through the <span class="Emphasis_Bold"> Cancel Task</span> and <span class="Emphasis_Bold">Close</span> buttons. If you select the <span class="Emphasis_Bold">Close</span> button, the dialog box will close, the Task Activity will blink (displaying to you that a task is running in the background) and the report will open once completed. If you select <span class="Emphasis_Bold">Cancel Task</span>, a canceling message displays and Excel will not launch.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_export1.png" title="A task progress export cube view dialog box will display an indeterminate progress bar and the ability to cancel the cube view or close the pop-up dialog through the Cancel Task and Close buttons." alt="A task progress export cube view dialog box with dark blue rectangle boxes around the cancel task button, Canceling text, an indeterminate progress bar, and the close button." />
+                                                </p>
+                                                <p>You can also click nothing when the dialog box displays. It will close on its own once the report loads. In Task Activity, the Task Status column displays whether the task was canceled by a User or Administrator. If you are an Administrator, you have the option to show tasks for all users and show running tasks only. You can also can cancel another user's running task. Non-admins have the option to show running tasks only. In Task Activity, the <span class="Emphasis_Bold">Task Information</span> and <span class="Emphasis_Bold">Running Task Progress</span> buttons are displayed inline with each record. You can also click <span class="Emphasis_Bold">Running Task Progress</span> to cancel a task.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_export_ta1_594x346.png" style="width: 594;height: 346;" title="1.Shows Tasks for all Users or Show Running Tasks Only 2. Task Information and Running Task Progress buttons are displayed inline with each record. 3. Duration, Task Status, User." alt="1.Shows Tasks for all Users or Show Running Tasks Only is an option to select how to view tasks by users with a dark blue rectangle box around it. 2. Task Information and Running Task Progress buttons are flat designed icon represented by i con and percentage icon symbols. 3. Dark blue rectangle around the Duration, Task Status, User columns." />
+                                                </p>
+                                                <p>The Task Activity icon will blink when the cube view is taking longer than 10 seconds to complete and you are not in the Task Activity dialog box. The Task Activity icon will not blink if a task activity dialog box is open. Your cursor may spin after clicking the Task Activity icon. There may also be times when the task will complete and the task activity icon continues to blink. This should only last a few seconds or until you perform an action such as clicking in the application.</p>
+                                                <h4>Dashboard with Cube View Components </h4>
+                                                <p>When running a dashboard with a single cube view component or multiple cube view components, if it takes longer than 10 seconds, you will not see a pop-up dialog box. You must click <span class="Emphasis_Bold">Task Activity</span> to review all cube views. You also can cancel each individual cube view by clicking the <span class="Emphasis_Bold">Running Task Progress</span> button to cancel your tasks.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_dashboard_ta1_607x378.png" style="width: 607;height: 378;" title="In the Task Activity dialog box, you can cancel each individual cube view by clicking the Running Task Progress button to cancel your tasks." alt="Yellow rectangle box on canceling each individual cube view by clicking the Running Task Progress button to cancel your tasks, that has a dark blue rectangle box on the button." />
+                                                </p>
+                                                <p>To verify if a cube view has been canceled, a message displays that it cannot open the cube view.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_dashboard_unable1_633x342.png" style="width: 633;height: 342;" title="A message is displayed to verify if a cube view has been canceled." alt="Dark blue rectangle box around the message that displays when a cube view has been canceled." />
+                                                </p>
+                                                <h4>Detailed Logging</h4>
+                                                <p>Use Detailed Logging has been removed from the App Server Config file, TALogCubeViews from the Task Activity section, and added to individual cube views. This setting can be found in both the Designer and Advanced tabs for Cube Views. It allows you to turn on detailed logging to gather more information about your cube views, such as data cells and any additional information in Task Activity.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>On the <span class="Emphasis_Bold">Application</span> tab, under <span class="Emphasis_Bold">Presentation</span>, click <span class="Emphasis_Bold">Workspaces</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>In the <span class="Emphasis_Bold">Application Workspaces</span> pane, under <span class="Emphasis_Bold">Workspaces</span>, expand <span class="Emphasis_Bold">Default</span> &gt; <span class="Emphasis_Bold">Maintenance Unit</span> &gt; <span class="Emphasis_Bold">Default</span> &gt; <span class="Emphasis_Bold">Cube View Groups</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Select a cube view under the <span class="Emphasis_Bold">Cube View Groups</span> to edit. </p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click the <span class="Emphasis_Bold">Designer</span> tab and select <span class="Emphasis_Bold">Common</span> under General settings.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>For <span class="Emphasis_Bold">Use </span><span class="Emphasis_Bold">Detailed Logging</span>, the default is set to False.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_detailed_logging1_633x364.png" style="width: 633;height: 364;" title="Set Use Detailed Logging to False." alt="Dark blue rectangle box around the Use Detailed Logging setting that is set to False." />
+                                                </p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>When set to True, detailed logging will provide information in Task Activity, such as individual steps and additional information about the cube view.</p>
+                                                <p><a href="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_dlta4.png"><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_dlta3_644x137.png" style="width: 644;height: 137;" title="When set to True, detailed logging provides information in Task Activity, such as individual steps and additional information about the cube view." alt="Red square box on the task type that has been set to true for detailed logging that shows information for induvial steps and additional information about the cube view." /></a>
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/workspaces_task_activity_dlta4_656x381.png" style="width: 656;height: 381;" title="Example of additional information on a task activity step." alt="Yellow highlight on an example of additional information on a task activity step." />
+                                                </p>
+                                            </div></div></section><section id="Cube-View-Paging" class="doc-section lvl2"><p class="crumb">Logging › Task Activity</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1283"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Cube View Paging</h3>
+                                                <p>You can cancel a long running cube view that contains paging in the Excel Add-in or Spreadsheet. This allows you to cancel a single page using Task Activity instead of waiting for the entire cube view to load and process. A user or admin can cancel the cube view within the Excel Add-in or Spreadsheet by canceling from each page in Task Activity or during the initial load of the cube view.</p>
+                                                <h3>Paging Controls</h3>
+                                                <p>You can navigate between pages by moving forward or back using the arrow keys (first page, previous page, and next page). Each page will display the page number and data loaded in a percentage below the tabs in the right-hand corner.</p>
+                                                <p>
+                                                    <img style="width: 250;height: 83;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/cube_view_paging1_250x83.png" title="Use the arrow keys (first page, previous page, and next page) to navigate between pages." alt="Yellow highlight over arrow keys to navigate between pages." />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/cube_view_paging_next%20page1.png" title="Example of Next Page arrow key." alt="Example of Next Page arrow key." />
+                                                </p>
+                                                <p>The paging tool tip shows the number of total rows, rows processed, and unsuppressed rows on a page.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/cube_view_paging_tool_tip1.png" title="The paging tool tip shows the number of total rows, number of rows processed, and number of unsuppressed rows on a page." alt="Example of paging tool tip." />
+                                                </p>
+                                                <h3>Connect to a Cube View with Paging</h3>
+                                                <p>You can connect to a cube view with paging within Excel Add-In or <span class="mc-variable Variables.Product_Name variable">OneStream</span> spreadsheet. Any user can use cube view paging in Excel Add-In or Spreadsheet.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the Windows Application, under Tools, click <span class="Emphasis_Bold">Spreadsheet</span>, click on <span class="Emphasis_Bold">Cube Views </span>in the OneStream ribbon. In Excel Add-In, under the <span class="Emphasis_Bold">OneStream ribbon</span>, click <span class="Emphasis_Bold">Cube Views</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Cube View Connections</span>  to add the cube view connection.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>When the Cube View Connection dialog box appears, click <span class="Emphasis_Bold">Add</span> button.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In the Cube View connection dialog box, select the ellipses (...) next to the Cube View field.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In the Object Lookup, use the search field to search for your Cube View, then select it in the hierarchy. Then click <span class="Emphasis_Bold">OK.</span></p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>It may take a long time for the parameter dialog to appear for Cube Views containing parameters. You will need to enter or select a specific value after clicking <span class="Emphasis_Bold">OK</span> and selecting the Cube View.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click <span class="Emphasis_Bold">Close</span> in Cube View connections dialog.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Click in the Cube View, on the right-hand corner, the paging controls will display.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>You can navigate between pages with the arrow keys and data loaded will display within each page in a percentage.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3>Load an Excel File with Cube View Paging</h3>
+                                                <p>You can load an Excel file that contains a Cube View that needs to be paged in Excel Add-In or Spreadsheet.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the Windows Application, under Tools, click <span class="Emphasis_Bold">Spreadsheet</span>, click on <span class="Emphasis_Bold">File</span>&gt;<span class="Emphasis_Bold">Open</span> in the OneStream ribbon. In Excel Add-In, in the ribbon, go to <span class="Emphasis_Bold">File</span>, click <span class="Emphasis_Bold">Open.</span></p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Select a file from your local folder or <span class="mc-variable Variables.Product_Name variable">OneStream</span> File System and click <span class="Emphasis_Bold">Open.</span></p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the <span class="Emphasis_Bold">Refresh Sheet</span> button in the OneStream ribbon.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>The Cube View data will refresh, on the right-hand corner, the paging controls will display.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>You can navigate between pages with the arrow keys. The percentage of data loaded will be displayed next to the paging controls.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3>Task Activity: Cancel Cube View with Paging</h3>
+                                                <p>In Task Activity, a user or administrator can cancel a Cube View in Task Activity within Excel Add-In or Spreadsheet.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the Windows Application, under Tools, click <span class="Emphasis_Bold">Spreadsheet</span>, click on <span class="Emphasis_Bold">Cube Views </span>in the OneStream ribbon. In Excel Add-In, under the <span class="Emphasis_Bold">OneStream ribbon</span>, click <span class="Emphasis_Bold">Cube Views</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Cube View Connection</span> and add the Cube View connection.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>When the Cube View Connection dialog box appears, click <span class="Emphasis_Bold">Add</span> button.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In the Cube View connection dialog box, select the ellipses (...) next to Cube Views.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In Object Lookup, select the Cube View from the hierarchy, and click <span class="Emphasis_Bold">OK</span>.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click <span class="Emphasis_Bold">Close</span> in Cube View connections dialog.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>When you click in the Cube View, on the right-hand corner, the paging controls will display. Click the <span class="Emphasis_Bold"> Next Page</span> button.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>If you click on the paging controls to go to the next page and the load time takes more than 10 seconds, the dialog box will appear allowing you to cancel the Cube View. </p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Click on the <span class="Emphasis_Bold">Task Activity</span> button and a Cube View task type displays in the Task Activity dialog box.</p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>Use the <span class="Emphasis_Bold">Running Task Progress</span> button to open the Task Progress dialog box.</p>
+                                                    </li>
+                                                    <li value="10">
+                                                        <p>In the Task Progress dialog box, it will display the indeterminate load bar. Use the <span class="Emphasis_Bold">Cancel Task</span> button to cancel your task.</p>
+                                                    </li>
+                                                    <li value="11">
+                                                        <p>Refresh the Task Activity dialog box. The Task Activity dialog box will display the task status if the user or administrator canceled the task.</p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Canceling the Next Page load for a Cube View/Quick View will display the #REFRESH text in the data cells, rather than the page blank for the Initial Load.</p>
+                                                
+                                            </div></div></section><section id="Quick-View-Paging" class="doc-section lvl2"><p class="crumb">Logging › Task Activity</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1496"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Quick View Paging</h3>
+                                                <p>You can cancel a Quick View with Paging in the Excel Add-In or Spreadsheet. This allows you to cancel the Quick View without having to wait for all pages to load and process on the server. A user or admin can cancel the loading of a Quick View page from the Excel Add-In or Spreadsheet from Task Activity.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Previously, Quick View paging controls appeared in the Quick Views tab. It is now located below all three tabs.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/quick_view_tabs1.png" title="Quick View paging is located below all three tabs (POV, Quick Views, and Documents)." alt="Example of Quick View paging located below all three tabs (POV, Quick Views, and Documents)." />
+                                                </p>
+                                                <h3>Paging Controls</h3>
+                                                <p>You can navigate between pages by moving forward or back with the arrow keys (first page, previous page, and next page). Each page will display the page number and data loaded in a percentage below the tabs on the right-hand corner.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/quick_view_paging_controls1.png" title="Use the arrow keys (first page, previous page, and next page) to navigate between pages." alt="Red rectangle box over arrow keys to navigate between pages." />
+                                                </p>
+                                                <p>The paging tool tip shows the number of total rows, \ rows processed, and unsuppressed rows on a page.</p>
+                                                <p>
+                                                    <img style="width: 392;height: 119;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/quick_view_rows1_392x119.png" title="The paging tool tip shows the number of total rows, number of rows processed, and number of unsuppressed rows on a page." alt="Example of paging tool tip." />
+                                                </p>
+                                                <h3>Create a Quick View with Quick View Paging</h3>
+                                                <p>You can create a quick view with quick view paging within Excel Add-In or Spreadsheet. Any user can use quick view paging in Excel Add-In or Spreadsheet.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the Windows Application, under Tools, click <span class="Emphasis_Bold">Spreadsheet</span>, click on <span class="Emphasis_Bold">Quick Views </span>&gt;<span class="Emphasis_Bold">Create Quick View</span> option in the OneStream ribbon. In Excel Add-In, under the <span class="Emphasis_Bold">OneStream ribbon</span>, click <span class="Emphasis_Bold">Quick Views</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Create Quick View</span> button in the Quick View pane to create a new quick view.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>See <a href="24-Excel-Add-In.html#Quick-Views">Create and Modify Quick View</a> for more information.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In the Create Quick View dialog, accept the default or insert a specific Name and then click <span class="Emphasis_Bold">OK</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Modify your Quick View to add and remove dimensions and members to set up your Quick View.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>See <a href="24-Excel-Add-In.html#Quick-Views">Modify Quick View</a> for more information.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>When making modifications and applying changes, the data will update to reflect all changes.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>When a Quick View requires paging, the paging controls will display in the right-hand corner. </p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>You can navigate between pages with the arrow keys. The percentage of data loaded will be displayed next to the paging controls.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3>Load an Excel File for Quick View Paging</h3>
+                                                <p>You can load an Excel file that contains a Quick View with Paging for Excel Add-In or Spreadsheet.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the Windows Application, under Tools, click <span class="Emphasis_Bold">Spreadsheet</span>, click on <span class="Emphasis_Bold">File</span>&gt;<span class="Emphasis_Bold">Open</span> in the OneStream ribbon. In Excel Add-In, in the ribbon, go to <span class="Emphasis_Bold">File</span>, click <span class="Emphasis_Bold">Open.</span></p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Select a file from your local folder and click <span class="Emphasis_Bold">Open.</span></p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the <span class="Emphasis_Bold">Refresh Workbook</span> button in the OneStream ribbon.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>The Worksheet and data will refresh, on the right-hand corner, the paging controls will display.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>You can navigate between pages with the arrow keys. The percentage of data loaded will be displayed next to the paging controls.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3>Task Activity: Cancel Quick View Paging</h3>
+                                                <p>In Task Activity, a user or administrator can cancel a quick view with paging within Excel Add-In or Spreadsheet.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the Windows Application, under Tools, click <span class="Emphasis_Bold">Spreadsheet</span>, click on <span class="Emphasis_Bold">Quick Views </span>in the OneStream ribbon. In Excel Add-In, under the <span class="Emphasis_Bold">OneStream ribbon</span>, click <span class="Emphasis_Bold">Quick Views</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Create Quick View</span> button in the Quick View pane to create a new quick view.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>See <a href="24-Excel-Add-In.html#Quick-Views">Create and Modify Quick View</a> for more information.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In the Create Quick View dialog, accept the default or insert a specific Name and click <span class="Emphasis_Bold">OK</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Add or Remove dimensions and members to modify and set up your Quick View.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>See <a href="24-Excel-Add-In.html#Quick-Views">Modify Quick View</a> for more information.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>When making modifications and applying changes, the data will update to reflect all changes.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>When a Quick View requires paging, the paging controls will display in the lower right-hand corner. Click the <span class="Emphasis_Bold">Next Page</span> button.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Click on the <span class="Emphasis_Bold">Task Activity</span> button and a Quick View task type displays in the Task Activity dialog box.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Use the <span class="Emphasis_Bold">Running Task Progress</span> button to open the Task Progress dialog box.</p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>In the Task Progress dialog box, it will display the indeterminate load bar. Use the <span class="Emphasis_Bold">Cancel Task</span> button to cancel your task.</p>
+                                                    </li>
+                                                    <li value="10">
+                                                        <p>Refresh the Task Activity dialog box. The Task Activity dialog box will display the task status if the user or administrator canceled the task.</p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Canceling the Next Page load for a Cube View/Quick View will display the #REFRESH text in the data cells, rather than the page blank for the Initial Load.</p>
+                                                
+                                            </div></div></section><section id="Error-Logs" class="doc-section lvl1"><p class="crumb">Logging</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1193"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Error Logs</h2>
+                                                <p>Administrators can use the following to evaluate errors on System &gt; Logging.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Error%20Logs1.png" title="Clear error log for current user button." alt="Clear error log for current user button is an X symbol, flat designed style." /> <span class="FieldName">Clear error log for current user</span><br />Clears all logs for a user.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Error%20Logs_2.png" title="Clear error log for all user’s button." alt="Clear error log for all user’s button is a trash symbol, flat designed style." /> <span class="FieldName">Clear error log for all users</span><br />Clears all logs for all users.</p>
+                                                <p>This grid will display:</p>
+                                                <p><span class="FieldName">Description </span>
+                                                    <br />Displays a brief description of the error.</p>
+                                                <p><span class="FieldName">Error Time </span>
+                                                    <br />Indicates when the error occurred.</p>
+                                                <p><span class="FieldName">Error Level </span>
+                                                    <br />Displays the error type such as Unknown, Fatal, Warning etc.</p>
+                                                <p><span class="FieldName">User</span>
+                                                    <br />Displays the user ID.</p>
+                                                <p><span class="FieldName">Application </span>
+                                                    <br />Identifies the application a user is logged onto.</p>
+                                                <p><span class="FieldName">Tier</span> <br />Displays the application tier such as App Server, Web Server or Client.</p>
+                                                <p><span class="FieldName">App Server</span>
+                                                    <br />Identifies the application server to which a user was connected when they encountered an error.</p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Logging">Logging</a></li><li class="toc-l1"><a href="#Logon-Activity">Logon Activity</a></li><li class="toc-l1"><a href="#Task-Activity">Task Activity</a></li><li class="toc-l2"><a href="#Enhancing-Task-Activity">Enhancing Task Activity</a></li><li class="toc-l2"><a href="#Task-Activity-in-Excel">Task Activity in Excel</a></li><li class="toc-l2"><a href="#Enhancing-Task-Activity-Cancel-Cube-Views">Enhancing Task Activity: Cancel Cube Views</a></li><li class="toc-l2"><a href="#Cube-View-Paging">Cube View Paging</a></li><li class="toc-l2"><a href="#Quick-View-Paging">Quick View Paging</a></li><li class="toc-l1"><a href="#Error-Logs">Error Logs</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

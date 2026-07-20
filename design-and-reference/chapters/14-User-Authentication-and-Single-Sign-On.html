@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>User Authentication and Single Sign-On — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat open"><a class="cat-link current" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a><ul class="cat-items"></ul></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="User-Authentication-and-Single-Sign-On" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor1716"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />User Authentication and Single Sign-On<a name="kanchor1"></a></h1>
+                                                <p>When you log in to an application, your username and password are authenticated to confirm that you are a valid <span class="mc-variable Variables.Product_Name variable">OneStream</span> user.</p>
+                                                <p data-mc-conditions="Default.ScreenOnly">If you are in a <span class="mc-variable Variables.Product_Name variable">OneStream</span>-hosted environment, see the <a href="https://documentation.onestream.com/9.0.1/Content/IDM/About This Guide.html">Identity and Access Management Guide</a> for information about authentication with <span class="mc-variable Variables.Product_Name variable">OneStream</span> IdentityServer.</p>
+                                                <p>If you are in a self-hosted environment, administrators can configure an environment to use native authentication, one external identity provider, or both native authentication and one external identity provider.</p>
+                                                <p> The following external identity providers are supported:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Microsoft Active Directory (MSAD)</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Lightweight Directory Access Protocol (LDAP)</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Three OpenID Connect (OIDC) identity providers:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Azure Active Directory (Azure AD [Microsoft Entra ID])</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>Okta</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>PingFederate</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>SAML 2.0 identity providers (for example, Okta, PingFederate, Active Directory Federation Services [ADFS], and Salesforce)</p>
+                                                    </li>
+                                                </ul>
+                                                <p>For instructions on configuring authentication in a self-hosted environment, see the <span class="Emphasis_Italic">Installation and Configuration Guide</span>.</p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#User-Authentication-and-Single-Sign-On">User Authentication and Single Sign-On</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

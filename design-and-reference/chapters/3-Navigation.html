@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Navigation — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat open"><a class="cat-link current" href="../chapters/3-Navigation.html">Navigation</a><ul class="cat-items"><li><a class="s-link" href="#About-the-OneStream-Windows-Application">About the OneStream Windows Application</a></li><li><a class="s-link" href="#Launching-the-OneStream-Windows-App">Launching the OneStream Windows App</a></li><li><a class="s-link" href="#Defining-Server-Connections">Defining Server Connections</a></li><li><a class="s-link" href="#Logging-In">Logging In</a></li><li><a class="s-link" href="#OnePlace-Layout">OnePlace Layout</a></li><li><a class="s-link" href="#Point-of-View">Point of View</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Navigation" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor200"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Navigation </h1>
+                                                <p>You can access OneStream through a web browser or via OneStream Windows App through an application shortcut deployed via a OneStream website, or from a version installed directly on a computer.&#160;These options are available for both administrators and end users. </p>
+                                                <p>The layout is intuitive and easy to use. OnePlace will highlight all the major touch points as well as provide information on the navigation tips.</p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>Hover over any of the icons and a tool tip will temporarily display.</p>
+                                            </div></div></section><section id="About-the-OneStream-Windows-Application" class="doc-section lvl1"><p class="crumb">Navigation</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor224"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>About the OneStream Windows Application </h2>
+                                                <p> Using the Windows App is helpful because:<br /></p>
+                                                <ul>
+                                                    <li>
+                                                        <p>The Windows app automatically updates whenever the application server version is updated.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You do not need admin rights to download or use the application.  </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>It offers robust spreadsheet functionality, so you may not need to install the Excel Add-in.  </p>
+                                                    </li>
+                                                </ul>
+                                                <p>To launch the Windows App:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click the launch icon in the upper right corner of the window from any 4.2 or greater web-based instance.&#160;</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p> If prompted, click <span class="Emphasis_Bold">Run</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>You can also launch the Windows App via Microsoft Edge with the URL associated with the latest version of the server. First, enable Edge Chromium support for Click Once. See&#160;<a href="https://docs.microsoft.com/en-us/deployedge/microsoft-edge-policies#clickonceenabled"><span class="Hyperlink">https://docs.microsoft.com/en-us/deployedge/microsoft-edge-policies#clickonceenabled</span></a>.</p>
+                                                <p>To create a desktop shortcut:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Launching%20OneStream%20Windows_3_updated_29x29.png" style="width: 29;height: 29;" />The Create Windows Shortcut window displays. </p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Launching%20OneStream%20Windows_4_updated_384x181.png" style="width: 384;height: 181;" />
+                                                            <br />
+                                                        </p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Modify the shortcut name as needed and click <span class="Emphasis_Bold">OK</span>.<br /></p>
+                                                        <p><![CDATA[  ]]><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Launching%20OneStream%20Windows_5_updated_59x104.png" style="width: 59;height: 104;" /></p>
+                                                    </li>
+                                                </ol>
+                                                <p>This icon can now be used to launch the Windows App from your desktop.  </p>
+                                            </div></div></section><section id="Launching-the-OneStream-Windows-App" class="doc-section lvl1"><p class="crumb">Navigation</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1353"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Launching the OneStream Windows App</h2>
+                                                <p>The Windows App is installed locally and can access different servers.&#160;To launch the app, click, <span class="Emphasis_Bold">Start</span> and locate the OneStream Desktop app.&#160;&#160;  </p>
+                                            </div></div></section><section id="Defining-Server-Connections" class="doc-section lvl1"><p class="crumb">Navigation</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1541"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Defining Server Connections</h2>
+                                                <p>Before you can log in and open an application, you must define server connections:</p>
+                                                <ol start="1">
+                                                    <li value="1">
+                                                        <p>On the <span class="Emphasis_Bold">Logon </span>page, click <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Launching%20OneStream%20Windows_1_10.png" /> in<span class="Emphasis_Bold"> Server Address</span> to add the URL of the server to connect to.&#160;</p>
+                                                        <p>The Manage Connections window displays.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/manage-connections_updated_291x359.png" style="width: 291;height: 359;" /><br /></p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Enter the server URL and a description.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold">Add </span>to include the server in the list of <span class="Emphasis_Bold">Available Connections</span>. </p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In <span class="Emphasis_Bold">Available Connections</span>, select the server and click <span class="Emphasis_Bold">OK</span>.&#160; </p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Logging-In" class="doc-section lvl1"><p class="crumb">Navigation</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1639"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Logging In</h2>
+                                                <p data-mc-conditions="Default.ScreenOnly">If you are in a <span class="mc-variable Variables.Product_Name variable">OneStream</span>-hosted environment, see the <a href="https://documentation.onestream.com/9.0.1/Content/IDM/About This Guide.html">Identity and Access Management Guide</a> for information about authentication with <span class="mc-variable Variables.Product_Name variable">OneStream</span> IdentityServer.</p>
+                                                <p data-mc-conditions="Default.ScreenOnly">If you are in a self-hosted environment, to log in with the browser, see the <a href="https://documentation.onestream.com/9.0.1/Content/BUX/About BrowserUX.html">Modern Browser Experience Guide</a>. </p>
+                                                <p>If you are in a self-hosted environment, to log in with the desktop application, follow these steps.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>On the <span class="mc-variable Variables.Product_Name variable">OneStream</span> <span class="Emphasis_Bold">Logon</span> screen, for <b>Server Address</b>, specify the URL or client connection. See <a href="#Defining-Server-Connections">Defining Server Connections</a>.<br /></p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the <b>Connect</b> button.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>The Logon screen will look different depending on how your environment is configured (native authentication, external identity provider, or both native authentication and an external identity provider).</p>
+                                                        <p class="FieldName">Native Authentication Only</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/logging_on_native_2_264x278.png" style="width: 264;height: 278;" title="OneStream Logon screen for native authentication only" alt="The Logon screen for native authentication only has a gray Authentication heading at the top. Next is a rectangular field to enter a Server Address. Then, there are two rectangular, gray buttons for Connect and Disconnect. Then, there are two rectangular fields to enter a User Name and Password and a radio button for Remember User. Then, there are two rectangular, gray buttons for Logon and Logoff. Next is an Application drop-down menu that has a rectangular field with a black down arrow. Then, there is a rectangular, gray button for Open Application." />
+                                                        </p>
+                                                        <p class="FieldName">External Identity Provider Only</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/logging_on_external_2_266x200.png" style="width: 266;height: 200;" title="OneStream Logon screen for external identity provider only" alt="The Logon screen for external identity provider only has a gray Authentication heading at the top. Next is a rectangular field to enter a Server Address. Then, there are four rectangular, gray buttons for Connect, Disconnect, External Provider Sign In, and Sign Out. Next is an Application drop-down menu that has a rectangular field with a black down arrow. Then, there is a rectangular, gray button for Open Application." />
+                                                        </p>
+                                                        <p class="FieldName">Native Authentication and an External Identity Provider</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/logging_on_native_and_external_2_255x374.png" style="width: 255;height: 374;" title="OneStream Logon screen for native authentication and external identity provider" alt="The Logon screen for native authentication and external identity provider has a gray Authentication heading at the top. Next is a rectangular field to enter a Server Address. Then, there are four rectangular, gray buttons for Connect, Disconnect, External Provider Sign In, and Sign Out. Then, the word Or displays because users have the option for native authentication or an external identity provider. Then, there are two rectangular fields to enter a User Name and Password and a radio button for Remember User. Then, there are two rectangular, gray buttons for Logon and Logoff. Next is an Application drop-down menu that has a rectangular field with a black down arrow. Then, there is a rectangular, gray button for Open Application." />
+                                                        </p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Follow the steps for your authentication configuration:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>For native authentication:</p>
+                                                                <ol>
+                                                                    <li value="1">
+                                                                        <p>Enter your user name and password.</p>
+                                                                    </li>
+                                                                    <li value="2">
+                                                                        <p>Click the <span class="Emphasis_Bold">Logon</span> button.</p>
+                                                                    </li>
+                                                                </ol>
+                                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>This process for native authentication is also used for authentication with MSAD and LDAP identity providers. Enter your user name and password set up in MSAD&#160;or LDAP and click the <span class="Emphasis_Bold">Logon</span> button.</p>
+                                                            </li>
+                                                        </ul>
+                                                        <ul>
+                                                            <li>
+                                                                <p>For an external identity provider:</p>
+                                                                <ol style="list-style-type: lower-alpha;">
+                                                                    <li value="1">
+                                                                        <p>Click the <span class="Emphasis_Bold">External Provider Sign In</span> button.</p>
+                                                                    </li>
+                                                                    <li value="2">
+                                                                        <p>Enter your external identity provider login credentials.</p>
+                                                                    </li>
+                                                                </ol>
+                                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Single sign-on with an external identity provider can be configured to require a one-time verification code for authentication. If the Require Verification Code setting in the Web Server Configuration File is enabled, you will be provided with a one-time verification code to enter in the application. For information about the verification code, see the <span class="Emphasis_Italic">Installation and Configuration Guide</span>.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>On the <span class="mc-variable Variables.Product_Name variable">OneStream</span> <span class="Emphasis_Bold">Logon</span> screen, select an application from the drop-down menu.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click the <b>Open Application</b> button.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>For instructions on configuring authentication in a self-hosted environment, see the <span class="Emphasis_Italic">Installation and Configuration Guide</span>.</p>
+                                            </div></div></section><section id="OnePlace-Layout" class="doc-section lvl1"><p class="crumb">Navigation</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1138"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />OnePlace Layout</h2>
+                                                <ol start="1">
+                                                    <li value="1">
+                                                        <p>Navigation Pane - This section covers the three tabs that are available: System, Application and OnePlace.&#160; </p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Tab visibility is determined by users’ security settings.</p>
+                                                <p>Each bar can be displayed by pinning it to the screen, or by Auto Hide. Additional details can be found further down in this section.</p>
+                                                <ol start="2">
+                                                    <li value="2">
+                                                        <p>Home - Click the large OneStream icon to navigate to the user’s set home screen. See Page Setting Options below for more information on setting home screens.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Title Bar - This displays the OneStream Logo.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Application Tray </p>
+                                                    </li>
+                                                </ol>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_2_updated_38x28.png" style="width: 38;height: 28;" /><![CDATA[  ]]><span class="FieldName">Hamburger Menu (Navigation Pane)</span><br />Clicking (not hovering) this icon will hide or unhide the Application, System, OnePlace Tabs on the left-hand side of the OnePlace screen. If the Navigate Pane is unpinned, clicking (not hovering) this icon will hide the Application, System, OnePlace Tabs. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_4_updated_37x34.png" style="width: 37;height: 34;" /><span class="FieldName"> Navigate Recent Pages</span>
+                                                    <br />This opens a navigation dialog allowing the user to select and go back to a recent page.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_5_updated_420x335.png" style="width: 420;height: 335;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_6_updated.png" /><span class="FieldName">File Explorer</span>
+                                                </p>
+                                                <p>This opens the File Explorer dialog allowing users to access public folders, documents and the File Share.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_7_updated.png" /><span class="FieldName">Environment Name</span>
+                                                    <br />This is a customized environment name which can be made different across environments (e.g. Development, Test and Production). Specify an environment name and color in the application’s application server configuration file. See Installation and Configuration.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_9_updated.png" /> User ID and Application</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_10_updated.png" /> <span class="FieldName">Logon/Logoff Icon</span><br />Upon selecting the Logoff icon, the user will be prompted to End Session or Change Application. End Session logs the user off and removes the saved password from the logon screen. Change Application keeps the user logged in and allows him/her to select a new application from the drop-down screen.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_11_updated.png" /><span class="FieldName">Task Activity</span>
+                                                    <br />This displays all tasks performed within the application. See Task Activity in <a href="18-Logging.html#Logging" class="MCXref xref">Logging</a> for more details on this feature.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_12_updated.png" /><span class="FieldName">Refresh Application</span>
+                                                    <br />Refreshes the Application and checks the first open tab. If it is an Application tab, the view will change to that tab. If it is not an Application tab, the view will stay on the selected tab but will change the main active tab to Application. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_13_updated.png" /><span class="FieldName">Pin or Unpin Navigation Pane or POV Pane</span>
+                                                    <br />This will hide or unhide the Application, System, OnePlace Tabs on the left-hand side of the OnePlace screen. In the POV Pane, this will hide or unhide the POV on the right side of the OnePlace screen.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_15_updated.png" /> <span class="FieldName">Clipboard</span></p>
+                                                <p>Drag and drop items such as data cells, text, rule scripts to the clipboard in order to reuse them in other areas.&#160;Users can store up to ten items on a clipboard.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Launching%20OneStream%20Windows_3_updated_29x29.png" style="width: 29;height: 29;" /><span class="FieldName">Create Windows Shortcut</span>
+                                                    <br />This creates a desktop shortcut for the application. See <a href="#About-the-OneStream-Windows-Application" class="MCXref xref">About the OneStream Windows Application </a>.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_17_updated.png" /><span class="FieldName">Help</span>
+                                                    <br />This opens OneStream documentation for Platform and <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span>.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_18_updated.png" /> <span class="FieldName">Hamburger Menu (POV Pane)</span><br />Clicking (not hovering) this icon will hide or unhide the POV on the right side of the OnePlace screen. If the Navigate Pane is unpinned, clicking (not hovering) this icon will hide the POV on the right-hand side of the OnePlace screen.</p>
+                                                <ol start="5">
+                                                    <li value="5">
+                                                        <p>Page Setting Options<br />Click the small OneStream icon to use the following page settings:</p>
+                                                        <ol style="list-style-type: lower-alpha;">
+                                                            <li value="1">
+                                                                <p>Refresh Page: This will refresh the current page.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Close Page: This will close the current page.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Create Shortcut: This will create a shortcut for the current page and store it in the user’s Favorites Folder.&#160;When this shortcut is selected from the user’s folder, it will navigate to that page.&#160;This can be used for specific Cube Views, Dashboards, or Application/System pages.</p>
+                                                            </li>
+                                                            <li value="4">
+                                                                <p>Set Current Page as Home Page: This setting controls the default settings for both the page display as well as the pinning of the Navigation and Point-of-View panels when you sign on. Click the OneStream icon in the application tray in order to navigate to the home page from any other screen.&#160;This functionality works in both the browser and the OneStream Windows App versions.&#160;Changes made here within one environment carry over to the other.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                                <p>This also controls the Pinning of the Navigation Bar and the POV Bar as well.</p>
+                                                <p>This generates a UserAppSettings.XML file that has the following pin options:</p><pre xml:space="preserve">&lt;SLHomePagePinNavPane&gt;TrueValue&lt;/SLHomePagePinNavPane&gt;</pre><pre xml:space="preserve">&lt;SLHomePagePinPovPane&gt;FalseValue&lt;/SLHomePagePinPovPane&gt;</pre>
+                                                <p>These control if the user’s navigation bar is pinned by default when logging into the application. </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Clear Home Page Setting<br />This will remove the current home page setting.&#160;This functionality works in both the browser and the OneStream Windows App versions.&#160;Changes made here within one environment carry over to the other.&#160; </p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Save Home Page Setting As Default For New Users<br />This will save a home page as the default home page for any new user logging in for the first time.&#160;This functionality works in both the browser and the OneStream Windows App versions. Changes made here within one environment carry over to the other.&#160; </p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Close All Pages<br />This closes all open pages.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Close All Pages Except Current Page<br />This will close all open pages except the one currently displayed.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Workflow Bar <br />This section displays exactly where the user is in the Workflow process. Based on the Workflow Profile, this can be configured as a Certifier or as a Data Loader. The example above is configured as a Data Loader on the Validate task of the Workflow.&#160;The color green indicates a completed task, blue indicates incomplete tasks.&#160;The white OneStream icon indicates what task is currently in view. </p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Page Refresh <br />This section covers the local refresh and the ability to close a page.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_20_updated.png" /> <span class="FieldName">Refresh Page</span><br />This refreshes the active page.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_21_updated.png" /><span class="FieldName">Toggle Page Size</span>
+                                                            <br />This changes the page size in order to fit the screen.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_22_updated.png" /><span class="FieldName">Close Page</span>
+                                                            <br />This closes the active page.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Toolbar <br />Similar to the Workflow bar, this displays the items for a Data Loader or for a Reviewer / Certifier.&#160;</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Context Pane <br />This bar is where the Point of View is set. This is an important concept because it determines to which Dimensions the users will have access for this application view. Additional details can be found further down in this section. </p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>Grid <br />This displays the active window’s contents for the functionality being executed.</p>
+                                                    </li>
+                                                    <ul>
+                                                        <li>
+                                                            <p>Pages: This allows the ability to navigate through the pages either by choosing the page, by clicking on the next page, or the first / last page. </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>Tabs: Now that the tab is open, simply click on one of them to save time in navigating. Clicking the New tab allows two or more like tabs to be opened. For example, two Cube Views tabs can be opened at once.</p>
+                                                            <p>
+                                                                <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_25_updated.png" />
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                    <li value="10">
+                                                        <p>Pages <br /></p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Right-click on any of these opened tabs for more page setting options.</p>
+                                                <p>The following icons are only located in the OneStream Windows App.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Layout_27_updated.png" /><span class="FieldName">Zoom Options</span>
+                                                    <br />This controls the zoom settings when working in the OneStream Windows App.<br /></p>
+                                            </div></div></section><section id="Point-of-View" class="doc-section lvl1"><p class="crumb">Navigation</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1624"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Point of View</h2>
+                                                <p>The Point of View panels located on the right side of the application.&#160;This tab can be docked by clicking the pin button, otherwise, it will disappear when clicking anywhere in the main page.&#160; </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/pov_01_updated_247x768.png" style="width: 247;height: 768;" />
+                                                </p>
+                                                <p>There are three primary sections defined under the Point of View. </p>
+                                                <p><span class="FieldName">Global POV</span> <br />This is the Point of View for the whole application. This is set by the administrator and will not be active for the end user to update. This includes Scenario and Time.</p>
+                                                <p><span class="FieldName">Workflow POV </span>
+                                                    <br />This has the same configuration as the Workflow area of the OnePlace Tab. It will display the active Point of View; however it will not be active for the end user to update. This includes Workflow, Scenario, and Time. The Time displayed is based on the Time Dimension Profile associated with the Cube assigned to the Workflow Profile.</p>
+                                                <p><span class="FieldName">Cube POV </span>
+                                                    <br />This is active and available to be updated by the end user. Each Dimension will need to be set based on the information or activity a user needs to perform. Hover over any of the Dimensions and a tool tip will display the Dimension type. To update a Dimension, select one and a Select User POV box will appear.&#160;This box will give the user an opportunity to pick the Cube, Dimension, and the ability to apply a Member Filter and search. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/pov_02_updated_463x509.png" style="width: 463;height: 509;" />
+                                                </p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span> Save a commonly used POV by right clicking on the Cube POV and selecting Save Cube POV to Favorites.&#160; This saves the POV under <span class="Emphasis_Bold" data-mc-edit-date="2024-09-13T09:36:17.6421023-04:00" data-mc-editor="mtetrault" data-mc-comment="This now seems to be in the OnePlace tab, not the Application tab - screenshot below to show/verify - this screenshot not meant to be saved in doc, just to show new location for review" data-mc-initials="MT" data-mc-creator="mtetrault" data-mc-create-date="2024-09-13T09:35:40.0086418-04:00">Application</span>|Documents|Users &gt;|(User Name)|Favorites allowing it to be used on any Cube View, grid, or Dashboard.&#160; </p>
+                                                <h5>User Defined Description – Point of View</h5>
+                                                <p>The Point -of -View panel supports the new User Defined Descriptions.&#160;Hovering over a selectable point-of-view member will display the defined description.&#160;Dimensions which are fixed, not selectable, will display the defined description and append “Not Used by Current Page”. See Application Properties and then User Defined Dimensions (Descriptions).</p>
+                                                <p>The Point-of-View panel supports the new User Defined Descriptions.&#160;Hovering over a selectable point-of-view member will display the defined description.&#160;Dimensions which are fixed, not selectable, will display the defined description and append “Not Used by Current Page”. See Application Properties and then User Defined Dimensions (Descriptions).</p>
+                                                
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/pov_03_updated_262x479.png" style="width: 262;height: 479;" />
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/pov_04_updated_274x473.png" style="width: 274;height: 473;" />
+                                                </p>
+                                                
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Navigation">Navigation</a></li><li class="toc-l1"><a href="#About-the-OneStream-Windows-Application">About the OneStream Windows Application</a></li><li class="toc-l1"><a href="#Launching-the-OneStream-Windows-App">Launching the OneStream Windows App</a></li><li class="toc-l1"><a href="#Defining-Server-Connections">Defining Server Connections</a></li><li class="toc-l1"><a href="#Logging-In">Logging In</a></li><li class="toc-l1"><a href="#OnePlace-Layout">OnePlace Layout</a></li><li class="toc-l1"><a href="#Point-of-View">Point of View</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

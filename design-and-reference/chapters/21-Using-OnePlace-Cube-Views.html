@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Using OnePlace Cube Views — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat open"><a class="cat-link current" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a><ul class="cat-items"></ul></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Using-OnePlace-Cube-Views" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor1765"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Using OnePlace Cube Views</h1>
+                                                <p>These Cube Views are complete and organized reports created specifically for the company’s data in the Application section.&#160;A Cube View is used to query Cube data and present it to the user in variety of ways. They can be made read-only, used for editing data, and can be used as the Data Source for several different display mechanisms.&#160;</p>
+                                                <p>In order to copy Cube View cells from a Data Explorer Grid to an Excel spreadsheet, click CTRL, select the cells desired, and then click CTRL-C.&#160;Navigate to an Excel spreadsheet, select a cell, and click CTRL-V, this will paste the cells into Excel.&#160;This can also be done from an Excel spreadsheet into a Data Explorer Grid.</p>
+                                                <p>While viewing these reports, users can right click on any cell in order to learn more about any given number or piece of data.&#160;For more information on creating Cube Views, see Cube Views in <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Presenting-Data-With-Books-Cube-Views-and-Other-Items" class="MCXref xref">Presenting Data With Books, Cube Views and Dashboards</a>.&#160; For information on how to use Cube Views, or advanced uses, see Cube Views in <a href="6-Presenting-Data-With-Extensible-Documents.html#Presenting-Data-With-Extensible-Documents" class="MCXref xref">Presenting Data With Extensible Documents</a>.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views1.png" />
+                                                </p>
+                                                <h2>Toolbar</h2>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_86.png" /> <span class="FieldName">Consolidate</span><br />This consolidates the data in the Cube View</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_85.png" /> <span class="FieldName">Translate</span><br />This translates the data in the Cube View</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_84.png" /> <span class="FieldName">Calculate</span><br />This performs a calculation on the Cube View data</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_83.png" /> <span class="FieldName">Row Suppression</span></p>
+                                                <blockquote>
+                                                    <p><span class="FieldName">Use Default Suppression</span>
+                                                    </p>
+                                                    <p>This suppresses the data based on the Cube View’s row suppression settings.</p>
+                                                    <p><span class="FieldName">Suppress Rows</span>
+                                                    </p>
+                                                    <p>This suppresses any data rows with zeroes, no data, etc. regardless of the Cube View suppression settings.</p>
+                                                    <p><span class="FieldName">Unsuppress Rows</span>
+                                                    </p>
+                                                    <p>This removes any data suppression set via the Cube View suppression settings and displays all data rows including those with no data, zeroes, etc.</p>
+                                                </blockquote>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>The actions above vary based on the user’s security settings and restriction properties set on the Cube View.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_82.png" /> <span class="FieldName">Show Report</span></p>
+                                                <p>This opens the Cube View in a polished, formatted report</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_81.png" /> <span class="FieldName">Export to Excel</span></p>
+                                                <p>This will open the fully formatted Cube View in Excel.</p>
+                                                <p>Users can open multiple excel exports using a Cube View without being prompted to rename or save the file. A version number will change with each export in sequence.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_80.png" /> <span class="FieldName">Select Parameters</span></p>
+                                                <p>This allows the user to select new Parameters and view the Cube View data differently.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>This is based on the Parameters set for this Cube View.&#160; This feature will not apply to all Cube Views</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_79.png" /> <span class="FieldName">Edit Cube View</span></p>
+                                                <p>This opens the Cube View Application page where changes can be made to the Cube View design.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>This varies based on the user’s security settings.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_78.png" /> <span class="FieldName">Find Next Row</span></p>
+                                                <p>When viewing a Cube View with a large number of rows, use the search filter at the top of the screen in order to navigate to the desired row.&#160;Type a keyword into the search filter and click the Find Next Row icon in order to navigate to the preferred row.&#160;Continue clicking the icon in order to navigate to any row with the keyword included in the row header name.&#160;This also works when rows are collapsed.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_77.png" />
+                                                </p>
+                                                <p><span class="FieldName">Copy or Paste Data to Multiple Cells</span>
+                                                </p>
+                                                <p>Use &lt;Ctrl+C&gt; or &lt;Ctrl+V&gt; to copy and paste values into Cube View data cells.&#160;Select the desired data cell, click &lt;Ctrl+C&gt; to copy the cell value and then select another cell to paste &lt;Ctrl+V&gt; the value.&#160;Hold down &lt;Ctrl&gt; to select multiple cells and paste the value into the selected cells simultaneously.</p>
+                                                <h2 data-mc-target-name="Shortcuts"><a name="Shortcut"></a>Shortcuts, Scaling, and HotKeys</h2>
+                                                <p>The Cube View Data Explorer allows the use of shortcuts, scaling, and hotkeys.</p>
+                                                <h3>Shortcuts</h3>
+                                                <p>Use Shortcuts to calculate amounts within a cell. Click once in a cell, type in a shortcut, then click enter to run the calculation.</p>
+                                                <p class="example" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;Example: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>Example: </b></span></span></span>Type "add2k" to add 2,000 to the cell value. Type "in10" to increase the cell value by 10%. Type "pow2" to calculate to the power of 2.<img style="width: 538;height: 118;" src="../_assets/Content/Resources/Images/2023-06-14_16-42-50_538x118.png" /></p>
+                                                <table class="TableStyle-TableGridLight" cellspacing="0" style="width: 100%;mc-table-style: url('../../Resources/TableStyles/TableGridLight.css');">
+                                                    <colgroup>
+                                                        <col class="TableStyle-TableGridLight-Column-Column" />
+                                                        <col class="TableStyle-TableGridLight-Column-Column" />
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr class="TableStyle-TableGridLight-Head-Header1">
+                                                            <th class="TableStyle-TableGridLight-HeadD-Column-Header1" colspan="2">Shortcuts</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">add</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Add a number to the last value</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">sub</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Subtract a number from last value</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">div</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Divide last value of a number</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">mul</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Multiply last value of a number</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">increase, in, gr</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Increase last value by a percentage</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">decrease, de</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Decrease last value by a percentage</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">percent, per</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Calculate a percentage of last value</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyB-Column-Body">power, pow</td>
+                                                            <td class="TableStyle-TableGridLight-BodyA-Column-Body">Calculate a power of last value</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <h3>Scaling</h3>
+                                                <p>When entering data in the Data Explorer, use scaling to quickly enter values.</p>
+                                                <p class="example" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;Example: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>Example: </b></span></span></span>Type "1m" for a cell value of "1,000,000"; "1.5b" for a cell value of "1,250,000,000"</p>
+                                                <table class="TableStyle-TableGridLight" cellspacing="0" style="width: 100%;mc-table-style: url('../../Resources/TableStyles/TableGridLight.css');">
+                                                    <colgroup>
+                                                        <col class="TableStyle-TableGridLight-Column-Column" />
+                                                        <col class="TableStyle-TableGridLight-Column-Column" />
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr class="TableStyle-TableGridLight-Head-Header1">
+                                                            <th class="TableStyle-TableGridLight-HeadD-Column-Header1" colspan="2">Scaling</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">k</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Scale value by 1,000</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">m</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Scale value by 1,000,000</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">b</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Scale value by 1,000,000,000</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyB-Column-Body">%</td>
+                                                            <td class="TableStyle-TableGridLight-BodyA-Column-Body">Divide by 100 (when using with a P number format on Cube Views)</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <h3>HotKeys</h3>
+                                                <p>Use HotKeys to manage changes while entering data into the Data Explorer.</p>
+                                                <p class="example" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;Example: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>Example: </b></span></span></span>Press CTRL+S to save changes.</p>
+                                                <table class="TableStyle-TableGridLight" cellspacing="0" style="width: 100%;mc-table-style: url('../../Resources/TableStyles/TableGridLight.css');">
+                                                    <colgroup>
+                                                        <col class="TableStyle-TableGridLight-Column-Column" />
+                                                        <col class="TableStyle-TableGridLight-Column-Column" />
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr class="TableStyle-TableGridLight-Head-Header1">
+                                                            <th class="TableStyle-TableGridLight-HeadD-Column-Header1" colspan="2">HotKeys</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyB-Column-Body">CTRL + S</td>
+                                                            <td class="TableStyle-TableGridLight-BodyA-Column-Body">Save</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <h2>Right-Click Options</h2>
+                                                <h4 class="FieldName">Expand/Collapse</h4>
+                                                <p>If nested rows are used in a Cube View, right-click on any row header in order to collapse or expand the selected row content.&#160; This feature works with the RowExpansionMode property in the Cube View designer and controls how users view Cube Views in the data grid. See Rows and Columns under Cube Views in <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Presenting-Data-With-Books-Cube-Views-and-Other-Items" class="MCXref xref">Presenting Data With Books, Cube Views and Dashboards</a> for more details.&#160;</p>
+                                                <h4 class="FieldName">Calculate/Translate/Consolidate</h4>
+                                                <p>Cube Views can be set to enable processing of the Cube View data.&#160; This includes Calculate, Translate and Consolidate.&#160; There are also option to force these calculations and log the activity in the Task Activity.&#160; Each of these options can be enabled/disabled on an individual Cube View.&#160; For more details on these options, see Launching a Consolidation in <a href="2-About-the-Financial-Model.html#About-the-Financial-Model" class="MCXref xref">About the Financial Model</a>.</p>
+                                                <h4 class="FieldName">Spreading</h4>
+                                                <p>Spreading can be done from a Cube View while viewing it in the Data Explorer grid, in the Spreadsheet feature and Excel Add-in. User experience may differ slightly across these three user interfaces and more functions may be available in the Spreadsheet feature than others. This functionality provides the ability to spread values over selected cells.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>The Spreading Dialog can be left open while entering data.&#160; If the dialog is left open while users are spreading values on the grid, it will update to the respective spreading behavior.</p>
+                                                <h3>Spreading Type</h3>
+                                                <p class="FieldName">Fill</p>
+                                                <p>This fills each selected data cell with the value in the Amount to Spread property.</p>
+                                                <p class="FieldName">Clear Data</p>
+                                                <p>This clears all data within the selected cells.</p>
+                                                <p class="FieldName">Factor</p>
+                                                <p>This takes the selected cell’s value and multiplies it by the rate specified.</p>
+                                                <p class="FieldName">Accumulate</p>
+                                                <p>This takes the first selected cell’s value and multiplies it by the rate specified.&#160; It then takes that value, multiplies it by the specified rate and places it in the second cell selected, and does this for all selected cells.&#160; For example, four cells are selected and the first cell has a value of 900.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_76.png" />
+                                                </p>
+                                                <p>The Accumulate Spreading is setup as follows with a rate of 1.5:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_75.png" />
+                                                </p>
+                                                <p>When the spreading is applied the outcome is as follows:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_74.png" />
+                                                </p>
+                                                <p>Each cell’s value is a factor of the previous cell amount.</p>
+                                                <p><span class="FieldName">Even Distribution</span>
+                                                </p>
+                                                <p>This takes the Amount to Spread and distributes it evenly across the selected cells.</p>
+                                                <p><span class="FieldName">Proportional Distribution</span>
+                                                </p>
+                                                <p>This takes the selected cell’s value, multiplies it by the specified Amount to Spread, and then divides it by the total sum of all selected cells.&#160;If all the cells have a zero value, the Amount to Spread will behave like an Even Distribution.&#160;</p>
+                                                <p>In the example below, four cells are selected:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_73.png" />
+                                                </p>
+                                                <p>A proportional amount of 50,000 is applied to the cells.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_72.png" />
+                                                </p>
+                                                <p class="FieldName">Result</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_71.png" />
+                                                </p>
+                                                <p class="FieldName">445 Distribution</p>
+                                                <p>This takes the Amount to Spread and distributes it with a weight of 4 to the first two selected cells and a weight of 5 to the third cell.</p>
+                                                <p class="FieldName">454 Distribution</p>
+                                                <p>This takes the Amount to Spread and distributes it with a weight of 4 to the first selected cell, a weight of 5 to the second cell and a weight of 4 to the third.</p>
+                                                <p class="FieldName">544 Distribution</p>
+                                                <p>This takes the Amount to Spread and distributes it with a weight of 5 to the first selected cell and a weight of 4 to the second and third cells.</p>
+                                                <h3>Spreading Properties</h3>
+                                                <p class="FieldName">Amount to Spread</p>
+                                                <p>Specify the value to spread over the selected cells.&#160;The value defaults to the last cell selected.&#160;The way the amount in this field spreads varies by Spreading Type.</p>
+                                                <p class="FieldName">Rate (Factor and Accumulate Spreading Types Only)</p>
+                                                <p>Enter a rate to multiply by a cell value.</p>
+                                                <p class="FieldName">Retain Amount in Flagged Input Cells</p>
+                                                <p>Users can flag specific cells in order to retain the data within the cell.&#160;If this property is set to True, spreading will not apply to the selected flagged cells.</p>
+                                                <p class="FieldName">Include Flagged Read only Cells in Totals</p>
+                                                <p>Set this to True to include locked base-level cell values when calculating spreading totals.&#160;True is the default.</p>
+                                                <p class="FieldName">Flag Selected Cells</p>
+                                                <p>Flag cells so the original amount in the cell is retained during the spreading process.</p>
+                                                <p class="FieldName">Clear Flags</p>
+                                                <p>Select this to clear any flagged cells.</p>
+                                                <p class="FieldName">Apply</p>
+                                                <p>Enter spreading values in the dialog and select Apply to perform spreading without closing the dialog.&#160;The dialog closes upon clicking OK or Cancel.</p>
+                                                <p><span class="FieldName">Spread Selected Cells</span>
+                                                </p>
+                                                <p>In order to select multiple data cells, hold the Control Key (Ctrl) on the keyboard, and click on all cells that apply.&#160;Spreading occurs across rows first and then down the columns.&#160;Once spreading has been performed using the Spreading Dialog, users can type values on specific Members without having to launch the dialog again.&#160;This spreading function applies the settings from the last time the Spreading Dialog was used, so all Spreading Types and flagged cells can be utilized.&#160;Even Distribution is the default Spreading Type if there is nothing currently set in the Spreading Dialog.&#160;</p>
+                                                <p>Users can select multiple Cube View data cells and type over the primary cell in order to apply spreading.&#160;If the primary selected cell is a Parent Member, a value can still be typed over it if multiple cells are selected.&#160;Any locked base-level data cells are automatically flagged when applying spreading.</p>
+                                                <p>When spreading across multiple time periods on one data row, users can select the Parent Time Member and automatically apply spreading to all its Base Time Members without having to manually select them.&#160;</p>
+                                                <p>For example, double-click on the Q1 Parent Member and the periods associated with Q1 will be selected.&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_70.png" />
+                                                </p>
+                                                <p>Enter a value to spread on the Q1 data cell.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_69.png" />
+                                                </p>
+                                                <p>Click &lt;Enter&gt; and it will automatically apply to the periods associated with the Quarter.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_68.png" />
+                                                </p>
+                                                <h3><a name="Allocati"></a>Allocation</h3>
+                                                <p>Form data Allocations can be completed on a Cube View in the Data Explorer Grid, a Cube View in Excel, and Quick Views.</p>
+                                                <p class="FieldName">Allocation Type</p>
+                                                <p class="FieldName">Clear Data</p>
+                                                <p>This clears all Form data for the specified Destination POV.&#160;</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Users can clear data for Dimension Members that are not displayed on the Form.</p>
+                                                <p>For property definitions, see <a href="#Even">Even Distribution.</a></p>
+                                                <p class="FieldName"><a name="Even"></a>Even Distribution</p>
+                                                <p>This provides an even distribution across the Destination Members.</p>
+                                                <p class="FieldName">Source POV</p>
+                                                <p>The Source POV determines the source intersection and applies the value from this intersection to the allocation.&#160;The Source POV defaults to the last cell selected.&#160;Users can also select a data cell and drag and drop the cell’s POV into this property in order to update it.&#160;Any Members not included in the Source POV will default to the user’s Cube POV.</p>
+                                                <p class="FieldName">Source Amount or Calculation Script</p>
+                                                <p>Use this property to override the Source POV value.&#160;Drag and drop a value from the Cube View grid, specify a source amount (e.g., 1000), or use the Source POV to specify a different source amount (e.g., A#SourcePOV*0.90).&#160;</p>
+                                                <p class="FieldName">Destination POV</p>
+                                                <p>The Destination POV determines the intersection where the allocation will take place.&#160;A Member for each Dimension must be specified for the allocation to take place in the correct intersection.&#160;Users can select a data cell and drag and drop a POV into this field in order to display all Dimensions.&#160;If the Destination POV is similar to the Source POV, specify as many Dimensions as necessary and the remaining Members will come from the Source POV, or leave this field blank and all POV Members will be based on the Source POV.&#160;Any Members not included in the Source or Destination POV will default to the user’s Cube POV.</p>
+                                                <p class="FieldName">Dimension Type/Dimension Type 2</p>
+                                                <p>Allocations can be applied to Dimension Members not included in the Destination POV such as several periods or Accounts.&#160;These Members then override the Destination POV.&#160;Specify the Dimension in this property.&#160;For the Clear Data and Advanced Allocation Types, two Dimensions can be specified.</p>
+                                                <p class="FieldName">Member Filter/Member Filter 2</p>
+                                                <p>Specify the Dimension Members to which the allocation will apply.&#160;The Members specified in this field override the Member in the Destination POV script.&#160;For the Clear Data and Advanced Allocation Types, two Dimension Member Filters can be specified.</p>
+                                                <p class="FieldName">Save Zeroes as Not Data</p>
+                                                <p>Set this to True in order to suppress zeroes when saving allocation data.&#160;The default setting is True.&#160;&#160;&#160;&#160;&#160;</p>
+                                                <p class="FieldName">445 Distribution</p>
+                                                <p>A 445 Distribution takes the source amount and applies a weight of 4 to the first two specified destination intersections and then a weight of 5 to the third intersection.&#160;This applies the allocation across rows first and then moves down the column.</p>
+                                                <p class="FieldName">454 Distribution</p>
+                                                <p>A 454 Allocation takes the source amount and applies a weight of 4 to the first destination intersection, a weight of 5 to the second and then a weight of 4 to the third intersection.&#160;This applies the allocation across rows first and then moves down the column.</p>
+                                                <p class="FieldName">544 Distribution</p>
+                                                <p>A 544 Allocation takes the source amount and applies a weight of 5 to the first destination intersection and then a weight of 4 to the second and third intersections.&#160;This applies the allocation across rows first and then moves down the column.</p>
+                                                <p>For Source and Destination property definitions, see <a href="#Even">Even Distribution</a> above.</p>
+                                                <p class="FieldName">Weighted Distribution</p>
+                                                <p>This applies a weighted value to each specified Destination Member.&#160;The weights are determined in a Weight Calculation Script which uses the specified Dimension intersections’ cell values.&#160;</p>
+                                                <p>For Source and Destination property definitions, see <a href="#Even">Even Distribution</a> above.</p>
+                                                <p class="FieldName">Weight Calculation Script</p>
+                                                <p>The weight calculation script calculates the value by determining</p><pre xml:space="preserve">|SourceAmount| * (|Weight| / |TotalWeight|)</pre>
+                                                <p>It then applies the weighted values to the intersections specified in the Destination POV/Member Filter combination.&#160;</p>
+                                                <p>These are system Substitution Variables and are determined by the following:</p>
+                                                <p class="FieldName">|Weight|</p>
+                                                <p>This is the weight value applied to each Member in the Destination POV.</p>
+                                                <p class="FieldName">|TotalWeight|</p>
+                                                <p>This multiplies the weight by number of allocated intersections.&#160;For example, if there is a weight of 5 being allocated across 12 intersections, the |TotalWeight| would be 60.</p>
+                                                <p>Identify specific Dimension Members separated by a colon in order to determine the |Weight| and |TotalWeight|. Any Dimensions not specified in this field will come from the Destination POV.&#160;</p>
+                                                <p>Users can drag and drop a POV from a data cell in order to jumpstart the calculation script.&#160;In order to apply the Members specified in the Member Filter property, delete that particular Dimension in the script.&#160;&#160;</p>
+                                                <h5>Example</h5>
+                                                <p class="FieldName">Destination POV</p>
+                                                <p>Cb#Houston:E#[Houston Heights]:C#USD:S#Actual:T#2011M5:V#Periodic:A#56000:F#None:O#Forms:I#None:U1#None:<br />U2#None:U3#None:U4#None:U5#[IFRS Adj]:U6#None:U7#None:U8#None</p>
+                                                <p class="FieldName">Member Filter</p>
+                                                <p>T#2011M7,T#2011M8,T#2011M9</p>
+                                                <h5>Weight Calculation Script Example 1</h5>
+                                                <p>A#26000:O#Top<br /></p>
+                                                <p>The remaining Dimensions are determined by the Destination POV and Member Filter.</p>
+                                                <h5>Weight Calculation Script Example 2</h5><pre xml:space="preserve">Cb#Houston:E#[Houston Heights]:C#USD:S#Actual:V#Periodic:A#56000:F#None:O#Forms:
+I#None:U1#None:U2#None:U3#None:U4#None:U5#[IFRS Adj]:U6#None:U7#None:U8#None</pre>
+                                                <p>The Time Dimension was removed from the script in order to use the three Time Members in the Member Filter.</p>
+                                                <p>In the example above, the Weight Calculation Script is identifying three intersections of data.&#160;OneStream uses the sum of those three intersections as the |TotalWeight| and each individual intersection as the |Weight|.&#160;This determines how to spread the Source Amount amongst the Destination Members.</p>
+                                                <p>Enter a value in order to create an even distribution to all specified Destination Members.</p>
+                                                <p class="FieldName">Advanced</p>
+                                                <p>Advanced Allocations are similar to Weighted Distributions, but allow users to override two destination Dimensions, control how the weights are calculated, and offset amounts for the Source and Destination Members.&#160;See Form Allocations in <a href="https://documentation.onestream.com/9.0.1/Content/Design%20and%20Reference/Data Collection Guides/Data Collection Guides.html" class="MCXref xref">Collecting Data</a> for an Advanced Allocation example.</p>
+                                                <p>For Source and Destination property definitions, see Even Distribution above.</p>
+                                                <p>For Weight Calculation Script, see Weighted Distribution.</p>
+                                                <h5>Destination Calculation Script</h5>
+                                                <p>This determines how to calculate the Weight Calculation Script.&#160; The default calculation is |SourceAmount| * (|Weight|/|TotalWeight|).&#160;</p>
+                                                <p>Example:</p><pre xml:space="preserve">(|SourceAmount| * (|Weight|/|TotalWeight|)) *1.5</pre>
+                                                <p>This will calculate the weighted value for each specified intersection, multiply it by 1.5 and apply that value to the destination data cell.&#160;&#160;&#160;&#160;</p>
+                                                <h5>Translate Destination if Different Currency</h5>
+                                                <p>Set this to True in order to translate the destination currency if it differs from the currency on the Form.</p>
+                                                <h5>Offset</h5>
+                                                <p>Specify specific Members to offset when doing an allocation. Transferring values out of the Source POV requires an entry in the Source Transfer POV while entries in Source Transfer Offset POV and Destination Offset POV will ensure that entries are balanced by updating a related Account.</p>
+                                                <p>
+                                                    <img style="width: 550;height: 143;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_67_550x143.png" />
+                                                </p>
+                                                <p>In the example above, Monterey is transferring their IT Services Expense to four other Entities.</p>
+                                                <p>If a balanced entry is not required, the method below can be used by configuring the Destination and Source Transfer POV.</p>
+                                                <p>
+                                                    <img style="width: 580;height: 416;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_66_580x416.png" />
+                                                </p>
+                                                <p class="FieldName">Source Transfer POV</p>
+                                                <p>This is an optional field. Providing a Member Filter here will result in a transferring entry which will zero out the Source Amount. Using allocation members in the Flow Dimension in the example above, Monterey’s original value is reduced to zero after netting F#None with F#Alloc_Out, the Source Transfer POV. Note that the allocated values are targeted to the Alloc_In Member in the Destination.</p>
+                                                <p>
+                                                    <img style="width: 574;height: 335;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_65_574x335.png" />
+                                                </p>
+                                                <p class="FieldName">Source Transfer Offset POV</p>
+                                                <p>This is an optional field but required to create a balancing entry usually in a different Account in the Source. In the example below, the intersection is a different Account and results in a different intersection from the Source POV being updated to offset the Source Transfer POV update that occurs with the allocation. In the example below, an expense in the Source POV is being reduced so the offset is to a payable (Liability) Account.</p>
+                                                <p class="FieldName">Destination Offset POV</p>
+                                                <p>This is an optional field but required to create a balancing entry usually in a different Account in the Destination. In the example below, the intersection is a different Account and results in a different intersection from the Destination POV or Member Filter being updated to offset the allocated value updates in the Destination. In the example below, an expense in the Destination is being increased so the offset is to a payable (Liability) Account. This could have been offset to an equity clearing Account instead, as this is typical.</p>
+                                                <p>
+                                                    <img style="width: 600;height: 517;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_64_600x517.png" />
+                                                </p>
+                                                <p>This results in these entries:</p>
+                                                <p>
+                                                    <img style="width: 600;height: 420;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_63_600x420.png" />
+                                                </p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Both the expense and liability have been removed from Monterey and transferred to the other four Entities:</p>
+                                                <p>
+                                                    <img style="width: 600;height: 256;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_62_600x256.png" />
+                                                </p>
+                                                <h3><a name="Data"></a>Data Attachments for Selected Cell/Data Unit</h3>
+                                                <p>Data Attachments can be added at the cell level or for the entire Data Unit and can be set up to show a red tick mark on cells that contain an attachment. These can be a textual comment, file attachment or both and with different types of attachments: Standard, Annotation, Assumptions, Audit Comment, Footnote or Variance Explanation. There can be many Standard attachments per cell or Data Unit, but only one of the other types. The other types of Data Attachments can be viewed in a row or column in a Cube View by selecting their related View Dimension Member.&#160; Attachment Types are part of the View Dimension which makes them available for a variety of reporting and explanation needed within the information delivery process. This allows them to be included within Cube View results.</p>
+                                                <p>Data Attachments for Selected Cell/Data Attachments for Selected Data Unit<br />Any cell in any grid can contain a data attachment.&#160;To attach a file, right click on any cell in a data grid and select Data Attachment for Selected Cell.&#160;Click the upper left Create Data Attachment icon <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_61.png" /> and select an Attachment Type from the drop-down menu, give it a title, select a file to attach or simply type in text, and click OK.&#160;The attachment will now appear in the Data Attachments box.</p>
+                                                <p>
+                                                    <img style="width: 600;height: 292;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_60_600x292.png" />
+                                                </p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>This attachment can be viewed from any data grid that employs a Workflow Unit, Scenario, and Period.&#160; To view all data attachments for any Workflow Unit, Scenario and Period, right click on any cell and select Data Attachments For Selected Data Units. This ensures that all data attachments become valuable analysis tools.&#160; This is part of the View Dimension because each is given a Type and the data attachments can be reported on as a whole and included in other types of reports.</p>
+                                                <h3>Spell Checking in Data Attachments</h3>
+                                                <p>The text spell check feature is available only when using the Windows Application in a right-click menu. This feature is inactive by default. The default is set to Not Used.&#160;In Text Editor, the Review ribbon will allow the user to activate Spell Check using the Spell Check button.</p>
+                                                <p>The Spell Check feature is enabled for the English language only. Spell Check will only work when English is selected in Windows for International users. The culture is determined by each user’s individual culture setting assigned in OneStream User Security.&#160;The culture is assigned to the OneStream application on the Application Server Configuration Utility as “en-US”.&#160;</p>
+                                                <p class="FieldName">Spell Check in Data Attachments</p>
+                                                <p>Spell Check options will be available when creating or editing Data Attachments.&#160;Once enabled, the spell check feature will actively check spelling in Data Attachments. The Spell Check will be applied to all Data Attachment dialogs once turned on. </p>
+                                                <p>The user must right-click on a word to activate the Spell Check options where suggested solutions are presented. Choosing the “Ignore” option will only be retained for the current session.&#160;Closing and re-opening to the edit mode will re-check any previously ignored items.</p>
+                                                <p>
+                                                    <img style="width: 550;height: 462;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_58_550x462.png" />
+                                                </p>
+                                                <p>Choosing Check Spelling will check the spelling of words within the text box content from any starting point.&#160;</p>
+                                                <p>
+                                                    <img style="width: 514;height: 331;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_57_514x331.png" />
+                                                </p>
+                                                <p>The Options button will allow the user to modify the Spell Check behavior within the current task session.&#160;These settings are never saved as a user preference.</p>
+                                                <p>
+                                                    <img style="width: 258;height: 274;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_56_258x274.png" />
+                                                </p>
+                                                <p>Users can also right-click on a word to turn English Spell Check on or off. The Spell Check Language will be set to (Not Used) by default in the Data Attachments text boxes.</p>
+                                                <p>
+                                                    <img style="width: 502;height: 321;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_31b_502x321.png" />
+                                                </p>
+                                                <h3><a name="Cell"></a>Cell Detail</h3>
+                                                <p>Cell Detail can be entered on a Cube View used for a data entry form, or on a Cube View or Quick View in Excel or Spreadsheet.&#160;Cell Detail can also be loaded via an Excel or CSV template.&#160;See Loading Cell Detail in <a href="https://documentation.onestream.com/9.0.1/Content/Design%20and%20Reference/Data Collection Guides/Data Collection Guides.html" class="MCXref xref">Collecting Data</a> for more details on creating these templates.&#160; Cell Detail is available on any writeable O#Forms or O#BeforeAdj Member.&#160; In order to disable this by account or any other intersection, use a Conditional Input Business Rule.&#160;See Finance Business Rules in <a href="13-Use-Application-Tools.html#Use-Application-Tools" class="MCXref xref">Application Tools</a> for an example of this rule.&#160;</p>
+                                                <p>
+                                                    <img style="width: 606;height: 453;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_55_606x453.png" />
+                                                </p>
+                                                <p class="FieldName">Cell Detail Toolbar</p>
+                                                <p class="FieldName">Use Cell Detail</p>
+                                                <p>Check this box in order to enable Cell Detail.</p>
+                                                <p class="FieldName">YTD/Periodic</p>
+                                                <p>This determines how the data is being entered in the Form.&#160;This only applies to Income Statement Accounts.&#160;If a YTD Form is being used and a Periodic line item is entered, the Form will calculate the YTD value and store it accordingly.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_54.png" /> <br />These icons add, delete, and move Cell Detail records in the grid.</p>
+                                                <p class="FieldName">Clear All</p>
+                                                <p>This removes all Cell Detail records in the grid but does not remove any stored numerical data from the Forms Member in the Cube.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p class="FieldName">Amount</p>
+                                                        <p>Enter the amount for the Cell Detail Record or Records.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p class="FieldName">Aggregation Weight</p>
+                                                        <p>Enter an aggregation weight to calculate a cell item using simple multiplication.&#160;For example, entering -1 will reverse the value in the amount column.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p class="FieldName">Classification</p>
+                                                        <p>The user can select a Classification from a drop list on each line item, where the list of Classifications is defined using a Dashboard Parameter specifically named as CellDetailClassifications.&#160;Once this Dashboard Parameter is created, Cell Detail will recognize the classifications without having to assign the Parameter to any Cube View or Form.<br />Note: Users can add additional value items to a Parameter, or change existing items, however, this will not change any classification assigned and stored to a line item in a form.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p class="FieldName">Description</p>
+                                                        <p>Enter text information about the Cell Detail.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>This displays the values that are going to be stored in the Origin Members based on what was stored in the Cell Detail form.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p class="FieldName">Apply Import Offset</p>
+                                                        <p>This is used mainly for Budgeting purposes.&#160;This applies the reverse amount of what is in the Import Origin Member allowing users to enter the total amount for the cell intersection without having to determine what has already been imported.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p class="FieldName">Remove Import Offset</p>
+                                                        <p>This removes an Import Offset Adjustment previously made via the Cell Detail form.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3>Cell POV Information</h3>
+                                                <p>By hovering over the tick mark on a previewed Cube View, defaulted Members from this Cube View’s Point of View and the Cube’s Point of View settings will display in the form of a tool tip.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_53.png" />
+                                                </p>
+                                                <p>Right click on any cell and select Cell POV Information in order to see a detailed summary of the selected Members related to this intersection.&#160;All the major properties of these Members can be seen from this dialog.&#160; The full Member Script and formula syntax to get to this value is also displayed.&#160;Users can use the clipboards to copy and paste the retrieve functions.&#160;The XFGetCell formula can be copied in this dialog and used in an Excel file to retrieve this specific data in Excel.&#160;The XFCell formula can be copied in this dialog and used in a text file, such as Word or PowerPoint, to retrieve this specific data in an Extensible Document.&#160;See Extensible Document Framework in <a href="6-Presenting-Data-With-Extensible-Documents.html#Presenting-Data-With-Extensible-Documents" class="MCXref xref">Presenting Data With Extensible Documents</a> for more details on this retrieve function.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_52.png" />
+                                                </p>
+                                                <p>Interact with the Point of View in the Context Pane for the Cube View’s bolded Dimensions.&#160;When these Dimensions are changed, the Cube View’s results will change.&#160;In the example below the Cube View allows the Scenario and Time to change.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_51.png" />
+                                                </p>
+                                                <h3>Cell Status</h3>
+                                                <p>Right click and select Cell Status in order to view status properties and Dimension information about a specific cell.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_50.png" />
+                                                </p>
+                                                <h3>Data Unit Statistics</h3>
+                                                <p>Right click and select Data Unit Statistics in order to see details on the selected cell’s Data Unit. (Number of: zero cells, real cells, derived cells, NODATA cells, calculated cells, consolidated cells, translated cells, journal cells, input cells, etc.)</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_49.png" />
+                                                </p>
+                                                <h3><a name="Drill"></a>Drill Down</h3>
+                                                <p>When choosing Drill Down in the right click menu item in a Cube View or Quick View another tab will open with the Drill Down results.&#160;Drill down works the same whether a user is drilling from the data explorer grid in OneStream, from the Excel Add-In or OneStream Spreadsheet.&#160;An administrator might want to know what makes up Net Income for all Entities in Europe across all products groups, and with the Drill Down option this can be accomplished.</p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>Drill into any cell on a data grid or in Excel; it does NOT need to be a base level number.</p>
+                                                <p>The resulting screen shows the drilled back intersection in the Drill Down History section. The white cells show base amounts, meaning drilling cannot go further. The green cells can continue to be drilled.</p>
+                                                <p>
+                                                    <img style="width: 600;height: 250;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_48_600x250.png" />
+                                                </p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Drilldown is available on XFGetCell using the Excel Add-In. Right-click or use the <b>Drilldown</b> option from the <b>Analysis</b> tab.</p>
+                                                <p class="FieldName">Show Data Unit Dimensions</p>
+                                                <p>When selected, the upper grid shows the Members for Cube, Entity, Parent, Consolidation, Scenario, Time and View.</p>
+                                                <p class="FieldName">Download Results</p>
+                                                <p>These icons <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_47.png" /> allow a download of the drill results into either a CSV or Excel file. When downloading drill results into a CSV file from the Drill Down page, the list separator in the CSV file is determined by the culture set on your user profile. If the culture on your user profile matches that of the operating system's regional settings, the file opens correctly in Excel without first having to save the file and then importing it into Excel.</p>
+                                                <p class="FieldName">Drill Down History</p>
+                                                <p>Every time an administrator drills further down a bread crumb trail of the last action is visible in the Selected Action column.&#160;This explains what happened in the drill down process to get to the most recent drill results on the bottom section of the screen.&#160;The user can always go back to this area and drill a different way into the data.</p>
+                                                <p>The following options become available when a user right-clicks on any field.&#160;Not all options will be available for every cell.</p>
+                                                <p class="FieldName">Entity Children Contribution (Entity Only)</p>
+                                                <p>This shows how each Entity contributed to the Parent.</p>
+                                                <p class="FieldName">Local Currency (Consolidation Only)</p>
+                                                <p>This will show the local currency Entities.</p>
+                                                <p class="FieldName">Member Children and Base</p>
+                                                <p>This provides two ways to drill further into a green cell in the top section. The first will drill just into the children of the Member while the other will drill down to the white base cells.</p>
+                                                <p class="FieldName">All Aggregated Data Below Cell</p>
+                                                <p>This drills to white cells in each Dimension.</p>
+                                                <p class="FieldName">All Stored Data in Data Unit</p>
+                                                <p>This drills into all of the base stored data within the full Data Unit (Cube, Entity, Parent, Consolidation, Scenario, Time and View), so this is a much broader result set than the initially drilled data.</p>
+                                                <p class="FieldName">Copy POV from Data Cell</p>
+                                                <p>Select this to copy the Point of View for the selected cell.</p>
+                                                <p class="FieldName">Create Quick View Using POV from Selected Cell </p>
+                                                <p>Select this to create a Quick View based on the POV from the row selected from either the Drill Down History or the Results for Most Recent Drill Down pane. Individual data cells in the same row will result in the same Quick View being created. </p>
+                                                <p class="FieldName">Cell POV Information</p>
+                                                <p>Select this to see the full Point of View for the cell.</p>
+                                                <p class="FieldName">Cell Status</p>
+                                                <p>Select this to see information about the cell such as if the Members have children, if it is calculated, the lock status, etc.</p>
+                                                <p class="FieldName">Calculation Inputs</p>
+                                                <p>This gives details on the formula source accounts for a specific account.</p>
+                                                <p class="FieldName">Load Results for Imported Cell</p>
+                                                <p>This will drill back to the source data for the imported cell.</p>
+                                                <p class="FieldName">Audit History for Forms or Adjustment Cell</p>
+                                                <p>This will drill back to the source data for a Form or Journal.</p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>OneStream keeps a bread crumb trail of all drill actions in the right side of the top drill screen under the heading Selected Action.&#160;Users will never get lost in the data as they can always start over from the top and begin a drill again.</p>
+                                                <p class="FieldName">Origin Audit Drill Down</p>
+                                                <p>Perform an Origin Audit Drill in order to see where data was delivered into the system.&#160;Right click on the Origin cell, typically Top and select Origin Base.&#160;This will reveal all the data that came from each Origin Member.&#160;This is now at the Origin Base and any of the following drill down processes can be performed.</p>
+                                                <p class="FieldName">Import Drill</p>
+                                                <p>Right click on the Origin Member Import and select All Aggregated Data.&#160;Right click again on the Origin Channel and click Load Results for Imported Cell and then select Navigate to Source Data to get down to the GL Account level.&#160;Right click on any cell in the source system data line to get down to the source document that created that line item.</p>
+                                                <p class="FieldName">Forms Drill</p>
+                                                <p>Right click on the Origin Channel Forms and select All Aggregated Data Below Cell.&#160;Right click again on the Origin Channel and click Audit History for Forms or Adjustment Cell.&#160; This is the specific line item that created the drilled-on value.&#160;&#160;</p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>To see each line item from the Form used to create the drilled-on value, click the button View All Submitted Data Cells. This is now showing all the line items from the Form used to create the actively drilled line item.</p>
+                                                <p class="FieldName">AdjInput (Journals) Drill</p>
+                                                <p>Right click on the Origin Channel AdjInput and select All Aggregated Data Below Cell.&#160;Right click again on the Origin Channel AdjInput and click Audit History for Forms or Adjustment Cell.&#160; This is the specific line item that created the drilled-on value.&#160; This view shows all Journal entries affecting this cell including previous Journals, deleted Journals and the current Journal.&#160;</p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>To see each line item from the Journal used to create the drilled-on value, click the button View All Submitted Data Cells.&#160;This is now showing all the line items from the Journal used to create the actively drilled line item.</p>
+                                                <p class="FieldName">User Defined Description – Drill-Down</p>
+                                                <p>The Drill Down window displays the custom User Defined Description as the default header.&#160;If no custom description is created, the dimension type label, such as UD1, will display. See Application Properties and then User Defined Dimensions (Descriptions) for more information.</p>
+                                                <p>
+                                                    <img style="width: 600;height: 174;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_46_600x174.png" />
+                                                </p>
+                                                <h3>Show Cube View as a Report</h3>
+                                                <p>To generate a smoothly formatted presentation of the Cube View, click this button <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_45.png" /> while in preview mode and a report similar to what one would see in Dashboards will open. Control column widths and row heights from within the Cube View.&#160;See Application Tab| Application Properties in order to show a company name and logo on all reports.&#160;There are also several application-wide settings for these Data Explorer reports under Application Properties and under the Application Tab| Presentation| Cube Views.</p>
+                                                <p>
+                                                    <img style="width: 600;height: 314;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Cube%20Views_44_600x314.png" />
+                                                </p>
+                                                <p>In order to print a Cube View, first generate a Report as shown above. Once the Report is generated, print and export that view to other Formats, such as PDF, HTML, RTF (for Word), CSV, Text, XPS, MHT or Excel.</p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Using-OnePlace-Cube-Views">Using OnePlace Cube Views</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Using System Tools — API Overview Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="api">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-Development-Technologies.html">Development Technologies</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Developer-Fundamentals.html">Developer Fundamentals</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Platform-Engines.html">Platform Engines</a></li><li class="cat"><a class="cat-link" href="../chapters/5-API-Structure-and-Organization.html">API Structure and Organization</a></li><li class="cat open"><a class="cat-link current" href="../chapters/6-Using-System-Tools.html">Using System Tools</a><ul class="cat-items"><li><a class="s-link" href="#Database">Database</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/7-Event-Listing.html">Event Listing</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Finance-Functions-APIs.html">Finance Functions APIs</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">API Overview Guide</span></div><section id="Using-System-Tools" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor1068"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440933"></a>Using System Tools</h1>
+                                                <h2><a name="_Toc50440934"></a>System Business Rules</h2>
+                                                <p>System Extender Business Rules are used in coordination with Azure Server Sets for elastic scalability at the Azure Database and Server Sets level. Server and eDTU scaling can be accomplished manually or via System Business Rules.&#160; If System Business Rules is selected as a Scaling Type, then OneStream will call a user-defined System Extender Business Rule to determine if scaling is needed.&#160; The user is responsible for implementing the scaling function and returning the proper scaling object to OneStream. This can be accomplished by adding a System Extender Business Rule and assigning it appropriately. </p>
+                                                <p>Under each Case statement, these rules and related Args and BRApis can be used to check the current Server Set capacity, query metrics about a Server Set or Azure Database and impact the volume of Server Sets or level of Azure Database deployed.</p>
+                                                <p>Refer to the <span class="Emphasis_Italic">Installation and Configuration Guide</span> under <span class="Emphasis_Italic">Azure Database Connection Settings</span> and <span class="Emphasis_Italic">Server Sets</span> for where to refer to these Business Rules. Example starting point of empty System Extender Business Rule upon creation: </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/SystemTools_replacement1_612x220.png" style="width: 612;height: 220;" />
+                                                </p>
+                                                <p><span class="Emphasis_Bold">Sample System Business Rule</span>
+                                                    <br />Metrics data is passed to this function to help the user determine whether the server or database needs to be scaled or not.&#160; Depending on what is being scaled, different metric data is passed in.&#160; For server scaling, Environment metrics and Scale Set metrics are passed in to help determine scaling.&#160; For database scaling, Environment metrics and SQL Server Elastic Pool metrics are passed in to help determine scaling.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/Chapter%206%20System%20Tools_2_550x241.png" style="width: 550;height: 241;" />
+                                                </p>
+                                            </div></div></section><section id="Database" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1114"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440935"></a>Database</h2>
+                                                <p>The Database screen allows System Administrators to view all of OneStream’s database tables and provides tools for managing stored data and other information.</p>
+                                                <h3>Tables</h3>
+                                                <p>This gives read-only access to all data tables in the database and can be used for tasks such as trying to debug issues without having access to the database, or deletion logging.</p>
+                                                <h3>Tools</h3>
+                                                <p>Database Tools allow System Administrators to manage the database.</p>
+                                                <h3>Data Records </h3>
+                                                <p>Enter a Member Filter in order to view data for the entire system.</p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Using-System-Tools">Using System Tools</a></li><li class="toc-l1"><a href="#Database">Database</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

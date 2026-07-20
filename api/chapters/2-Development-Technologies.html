@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Development Technologies — API Overview Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="api">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat open"><a class="cat-link current" href="../chapters/2-Development-Technologies.html">Development Technologies</a><ul class="cat-items"><li><a class="s-link" href="#User-Interface-Technology">User Interface Technology</a></li><li><a class="s-link" href="#Server-Technology">Server Technology</a></li><li><a class="s-link" href="#Database-Technology">Database Technology</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/3-Developer-Fundamentals.html">Developer Fundamentals</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Platform-Engines.html">Platform Engines</a></li><li class="cat"><a class="cat-link" href="../chapters/5-API-Structure-and-Organization.html">API Structure and Organization</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Event-Listing.html">Event Listing</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Finance-Functions-APIs.html">Finance Functions APIs</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">API Overview Guide</span></div><section id="Development-Technologies" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor909"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440906"></a>Development Technologies</h1>
+                                                <h2><a name="_Toc50440907"></a>Programming Language</h2>
+                                                <p>The OneStream platform is based on .Net Core. OneStream’s underlying codebase is predominately made up of C# libraries with a few VB.Net libraries in use as well.&#160;C# and Visual Basic .NET are the two primary programming languages used to code against .NET Core. C# and VB.NET have very different syntax elements, but Microsoft developed these languages simultaneously as part of a common .NET Core development platform. Both C# and VB.Net are developed, managed, and supported by the same language development team at Microsoft.&#160;They compile to the same intermediate language <span class="Emphasis_Italic">(IL) </span>which runs against the same .NET Core runtime libraries. Although programming syntax is different for each language, almost every command in VB has an equivalent command in C# and vice versa.&#160;Both languages reference the same underlying .NET Core Base Classes to extend their functionality. </p>
+                                            </div></div></section><section id="User-Interface-Technology" class="doc-section lvl1"><p class="crumb">Development Technologies</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor87"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440908"></a>User Interface Technology</h2>
+                                                <p>The OneStream user interface is based on the Windows Presentation Foundation <span class="Emphasis_Italic">(WPF)</span> in order to provide a truly rich end user experience.&#160; WPF employs XAML, an XML based language, to define and link various interface elements.&#160; WPF applications can be deployed as standalone desktop programs, or hosted as an embedded object in a website. Windows 10 Store application development provides another opportunity for WPF based applications to be deployed, but as Windows only applications.</p>
+                                            </div></div></section><section id="Server-Technology" class="doc-section lvl1"><p class="crumb">Development Technologies</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor84"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440909"></a>Server Technology</h2>
+                                                <p>All OneStream code is hosted and executed with Microsoft Internet Information Services <span class="Emphasis_Italic">(IIS).</span>&#160; This means that both the Web Server <span class="Emphasis_Italic">(service code)</span> and Application Server <span class="Emphasis_Italic">(service code)</span> are executed within an IIS Application Pool process host.&#160; The code is running on the application server tier hosted within the application sever IIS application pool.&#160; This is a very important concept to keep in mind because there will be times when a Business Rule must interact with different elements of the system.&#160; The context in which the Business Rule is running needs to be understood in order to establish communication and/or interact with those other system elements.</p>
+                                            </div></div></section><section id="Database-Technology" class="doc-section lvl1"><p class="crumb">Development Technologies</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor887"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440910"></a>Database Technology</h2>
+                                                <p>OneStream was designed to run on all versions of the Microsoft SQL Server relational database engine <span class="Emphasis_Italic">(Express, Standard, Data Center, Enterprise and Azure Database as a Service)</span>.&#160; For larger organizations, the SQL Server Enterprise edition is recommended because OneStream makes use of table partitioning.&#160; This enables maximum throughput during heavily multi-threaded operations such as data transformation and consolidation.&#160; The OneStream engineering team is committed to fully utilizing the capabilities of the most recent versions of SQL Server and to keeping the OneStream platform optimized for new versions of SQL Server as they become available. </p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Development-Technologies">Development Technologies</a></li><li class="toc-l1"><a href="#User-Interface-Technology">User Interface Technology</a></li><li class="toc-l1"><a href="#Server-Technology">Server Technology</a></li><li class="toc-l1"><a href="#Database-Technology">Database Technology</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

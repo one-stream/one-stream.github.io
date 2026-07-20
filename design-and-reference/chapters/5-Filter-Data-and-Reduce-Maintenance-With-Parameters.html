@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Filter Data and Reduce Maintenance With Parameters — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat open"><a class="cat-link current" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a><ul class="cat-items"><li><a class="s-link" href="#Parameter-Types">Parameter Types</a></li><li><a class="s-link" href="#Benefits">Benefits</a></li><li><a class="s-link" href="#Ways-to-Use-Parameters">Ways to Use Parameters</a></li><li><a class="s-link" href="#Requirements">Requirements</a></li><li><a class="s-link" href="#Best-Practices">Best Practices</a></li><li><a class="s-link" href="#About-Parameter-Definitions">About Parameter Definitions</a></li><li><a class="s-link" href="#Create-a-Parameter">Create a Parameter</a><ul class="cat-items"><li><a class="s-link" href="#Specify-Literal-Value-Settings">Specify Literal Value Settings</a></li><li><a class="s-link" href="#Specify-Input-Value-Parameter-Settings">Specify Input Value Parameter Settings</a></li><li><a class="s-link" href="#Specify-Delimited-List-Settings">Specify Delimited List Settings</a></li><li><a class="s-link" href="#Specify-Bound-List-Settings">Specify Bound List Settings</a></li><li><a class="s-link" href="#Specify-Member-List-Settings">Specify Member List Settings</a></li><li><a class="s-link" href="#Specify-Member-Dialog-Settings">Specify Member Dialog Settings</a></li><li><a class="s-link" href="#Sample-Delimited-List-Parameter-in-a-Cube-View">Sample Delimited List Parameter in a Cube View</a></li></ul></li><li><a class="s-link" href="#Manage-Parameters">Manage Parameters</a><ul class="cat-items"><li><a class="s-link" href="#Assign-a-Parameter">Assign a Parameter</a></li><li><a class="s-link" href="#Modify-a-Parameter">Modify a Parameter</a></li><li><a class="s-link" href="#Copy-a-Parameter">Copy a Parameter</a></li><li><a class="s-link" href="#Delete-or-Remove-a-Parameter">Delete or Remove a Parameter</a></li><li><a class="s-link" href="#Rename-a-Parameter">Rename a Parameter</a></li><li><a class="s-link" href="#Identify-Parameter-Assignments">Identify Parameter Assignments</a></li><li><a class="s-link" href="#Nest-Parameters">Nest Parameters</a></li></ul></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Filter-Data-and-Reduce-Maintenance-With-Parameters" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor1435"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Filter Runtime Data and Reduce Maintenance with Parameters</h1>
+                                                <p>Parameters prompt users to filter or customize data at runtime, helping streamline objects such as forms, dashboards, and cube view reports to best suit different user needs. Administrators typically define parameters primarily in maintenance units, and then assign parameters to the appropriate object. See:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#About">About Parameters</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Parameter-Types">Parameter Types</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Benefits">Benefits</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Ways-to-Use-Parameters">Ways to Use Parameters</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Requirements">Requirements</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Best-Practices">Best Practices</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Create-a-Parameter">Create Parameters</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                                <h2><a name="About"></a>About Parameters</h2>
+                                                <p>Depending on the <a href="#Parameter-Types">type</a>, parameters prompt you to specify data by entering text or selecting items from a drop-down list or dialog box. For example, a Delimited List parameter could prompt you to select from 1 of 3 budget versions to use in a Headcount by Cost Center report, as shown:<span class="mc-pm-font mc-madcap-change mc-madcap-change-node mc-madcap-change-add" madcap-changes="6634f4f8-6b18-46cb-94c4-0ae0693e8950" style="color: #ff6666;"></span><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-example-for-intro1_587x203.png" alt="&quot;&quot;" title="Displays the definition of a Delimited List parameter assigned to a cube view that prompts users to select a budget scenario for use in head count reporting," style="width: 587;height: 203;" /></p>
+                                                <p>As shown below, you can use parameters with a variety of objects, such as:</p>
+                                                <ul class="ul_condensed">
+                                                    <li>
+                                                        <p class="ul_condensed">Data management sequences</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Cube views</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="ul_condensed">Forms</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="ul_condensed">Extensible documents</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="ul_condensed">Books</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="ul_condensed">Dashboard components</p>
+                                                    </li>
+                                                </ul>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-conceptual1_309x203.png" alt="&quot;&quot;" title="Figure identifying some of the objects to which you can assign parameters to prompts for user input." style="width: 309;height: 203;" />
+                                                </p>
+                                                <p>For example, use parameters as placeholders or with substitution variables and retrieve functions to enhance extensible documents with selections for time period, entity, data cell values, and more. See <a href="#Ways-to-Use-Parameters">Ways to Use Parameters</a>.</p>
+                                            </div></div></section><section id="Parameter-Types" class="doc-section lvl1"><p class="crumb">Filter Data and Reduce Maintenance With Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor652"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Parameter Types</h2>
+                                                <p>Parameters are created in dashboard maintenance units. The following parameter types are available, each with specific uses.</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#Literal">Literal Value parameters</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Input">Input Value parameters</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Delimite2">Delimited List parameters</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Bound">Bound List parameters</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Member">Member List parameters</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Member2">Member Dialog parameters</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                                <p>To reference an existing parameter, when formatting a cube view header or cell for example, enclose the parameter name in pipes and exclamation points. For example, |!ParameterName!|.</p>
+                                                <p>Each parameter type has two sections of properties, General and Data Source parameter properties. Properties identify a parameter, determine a parameter's behavior, and control how the parameter is used.</p>
+                                                <p><a href="#General">General</a> properties are standard across all parameter types. <a href="#Data">Data Source</a> properties vary by parameter type, but the first property for all parameter types is the Parameter Type property, where you select the type of parameter from a list.</p>
+                                                <h3><a name="Literal"></a>Literal Value Parameters</h3>
+                                                <p>Literal value parameters are the only parameter type that does not prompt for any selections during creation.</p>
+                                                <p>Use literal value parameters to standardize formatting for cube view columns and rows and dashboard components. This helps reduce reporting maintenance. .</p>
+                                                <p style="color: #000000;">To create a literal value parameter, first <a href="#Create-a-Parameter">create a new parameter</a>, then <a href="#Specify-Literal-Value-Settings">specify the Literal Value parameter settings</a>.</p>
+                                                <h3><a name="Input"></a>Input Value Parameters</h3>
+                                                <p>Use Input Value parameters to flexibly enter or change a value used in a cube view or other object. You can enter or modify a value to use in dashboard components and cube view rows and columns.</p>
+                                                <p>The Input Value parameter type helps you standardize and more easily maintain report and dashboard formats. For example, you can create an Input Value parameter that, when run in a cube view, prompts a for the name to display as <span class="Emphasis_Bold">Report Run By</span> in a product sales report. <br /><br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-rewrite-type-example-one1_519x286.png" style="width: 519;height: 286;" /></p>
+                                                <p>To create an Input Value parameter, first <a href="#Create-a-Parameter" class="MCXref xref">Create a Parameter</a>, then <a href="#Specify-Input-Value-Parameter-Settings">specify the Input Value parameter settings</a>.</p>
+                                                <h3><a name="Delimite2"></a>Delimited List Parameters</h3>
+                                                <p>Use Delimited List parameters to create a distinct list of specified values, including an easily recognizable name. For example, you can create a list containing the months of the year to use as value items. Use the display items field for the delimited list parameter to list each month value separated by a comma, then associate each with a value item to create the list.</p>
+                                                <p>Delimited List parameters let you pick a value from a drop-down list instead of typing a value into a cell. Parameters can be assigned as a list source to a cube view row or column. These parameters are supported in Excel, web browsers, and cube view-driven reports.</p>
+                                                <p>You can also specify a parameter name that can be a cube view row or column. Edit cells using a drop-down list containing the parameter’s list of items. A number is stored in the data cell as specified in the parameter's definition. If using a Delimited List parameter on a numeric cell, ensure each value in the parameter’s name-value pairs is a number.</p>
+                                                <p>Select from a list of values, specified as display or value items, such as months or financial quarters. For example, a Delimited List parameter could prompt a user to select from one of three budget versions for a Headcount by Cost Center report.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-rewrite-type-example-deux1_622x188.png" style="width: 622;height: 188;" />
+                                                </p>
+                                                <p>These types of parameters also help you prompt for columns when sharing columns in a cube view, so you can specify column names at runtime. For example, you could specify columns for products or years in an income statement.</p>
+                                                <p>To create a Delimited List parameter, first <a href="#Create-a-Parameter" class="MCXref xref">Create a Parameter</a>, then <a href="#Specify-Delimited-List-Settings">specify the Delimited List parameter properties</a>. See a <a href="#Sample-Delimited-List-Parameter-in-a-Cube-View">sample</a>.</p>
+                                                <h3><a name="Bound"></a>Bound List Parameters</h3>
+                                                <p>A bound list is group of members or other objects that were created using a predefined method query or by entering an SQL expression to retrieve members. Use Default Value to enter an input value.</p>
+                                                <p>For example, to list all entities in a dimension, use this method query with a command type of member:</p><pre xml:space="preserve">{Dimension type}{Dimension name}{Member Filter}{where clause}</pre><pre xml:space="preserve">{Entity}{CorpEntities}{E#Root.TreeDescendants}{}</pre>
+                                                <p>The difference between the two query types is that a method query is an SQL query helper that you can use to quickly perform queries.   </p>
+                                                <p>SQL queries are more customizable and often used in dashboard design to prompt for information such as the workflow profile name. See <a href="10-Data-Collection.html#Connector-Data-Source">Determine the Query Method</a>. </p>
+                                                <p>To create a Bound List parameter, first <a href="#Create-a-Parameter" class="MCXref xref">Create a Parameter</a>, then <a href="#Specify-Bound-List-Settings">specify the Bound List parameter settings</a>.</p>
+                                                <h3><a name="Member"></a>Member List Parameters</h3>
+                                                <p>A Member List parameter is similar to a Delimited List parameter, but you must specify more properties. Also, a Member List parameter does not have the option to display a value item or display item.</p>
+                                                <p>Users select a member, such as an account or entity dimension member. For example, you could prompt users to select a base Scenario member when they run a cube view to display budget actuals.</p>
+                                                <p>Members that display in the member list are based on the member filters you specify for a dimension.</p>
+                                                <p>To create a Member List parameter, first <a href="#Create-a-Parameter" class="MCXref xref">Create a Parameter</a>, then <a href="#Specify-Member-List-Settings">specify the Member List parameter settings</a>.</p>
+                                                <h3><a name="Member2"></a>Member Dialog Parameters</h3>
+                                                <p>Similar to Member List parameter, the Member Dialog parameter lets you associate a member with the parameter through a dialog box with search capabilities. This is more appropriate for a dimension such as accounts or entities where you can use the hierarchy to select a base or parent member.</p>
+                                                <p>To create a Member Dialog parameter, first <a href="#Create-a-Parameter" class="MCXref xref">Create a Parameter</a>, then <a href="#Specify-Member-Dialog-Settings">specify the Member Dialog parameter settings</a>.</p>
+                                            </div></div></section><section id="Benefits" class="doc-section lvl1"><p class="crumb">Filter Data and Reduce Maintenance With Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor914"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Benefits</h2>
+                                                <p>As configurable prompts, parameters enhance reporting and analysis flexibility because they let you dynamically filter the data to retrieve. You can also use some <a href="#Parameter-Types">types</a> of parameters with form templates to streamline data collection. Some parameters also store values that you can share across objects, helping make applications more dynamic and reduce some maintenance tasks. For example:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Use parameters with substitution variables and retrieve functions to hold values so you can insert time periods, entities, text comments, and data cells in extensible documents.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Use Literal Value parameters to define and apply standard formatting to cube view rows and columns and to dashboard components, reducing repetitive, error-prone tasks and ensuring a consistent look and feel in your analytics. You could create a Default Header parameter that captures the header format to use in reports as shown below and then assign the parameter to the appropriate cube views.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-formatting-example1_469x179.png" alt="&quot;&quot;" title="Literal Value parameter capturing report header formatting settings." style="width: 469;height: 179;" /></p>
+                                                    </li>
+                                                </ul>
+                                                <p>For information about some of the tasks you can perform with parameters, see <a href="#Ways-to-Use-Parameters">Ways to Use Parameters</a>.</p>
+                                            </div></div></section><section id="Ways-to-Use-Parameters" class="doc-section lvl1"><p class="crumb">Filter Data and Reduce Maintenance With Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1139"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Ways to Use Parameters</h2>
+                                                <p>You can use parameters extensively across <span class="mc-variable Variables.Product_Name variable">OneStream</span> objects. This topic identifies some of the advantages of using parameters with some objects such as the following with:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#Cube">Cube Views</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Data">Data Adapters and Dashboard Components</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Extensib">Extensible Documents</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Report">Books</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                                <h3><a name="Cube"></a>Cube Views</h3>
+                                                <p>Assign parameters to a cube view to:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Specify and apply standard formatting to cube views and dashboards for a consistent look and feel in your reports. </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Identify the details users can access when they navigate linked cube views and dashboards to access more data. See <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Linked-Cube-Views">Linked Cube Views</a>.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Let users refine the data to supply or retrieve in reports by prompting them to select entities, workflow profiles, views, scenarios, and more. To limit a query, refer to the parameter in the point of view, rows, or columns.&#160;This filters data in reports based on parameter selections.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Specify the point of view to display more focused data.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Nest parameters to use a series of parameter prompts to refine the data to use on dashboards and in reports. See <a href="#Nest-Parameters">Nest Parameters</a>.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3><a name="Data"></a>Data Adapters and Dashboard Components</h3>
+                                                <p>Use parameters with data adapters to:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Prompt users to select the data to retrieve and display on dashboards, so they can focus their analysis using custom intersections of some of the cube view data that populates the dashboard. For example, assign parameters to prompt for entity and year selections to a data adapter so users can visualize data by entity and year while accessing the rest of the cube view data.
+                </p>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <p>Enable dashboard actions such as custom calculations or launching another dashboard.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Identify static values using Literal Value parameters, for dashboard content and design.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>See <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Parameter-Components">Parameter Components in Dashboards</a>.</p>
+                                                <h3><a name="Extensib"></a>Extensible Documents</h3>
+                                                <p>Use parameters as placeholders and with substitution variables and retrieve functions to enhance extensible documents, such as Word and PowerPoint files, with dynamic selections for time period, entity, data cell value, text comments, and more. For example, insert the following parameters to prompt users to specify the years and quarter to use in a report:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>|!CurrentQtr!|</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>|!ReportingYear!|</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>|!ReportingYearPrior!|</p>
+                                                    </li>
+                                                </ul>
+                                                <p>You can use parameters in Microsoft text, Excel, Word, and PowerPoint files. See <a href="6-Presenting-Data-With-Extensible-Documents.html#Presenting-Data-With-Extensible-Documents">Present Data With Extensible Documents</a>.</p>
+                                                <h3><a name="Report"></a>Books</h3>
+                                                <p>Use books to combine a variety of reports and files in one object for custom reporting. You can automatically generate input parameters based on book content or manually specify the required parameters. You can also use parameters in loops- sequences of variable-based instructions, to further customize the data to display. For example, a book can loop to display all base entities in a hierarchy, providing the same cube view report for each entity. Or, you could assign a parameter called <span class="Emphasis_Italic">ParamSalesRegions </span>to include all sales regions in book content.</p>
+                                                <p>If the source objects used in a book have assigned parameters, use Change parameters to override them instead of modifying the underlying cube view or report. For example, configure a Change parameter to use the workflow time in a book instead of prompting users to specify a Time dimension member.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Before creating books and using Change parameters, ensure that you understand the source objects, such as cube views, that generate the content to use.</p>
+                                            </div></div></section><section id="Requirements" class="doc-section lvl1"><p class="crumb">Filter Data and Reduce Maintenance With Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor402"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Requirements</h2>
+                                                <p>This topic describes who should create parameters and the syntax to use when you assign parameters to application objects.</p>
+                                                <h3>Definition and Assignment</h3>
+                                                <p>Because they are more familiar with <span class="mc-variable Variables.Product_Name variable">OneStream</span> applications, objects and processes, a <span class="mc-variable Variables.Product_Name variable">OneStream</span>&#160;Administrator or an application designer should define parameters after identifying:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>The information that a parameter must gather from users at runtime.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>If a sequence of parameters is needed to gather the required data. Specify a staggered sort order to display parameters in the right order to collect increasingly granular levels of detail.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>See <a href="#Best-Practices">Best Practices</a>.</p>
+                                                <h3><a name="Syntax"></a>Syntax</h3>
+                                                <p>Enclose parameter names in pipes and exclamation points when you assign parameters to objects, regardless of parameter type. For example, |!ParamView!| prompts users to select year to date or periodic data when they run a cube view for reporting.</p>
+                                                <p>Use double exclamation points (for example, |!!ParamEntity!!|) when assigning Delimited List parameters to present users with the parameter's more intuitive and helpful display item value.</p>
+                                                <p>Follow these best practices when assigning Delimited List parameters:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Assignment to cube view rows and columns - Use single exclamation points to display the member name. If you use double exclamation points, you may receive an error at runtime as the parameter tries to retrieve the Display Item value.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Assignment to page captions - Use single exclamation points to display the Value Items. Use double exclamation points to show the Display Item. For example, instead of displaying BudV1 - the Value Item, specify |!!Budget Version 1!!| to display Budget Version 1 on reports as shown:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/syntax-example-param1_502x216.png" alt="&quot;&quot;" title="Delimited List parameter definition showing how double quotation marks display the desired report title." style="width: 502;height: 216;" /></p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Best-Practices" class="doc-section lvl1"><p class="crumb">Filter Data and Reduce Maintenance With Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor68"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Best Practices</h2>
+                                                <p>This topic provides tips to help you design and maintain parameters. See:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#Design">Design</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Naming">Naming</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                                <h3><a name="Design"></a>Design</h3>
+                                                <p>Since parameters can be used with different objects such as similar types of reports, reduce the associated maintenance tasks by designing parameters with:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Reuse in mind, making parameters applicable to different objects. If you modify a parameter to address changing reporting needs, keep in mind that your changes apply to all objects to which the parameter is assigned.</p>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <p>A staggered sort order where at least 20 sort numbers are unassigned to support new parameters possibly needed for future report and dashboard redesign. <br /><br />For example, two parameters with respective sort orders of five and six display consecutively. However, to display a new parameter in between them, you must change the parameter with sort order of 6 to 7 and then assign sort order of 6 to the new parameter. If you have hundreds or parameters, changing the existing sort order to support new parameters is tedious and error prone. In this example, assign a sort order of 5 to the first parameter and 25 to the second parameter to easily add new parameters in between them.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-sort-order-best-practice-example1_318x251.png" style="width: 318;height: 251;" alt="&quot;&quot;" title="Two parameter definitions in which twenty sort orders are unassigned, enabling you to specify sort orders for new parameters without reordering the sort order of existing parameters." />
+                                                            <br />
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                                <h3><a name="Naming"></a>Naming</h3>
+                                                <p>To quickly identify parameters, prefix parameter names with "Param". For example, ParamProductSegment, ParamCostCenter and ParamColumnColor.</p>
+                                                <p>Do not use special characters or dashes (-) in parameter names. Also, specify intuitive names for parameters. If you rename a parameter, you must re-assign it to all, potentially hundreds, of its associated objects. </p>
+                                                <p>Parameter names should be unique, even across workspaces.</p>
+                                            </div></div></section><section id="About-Parameter-Definitions" class="doc-section lvl1"><p class="crumb">Filter Data and Reduce Maintenance With Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1470"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>About Parameter Definitions</h2>
+                                                <p>This topic orients you with the properties you specify to create parameters and how to look up objects and values to specify as the default value of a parameter.</p>
+                                                <h3>Property Types</h3>
+                                                <p>You specify two types of properties to create a parameter, as shown below:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>General properties, such as user prompt and sort order, that are common to all parameter types.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Data source properties that are <a href="#Parameter-Types">parameter type-specific</a>. These properties define the value or objects to apply with the parameter or the prompt options that users can select at runtime.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-two-areas-definition1_645x200.png" alt="&quot;&quot;" title="You specify General and Data Source properties to define a parameter. Data Source properties vary by parameter type." style="width: 645;height: 200;" />
+                                                </p>
+                                                <p>See <a href="#Create-a-Parameter">Create a Parameter</a>.</p>
+                                            </div></div></section><section id="Create-a-Parameter" class="doc-section lvl1"><p class="crumb">Filter Data and Reduce Maintenance With Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor163"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Create a Parameter</h2>
+                                                <p>Parameters prompt users to filter or customize data at runtime, helping tailor objects such as forms, dashboards, and cube views to best suit different user needs. Administrators define parameters in dashboard maintenance units, then assign them to the appropriate objects.</p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>To further refine data selections, refer one parameter to another. See <a href="#Nest-Parameters">Nested Parameters.</a></p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Review the <a href="#Requirements">Requirements</a> and <a href="#Best-Practices">Best Practices</a>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation</span> &gt; <span class="Emphasis_Bold">Dashboards</span></p>
+                                                        <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>You can also define parameters by clicking <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Administration </span>&gt; <span class="Emphasis_Bold">Dashboards</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the dashboard maintenance unit in which to create a parameter, then <span class="Emphasis_Bold">Parameters</span>. After you save a parameter, you cannot put it in another dashboard maintenance unit.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-create1_22x21.png" alt="&quot;&quot;" title="Click to create a new parameter." style="width: 22;height: 21;" /> <span class="Emphasis_Bold">Create Parameter</span> in the dashboard toolbar.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In <span class="Emphasis_Bold">Name </span>and <span class="Emphasis_Bold">Description</span>, enter a name and description that indicates the information the parameter prompts users to specify, such as <i>ParamBudget Scenario</i>. Do not use special characters, dashes (-) or underscores (_) in names. Names should be unique, even across workspaces.</p>
+                                                        <p>See <a href="#Best-Practices">Naming</a> in <span class="Emphasis_Italic">Parameter Best Practices</span> for tips on naming and organizing parameters.<br /></p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In <span class="Emphasis_Bold">User Prompt</span>, enter the message that prompts users to specify information. For example, <i>Select a Product member</i> or <i>Enter your name</i>.</p>
+                                                        <p>Skip this step for literal value parameters since they do not prompt for selections. </p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>In <span class="Emphasis_Bold">Sort Order</span>, enter the sequence in which to display the parameter. Parameters are displayed by alphabetical order by sort order and name.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>In the list of parameters for the dashboard maintenance unit. For example, to list the parameter sixth, enter six.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>For use with other parameters. For example, to display parameterB after parameterA, ensure that the sort order value for parameterB is greater than that of parameterA. See <a href="#Best-Practices" class="MCXref xref">Best Practices</a>.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>From <span class="Emphasis_Bold">Parameter Type</span>, select the kind of parameter to define which determines the information or objects users are prompted to specify. See <a href="#Parameter-Types">Parameter Types</a>.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Literal Value</span>: Instead of prompting users for a selection, use a predefined value or object such as a color or number format.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Input Value</span>: Users enter or modify a value to customize cube view results that generate reports. For example, prompt users to enter their name when they run a cube view to generate a report.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Delimited List</span>: Users select one value or item from a list, such as one of two budget scenarios.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Bound List</span>: Users select a member from a list of members generated with a method or a SQL query.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Member List</span>: Users select a member from a drop-down list.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Member Dialog</span>: Users select a member by navigating, searching, and filtering the member hierarchy displayed in a dialog box.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>Define the settings for the parameter type:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><a href="#Specify-Literal-Value-Settings">Specify Literal Value Settings</a>.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><a href="#Specify-Input-Value-Parameter-Settings">Specify Input Value Settings</a>.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><a href="#Specify-Delimited-List-Settings">Specify Delimited List Settings</a>.
+                        </p>
+                                                            </li>
+                                                            <li>
+                                                                <p><a href="#Specify-Bound-List-Settings">Specify Bound List Settings</a>.
+                        </p>
+                                                            </li>
+                                                            <li>
+                                                                <p><a href="#Specify-Member-Dialog-Settings">Specify Member Dialog Settings</a>.
+                        </p>
+                                                            </li>
+                                                            <li>
+                                                                <p><a href="#Specify-Member-List-Settings">Specify Member List Settings</a>.
+                        </p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="10">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                    <li value="11">
+                                                        <p>Add the parameter to the appropriate object, such as a cube view. See <a href="#Assign-a-Parameter">Assign a Parameter</a>.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Specify-Literal-Value-Settings" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Create a Parameter</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1928"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Specify Literal Value Settings</h3>
+                                                <p>To finish defining a Literal Value parameter:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In <span class="Emphasis_Bold">Default Value</span>, specify the value or object to apply with the parameter. Users cannot change this at run time. Enter a value (color or currency, for example) or an object name, or click <span class="Emphasis_Bold">Edit </span>to <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Find-and-Assign-Values-Using-Object-Lookup">look it up</a>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Important" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;IMPORTANT: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>IMPORTANT: </b></span></span></span>When you assign the parameter, enclose the name in pipes and exclamation points. For example, |!ParamColumnColor!|.</p>
+                                            </div></div></section><section id="Specify-Input-Value-Parameter-Settings" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Create a Parameter</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor214"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Specify Input Value Parameter Settings</h3>
+                                                <p>To finish defining an Input Value parameter:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>(Optional) Although users can override it at runtime, use <span class="Emphasis_Bold">Default Value</span> to specify a value or object to initially display the first time the parameter runs. Enter the object name or value, or click <span class="Emphasis_Bold">Edit </span>to <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Find-and-Assign-Values-Using-Object-Lookup">look it up</a>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Important" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;IMPORTANT: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>IMPORTANT: </b></span></span></span>When you assign the parameter, enclose the name in pipes and exclamation points. For example, |!DefaultHeader!|.</p>
+                                            </div></div></section><section id="Specify-Delimited-List-Settings" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Create a Parameter</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1254"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Specify Delimited List Settings</h3>
+                                                <p>To finish defining a Delimited List parameter:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In <span class="Emphasis_Bold">Default Value</span>, specify a value or object to initially display the first time the parameter runs. Enter the member name or click <span class="Emphasis_Bold">Edit</span> to <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Find-and-Assign-Values-Using-Object-Lookup">look it up</a>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>In <span class="Emphasis_Bold">Display Items</span> (comma-delimited), define a custom, comma-delimited list to display several options in the application from which to select, for example <i>Budget Version 1, Budget Version 2</i>. Separate names with commas.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In <span class="Emphasis_Bold">Value Items</span> (comma-delimited), enter the values or objects, such as member names, that correspond to each Display Item option in the application. Enter options in a comma-delimited list using their names in the application. Separate the values with commas.</p>
+                                                        <p>For example, if the Scenario dimension member for Budget Version 1 is BudV1, enter <i>BudV1</i>. Similarly, enter <i>BudV2</i> as the member used if Budget Version 2 is selected. Separate names with commas as shown:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-delimited-list-settings-example1_460x101.png" alt="&quot;&quot;" title="Delimited List parameter setting identifying, as Value Items, the budget members used if a corresponding display item is selected." style="width: 460;height: 101;" /></p>
+                                                    </li>
+                                                </ol>
+                                                <p>The syntax you use when you assign the parameter to an object depends on:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>The object type and component, such as a cube view's page caption or row.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>If you want to present the Value Item or Display Item to users at run time.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>See <a href="#Requirements">Syntax</a>.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>If a delimited list parameter is used in a cube view page caption, surround it in two exclamation points to reference the display items, not the value. For example, |!!ParameterName!!|.&#160;</p>
+                                                <ol start="4">
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span> to save your property edits.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Specify-Bound-List-Settings" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Create a Parameter</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1312"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Specify Bound List Settings</h3>
+                                                <p>You can define two types of Bound List parameters.</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>An SQL-based query to leverage data in the <span class="mc-variable Variables.Product_Name variable">OneStream</span> application or framework database or in an external data source.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>A method-based query to use object-specific variables to refine and customize the member data to return.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>To finish defining a method-based parameter:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In <span class="Emphasis_Bold">Default Value</span>, enter the actual value used by default in the parameter, if no other value is specified. The default value must be part of the parameter’s definition.</p>
+                                                        <p>You can either type the default value if known, use <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Find-and-Assign-Values-Using-Object-Lookup">object lookup</a> to create the default value, or use a <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Cube-Views-Example">cube view</a> to select the appropriate formatting and copy the result to the Default Value field.</p>
+                                                        <p>The Default Value property is the member you would set before defining a value using the Data Source properties specific to the selected parameter type.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Use <span class="Emphasis_Bold">Result Format String Type</span> to determine if the default value or a custom value is used.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Default</span>: Use the formatting defined in the <span class="Emphasis_Bold">Default Value</span> property.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Custom</span>: Use a format string that you enter in <span class="Emphasis_Bold">Result Custom Format String</span> as the display text for the parameter.</p>
+                                                            </li>
+                                                        </ul>
+                                                        <p>Selecting <span class="Emphasis_Bold">Custom</span> enables the <span class="Emphasis_Bold">Result Custom Format String</span> property, where you can design the custom string.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In <span class="Emphasis_Bold">Result Custom Format String</span>, optionally enter a string to use as the display text. Use <span class="filename">String.Format</span> syntax in <span class="filename">.NET</span>. For example, if a value is Blue and the format string is <span class="filename">The color is {0}.</span>, the display text is <span class="filename">The color is blue</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In <span class="Emphasis_Bold">Command Type</span> choose one of the following:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Method</span> to use a specified method type and query to define the command to be used in the parameter.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">SQL&#160;Query</span> to determine the database to use and define the SQL&#160;query.</p>
+                                                            </li>
+                                                        </ul>
+                                                        <p>Both selections enable additional properties to further define the command.</p>
+                                                        <p><span class="Emphasis_Bold">For a Method Command Type</span>: Use these properties to define the database location if using a Method command type.</p>
+                                                        <ul>
+                                                            <li><span class="Emphasis_Bold">Method Type</span>: Select the object-specific variables to define how members are evaluated, so the most useful members are returned. See <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Data-Adapters" class="MCXref xref">Data Adapters</a> for more information on using the method type in a parameter definition.</li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Method Query</span>: Customize variables to define which members to return and display in prompts. You can either type the default value if known, or use <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Find-and-Assign-Values-Using-Object-Lookup">object lookup</a> to create the default value. Use this syntax:</p>
+                                                                <p><span class="filename">{Dimension type}{Dimension name}{Member Filter}{where clause}</span>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                        <p><span class="Emphasis_Bold">For a SQL&#160;Command Type</span>: Use these properties to define the database location if using a SQL&#160;command type.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Database Location</span>: Determines the location of the database that includes the SQL&#160;command type. Select one of the following:</p>
+                                                                <ul>
+                                                                    <li>
+                                                                        <p><span class="Emphasis_Bold">Application</span>:&#160;Use the current <span class="mc-variable Variables.Product_Name variable">OneStream</span> Application database containing stage and financial cube data.</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p><span class="Emphasis_Bold">Framework</span> Use the connected <span class="mc-variable Variables.Product_Name variable">OneStream</span> Framework database containing security and log data.</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p><span class="Emphasis_Bold">External</span> Indicates that a database outside of <span class="mc-variable Variables.Product_Name variable">OneStream</span> is to be used.</p>
+                                                                        <p>If selecting <span class="Emphasis_Bold">External</span> for the database, use the enabled <span class="Emphasis_Bold">External Database Connection</span> property to select from the list of external databases. External database connections are defined in <span class="mc-variable Variables.Product_Name variable">OneStream</span> using the Server Configuration Tool. Select the external database connection you want to use from the list.</p>
+                                                                        <p>See <span class="Emphasis_Italic">Configuring Application Servers</span> in the <span class="Emphasis_Italic">Installation Guide</span> for information on configured application servers.</p>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">SQL Query</span>: This is the SQL statement to run for the parameter. Enter a query that evaluates objects (such as members) to return a particular set. For example:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-sql-query1_300x226.png" style="width: 300;height: 226;" /></p>
+                                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>If you do not know the method query syntax, leave this field blank and click <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Data%20Adapters_4_16x16.png" style="margin-top: 0px;width: 16;height: 16;" />. This identifies the syntax location, runs the parameter, and provides a sample result set.&#160;</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In <span class="Emphasis_Bold">Results Table Name</span>, enter the name of the table generated when the data adapter runs. The default name is <b>table</b>.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In <span class="Emphasis_Bold">Display Member</span>, enter one of the following:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Name</span> to display the member by name.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Description</span> to display the member's description.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Name and Description</span> to display both the member name and the member description.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>In <span class="Emphasis_Bold">Value Member</span>, enter the name of the members, as used in the application, to correspond to each member displayed.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span> to save your property edits.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3><a name="Sample"></a>Sample Method-Based Parameter</h3>
+                                                <p>The following image shows the definition of a parameter that retrieves Time members for an Application Analysis report.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-method-example1_395x265.png" style="width: 395;height: 265;" />
+                                                </p>
+                                                <h3><a name="Sample2"></a>Sample SQL-Based Parameter</h3>
+                                                <p>The following image shows the definition of a parameter that generates a list of FX Rate Types for an FX Rates Audit report.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-sql-example1_438x254.png" alt="&quot;&quot;" title="A SQL-based Bound List parameter used to generate a list of FX Rate members." style="width: 438;height: 254;" />
+                                                </p>
+                                            </div></div></section><section id="Specify-Member-List-Settings" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Create a Parameter</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1730"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Specify Member List Settings</h3>
+                                                <p>To finish defining a Member List parameter:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>(Optional) In <span class="Emphasis_Bold">Default Value</span>, specify a member to display at the top of the list when the parameter runs and prompts users to select a member. Enter the member name or click <span class="Emphasis_Bold">Edit</span> to <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Find-and-Assign-Values-Using-Object-Lookup">look it up</a>.<br /></p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Right-click in the <span class="Emphasis_Bold">Default Value</span> dialog box, select <span class="Emphasis_Bold">Paste</span> and then click <span class="Emphasis_Bold">OK</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Use <span class="Emphasis_Bold">Display Member</span> to define how to display the returned members.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Type <span class="Emphasis_Bold">Name</span> to display the member by name.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>Type <span class="Emphasis_Bold">Description</span> to display the member's description.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>Type <span class="Emphasis_Bold">Name and Description</span> to use both.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In <span class="Emphasis_Bold">Cube</span>, either type the default value if known, or click <span class="Emphasis_Bold">Edit</span> to use <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Find-and-Assign-Values-Using-Object-Lookup">object lookup</a> to select the cube containing the required dimensions.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>From <span class="Emphasis_Bold">Dimension Type</span>, select the dimension category (such as Time or Account) that contains the appropriate dimension.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In <span class="Emphasis_Bold">Dimension</span>, enter the name of the dimension to use or click <span class="Emphasis_Bold">Edit</span> to select the dimension in the hierarchy.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>In <span class="Emphasis_Bold">Member Filter</span>, either type the member filter if known or click <span class="Emphasis_Bold">Edit</span> to use the <a href="8-Cube.html#Member-Filter-Builder">Member Filter Builder</a> to specify the members to list.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span> to save your changes.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Specify-Member-Dialog-Settings" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Create a Parameter</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1732"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Specify Member Dialog Settings</h3>
+                                                <p>To finish defining a Member Dialog parameter:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>(Optional) In <span class="Emphasis_Bold">Default Value</span>, specify a dimension in the dimensional hierarchy to display when the parameter first runs. Enter the dimension name or click <span class="Emphasis_Bold">Edit</span> to <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Find-and-Assign-Values-Using-Object-Lookup">look up</a> the dimension.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>In <span class="Emphasis_Bold">Cube</span>, click <span class="Emphasis_Bold">Edit</span> to select the cube that uses the required dimension. To quickly find a cube, type the name in <span class="Emphasis_Bold">Filter</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>From <span class="Emphasis_Bold">Dimension Type</span>, select the dimension category such as Consolidation or Scenario that contains the appropriate dimension.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In <span class="Emphasis_Bold">Dimension</span>, enter the name of the dimension to use or click <span class="Emphasis_Bold">Edit </span>to select the dimension from the hierarchy.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In <span class="Emphasis_Bold">Member Filter</span>, specify the member that determines the hierarchy to display in parameter prompts. Enter a member name or click <span class="Emphasis_Bold">Edit</span> to use the <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Member-Filter-Builder">Member Filter Builder</a> to refine the members to display. For example:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>To display only Budget members in a Scenario dimension with multiple member groups such as Actual and Forecast, click <span class="Emphasis_Bold">S#</span> and select <span class="Emphasis_Bold">Budgets</span> as shown:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-member-dialog-settings-example1_510x317.png" alt="&quot;&quot;" title="The Member Filter Builder that you use to refine the members to display in parameter prompts." style="width: 510;height: 317;" /><br /></p>
+                                                            </li>
+                                                            <li>
+                                                                <p>To display the entire hierarchy, select <span class="Emphasis_Bold">Root</span> and <span class="Emphasis_Bold">Base</span>.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-root-base-member-dialog-example1_532x357.png" alt="&quot;&quot;" title="Member Filter Builder showing how to specify the base root." style="width: 532;height: 357;" /><br /></p>
+                                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Dashboard-based parameters are similar to those used in forms. If a form references a parameter that cannot be found in the form template, a dashboard parameter of the same name is used.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Select members and use the arrows to add them to <span class="Emphasis_Bold">Results</span>.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Click <span class="Emphasis_Bold">OK</span> twice.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Important" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;IMPORTANT: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>IMPORTANT: </b></span></span></span>When you assign the parameter, enclose the name in pipes and exclamation points. For example, |!BudgetScenario!|.</p>
+                                            </div></div></section><section id="Sample-Delimited-List-Parameter-in-a-Cube-View" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Create a Parameter</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor869"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Sample Delimited List Parameter in a Cube View</h3>
+                                                <p>In this example, a Delimited List parameter is created and assigned to a sample GolfStream cube view so users can indicate if reports are not started, under review, or completed for each entity.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation</span> &gt; <span class="Emphasis_Bold">Dashboard</span> and then select the dashboard maintenance unit where you want to store the parameter.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Create New Parameter</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Define the parameter by specifying the settings shown below. Enter an intuitive name to reflect the parameter's purpose of prompting users to select from a list of report status settings.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-delimited-list-cube-view-example1_502x221.png" alt="&quot;&quot;" title="Delimited List parameter definition to enable report status filtering." style="width: 502;height: 221;" /><br /></p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In <span class="Emphasis_Bold">Display Items</span>, enter the status options that users can select when they run the cube view. </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In <span class="Emphasis_Bold">Value Items</span>, enter the corresponding status member names defined in the application. For example, <i>0NotStarted</i> is the Value Item for the Display Name <i>Not Started</i>. </p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation</span> &gt; <span class="Emphasis_Bold">Cube Views</span> and select the cube view to use with the parameter. </p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Click <span class="Emphasis_Bold">Rows and Columns</span> to see that column members display time based on workflow and a non-financial account called Report Status. The row members identify all base entities for Clubs.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/List%20Parameter%20in%20a%20Cube%20View_7_445x121.png" alt="&quot;&quot;" title="Parameter associated with time and account." style="width: 445;height: 121;" /></p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p> Click a row header and then <span class="Emphasis_Bold">Data</span>.</p>
+                                                    </li>
+                                                    <li value="10">
+                                                        <p>In <span class="Emphasis_Bold">Cell Type</span>, select <span class="Emphasis_Bold">Combo Box</span>.<br /></p>
+                                                    </li>
+                                                    <li value="11">
+                                                        <p>In <span class="Emphasis_Bold">List Parameter</span>, enter <span class="Emphasis_Bold">ParamReportStatus</span> and then save the cube view. </p>
+                                                        <p>When users run the cube view, they can specify a report status for each entity, as shown:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/List%20Parameter%20in%20a%20Cube%20View_6_389x221.png" alt="&quot;&quot;" title="Delimited List parameter attached to a cube view enabling users to select a report status." style="border-left-style: solid;border-left-width: 0.75px;border-right-style: solid;border-right-width: 0.75px;border-top-style: solid;border-top-width: 0.75px;border-bottom-style: solid;border-bottom-width: 0.75px;width: 389;height: 221;" /></p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Manage-Parameters" class="doc-section lvl1"><p class="crumb">Filter Data and Reduce Maintenance With Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor751"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Manage Parameters</h2>
+                                                <p>This topic describes the tasks administrators can perform to maintain parameters. See:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#Assign-a-Parameter">Assign a parameter</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Modify-a-Parameter">Modify a parameter</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Copy-a-Parameter">Copy a parameter</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Delete-or-Remove-a-Parameter">Delete a parameter</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Rename-a-Parameter">Rename a parameter</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Identify-Parameter-Assignments">Identify assignments</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Nest-Parameters">Nest parameters</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Assign-a-Parameter" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Manage Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor359"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Assign a Parameter</h3>
+                                                <p>After defining a parameter, assign it to the object where it should be used to filter runtime data or apply a stored value.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> and then the appropriate object.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Edit the object to assign the parameter. Click <span class="Emphasis_Bold">Object Lookup</span> to find the parameter, and enclose the parameter name in pipes and exclamation points. For example, |!ParamDate!|. See <a href="#Requirements">Syntax</a>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>See these sample use cases:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#Assign">Assign to a Report Subheader</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Assignme">Assign to a Cube View Column Header</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                                <h3><a name="Assign"></a>Assign to a Report Subheader</h3>
+                                                <p>Perform these task to assign an Input Value parameter to prompt users to enter their name in a report header:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation</span> &gt; <span class="Emphasis_Bold">Cube Views</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Cube View Group</span>, the appropriate cube view, <span class="Emphasis_Bold">Designer</span>, and then <span class="Emphasis_Bold">Report Header</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In <span class="Emphasis_Bold">Subtitle</span> enter <span class="Emphasis_Bold">Report run by:</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Object Lookup</span>, and then <span class="Emphasis_Bold">Parameters (with pipes)</span>.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Select the parameter to assign, and then click <span class="Emphasis_Bold">Copy to Clipboard</span>.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-lookup1_375x138.png" alt="&quot;&quot;" title="After clicking Object Lookup, select the parameter to assign to a cube view report subtitle." style="width: 375;height: 138;" /><br /></p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Paste the parameter after <span class="Emphasis_Bold">Report run by:</span>, as shown:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-report-header-subtitle1_259x127.png" alt="&quot;&quot;" title="A parameter that prompts users to enter their name at runtime is assigned to a header in a report cube view." style="width: 259;height: 127;" /><br /></p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span> and then <span class="Emphasis_Bold">Open Data Explorer</span> to run the cube view.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Enter your name and click <span class="Emphasis_Bold">Show Report</span>. The report generates, displaying your name as shown:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/assign-result1_401x352.png" alt="&quot;&quot;" title="Report generated using a cube view to which a parameter prompting for the user's name is assigned." style="width: 401;height: 352;" /></p>
+                                                    </li>
+                                                </ol>
+                                                <h3><a name="Assignme"></a>Assign to a Cube View Column Header</h3>
+                                                <p>In this example, a Delimited List parameter is assigned to a sample GolfStream cube view so users can indicate if reports are not started, under review, or completed for each entity.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation</span> &gt; <span class="Emphasis_Bold">Cube Views</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the appropriate cube view.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold">Rows and Columns</span> to see that column members display time based on workflow and a non-financial account called Report Status. The row members identify all base entities for Clubs.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/List%20Parameter%20in%20a%20Cube%20View_7_386x104.png" alt="&quot;&quot;" title="Parameter associated with time and account." style="width: 386;height: 104;" /></p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click a row header, and then <span class="Emphasis_Bold"> Data</span>.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In <span class="Emphasis_Bold">Cell Type</span>, select <span class="Emphasis_Bold">Combo Box</span>.<br /></p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In <span class="Emphasis_Bold">List Parameter</span>, enter <span class="Emphasis_Bold">ParamReportStatus</span> and save the cube view.</p>
+                                                        <p>When users run the cube view, they can specify a report status for each entity, as shown:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/List%20Parameter%20in%20a%20Cube%20View_6_389x221.png" alt="&quot;&quot;" title="Delimited List parameter attached to a cube view enabling users to select a report status." style="border-left-style: solid;border-left-width: 0.75px;border-right-style: solid;border-right-width: 0.75px;border-top-style: solid;border-top-width: 0.75px;border-bottom-style: solid;border-bottom-width: 0.75px;width: 389;height: 221;" /></p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Modify-a-Parameter" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Manage Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1190"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Modify a Parameter</h3>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>Before editing a parameter, identify where it is used to understand the affects of modifying it. Select the parameter and click <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameters-where-used1_26x22.png" alt="&quot;&quot;" title="Images that reference the selected item identifies the objects to which a parameter is assigned." style="width: 26;height: 22;" /> <span class="Emphasis_Bold">Show Objects That Reference The Selected Item</span>.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation</span> &gt; <span class="Emphasis_Bold">Dashboards</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the dashboard maintenance unit that uses the parameter, and then <span class="Emphasis_Bold">Parameters</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the parameter to modify settings described in <a href="#Create-a-Parameter">Create a Parameter</a>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Copy-a-Parameter" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Manage Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1385"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Copy a Parameter</h3>
+                                                <p>Copy a parameter to quickly create a new parameter that must function similarly.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation </span>&gt;&#160;<span class="Emphasis_Bold">Dashboards</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Dashboard Maintenance Unit</span>, the dashboard maintenance unit in which the parameter is used, and then <span class="Emphasis_Bold">Parameters</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the parameter upon which to base a new parameter, then click <span class="Emphasis_Bold">Copy</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Paste </span>and then <span class="Emphasis_Bold">Rename </span>to specify a name for the new parameter.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Modify the new parameter as needed and assign it to an appropriate object. See:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><a href="#Create-a-Parameter">Create a Parameter</a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p><a href="#Assign-a-Parameter">Assign a Parameter</a>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Delete-or-Remove-a-Parameter" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Manage Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor488"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Delete or Remove a Parameter</h3>
+                                                <p>You can delete a parameter after removing it from its assigned objects.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation </span>&gt; <span class="Emphasis_Bold">Dashboards</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Dashboard Maintenance Unit</span>, then the dashboard maintenance unit in which the parameter is used.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the parameter, then <span class="Emphasis_Bold">Show Objects That Reference The Selected Item</span>. This identifies the objects from which you must remove the parameter. For example:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-assignments-list1_692x292.png" alt="&quot;&quot;" title="Object Usage Viewer identifies the objects that use a parameter, indicating affected objects." style="width: 692;height: 292;" /></p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> to find and edit the objects that use the parameter. For example, to remove a parameter from report header in a cube view:</p>
+                                                        <ol style="list-style-type: lower-alpha;">
+                                                            <li value="1">
+                                                                <p>Click <span class="Emphasis_Bold">Cube View Groups</span>, the cube view, and then <span class="Emphasis_Bold">Designer</span>.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Click <span class="Emphasis_Bold">Report Header</span>, delete the parameter from the subtitle, and then click <span class="Emphasis_Bold">Save</span>.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>To delete the parameter:</p>
+                                                        <ol style="list-style-type: lower-alpha;">
+                                                            <li value="1">
+                                                                <p>Repeat steps 2 - 4 to ensure you remove the parameter from all objects.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Click the parameter and then <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-delete1_20x20.png" alt="&quot;&quot;" title="Click to delete a parameter." style="width: 20;height: 20;" /> <span class="Emphasis_Bold">Delete</span>.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Rename-a-Parameter" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Manage Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1711"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Rename a Parameter</h3>
+                                                <p class="Caution" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;CAUTION: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>CAUTION: </b></span></span></span>If you rename a parameter, you must re-assign it to all objects because the new name is not automatically applied. See <a href="#Identify-Parameter-Assignments">Identify parameter assignments</a>. Do not use special characters and dashes (-) in names.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation</span> &gt; <span class="Emphasis_Bold">Dashboards</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the dashboard maintenance unit that uses the parameter, and then <span class="Emphasis_Bold">Parameters</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the parameter, then <span class="Emphasis_Bold">Show Objects That Reference The Selected Item</span> to identify the objects using the parameter. You must assign the renamed parameter to these objects. For example:<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-assignments-list1_733x309.png" alt="&quot;&quot;" title="The Object Usage View identifies the objects that use a parameter." style="width: 733;height: 309;" /><br /></p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Close</span>.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click the parameter, then <span class="Emphasis_Bold">Rename</span> and enter a different name.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Identify-Parameter-Assignments" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Manage Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1451"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Identify Parameter Assignments</h3>
+                                                <p>Perform these steps to access a list of objects to which a parameter is assigned:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Presentation</span> &gt; <span class="Emphasis_Bold">Dashboards</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the dashboard maintenance unit associated with the parameter, and then <span class="Emphasis_Bold">Parameters</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the parameter and then <span class="Emphasis_Bold">Show Objects That Reference The Selected Item</span>. This lists all the objects that use the parameter.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/parameter-assignments-list1_609x256.png" alt="&quot;&quot;" title="The Object Usage Viewer lists the objects to which a parameter is assigned." style="width: 609;height: 256;" />
+                                                </p>
+                                            </div></div></section><section id="Nest-Parameters" class="doc-section lvl2"><p class="crumb">Filter Data and Reduce Maintenance With Parameters › Manage Parameters</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1390"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Nest Parameters</h3>
+                                                <p>A nested parameter refers to another parameter, so you can further refine data selections for more granular data entry, reporting, and analysis. The following procedure based on the GolfStream application, describes how to create a nested parameter for a cube view to display profit by product. The parameters defined below let users filter data by product segment, then by a specific product in a selected segment.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt;&#160;<span class="Emphasis_Bold">Presentation</span> &gt;&#160;<span class="Emphasis_Bold">Dashboards</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the dashboard maintenance unit in which to store the parameters.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold">Parameters</span>, and then <span class="Emphasis_Bold">Create Parameter</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Define the first parameter as shown below to prompt users to select a product segment.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/emily-nested-params-one1_441x217.png" style="width: 441;height: 217;" /><br /><br />The Member Filter returns the child members of Top, in the UD2 dimension, in a drop-down list so users can select a product segment. For example, if Top has 2 children, TotalProducts and TotalServices, users can select only those members.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Define the second parameter as shown below, referencing the first parameter in Member Filter.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Nested%20Parameters_10_416x213.png" alt="&quot;&quot;" title="The second parameter that prompts users to select a base level product." style="width: 416;height: 213;" /><br /><br />The nested parameter will list the selected product segment's base members, so users can select a base-level member in TotalProducts orTotalServices.<br /></p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Save both parameters, and then click <span class="Emphasis_Bold">Application</span> &gt;&#160;<span class="Emphasis_Bold">Presentation</span> &gt; <span class="Emphasis_Bold">Cube Views</span>.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Select the cube view where you want to use the parameters.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Select the column or row that requires a parameter and enter the parameter name using pipes and exclamation points. See<a href="#Requirements"> Syntax</a>. The sample cube view below displays products in columns, so a column is selected.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Nested%20Parameters_9_344x96.png" alt="&quot;&quot;" title="Column in a cube view where you assign a parameter, clicking Set Member Filter to ensure the first parameter references the second so users can select a product segmenet and then a product." style="width: 344;height: 96;" /></p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>Select a dimension and click <span class="Emphasis_Bold">Member Filter Builder</span> to ensure the ParamBaseProducts parameter references the ParamProductSegments parameter first, then returns a product list based on a selected segment.</p>
+                                                    </li>
+                                                    <li value="10">
+                                                        <p>Click <span class="Emphasis_Bold">Open Data Explorer</span> to see how the nested parameters work. ParamProductSegements runs first, prompting you to select a segment.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Nested%20Parameters_8_322x185.png" alt="&quot;&quot;" title="Parameter prompt asking you to select a product segment." style="width: 322;height: 185;" /><br /><br />Then ParamBaseProducts runs, prompting you to select a product.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Nested%20Parameters_7_299x175.png" alt="&quot;&quot;" title="Parameter prompting you to select a product." style="width: 299;height: 175;" /></p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Filter-Data-and-Reduce-Maintenance-With-Parameters">Filter Data and Reduce Maintenance With Parameters</a></li><li class="toc-l1"><a href="#Parameter-Types">Parameter Types</a></li><li class="toc-l1"><a href="#Benefits">Benefits</a></li><li class="toc-l1"><a href="#Ways-to-Use-Parameters">Ways to Use Parameters</a></li><li class="toc-l1"><a href="#Requirements">Requirements</a></li><li class="toc-l1"><a href="#Best-Practices">Best Practices</a></li><li class="toc-l1"><a href="#About-Parameter-Definitions">About Parameter Definitions</a></li><li class="toc-l1"><a href="#Create-a-Parameter">Create a Parameter</a></li><li class="toc-l2"><a href="#Specify-Literal-Value-Settings">Specify Literal Value Settings</a></li><li class="toc-l2"><a href="#Specify-Input-Value-Parameter-Settings">Specify Input Value Parameter Settings</a></li><li class="toc-l2"><a href="#Specify-Delimited-List-Settings">Specify Delimited List Settings</a></li><li class="toc-l2"><a href="#Specify-Bound-List-Settings">Specify Bound List Settings</a></li><li class="toc-l2"><a href="#Specify-Member-List-Settings">Specify Member List Settings</a></li><li class="toc-l2"><a href="#Specify-Member-Dialog-Settings">Specify Member Dialog Settings</a></li><li class="toc-l2"><a href="#Sample-Delimited-List-Parameter-in-a-Cube-View">Sample Delimited List Parameter in a Cube View</a></li><li class="toc-l1"><a href="#Manage-Parameters">Manage Parameters</a></li><li class="toc-l2"><a href="#Assign-a-Parameter">Assign a Parameter</a></li><li class="toc-l2"><a href="#Modify-a-Parameter">Modify a Parameter</a></li><li class="toc-l2"><a href="#Copy-a-Parameter">Copy a Parameter</a></li><li class="toc-l2"><a href="#Delete-or-Remove-a-Parameter">Delete or Remove a Parameter</a></li><li class="toc-l2"><a href="#Rename-a-Parameter">Rename a Parameter</a></li><li class="toc-l2"><a href="#Identify-Parameter-Assignments">Identify Parameter Assignments</a></li><li class="toc-l2"><a href="#Nest-Parameters">Nest Parameters</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

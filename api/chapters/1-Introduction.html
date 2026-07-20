@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Introduction — API Overview Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="api">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat open"><a class="cat-link current" href="../chapters/1-Introduction.html">Introduction</a><ul class="cat-items"></ul></li><li class="cat"><a class="cat-link" href="../chapters/2-Development-Technologies.html">Development Technologies</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Developer-Fundamentals.html">Developer Fundamentals</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Platform-Engines.html">Platform Engines</a></li><li class="cat"><a class="cat-link" href="../chapters/5-API-Structure-and-Organization.html">API Structure and Organization</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Event-Listing.html">Event Listing</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Finance-Functions-APIs.html">Finance Functions APIs</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">API Overview Guide</span></div><section id="Introduction" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1 class="h1_1"><a name="aanchor1897"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440904"></a>Introduction</h1>
+                                                <p>The purpose of the API Guide is to provide detailed information about the technologies and application programming interfaces available to consultants and developers interested in extending the functionality of OneStream.&#160;</p>
+                                                <p>This document contains information about the technologies used in the OneStream product, naming conventions and organizational approaches used by the OneStream engineering team.&#160; It also includes detailed reference listings for API methods and events exposed by OneStream.</p>
+                                                <p>To maintain optimal performance and ensure security, use public and documented APIs only. Internal APIs are not intended for public general use and may be changed or removed without notice. Support cannot provide assistance for issues resulting from the uses of nonpublic features.</p>
+                                                <p data-mc-conditions="Default.ScreenOnly">For customers in a OneStream-hosted environment, see the <a href="https://documentation.onestream.com/9.0.1/Content/IDM/About This Guide.html">Identity and Access Management Guide</a> for information about authentication with OneStream IdentityServer and using personal access tokens (PATs).</p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Introduction">Introduction</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

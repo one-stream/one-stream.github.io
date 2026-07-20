@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Developer Fundamentals — API Overview Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="api">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-Development-Technologies.html">Development Technologies</a></li><li class="cat open"><a class="cat-link current" href="../chapters/3-Developer-Fundamentals.html">Developer Fundamentals</a><ul class="cat-items"><li><a class="s-link" href="#In-Solution-Documentation">In-Solution Documentation</a></li><li><a class="s-link" href="#Business-Rules-Editor-Overview">Business Rules Editor Overview</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/4-Platform-Engines.html">Platform Engines</a></li><li class="cat"><a class="cat-link" href="../chapters/5-API-Structure-and-Organization.html">API Structure and Organization</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Event-Listing.html">Event Listing</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Finance-Functions-APIs.html">Finance Functions APIs</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">API Overview Guide</span></div><section id="Developer-Fundamentals" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor306"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440911"></a>Developer Fundamentals</h1>
+                                                <h2><a name="_Toc50440912"></a>VB.Net and C#</h2>
+                                                <p>The OneStream platform is based entirely on .Net Core as is the Business Rules engine. Therefore, VB.Net and C# are the logical choice for Business Rule syntax. At execution time, all Business Rules are compiled on demand and cached for fast and reliable execution. Writing a Business Rule in VB.Net or C# provides the end user with many advantages over older products based on VBScript. Business Rule writers can expect exceptional code performance, better error messaging, and better error handling because VB.Net and C# are a full featured programming language. In the end, these capabilities result in a more reliable Business Rule code.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>There are two broad Business Rule Classifications: Shared Business Rules and Item Specific Business Rules. Shared Business Rules can be written in either VB.NET or C#, Item Specific Business Rules can be written in VB.NET only.</p>
+                                            </div></div></section><section id="In-Solution-Documentation" class="doc-section lvl1"><p class="crumb">Developer Fundamentals</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1552"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440913"></a>In-Solution Documentation</h2>
+                                                <p>The Business Rule Editor includes context sensitive help for API properties and methods as well as Snippets <span class="Emphasis_Italic">(code examples).</span>&#160; In-solution documentation makes the process of writing a Business Rule more efficient because both API Documentation, Objects, and Samples are presented within the Business Rule Editor window.&#160; In addition, useful coding examples accumulated by the OneStream engineering and consulting teams are also presented in context sensitive manner within the Business Rule editor.&#160; Companies and partners can author their own Snippets and include them in their application as an extension of the OneStream predefined Snippets (<span class="Emphasis_Italic">Snippet Editor <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span> required</span>).&#160; </p>
+                                            </div></div></section><section id="Business-Rules-Editor-Overview" class="doc-section lvl1"><p class="crumb">Developer Fundamentals</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1119"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440914"></a>Business Rules Editor Overview</h2>
+                                                <p>The Business Rule editor is a powerful in-solution screen that provides integrated API context help, syntax editing with intelli-sense, and full outlining capabilities.&#160; The actual syntax content and Business Rule structure will be discussed at length in subsequent sections of this document.</p>
+                                                <p>The image below explains the major regions and elements of the Business Rule editor.&#160; </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/UTM/BR%20Editor_replacement1_611x375.png" style="width: 611;height: 375;" />
+                                                </p>
+                                                <h3>Helpful Resources</h3>
+                                                <h4>VB.Net</h4>
+                                                <p>VB.Net is one of the most popular programming languages in use today.&#160; This language is especially popular amongst business users because the syntax is perceived to be more readable and business user friendly than other programming languages.&#160; VB.Net still shares many of the same syntax elements of older VB dialects such as VB6, VBA and VBScript.&#160; This means that users who have written Macros in Microsoft Excel or used VBScript to write Business Rules in first generation CPM solutions should feel comfortable with the core syntax elements of VB.Net.&#160; The main learning challenge business users face when migrating to VB.Net is understanding the object oriented nature of the language.&#160; In comparison to VBScript, VB.Net offers more elegant coding opportunities.&#160; Many of the statements and processes are manually created in VBScript, but in VB.Net they are encapsulated in object libraries on which users can simply call.&#160; </p>
+                                                <h4>Microsoft VB.Net Learning</h4>
+                                                <p>Getting comfortable with VB.Net takes a little awareness of the basic libraries and objects provided by .Net Core.&#160; The link below points to some resources that business users may find helpful during the VB.Net learning process.</p>
+                                                <h4>Microsoft Visual Basic
+        </h4>
+                                                <p><a href="https://msdn.microsoft.com/en-us/library/2x7h1hfk.aspx">https://msdn.microsoft.com/en-us/library/2x7h1hfk.aspx</a> </p>
+                                                <h4>C#</h4>
+                                                <p>C# (pronounced "See Sharp") is a modern, object-oriented, and type-safe programming language. This language is especially popular amongst developers as it enabled them to build many types of secure and robust applications that run in .NET. C# has its roots in the C family of languages and will be immediately familiar to C, C++, Java, and JavaScript programmers.</p>
+                                                <h4>Microsoft C# Learning</h4>
+                                                <p>The link below points to some resources that business users may find helpful during the C# learning process.</p>
+                                                <p>https://docs.microsoft.com/en-us/dotnet/csharp/ </p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Developer-Fundamentals">Developer Fundamentals</a></li><li class="toc-l1"><a href="#In-Solution-Documentation">In-Solution Documentation</a></li><li class="toc-l1"><a href="#Business-Rules-Editor-Overview">Business Rules Editor Overview</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Docking — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat open"><a class="cat-link current" href="../chapters/4-Docking.html">Docking</a><ul class="cat-items"><li><a class="s-link" href="#Docking-Areas">Docking Areas</a></li><li><a class="s-link" href="#Floating-Window">Floating Window</a></li><li><a class="s-link" href="#Docking-Known-Issues">Docking Known Issues</a></li><li><a class="s-link" href="#USE-CASE">USE CASE</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Docking" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor969"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Docking</h1>
+                                                <p>Docking improves your experience in <span class="mc-variable Variables.Product_Name variable">OneStream</span> by enabling you to click, drag, and drop OneStream tabs into specific areas. </p>
+                                                <h2>Benefits</h2>
+                                                <p>You can use docking in several ways:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>You can click and drag one tab to a separate screen or monitor while keeping other tabs open on the original screen.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You can dock pages side-by-side and make changes as an administrator in one page and quickly see the results in the other page upon refresh.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You can dock multiple pages within existing docking areas to create your own individualized layouts.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>Docking provides the following benefits for viewing, building, editing, and creating in the <span class="mc-variable Variables.Product_Name variable">OneStream</span> application:</p>
+                                                <table class="TableStyle-TableGridLight" cellspacing="0" style="width: 100%;mc-table-style: url('../../../Resources/TableStyles/TableGridLight.css');">
+                                                    <col class="TableStyle-TableGridLight-Column-Column" style="width: 201px;" />
+                                                    <col class="TableStyle-TableGridLight-Column-Column" style="width: 201px;" />
+                                                    <col class="TableStyle-TableGridLight-Column-Column" />
+                                                    <thead>
+                                                        <tr class="TableStyle-TableGridLight-Head-Header1">
+                                                            <th class="TableStyle-TableGridLight-HeadE-Column-Header1">Task</th>
+                                                            <th class="TableStyle-TableGridLight-HeadE-Column-Header1">Role</th>
+                                                            <th class="TableStyle-TableGridLight-HeadD-Column-Header1">Benefits</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">Building a Dashboard</td>
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">Application Developer</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Instead of navigating between tabs in the application, you can dock multiple tabs and have them each display simultaneously.</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">Data Analysis</td>
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">End User</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">You can dock multiple Cube Views on several screens . For example, Window 1 has Income Statement docked, Window 2 has Revenue docked, and Window 3 has Expenses docked. This allows you to manage multiple items simultaneously.</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyB-Column-Body">Editing a Cube View</td>
+                                                            <td class="TableStyle-TableGridLight-BodyB-Column-Body">End User</td>
+                                                            <td class="TableStyle-TableGridLight-BodyA-Column-Body">You can view and edit Cube Views more easily with Data Explorer and Designer side-by-side docked.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <p>See <a href="#USE-CASE">Docking Use Cases</a>.</p>
+                                            </div></div></section><section id="Docking-Areas" class="doc-section lvl1"><p class="crumb">Docking</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor40"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Docking Areas</h2>
+                                                <p>You can create new docking areas and gain the ability to have tabs open simultaneously and multitask by clicking with the left mouse button, dragging, and then dropping tabs into specific docking areas.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span> The Toggle Page Size icon will not display in a floating window.</p>
+                                                <h3>Layouts</h3>
+                                                <p>Each docking area allows you to move content in the following layouts: Left, Right, Top, and Bottom. This will move content to the layout direction of the document group. </p>
+                                                <p>
+                                                    <img style="width: 542;height: 282;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/docking_layouts1_542x282.png" />
+                                                </p>
+                                                <p>There are also inner components you can move content into for each individual window. You can move content into the following inner layouts: Left, Right, Top, Bottom, and Center. The Center layout opens content within the document group.</p>
+                                                <p>
+                                                    <img style="width: 580;height: 304;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/docking_layouts_2_580x304.png" />
+                                                </p>
+                                                <p>In the following example, the Application Workspaces page was docked to the right to edit the dashboard.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/GIF/DNR/docking_example1.gif" data-mc-conditions="Default.ScreenOnly" />
+                                                </p>
+                                                <h3>Tabs</h3>
+                                                <h4>New Tabs</h4>
+                                                <p>Click the <span class="Emphasis_Bold">New Tab</span> button in the bottom tab bar to open a new (Empty) tab. When you open a new page through the left-hand Navigation pane, the new tab will replace the (Empty) tab in the main window.</p>
+                                                <p>If actions or buttons in a specific OneStream page can launch a new page, those new pages will be opened in the same window as the original OneStream page.</p>
+                                                <p class="example" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;Example: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>Example: </b></span></span></span>If the Application Workspaces page is open in a floating window and you select a Cube View and then click the Open Data Explorer toolbar button, the new Data Explorer page will be opened in the same floating window.</p>
+                                                <h4>Empty Tabs</h4>
+                                                <p>If you click the <span class="Emphasis_Bold">New Tab</span> button to add a new (Empty) tab and then select a navigation link in the left-hand Navigation pane, it will open a new page and replace the empty tab.</p>
+                                                <p class="example" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;Example: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>Example: </b></span></span></span>If you click the <span class="Emphasis_Bold">New Tab</span> button to create an (Empty) tab, then click the Books navigation link, the system will replace the (Empty) tab with the Books tab.</p>
+                                                <p class="Important" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;IMPORTANT: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>IMPORTANT: </b></span></span></span>You cannot dock the (Empty) tab in a docked or floating window. The (Empty) tab only exists in the main window.</p>
+                                                <p>When the last open tab in the main window is dragged away, there will be an (Empty) tab and the New Tab button at the bottom of the main window.</p>
+                                                <p class="example" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;Example: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>Example: </b></span></span></span>If the Books tab is dragged out of the main window and added to a Cube Views docked window, the (Empty) tab and New Tab button will display in the main window.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>The <span class="Emphasis_Bold">New Tab</span> button will always display in the main window.</p>
+                                                <h4>Context Menu</h4>
+                                                <p>When right-clicking on a tab or a docked page, you will have four options.</p>
+                                                <p><span class="Emphasis_Bold">Context Menu Options</span>
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Refresh Page</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Close Page</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Close All Pages</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Close All Pages Except This</p>
+                                                    </li>
+                                                </ul>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/GIF/DNR/docking_context_menu.gif" data-mc-conditions="Default.ScreenOnly" />
+                                                </p>
+                                                <h3>Pane</h3>
+                                                <h4>POV Pane</h4>
+                                                <p>The <span class="Emphasis_Bold">Update POV Pane To Current Page</span> toolbar button displays at the top-right of the main document group and any page in docked and floating windows. Items in the POV Pane may be grayed out due to multiple active pages or tabs. This toolbar button will not display in the main document group, if no other docking or floating windows are open. </p>
+                                                <p>To activate the POV on the docked, floating window or main document group content, select the <span class="Emphasis_Bold"> Update POV Pane To Current Page</span> toolbar button. When you hover over the toolbar button, it will highlight in yellow as an active icon.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/GIF/DNR/updated_docking_povpane.gif" data-mc-conditions="Default.ScreenOnly" />
+                                                </p>
+                                                <p>When docked pages or floating windows are closed or re-added to the main window, the POV returns to its previous functionality and the toolbar button will not display. If you do not have any docked or floating windows, the existing functionality on the right POV pane applies.</p>
+                                                <p class="example" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;Example: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>Example: </b></span></span></span>When selecting a tab to open that specific page in the main window, the POV pane will update to that page's POV.</p>
+                                                <h4>Left Navigation Pane</h4>
+                                                <p>The Left Navigation Pane's OnePlace, Application, and System tabs will no longer be automatically selected depending on the page most recently opened in the main, docking, or floating window.</p>
+                                            </div></div></section><section id="Floating-Window" class="doc-section lvl1"><p class="crumb">Docking</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1864"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Floating Window</h2>
+                                                <p>You can create floating windows by clicking, dragging, and then dropping a tab into a screen or monitor. You can also drag and drop other tabs and pages onto the floating window. If the floating window has multiple tabs or pages, clicking the top-right <span class="Emphasis_Bold">Close Window</span> button will close the floating window and all pages contained within it.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>The Toggle Page Size icon will not display in a floating window.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/GIF/DNR/docking_floating_window1.gif" data-mc-conditions="Default.ScreenOnly" />
+                                                </p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>With the docking functionality, the floating windows maintain the same functionality.</p>
+                                                <p>Hover over the <span class="mc-variable Variables.Product_Name variable">OneStream</span> application in your taskbar to display different application floating windows in the foreground.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/GIF/DNR/docking_taskbar1.gif" data-mc-conditions="Default.ScreenOnly" />
+                                                </p>
+                                                <h3><span class="Emphasis_Bold">Refreshing Content</span>
+                                                </h3>
+                                                <p>If a docked, floating, or the main window contains multiple tabs or pages, clicking the <span class="Emphasis_Bold">Refresh</span> button at the top-right of an individual, open page only refreshes the content within that one page.</p>
+                                                <h3>Undock Content</h3>
+                                                <p>You can undock a tab or page in the following ways:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>You can click, drag, and drop the tab or page into a new location. For example, click and drag a tab or page from a floating window and back into the main window.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>If the last tab or page is dragged away or closed within a docked or floating window, that docked or floating window will also close.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You can drop a tab or page back into the main window tab bar or over the <span class="Emphasis_Bold">New Tab</span> button. This will dock the content into the main window.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>You can use the center docking component that displays when dragging tabs or pages into the specific window, which will open the tab or page in the selected document group rather than opening a new docking area.</p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Docking-Known-Issues" class="doc-section lvl1"><p class="crumb">Docking</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor762"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Docking Known Issues</h2>
+                                                <p>Consider the following when docking in OneStream.</p>
+                                                <h3>Logon Page</h3>
+                                                <ul>
+                                                    <li>
+                                                        <p> The Close Page button will always appear on the Logon page. For example, when you log off, select Change Application and then click the Close Page button in the top right corner of the Logon page. A blank screen will display. You must restart the application to log in again. </p>
+                                                    </li>
+                                                </ul>
+                                                <h3>POV Pane</h3>
+                                                <ul>
+                                                    <li>
+                                                        <p>The <span class="Emphasis_Bold">Update POV Pane To Current Page</span> toolbar button appears in every docked or floating window even if the docked or floating window does not reference the POV pane settings. The <span class="Emphasis_Bold">Update POV Pane To Current Page</span> toolbar button will not appear in the original, main window. You must create at least one additional docking or floating window for this toolbar button to appear.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Floating Window</h3>
+                                                <ul>
+                                                    <li>
+                                                        <p>When you minimize and attempt to re-open a floating window on a separate monitor or screen, the floating window opens on the main application screen. You will need to drag the floating window back to the separate monitor or screen every time you re-open that minimized window. </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>If you have a workflow page in a minimized floating window and then try to launch another workflow page from the main application page, the minimized floating window will display a black flash before loading. </p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Navigate Recent Pages</h3>
+                                                <ul>
+                                                    <li>
+                                                        <p>When navigating recent pages, docking will consider tabs that you first created or if the page is refreshed or modified in the main document group for docked and floating windows. The back and forward have also been removed. </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>In the Navigate Recent Pages dialog, when the same page is opened multiple times, such as a Cube Views page opened in the main window, a docked window, or a floating window, the Navigate Recent Pages dialog will only list the name "Cube View" three separate times. It does not specify which Cube View page (main, docking, or floating) each item references. </p>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <p>When using the Navigate Recent Pages dialog box to open a tab in a maximized floating window, docking will restore the floating window size (not maximized).</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>In the Navigate Recent Pages dialog box, the <span class="Emphasis_Bold">OK</span> button is enabled even when an item is not selected. Click the <span class="Emphasis_Bold">OK</span> button when no option is selected to close the dialog box.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>List Box</h3>
+                                                <ul>
+                                                    <li>
+                                                        <p>A list box may display when you open multiple tabs or pages and click the left most tab and then right-click a tab closer to the right end of the tab bar. The list box will display a drop-down list with all currently opened tabs instead of the context menu. </p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="USE-CASE" class="doc-section lvl1"><p class="crumb">Docking</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1898"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Docking Use Cases</h2>
+                                                <p>The following sections provide sample use cases for docking to seamlessly create, multitask, and easily build in your <span class="mc-variable Variables.Product_Name variable">OneStream</span>. In many cases, you must toggle between various tabs and pages since only one window could be opened at a time when working in the application. Docking allows you to effectively view work side-by-side or create floating windows simultaneously. You can make changes on one screen and display the results on another screen when you save content and refresh. </p>
+                                                <table class="TableStyle-TableGridLight" cellspacing="0" style="width: 100%;mc-table-style: url('../../../Resources/TableStyles/TableGridLight.css');">
+                                                    <col class="TableStyle-TableGridLight-Column-Column" style="width: 201px;" />
+                                                    <col class="TableStyle-TableGridLight-Column-Column" />
+                                                    <thead>
+                                                        <tr class="TableStyle-TableGridLight-Head-Header1">
+                                                            <th class="TableStyle-TableGridLight-HeadE-Column-Header1">Role</th>
+                                                            <th class="TableStyle-TableGridLight-HeadD-Column-Header1">Benefits</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">End User: User that creates and edits Cube Views.</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">End Users can manage Cube Views more easily with Data Explorer and Designer displayed side-by-side.</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">End User: User that creates and edits dashboards.</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">End users can efficiently modify dashboards and their components by opening the Designer View and Workspaces pages side-by-side or in a floating window. This allows you to make quick changes without having to reopen different pages or tabs to find objects needed for a dashboard.</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">Administrator that needs to debug Business Rules.</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Administrators can dock multiples pages on one screen. This will allow you to run end user actions, show the business rule, and view the error log by docking these three pages in their own individual docking areas on the same or separate screens.</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyB-Column-Body">Administrators that use Analysis and Planning</td>
+                                                            <td class="TableStyle-TableGridLight-BodyA-Column-Body">Administrators can dock multiple pages in a side-by-side view to view multiple analysis and input forms for planning purposes.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="use-case">
+                                                    <h1>USE CASE</h1>
+                                                    <h3>Side-by-Side Cube View Editing</h3>
+                                                    <table style="mc-table-style: url('../../../Resources/TableStyles/TableGridLight-UseCase.css');width: 810px;" class="TableStyle-TableGridLight-UseCase" cellspacing="0">
+                                                        <col class="TableStyle-TableGridLight-UseCase-Column-Column" />
+                                                        <col class="TableStyle-TableGridLight-UseCase-Column-Column" />
+                                                        <thead>
+                                                            <tr class="TableStyle-TableGridLight-UseCase-Head-Header1">
+                                                                <th class="TableStyle-TableGridLight-UseCase-HeadE-Column-Header1">Role</th>
+                                                                <th class="TableStyle-TableGridLight-UseCase-HeadD-Column-Header1">Benefits</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-TableGridLight-UseCase-Body-Body">
+                                                                <td class="TableStyle-TableGridLight-UseCase-BodyB-Column-Body">End User: User that creates and edits Cube Views.</td>
+                                                                <td class="TableStyle-TableGridLight-UseCase-BodyA-Column-Body">End Users can manage Cube Views more easily with Data Explorer and Designer displayed side-by-side.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>In this example, you can dock tabs or pages while editing the Cube View.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>On the <span class="Emphasis_Bold">Application</span> tab, under <span class="Emphasis_Bold">Presentation</span>, click <span class="Emphasis_Bold">Cube Views</span>.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>Select the Cube View to edit and then click the <span class="Emphasis_Bold">Open Data Explorer</span> toolbar button to open the Data Explorer page in another tab.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>Click, drag, and drop the <span class="Emphasis_Bold">Data Explorer</span> tab to any of following layouts: Left, Right, Top, or Bottom. In this example, the tab was moved to the right layout. The Cube View and the published version are now side-by-side.</p>
+                                                            <p>
+                                                                <img style="width: 547;height: 260;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/docking_use_case_1c_547x260.png" />
+                                                            </p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>On the left layout, begin to edit your Cube View. In this example, the Cube View's Row Sharing field was updated from All Rows to (Not Used).</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p>Click <span class="Emphasis_Bold">Save</span> to save all changes.</p>
+                                                        </li>
+                                                        <li value="6">
+                                                            <p>On the right layout, click the <span class="Emphasis_Bold">Refresh</span> icon. The Cube View will refresh and display the changes made.</p>
+                                                            <p>
+                                                                <img style="width: 546;height: 259;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/docking_use_case_1d_546x259.png" />
+                                                            </p>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <h3>Modify Dashboards</h3>
+                                                <p>In this example, you are creating a floating window to modify multiple dashboard components.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>On the <span class="Emphasis_Bold">OnePlace</span> tab, under <span class="Emphasis_Bold">Dashboard</span>, select a dashboard.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the <span class="Emphasis_Bold">Edit Dashboard</span> icon.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Once the Application Workspaces page loads and the Dashboard is selected, select the drop-down arrow next to the <span>View Dashboard in Design Mode</span> button, and select the <span class="Emphasis_Bold">Set Selected Dashboard as Default</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click and drag the dashboard in Designer Mode to another screen. In this example, you created a floating window on the right monitor while having the Workspaces page on the left monitor.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>To edit the MarginLeft value, on the right floating window, click the <span class="Emphasis_Bold">Edit Dashboard</span> button to refresh and load the Dashboard on the left floating window.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Navigate to the Formatting Dashboard Properties section, and click the <span class="Emphasis_Bold">Edit</span> button in the Display Format field. In Display format, update the MarginLeft field's value from 50 to 100.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span> to save all changes.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>On the right floating window, click the <span class="Emphasis_Bold">Refresh</span> icon. The Dashboard now displays the changes.</p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>To edit the order of Dashboard Components, on the right floating window, click the <span class="Emphasis_Bold">Edit Dashboard</span> button.</p>
+                                                    </li>
+                                                    <li value="10">
+                                                        <p>Select the Dashboard Components tab and move the order. In this example, the Embedded 04 Component was moved above the Embedded 04 Headcount Component. </p>
+                                                    </li>
+                                                    <li value="11">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span> to save all changes.</p>
+                                                    </li>
+                                                    <li value="12">
+                                                        <p>On the right floating window, click the <span class="Emphasis_Bold">Refresh</span> icon. The Dashboard now displays the changes.</p>
+                                                    </li>
+                                                </ol>
+                                                <table style="width: 100%;">
+                                                    <col />
+                                                    <col />
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Left Monitor</td>
+                                                            <td>
+                                                                <img style="width: 460;height: 235;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/docking_use_case_2_b_460x235.png" />
+                                                                <p>
+                                                                    <img style="width: 479;height: 183;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/docking_use_case_2_c_479x183.png" />
+                                                                </p>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Right Monitor </td>
+                                                            <td>
+                                                                <img style="width: 450;height: 243;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/docking_use_case_2_a_450x243.png" />
+                                                                <p>
+                                                                    <img style="width: 458;height: 248;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/docking_use_case_2_d_458x248.png" />
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <h3>Debugging Rules</h3>
+                                                <p>In this example, you can run end-user actions, show business rules, and view the error log simultaneously on one screen. You have docked multiple pages such as the "Forecast Planning Process" Dashboard, your Business Rules at the top-right layout, and the Error Log at the bottom-right layout. This allows you to view your dashboard, the syntax being used in a Business Rule, and the log of errors from users. When clicking the Save Calculate icon in your dashboard and then refreshing content on the right layout pages, you can view all the errors and begin to debug your business rules.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/docking_use_case_3_updated_629x320.png" style="width: 629;height: 320;" />
+                                                </p>
+                                                <h3>Simplified Analysis and Planning</h3>
+                                                <p>In this example, you can dock content side-by-side to view multiple analysis and input forms for planning purposes. From an analysis perspective, if you need to analyze data in a quick view while preserving your original view, you can begin to dock both views side-by-side. On the right layout, you can begin ad hoc analysis while still maintaining the context of the dataset you are analyzing on the left layout.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/docking_use_case_4_b_updated_652x330.png" style="width: 652;height: 330;" />
+                                                </p>
+                                                <p>Another example of using docking to simplify Analysis and Planning is to view your drivers and inputs for your forecast and assumptions simultaneously. In your Forecast Dashboard, open the Forecast and Assumptions page on separate tabs. Begin to dock the Assumptions page to the right layout with the Forecast page on the left layout. This allows you to display multiple drivers, such as the Cost of Goods sold driver and the Forecast input, side-by-side. When using docking for this instance, you can view multiple drivers you are interacting with while running your calculations. This allows you to view multiple end-user screens and inputs together.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/docking_use_case_4_a_updated_660x335.png" style="width: 660;height: 335;" />
+                                                </p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Docking">Docking</a></li><li class="toc-l1"><a href="#Docking-Areas">Docking Areas</a></li><li class="toc-l1"><a href="#Floating-Window">Floating Window</a></li><li class="toc-l1"><a href="#Docking-Known-Issues">Docking Known Issues</a></li><li class="toc-l1"><a href="#USE-CASE">USE CASE</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

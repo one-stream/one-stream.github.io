@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About Managing Users and Groups — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat open"><a class="cat-link current" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a><ul class="cat-items"><li><a class="s-link" href="#Ways-to-add-Users-and-Groups-to-an-Application">Ways to add Users and Groups to an Application</a></li><li><a class="s-link" href="#Creating-and-Managing-Users">Creating and Managing Users</a><ul class="cat-items"><li><a class="s-link" href="#Creating-Users">Creating Users</a></li><li><a class="s-link" href="#Managing-Users">Managing Users</a></li><li><a class="s-link" href="#Loading-and-Extracting-Users">Loading and Extracting Users</a></li></ul></li><li><a class="s-link" href="#Creating-and-Managing-Groups">Creating and Managing Groups</a><ul class="cat-items"><li><a class="s-link" href="#Creating-Groups">Creating Groups</a></li><li><a class="s-link" href="#Managing-Groups">Managing Groups</a></li><li><a class="s-link" href="#Loading-and-Extracting-Groups">Loading and Extracting Groups</a></li></ul></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="About-Managing-Users-and-Groups" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor310"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />About Managing Users and Groups </h1>
+                                                <p>See the following topics for help defining and managing users and groups:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Ways-to-add-Users-and-Groups-to-an-Application" class="MCXref xref">Ways to add Users and Groups to an Application</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Creating-and-Managing-Groups" class="MCXref xref">Creating and Managing Groups</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Creating-and-Managing-Users" class="MCXref xref">Creating and Managing Users </a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Ways-to-add-Users-and-Groups-to-an-Application" class="doc-section lvl1"><p class="crumb">About Managing Users and Groups</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor973"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Ways to add Users and Groups to an Application</h2>
+                                                <p>You can add users and groups to an application in three ways:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Define them manually in System Security. See  <a href="#Creating-and-Managing-Groups" class="MCXref xref">Creating and Managing Groups</a> and <a href="#Creating-and-Managing-Users" class="MCXref xref">Creating and Managing Users </a>.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Load them in a bulk import using an XML load file that contains user and group properties and parameters. We suggest building this file using sample security Excel template provided with the Sample Templates <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span>. See  <a href="#Creating-and-Managing-Users" class="MCXref xref">Creating and Managing Users </a> and <a href="#Creating-and-Managing-Groups" class="MCXref xref">Creating and Managing Groups</a>.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Use APIs. See <a href="17-Performing-System-Administration.html#System-Security-Users-and-Groups" class="MCXref xref">Managing Users and Groups Using BRApi Functions</a>.</p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Creating-and-Managing-Users" class="doc-section lvl1"><p class="crumb">About Managing Users and Groups</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor820"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="top"></a>Creating and Managing Users </h2>
+                                                <p>By default, only an Administrator can perform the tasks described in the following topics. An Administrator can enable other users to perform these tasks by giving them specific system security roles. </p>
+                                                <p>In this topic:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Consider" class="MCXref xref">Tips and Best Practices</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Creating-Users" class="ParaTextOnly MCXref xref xrefParaTextOnly">Creating Users</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Managing-Users" class="ParaTextOnly MCXref xref xrefParaTextOnly">Managing Users</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Loading-and-Extracting-Users" class="ParaTextOnly MCXref xref xrefParaTextOnly">Loading and Extracting Users</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                                <h2><a name="Requirem"></a>Requirements</h2>
+                                                <p>To let non-Administrators create and manage users and groups, grant them the required security roles. This involves assigning the group to which non- Administrator belongs, to the required roles.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security</span> &gt; <span class="Emphasis_Bold">System Security Roles</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Edit </span>by these roles to assign the group in which the user is a member: <br /></p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">ManageSystemSecurityUsers</span>: Assignees can create, modify and mange users.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">ManageSystemSecurityGroups</span>: Assignees can define, modify and mange groups.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">ManageSystemSecurityRoles</span>: Assignees can manage roles to provide group-based, functionally-tailored access to artifacts and tools.</p>
+                                                                <p>
+                                                                    <img src="../_assets/Content/Resources/Images/required1_411x183.png" alt="&quot;&quot;" title="The system security roles required to manage users and groups." style="width: 411;height: 183;" />
+                                                                    <br />
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ol>
+                                                <p>To revoke the ability to manage users, groups and roles, remove assignees from the relevant role. See <a href="17-Performing-System-Administration.html#Manage-System-Security" class="MCXref xref">Manage System Security</a>.</p>
+                                                <h2><a name="Consider"></a>Tips and Best Practices</h2>
+                                                <ul>
+                                                    <li>
+                                                        <p>The Administrator is assigned to all system security roles (roles) so can always manage application and system-wide users, groups, artifacts, data, and tools. Removing or reassigning the Administrator group or assigning other users and groups to roles does not revoke the Administrator's access.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>The Administrator cannot be disabled and is unaffected by inactivity thresholds that disable users who try to log in after a specific period of time elapses.</p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Creating-Users" class="doc-section lvl2"><p class="crumb">About Managing Users and Groups › Creating and Managing Users</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor148"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="Creating"></a>Creating Users</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security </span>&gt; <span class="Emphasis_Bold">Users</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Create User</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Enter a name and description.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>From <span class="Emphasis_Bold">User Type</span>, select the license type purchased that governs the user's access to artifacts and associated OneStream offerings:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Interactive</span>: They can use all features and tools.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">View</span>:<span class="Emphasis_Bold"></span>They can access data, reports, and dashboards in a production environment and associated database, but cannot load, calculate, consolidate, certify, or change data.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Restricted</span>:<span class="Emphasis_Bold"></span>They cannot use some <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span> features such as Lease, Account Reconciliation and more due to contractual limitations.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Third Party Access</span>:<span class="Emphasis_Bold"></span>They can access applications with a third-party application by logging in using a named account. They cannot change data, modify artifacts or access the Windows application or a browser-based application.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Financial Close: </span>They can use Account Reconciliation and Transaction Matching <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span>s<span class="Emphasis_Bold" style="font-weight: normal;">.</span></p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Set<span class="Emphasis_Bold"> Is Enabled</span> to <span class="Emphasis_Bold">True </span>to activate the user. Select <span class="Emphasis_Bold">False</span>to deactivate the user.  </p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>The information in<span class="Emphasis_Bold"> Status </span>will reflect the user's activity, such as their latest login.<span class="Emphasis_Bold"> Inactivity Threshold</span> displays the number of days a user can remain active in the system without logging in. The user receives an error if they try to log in after the specified number of days elapses. See <a href="#Defining" class="MCXref xref">Creating Users</a>.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Read <a href="#About" class="MCXref xref">About User Authentication</a>, then <a href="#Specifyi" class="MCXref xref">Specify Authentication Settings</a>.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3><a name="About"></a>About User Authentication</h3>
+                                                <p>You can add and authenticate users as:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Native users that are managed locally in OneStream.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>External users referenced by an external identity provider (IdP).</p>
+                                                    </li>
+                                                </ul>
+                                                <h3><a name="Specifyi"></a>Specify Authentication Settings</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>From <span class="Emphasis_Bold">External Authentication Provider</span>, indicate how to authenticate the user:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>To use native authentication: Select <span class="Emphasis_Bold">Not Used</span> and enter the user's password in <span class="Emphasis_Bold">Internal Provider Password</span>. The first time the user logs in, they can change their password.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>To use external authentication:</p>
+                                                                <ol>
+                                                                    <li value="1">
+                                                                        <p>Select the appropriate external IdP from<span class="Emphasis_Bold"> External Authentication Provider</span>.</p>
+                                                                    </li>
+                                                                    <li value="2">
+                                                                        <p>In <span class="Emphasis_Bold">External Provider User Name</span>, enter the user name in the IdP. For example, if a user's name in Azure AD (Microsoft Entra ID) is Azure_LHall@azure.com, enter Azure_LHall@azure.com. This name must be unique and match the user name in the IdP.</p>
+                                                                    </li>
+                                                                </ol>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p><a href="#Specifyi2" class="MCXref xref">Specify Preferences and Group Membership </a>.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3><a name="Specifyi2"></a>Specify Preferences and Group Membership </h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In <span class="Emphasis_Bold">Email </span>enter the email address with which the user can receive alerts and messages, such as those generated with business rules.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>In <span class="Emphasis_Bold">Culture</span> select the user's locale. Supported locals and languages are specified during OneStream server configuration. See <a href="17-Performing-System-Administration.html#International-Settings" class="MCXref xref">International Settings</a>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In <span class="Emphasis_Bold">Grid Rows Per Page</span> specify how many rows to display on grids before a page break. Consider the rate of connectivity and screen resolution.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Use <span class="Emphasis_Bold">Custom Text</span> to personalize aspects of functionality given the user's responsibilities. For example, you could define a text field to:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Act as a metadata tag, limiting who the user can email. </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>Filter a distribution list or to provide text and images for the user's default workflow profile.<span style="color: #b22222;"></span></p>
+                                                            </li>
+                                                            <li>
+                                                                <p>Launch<span style="color: #b22222;"><span style="color: #000000;"> a functionally-tailored view of the user’s workspace, such as reporting for controller or executive.</span></span></p>
+                                                            </li>
+                                                        </ul>
+                                                        <p><span style="color: #b22222;"><span style="color: #000000;">See<span style="color: #b22222;"><span style="color: #000000;"> "Text 1-8" in</span></span> </span><a href="8-Cube.html#Entity-Dimension" style="color: #191970;" class="MCXref xref">Entity Dimension</a><span style="color: #000000;">.</span></span>
+                                                        </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In <span class="Emphasis_Bold">Group Membership</span>, click <span class="Emphasis_Bold">Add Groups</span>to include the user in the groups that provide access to the features and tools that the user needs.<br /><img src="../_assets/Content/Resources/Images/group_list1_373x195.png" style="width: 373;height: 195;" /><br /><br />If the appropriate group does not exist, define it. See <a href="#Creating-and-Managing-Groups" class="MCXref xref">Creating and Managing Groups</a>.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click <span class="Emphasis_Bold">OK</span>, <span class="Emphasis_Bold">Save</span> and then <span class="Emphasis_Bold">Load</span>. <br /></p>
+                                                    </li>
+                                                </ol>
+                                                <p>When processing finishes, review the user list and user settings to ensure the loaded users are correctly defined.</p>
+                                            </div></div></section><section id="Managing-Users" class="doc-section lvl2"><p class="crumb">About Managing Users and Groups › Creating and Managing Users</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor10"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="Managing"></a>Managing Users</h3>
+                                                <p>Perform the following tasks to edit, copy, delete and perform other management tasks. You can also manage users with API functions. </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Ensure that you have the necessary security role. See <a href="#Requirem" class="MCXref xref">Managing Users</a>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security</span> &gt; <span class="Emphasis_Bold">Users</span>. </p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Select a user, then the action to take. For example:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Delete Selected Item</span>: Permanently delete the user.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Copy Selected Item</span>: Create a new user based on the selected user's settings. See <a href="#Copying" class="MCXref xref">Copying Users</a>.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Show all parent groups for user</span>: See the groups in which the user is a member. Since group assignment to system security roles and user interface roles determines what a user can do, use this option to identify their access to artifacts.<br /></p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3><a name="Copying"></a>Copying Users</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security </span>&gt;<span class="Emphasis_Bold"> Users</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Select the user, then click <span class="Emphasis_Bold">Copy Selected Item</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In <span class="Emphasis_Bold">New Name</span>, enter a user name.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Select <span class="Emphasis_Bold">Copy References made by parent groups</span> to add the user to the original user's groups except exclusion groups. </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click<span class="Emphasis_Bold"> OK</span> and modify other settings as needed. See <a href="#Creating" class="MCXref xref">Managing Users</a>.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3><a name="Disablin"></a>Disabling Users</h3>
+                                                <p>Administrators can disable users, preventing them from logging in by:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p> Modifying a user's account to set <span class="Emphasis_Bold">Is Enabled</span> to <span class="Emphasis_Bold">False</span>. See <a href="#Disablin2" class="MCXref xref">Disabling a User Manually</a>.</p>
+                                                    </li>
+                                                    <li>Specifying an inactivity threshold to deactivate all users - native and external - that try to log in after a particular amount of time elapses. This threshold applies to users in the Administrator group, but not the Administrator. Users that try to log in after the threshold expires receive an error. See <a href="#Defining" class="MCXref xref">Defining an Inactivity Threshold</a>.</li>
+                                                </ul>
+                                                <h4><a name="Disablin2"></a>Disabling a User Manually</h4>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Expand <span class="Emphasis_Bold">Users</span> and select the user to disable.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>From Is <span class="Emphasis_Bold">Enabled</span>, select <span class="Emphasis_Bold">False</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <h4><a name="Defining"></a>Defining an Inactivity Threshold</h4>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p />
+                                                        <p>Launch the Server Configuration Utility.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Select <span class="Emphasis_Bold">File </span>&gt; <span class="Emphasis_Bold">Open Application Server Configuration File</span> and browse to: <span class="Emphasis_Bold">OneStreamShare\Config\XSFAppServerConfig.xml</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In <span class="Emphasis_Bold">Authentication</span>, click <span class="Emphasis_Bold">Security</span>.<br /><br /><img src="../_assets/Content/Resources/Images/application-server-security-config1_429x99.png" alt="&quot;&quot;" title="Modifying security authentication settings." style="width: 429;height: 99;" /><br /></p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In <span class="Emphasis_Bold">Logon Inactivity Threshold</span>, enter the number of days after which inactive users who try to log in, receive an error.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click <span class="Emphasis_Bold">OK</span> then <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In a command prompt, reset IIS.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>In the application, select <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security </span>&gt; <span class="Emphasis_Bold">Users</span>.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Select a user and review their <span class="Emphasis_Bold">Logon Inactivity Threshold</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3><a name="Enabling"></a>Enabling Users</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Select <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Expand <span class="Emphasis_Bold">Users </span>and select the user.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In <span class="Emphasis_Bold">General</span>, set<span class="Emphasis_Bold"> Is Enabled</span> to <span class="Emphasis_Bold">True</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3><a name="Removing"></a>Removing Users From Groups</h3>
+                                                <p>Because group membership determines access to artifacts and tools, be sure that you want to remove a user from a group.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Select <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Expand <span class="Emphasis_Bold">Users </span>then click the user.</p>
+                                                    </li>
+                                                    <li style="color: #b22222;" value="3">
+                                                        <p><span style="color: #000000;">In <span class="Emphasis_Bold">Group Membership</span>, select the group and click <span class="Emphasis_Bold">Remove Selected Item</span></span><span style="color: #000000;">.</span>
+                                                        </p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3><a name="BRApi"></a>Managing Users With BRApi</h3>
+                                                <p>You can perform some user and group management tasks using BRApi functions such as CopyUser, DeleteUser, and CopyGroup. The ability to use these functions is governed by your role as an Administrator and may require a Manage System Security role. See <a href="17-Performing-System-Administration.html#Manage-System-Security" class="MCXref xref">Manage System Security</a>.</p>
+                                                <p>For example, if a dashboard's design includes a button that uses a BRApi function to support adding users, users that click the button are validated to ensure they are in the Administrator group or associated with the <span class="Emphasis_Bold">ManageSystemSecurityUsers</span> role.</p>
+                                            </div></div></section><section id="Loading-and-Extracting-Users" class="doc-section lvl2"><p class="crumb">About Managing Users and Groups › Creating and Managing Users</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor46"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="Loading"></a>Loading and Extracting Users</h3>
+                                                <p>You can bulk load user accounts, groups, and security instead of defining them manually. You can load these artifacts in two ways:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Use the<span class="Emphasis_Bold"> SecurityTemplate.xlsx</span> file provided by the SampleTemplates <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span> to generate an xml load file. We recommend this option. See the <i>OneStream Sample Templates User Guide</i>. </p>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <p>Extract users in the sample GolfStream application, modify the xml export file to specify user and group properties, and then load the file. See <a href="#Loading2" class="MCXref xref">Loading Users</a>.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>Administrators must load users and groups into a new application or one without existing users and groups. If user accounts exist, loaded users are validated by comparing their current security settings to those in the xml load file.&#160;</p>
+                                                <h3><a name="Requirem2"></a>Requirements</h3>
+                                                <p>By default, only Administrators can load and extract users. To let other users load and extract users, grant them these system security roles:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>SystemLoadandExtractPage System. This is a User Interface role. </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>ManageSystemSecurityUsers</p>
+                                                    </li>
+                                                    <li>
+                                                        <p> ManageSystemSecurityGroups</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>ManageSystemSecurityRoles</p>
+                                                    </li>
+                                                </ul>
+                                                <h3><a name="Loading2"></a>Loading Users</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Tools </span>&gt; <span class="Emphasis_Bold">Load/Extract</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Select <span class="Emphasis_Bold">Load</span>  and browse to an xml load file.<span style="color: #b22222;"></span></p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold">Load</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>When processing finishes, review the user list and user settings to ensure the loaded users are correctly defined.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3>Extracting Users</h3>
+                                                <p><span style="color: #000000;">You can extract users, groups, and security roles to an xml export file. </span>
+                                                </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Tools </span>&gt; <span class="Emphasis_Bold">Load/Extract</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Extract</span> then select<span class="Emphasis_Bold"> File Type </span>&gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In <span class="Emphasis_Bold">Items to Extract</span>, select <span class="Emphasis_Bold">Users</span>. Select <span class="Emphasis_Bold">Export Unique IDs</span> to also extract each user's ID.</p>
+                                                    </li>
+                                                    <li value="4">Perform a task:<ul><li>Click <span class="Emphasis_Bold">Extract</span> to specify where to save the extract file. <br /></li><li>Click  <span class="Emphasis_Bold">Extract and Edit</span> to view and modify the data in an XML Editor.</li></ul></li>
+                                                </ol>
+                                            </div></div></section><section id="Creating-and-Managing-Groups" class="doc-section lvl1"><p class="crumb">About Managing Users and Groups</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor156"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Creating and Managing Groups</h2>
+                                                <p>By default, only an Administrator can perform the tasks described in the following topics. An Administrator can enable other users to perform these tasks by assigning specific system security roles. See <a href="#Requirem" class="MCXref xref">Requirements</a>.</p>
+                                                <p>In this topic:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#About" class="MCXref xref">About Groups and Inherited Security</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#About2" class="MCXref xref">About Exclusion Groups</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Conside" class="MCXref xref">Tips and Best Practices</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Creating-Groups" class="ParaTextOnly MCXref xref xrefParaTextOnly">Creating Groups</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Creating-Groups" class="ParaTextOnly MCXref xref xrefParaTextOnly">Creating Exclusion Groups</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Managing-Groups" class="ParaTextOnly MCXref xref xrefParaTextOnly">Managing Groups</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p data-mc-conditions="Default.ScreenOnly"><a href="#Loading-and-Extracting-Groups" class="ParaTextOnly MCXref xref xrefParaTextOnly">Loading and Extracting Groups</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                                <h2><a name="Requirem"></a>Requirements</h2>
+                                                <p>To let non-Administrators create and manage users and groups, grant them group-based access to the required security roles.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security</span> &gt; <span class="Emphasis_Bold">System Security Roles</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Edit </span>by these roles to assign the group in which the user is a member: <br /></p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">ManageSystemSecurityUsers</span>: Assignees can create, modify and mange users.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">ManageSystemSecurityGroups</span>: Assignees can define, modify and mange groups.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">ManageSystemSecurityRoles</span>: Assignees can manage roles to provide group-based, functionally-tailored access to artifacts and tools.</p>
+                                                                <p>
+                                                                    <img src="../_assets/Content/Resources/Images/required1_515x229.png" alt="&quot;&quot;" title="System Security Roles." style="width: 515;height: 229;" />
+                                                                    <br />
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ol>
+                                                <p>To revoke the ability to manage users, groups and roles, remove assignees from the relevant role. See <a href="17-Performing-System-Administration.html#Manage-System-Security" class="MCXref xref">Manage System Security</a>.</p>
+                                                <h2><a name="About"></a>About Groups and Inherited Security</h2>
+                                                <p>You cannot assign individual users access to tools and artifacts. System security roles (roles) to which you assign groups determine this access. Create groups to grant large numbers of users or other groups the functionally-tailored access that they require.</p>
+                                                <p>You can define nested, hierarchical groups to best suit your organizational entities, workflows and reporting structures. Nested groups contain lower-level child groups. In this case, child groups - and the users that they contain - inherit the access defined for the parent group.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Groups cannot be externally authenticated.</p>
+                                                <h2><a name="About2"></a>About Exclusion Groups</h2>
+                                                <p>Use exclusion groups to grant almost everyone - except a particular group or a small number of users - access to a tool or artifact. For example, if everyone but Jim Fey and Lee Diaz must create dashboards, define an exclusion group in which Jim and Lee are members set to "Deny Access". All other members are set to "Allow Access". To easily grant access to dashboards, assign the exclusion to which gives everyone access except Lee and Jim access.</p>
+                                                <p>Because groups providing access to data and artifacts may contain many groups, removing just a few users - to reflect a corporate reorganization for example, from the group hierarchy can be time consuming. To handle the reorganization, create an exclusion group with the users involved and apply it to the roles they no longer need.</p>
+                                                <h2><a name="Conside"></a>Tips and Best Practices</h2>
+                                                <ul>
+                                                    <li>
+                                                        <p>The Administrator is assigned to all roles, so they can always manage artifacts, data and tools. Assigning other groups to security roles does not revoke the Administrator's access.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Child groups, nested in higher-level parent groups, can access the tools and artifact that the parent group can, given the parent group's assignment to system security roles (roles). This access is inherited in group hierarchies, from a parent level downward to child groups.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Removing child groups from parent groups revokes access to the tools and artifacts that the parent group provides, based on its assignments to roles.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>In an exclusion group, access to artifacts is determined based on the exclusion order you specify, regardless of a user's membership in a group. To ensure that users who are in several groups can not access artifacts but everyone else can, put:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>The groups to which the users belong at the top, set to "Allow Access".</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>The individual users below the groups and set the users to "Deny Access".</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Creating-Groups" class="doc-section lvl2"><p class="crumb">About Managing Users and Groups › Creating and Managing Groups</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor936"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="Creating"></a>Creating Groups</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>If you are not an Administrator, be sure you meet the <a href="#Requirem" class="MCXref xref">Creating Groups</a>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold">Groups </span>then<span class="Emphasis_Bold"> Create Group</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Enter an intuitive name and description.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In <span class="Emphasis_Bold">Group Membership</span> specify the users or child groups to add to the group you are defining, or select a parent group to which to add your new group. Perform any task:</p>
+                                                    </li>
+                                                </ol>
+                                                <ul>
+                                                    <li>
+                                                        <p>To include users and groups in the new group, click <span class="Emphasis_Bold">Add User</span> | <span class="Emphasis_Bold">Add Child Group</span> and selecting the user or group. Members can access the artifacts and tools for each system security role to which the group is assigned.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>To revoke group membership, select users and groups and click <span class="Emphasis_Bold">Remove</span>.This revokes their access to the tools and artifacts group membership provides based on role assignments.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>To nest the group in a parent group, click <span class="Emphasis_Bold">Add Groups</span> in <span class="Emphasis_Bold">Parent Groups That Contain This Group</span> and select a higher level group. Members in this parent group inherit it's access and permissions based on role assignments.</p>
+                                                    </li>
+                                                </ul>
+                                                <ol data-mc-continue="true">
+                                                    <li value="6">
+                                                        <p> Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <h2><a name="Creating2"></a>Creating Exclusion Groups</h2>
+                                                <p>Define an exclusion group to grant almost everyone - except a particular group or a small number of users - group access to a tool or artifact. </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Administration</span> &gt;<span class="Emphasis_Bold"> Security</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Groups </span>then <span class="Emphasis_Bold">Create Exclusion Group</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Enter an intuitive name and description that indicates who is being restricted by this group. For example, to omit a department, consider Everyone-But-&lt;Department name&gt;.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In<span class="Emphasis_Bold"> Group Membership</span> click <span class="Emphasis_Bold">Add Child Groups</span> or <span class="Emphasis_Bold">Add Users</span> to specify who to include in the group.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>To prevent members accessing artifacts to which the group has role-based access, set particular users or groups to <span class="Emphasis_Bold">Deny Access</span>. Otherwise, set members to <span class="Emphasis_Bold">Allow Access</span>.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Use the arrows to order the exclusions carefully, because access is granted - regardless of a user's membership in a group, based on the order you specify.</p>
+                                                        <p>For example, if Amelia and Bob are in the Frankfurt Controller group, the order below does not restrict them from artifacts, even though they are listed first, because they are in the Frankfurt Controller group. <br /><img src="../_assets/Content/Resources/Images/exclusion_order_example1_505x152.png" alt="&quot;&quot;" title="Sample exclusion order." style="width: 505;height: 152;" /><br /></p>
+                                                        <p>To ensure Amelia and Bob can not access artifacts, put Frankfurt Controller first, set to <span class="Emphasis_Bold">Allow Access</span>. Put Amelia and Bob below the group, set to <span class="Emphasis_Bold">Deny Access</span>.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Managing-Groups" class="doc-section lvl2"><p class="crumb">About Managing Users and Groups › Creating and Managing Groups</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1498"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="Managing2"></a>Managing Groups</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>If you are not an Administrator, meet the <a href="#Requirem" class="MCXref xref">Managing Groups</a>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Select <span class="Emphasis_Bold">Groups</span> or<span class="Emphasis_Bold"> Exclusion Groups</span> , then select a group.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click to perform any task:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Delete Selected Item</span>: Permanently delete a group.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Rename Selected Item</span>: Change a group's name.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Copy Selected Item</span>: Create a group based on the existing group's settings. Select <span class="Emphasis_Bold">Copy child user and group references </span>to add the same users or groups to the new group.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Show All Users</span>: View the users in the group.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p><span class="Emphasis_Bold">Show All Groups</span>: View the lower level groups that are nested in the group.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In <span class="Emphasis_Bold">Group Membership</span>, change who is in the current group and modify the parent groups associated with the current group. Perform any task:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>To withdraw users and groups, select them and click <span class="Emphasis_Bold">Remove</span>. This revokes their access to artifacts and tools based on the system security roles (roles) to which the group is assigned.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>To add users and groups, click <span class="Emphasis_Bold">Add User | Add Child Group</span>. This grants them access to the artifacts and tools the group provides based on it's role assignments.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>To withdraw the current group from a parent group, select the parent and click <span class="Emphasis_Bold">Remove</span>. This revokes access to the artifacts and tools provided by the parent group based on it's role assignments.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>To include the current group in another parent group, click <span class="Emphasis_Bold">Add Groups</span> and select the group.</p>
+                                                            </li>
+                                                        </ul>
+                                                        <h2><a name="Adding"></a>Managing Group Membership</h2>
+                                                        <p>You can add groups and users to, and remove them from, other groups. This may created a hierarchy or impact system security role-based access to artifacts and tools. See <a href="#Conside" class="MCXref xref">Managing Groups</a>.</p>
+                                                        <p>1. Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                        <p>2. Expand <span class="Emphasis_Bold">Groups</span> and select the group.</p>
+                                                        <p>3. In <span class="Emphasis_Bold">Group Membership</span>, perform any task:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>To include a user or group, click<span class="Emphasis_Bold"> Add User</span> or <span class="Emphasis_Bold">Add Group</span> and select the user or group to add.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>To withdraw the current group from a parent group, select the parent and click <span class="Emphasis_Bold">Remove</span>. This revokes access to the artifacts and tools provided by the parent group based on it's role assignments.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>To include the current group in a parent group, click <span class="Emphasis_Bold">Add Groups</span> and select the group.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Loading-and-Extracting-Groups" class="doc-section lvl2"><p class="crumb">About Managing Users and Groups › Creating and Managing Groups</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor731"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" /><a name="Loading"></a>Loading and Extracting Groups</h3>
+                                                <p>You can bulk load groups, users and security roles instead of defining them manually. You can load groups in two ways:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Use the<span class="Emphasis_Bold"> SecurityTemplate.xlsx</span> file provided by the SampleTemplates <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span> to generate an xml load file. We recommend this option. See the <i>OneStream Sample Templates User Guide</i>.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Extract the groups in the sample GolfStream application, modify the xml export file to specify your group properties, and then load the file. See <a href="#Loading2" class="MCXref xref">Loading Groups</a>.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>Administrators must perform the load for a new or empty application that does not contain users or groups. To&#160;enable other users to load and extract groups, assign them the necessary security roles. See <a href="#Creating-and-Managing-Users" class="MCXref xref">Creating and Managing Users </a>.</p>
+                                                <h3><a name="Requirem2"></a>Requirements</h3>
+                                                <p> To enable other users to load and extract groups, Administrators must assign the group in which these users are members, access to these roles:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>SystemLoadandExtractPage (user interface role).</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>ManageSystemSecurityGroups</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>ManageSystemSecurityUsers</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>ManageSystemSecurityRoles</p>
+                                                    </li>
+                                                </ul>
+                                                <p>See <a href="17-Performing-System-Administration.html#Manage-System-Security" class="MCXref xref">Manage System Security</a>.</p>
+                                                <h3><a name="Loading2"></a>Loading Groups</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>If you are not an Administrator, see <span class="Emphasis_Bold" style="font-weight: normal;"><a href="#Requirem2" class="MCXref xref">Requirements</a>.</span></p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Tools </span>&gt; <span class="Emphasis_Bold">Load/Extract</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Select <span class="Emphasis_Bold">Load</span> and browse to an XML load file.<span style="color: #b22222;"></span></p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Load</span>.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>When processing finishes, review the <span class="Emphasis_Bold">Groups </span>list and individual group settings to ensure the loaded groups are correctly defined.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3>Extracting Groups</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>If you are not an Administrator, see <span class="Emphasis_Bold" style="font-weight: normal;"><a href="#Requirem2" class="MCXref xref">Requirements</a>.</span></p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Tools </span>&gt; <span class="Emphasis_Bold">Load/Extract</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold"> Extract</span> then select<span class="Emphasis_Bold"> File Type </span>&gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In <span class="Emphasis_Bold">Items to Extract</span>, select <span class="Emphasis_Bold">Security Groups</span>. </p>
+                                                    </li>
+                                                    <li value="5">Perform a task:<ul><li>Click <span class="Emphasis_Bold">Extract</span> to specify where to save the extract file. </li><li><p>Click <span class="Emphasis_Bold">Extract and Edit</span> to modify the extracted data in an XML Editor.</p></li></ul></li>
+                                                </ol>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#About-Managing-Users-and-Groups">About Managing Users and Groups</a></li><li class="toc-l1"><a href="#Ways-to-add-Users-and-Groups-to-an-Application">Ways to add Users and Groups to an Application</a></li><li class="toc-l1"><a href="#Creating-and-Managing-Users">Creating and Managing Users</a></li><li class="toc-l2"><a href="#Creating-Users">Creating Users</a></li><li class="toc-l2"><a href="#Managing-Users">Managing Users</a></li><li class="toc-l2"><a href="#Loading-and-Extracting-Users">Loading and Extracting Users</a></li><li class="toc-l1"><a href="#Creating-and-Managing-Groups">Creating and Managing Groups</a></li><li class="toc-l2"><a href="#Creating-Groups">Creating Groups</a></li><li class="toc-l2"><a href="#Managing-Groups">Managing Groups</a></li><li class="toc-l2"><a href="#Loading-and-Extracting-Groups">Loading and Extracting Groups</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

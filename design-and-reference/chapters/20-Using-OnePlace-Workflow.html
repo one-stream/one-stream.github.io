@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Using OnePlace Workflow — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat open"><a class="cat-link current" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a><ul class="cat-items"><li><a class="s-link" href="#Journals">Journals</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Using-OnePlace-Workflow" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor1583"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Using OnePlace Workflow</h1>
+                                                <p>The top of this slider configures the Workflow View for data loading: Workflow Profile, Scenario, and Year.&#160;Clicking on any of the three items displays a pop-up window to select Workflow Profile, Scenario, and Year.</p>
+                                                <p>A Workflow Unit is an individual period within the selected year and Scenario combination for a particular Workflow Profile.&#160;Twelve Workflow Units or periods are always displayed for selection, but only one can be selected and active at a given time.&#160;Each Workflow Origin step available must be completed as well as the collective data confirmation and certification process for a single Workflow process to be finalized.<br /></p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%201_305x300.png" style="width: 305;height: 300;" />
+                                                </p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>The available tabs will be determined by the security level.</p>
+                                                <p><span class="FieldName">Right-Click Options</span>
+                                                </p>
+                                                <p>Right-click a Workflow month, Workflow Input Type, or Dependent Status cell to display the following options.&#160;Not all options are available for every object.&#160;</p>
+                                                <p><span class="FieldName">Status and Assigned Entities</span>
+                                                </p>
+                                                <p>Displays the Workflow Status of each Origin process (Import, Forms, and Journals).&#160;See Dependent Status under Certify for more details on this feature.</p>
+                                                <p><span class="FieldName">Audit Workflow Process</span>
+                                                    <br />Right-click any Workflow channel. This provides an audit for every Workflow task’s process including the date and time of the process, the user performing the process, how long it took for the process to complete, and any errors that occurred during the process. It also provides audit history through Lock History &gt; Workflow Lock/Unlock.</p>
+                                                <p><span class="FieldName">Lock/Lock Descendants</span>
+                                                </p>
+                                                <p>This will lock a particular Workflow period, or Origin process.</p>
+                                                <p><span class="FieldName">Unlock/Unlock Descendants</span>
+                                                </p>
+                                                <p>This will unlock a particular Workflow period, or Origin process.</p>
+                                                <p><span class="FieldName">Edit Transformation Rules</span>
+                                                </p>
+                                                <p>This will navigate to the Transformation Rules screen and allow a user to fix any Transformation Rule errors that occur during the Workflow process.<br /></p>
+                                                <p><span class="FieldName">Clear All ‘Import’ Data From Cube</span>
+                                                </p>
+                                                <p>This will clear all imported data from the Cube, but the data still remains in the Stage.</p>
+                                                <p><span class="FieldName">Clear All ‘Forms’ Data From Cube</span>
+                                                </p>
+                                                <p>This will clear all Forms data from the Cube.</p>
+                                                <p><span class="FieldName">Corporate Certification Management</span>
+                                                </p>
+                                                <p>This allows a user to unlock and uncertify ancestors, or lock and certify descendants.</p>
+                                                <p><span class="FieldName">Corporate Data Control</span>
+                                                </p>
+                                                <p>This allows a user to preserve data if changes need to be made and restore the preserved data if necessary.</p>
+                                                <p><span class="FieldName">Workflow View Selection</span>
+                                                </p>
+                                                <p>A description can be added to a Workflow Profile during its design.&#160;Descriptions can only be added to Workflow Profiles using the Default Scenario Type.&#160;Scenario Type specific descriptions cannot be used.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%202_472x575.png" style="width: 472;height: 575;" />
+                                                </p>
+                                                <h2>Workflow Tasks</h2>
+                                                <p>This simplifies the data collection, consolidation, and certification process.&#160;Importing data, entering a form, making a journal entry, and signing off on reports is completed through the Workflow process.</p>
+                                                <h3>Import</h3>
+                                                <p>This process step gives the end user the ability to import data into the system. This can be through a defined Data Source or a Data Connector.&#160;First click on the Import Workflow Origin located under the active month, then click Import in the task bar.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%203_159x27.png" style="width: 159;height: 27;" />
+                                                    <br />After a user clicks this icon, it will prompt him/her to either search for a file on the drive or initiate the Data Connector. The system will then import the data into the Stage engine.&#160;The file will be parsed into a clean tabular format with information on the Amounts, the Source ID, and each Dimension.&#160; Once the data is loaded successfully, the Import task will change from blue to green.</p>
+                                                <p><span class="FieldName">Load Method</span>
+                                                </p>
+                                                <p>Upon clicking Load and Transform, a dialog will appear with four Load Options:</p>
+                                                <p><span class="FieldName">Replace</span>
+                                                </p>
+                                                <p>This will clear all data for the previous file that correlates with the specific Source ID and replace it with the new file’s data.&#160;This can be done even if the previous data has already been loaded into the Cube.&#160; Once the file is re-loaded, the user will need to complete all Workflow Tasks and load the new data into the Cube.</p>
+                                                <p><span class="FieldName">Replace (All Time)</span>
+                                                </p>
+                                                <p>Replaces all Workflow Units in the selected Workflow View (if multi-period). Forces a replace of all time values in a multi-period workflow view</p>
+                                                <p><span class="FieldName">Replace Background (All Time, All Source IDs)</span>
+                                                </p>
+                                                <p>Replaces all Workflow Units in the selected Workflow View and all Source ID’s in a background thread while the new file parse or connector execution is running. The delete is being performed while parse is being performed.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>This load method always must always be used to delete ALL Source IDs. If the workflow uses multiple Source IDs for partial replacement during a load, this method cannot be used.</p>
+                                                <p><span class="FieldName">Append</span>
+                                                </p>
+                                                <p>This is used when additional rows are added to a source file and need to be loaded into the Stage.&#160;This will not change any of the data already loaded for the source file, it will only add rows that were not included in the previous file load.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%204_105x23.png" style="width: 105;height: 23;" />
+                                                    <br />This is used after data has already been loaded, but some changes have been made and the calculations need to be repeated.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%205_68x29.png" style="width: 68;height: 29;" />
+                                                    <br />This will clear all loaded data from the Stage.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%206.png" />
+                                                    <br />View Last Source File Processed for Current Workflow Profile</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%207.png" />
+                                                    <br />View Last Log File Processed for Current Workflow Profile</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_42.png" /> <br />When this icon displays, the Global POV is enforced and data loading is limited to the Global POV.&#160;The Enforce Global POV setting is controlled under Application|Tools|Application Properties.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_41.png" /> <br />When this icon displays, data cannot be imported to time periods prior to the current Workflow year. The Allow Loads Before Workflow View Year setting is controlled under Application|Tools|Application Properties.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_40.png" /> <br />When this icon displays, data cannot be imported to time periods after the current Workflow year.&#160;The Allow Loads After Workflow View Year setting is controlled under Application|Tools|Application Properties.</p>
+                                                <h3>Right-Click Options</h3>
+                                                <p><span class="FieldName">View Source Document</span>
+                                                </p>
+                                                <p>This will open the source file imported into the application.</p>
+                                                <p><span class="FieldName">View Processing Log</span>
+                                                </p>
+                                                <p>This will open a processing log and provide information on when and how the source file was imported.</p>
+                                                <p><span class="FieldName">View Transformation Rules</span>
+                                                </p>
+                                                <p>This provides all mapping rules for the specific intersection</p>
+                                                <p><span class="FieldName">Drill Back</span>
+                                                </p>
+                                                <p>Using a SQL Connector allows a user to drill back to a source system and show detailed records from a document, PDF, website, within the application&#160; This option is only available if data was loaded using a Connector Data Source.&#160; For more details on this feature, see Drill Back in <a href="https://documentation.onestream.com/9.0.1/Content/Design%20and%20Reference/Data Collection Guides/Data Collection Guides.html" class="MCXref xref">Collecting Data</a>.</p>
+                                                <p><span class="FieldName">Export</span>
+                                                </p>
+                                                <p>This will export the data into an Excel XML&lt; CSV, Text, or HTML file</p>
+                                                <h3>Validate</h3>
+                                                <p>After the data is loaded, the user will then validate the map and intersections.&#160;During the Validate step two specific actions happen. First, OneStream will check to make sure each piece of data has a map. Next, OneStream will check to make sure the combination of Dimensions can be loaded into the Cube based on the constraints defined in the system (e.g. using Intercompany).&#160; Click the green Validate task in the taskbar.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_39.png" /> <br />Click this icon to validate the data.&#160; If there are no errors, the Validate task will change from blue to green. If there are any errors, Validate will turn red and the errors will need to be fixed before proceeding. <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_38.png" /></p>
+                                                <p><span class="FieldName">Transformation Errors</span>
+                                                    <br />The errors will be listed by the Dimension with the error, such as a new account that was added, but not mapped.&#160;The user will be able to see the Source Value and the (Unassigned) Target Value.&#160;The system will already know the Dimension and pull up the possible targets.&#160;On the right, the user will be able to use the search box and click the funnel/filter button to find the correct account.&#160;The default will be a One-To-One Transformation Rule.&#160;For more information on these rules, see Transformation Rules in <a href="10-Data-Collection.html#Data-Collection" class="MCXref xref">Data Collection</a>.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_37.png" /> <br />Save any changes made and then click the Retransform icon, this will automatically re-validate the data.&#160;If there is an intersection validation error, this will now appear.&#160;If there are no intersection errors, the Validate Workflow step will change from blue to green.</p>
+                                                <p><span class="FieldName">Intersection Errors</span>
+                                                </p>
+                                                <p>Intersection Errors mean something is not correct with the entire intersection of data.&#160;For example, a Customer Dimension may be mapped to a Salary Grade Account.&#160;This does not make sense and the system will identify this prior to the load.&#160;To fix this error, click on the bad intersection and drill down to see the GL/ERP Account; (see Drill Down in <a href="21-Using-OnePlace-Cube-Views.html#Using-OnePlace-Cube-Views" class="MCXref xref">Using OnePlace Cube Views</a> for more details).&#160;Right-click to View Transformation Rules and from there, investigate each rule for each Dimension in order to find which one does not make sense.&#160; Each Dimension will be on the left, and each Target Value Column needs to be investigated.&#160;To fix a Transformation Rule here, select the Target Value to correct, right-click and select Edit Rule.&#160; Choose the appropriate Target Value and fix the intersection error.&#160;Click Save and close the next two windows.&#160;Click the Validate icon again and if it was fixed correctly, the Validate task will change from blue to green.</p>
+                                                <p>See Right-Click Options under the Import Task for details on the right-click functions.</p>
+                                                <h3>Load</h3>
+                                                <p>This simply loads the cleansed data from the Stage to the Analytic Engine.&#160;Click the Load task in the taskbar.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_36.png" /> <br />Next, click the Load Cube icon.&#160;This now loads the data into the Consolidation Engine and completes the Import process.&#160;</p>
+                                                <p>A Task Progress dialog will appear:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%2014_552x276.png" style="width: 552;height: 276;" />
+                                                </p>
+                                                <p>A green check will appear next to the Import Origin Workflow Step.</p>
+                                                <p>See Right-Click Options under the Import Task for details on the right-click functions.</p>
+                                                <h3>Pre-Process</h3>
+                                                <p>The Pre-Process task is the same as the normal Process task.&#160;This can be added as a first step in the Form channel process. Please refer to the Process description further down in this section for more details.</p>
+                                                <h3>Input Forms&#160;&#160;</h3>
+                                                <p>Once in this step, there will be two options under Workflow Forms: Required and Optional.&#160;The required Forms will have to be completed before the end user can move on from this step.&#160; Click on the specific Form, and manually enter the required data.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_35.png" /> <span class="FieldName">Open Excel Form</span><br />A user can export a Form derived from a Cube View to Excel, complete it in Excel, and then submit the data back to the application.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_34.png" /> <span class="FieldName">Attachments</span><br />This allows the user to attach supplemental files to specific Forms.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_33.png" /> <span class="FieldName">Import Form Cells Using Excel or Comma Separated Values File</span><br />Click this to load Form data via Excel template or CSV template.&#160;See Loading Form Data in <a href="https://documentation.onestream.com/9.0.1/Content/Design%20and%20Reference/Data Collection Guides/Data Collection Guides.html" class="MCXref xref">Collecting Data</a> for more details on using these templates.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_32.png" /> <span class="FieldName">Import Cell Details Using Excel or Comma Separated Values File</span><br />Click this to load Cell Details via Excel template or CSV template.&#160;See Loading Cell Detail in <a href="https://documentation.onestream.com/9.0.1/Content/Design%20and%20Reference/Data Collection Guides/Data Collection Guides.html" class="MCXref xref">Collecting Data</a> for more details on using these templates.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%2020_163x28.png" style="width: 163;height: 28;" />
+                                                    <br />Once a Form is completed, click Save and then the Complete Form icon.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>A drop-down time period menu will display for a form with a defined time filter containing multiple periods.&#160;If a Form does not have a time filter defined, this will be a standard button.&#160;&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%2021_186x27.png" style="width: 186;height: 27;" />
+                                                    <br />This will re-open a Form and clear the data.&#160; Once the Form is updated, Complete Form must be clicked again.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span> A drop-down time period menu will display for a form with a defined time filter containing multiple periods.&#160;If a Form does not have a time filter defined, this will be a standard button.&#160;&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%2022.png" />
+                                                    <br />Checking this box enables all Forms to be completed/reverted in one step.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%2020_163x28.png" style="width: 163;height: 28;" />
+                                                    <br />When each Form is completed, click Complete Workflow and a green check will appear for the Forms Origin Workflow Step.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20WF%2021_186x27.png" style="width: 186;height: 27;" />
+                                                    <br />This will re-open the Workflow.&#160;To make changes to the Form, Revert Form must also be clicked.&#160;Make any necessary changes to the Forms and click Complete Form/Workflow again.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_31.png" /> <br />This will run a consolidation/translation/calculation for a specific Form.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_30.png" /> <span class="FieldName">Show Report</span><br />This shows the Form in a Cube View Report.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_29.png" /> <span class="FieldName">Export to Excel</span><br />This exports a copy of the Form into Excel.</p>
+                                                <p><span class="FieldName">Cell Detail</span> <br />Cell Detail can be entered on a Cube View used for a data entry form, or on a Cube View or Quick View in Excel.&#160;Cell Detail is available on any writeable O#Forms or O#BeforeAdj Member.</p>
+                                                <p>See Right-Click Options in <a href="21-Using-OnePlace-Cube-Views.html#Using-OnePlace-Cube-Views" class="MCXref xref">Using OnePlace Cube Views</a> for details on the right-click options in Forms.</p>
+                                                <h4>Workflow Icons</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OnePlace%20Workflow_28_600x229.png" style="width: 600;height: 229;" />
+                                                </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>OneStream logo is white.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Workflow Status bar steps have curved edges.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Failed task text is white.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Up-arrow indicator for selected task.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Stop sign has an X in the middle, and a flat design style.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Confirmation Rules; Pass = green circle white checkmark, flat design style.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Confirmation Rules; Fail = red circle white exclamation mark, flat design style.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Status; last step completed green circle.</p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>Status; last step error red circle.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Journals" class="doc-section lvl1"><p class="crumb">Using OnePlace Workflow</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor598"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Journals Toolbar</h2>
+                                                <p>The Journals toolbar contains many tools for working with journals. This section describes each tool in detail.</p>
+                                                <p>
+                                                    <img style="width: 617;height: 88;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_toolbar_updated1_617x88.png" />
+                                                </p>
+                                                <h2>Input Journals</h2>
+                                                <p>Once in this step, there will be two options under Workflow Journal Templates: Required and Optional.&#160;The required Journals will have to be completed before you can move on from this step.&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_31.png" /> <span class="Emphasis_Bold">Create Journal</span><br />Click this to create a Journal if a template is not available.&#160;If this button is disabled, it is because the workflow profile is configured to only allow you to create journals based on existing templates.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_30.png" /> <span class="Emphasis_Bold">Create Journal Using Template</span><br />Use this to create a Journal using the selected template.&#160;Manually enter the required Journal data and Click Save.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_29.png" /> <span class="FieldName">Create Journal Using Excel or Comma Separated Values File</span><br />Click this to load a journal entry via Excel template or CSV template.&#160;See Loading Journal Data in <a href="https://documentation.onestream.com/9.0.1/Content/Design%20and%20Reference/Data Collection Guides/Data Collection Guides.html" class="MCXref xref">Collecting Data</a> for more details on using these templates.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_copy_selected_journals1.png" /> <span class="Emphasis_Bold">Copy Selected Journals</span><br />Copy existing journals into other time periods and scenarios. This is useful when you are creating similar journals, managing recurring journals, or copying Actual data into budget or what-if scenarios.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Select the journals you want to copy and click <span class="Emphasis_Bold">Copy Selected Journals</span>. You can select journals in any status but when copied, they will be set to Working status in the new time period.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the drop-down arrow in the Target Scenario field.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Make a selection. The selection applies to all journals in that single-batch copy.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>For each journal, select one or more time periods.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Type a new journal name and description.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>You can include attachments by placing a check in the Include Attachments checkbox.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>Administrators and members of the Journal Process Group can copy journals into a specified Adjustment Workflow Profile.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>After journals are copied, WfProfile_WfUnit_Scenario_TimePeriod_Index is appended to the journal name.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/journals_delete_button1.png" /> <span class="Emphasis_Bold">Delete Selected Item</span><br />Delete one or more journals simultaneously. Journals in Working or Rejected status can be deleted. This saves time when you need to remove multiple journal entries quickly and efficiently. Select the boxes next to the journals you want to remove then click this button and confirm.<br /></p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_28.png" /> <span class="FieldName">Reapply Template Settings to Journal</span><br />This will clear the data from the selected Journal and return it to the original template.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_ud_dimensions1.png" /> <span class="Emphasis_Bold">Show UD Descriptions</span> <br />Check this checkbox to display descriptions for the eight UD Dimension Types. They will display next to the Dimension Type in the Journal POV and the line item headers. Descriptions are defined in the Application Properties, and can provide clarity on the purpose of the dimensions.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>This feature applies to the Journal page only. Reports, BRApis and Excel/CSV templates related to journals remain unchanged.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_export1.png" /><span class="Emphasis_Bold"> Export</span> <br />Export journals from within the journals page. This is useful when you are more comfortable using a spreadsheet tool to edit journal data. You can export data from one area in <span class="mc-variable Variables.Product_Name variable">OneStream</span> and import it into another area or application.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Export</span> to open the <span class="Emphasis_Bold">Select Journals to Export</span> dialog. Workflow profile and scenario are locked.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Type a <span class="Emphasis_Bold">Time Filter</span> using the T# syntax. For example, T#2023M1, or for multiple time periods, T#2023M1,T#2023M2.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Type a <span class="Emphasis_Bold">Journal Status</span>. Select a single journal status or select <span class="Emphasis_Bold">All</span> to include all statuses.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Type a <span class="Emphasis_Bold">Journal Name</span>. This optional step will find all journals that contain the text you type.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click <span class="Emphasis_Bold">OK</span> to generate an XLSX file with journals that match the selected criteria.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In the <span class="Emphasis_Bold">File Explorer</span> dialog, browse to where you want to save the XLSX file. Data from all journals that match the selection criteria is saved.</p>
+                                                    </li>
+                                                </ol>
+                                                <p><b>Journal Entry Checkboxes</b> <br />Select multiple journal entries in the same state (e.g., completed, posted, approved, etc.) in order to Submit, Post, Approve, or Quick Post them at the same time. Select multiple journal entries in either the Working or Rejected status to delete them at the same time.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_27.png" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_validate_icon1.png" /> <span class="Emphasis_Bold">Validate</span><br />You can ensure that dimension members selected in the journal are valid cube intersections based on constraints configured in the dimension library. If validation errors exist, they will display in a Validation pane allowing you to view them as you make edits to the journal. This helps you save time by validating entries earlier in the process.</p>
+                                                <p>You must have the Journal Processing security role to use this feature and dimension member constraints must first be configured in the dimension library.</p>
+                                                <p>To use this feature:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Open a journal that is in Working status.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Validate</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>If invalid data is found, the Validation pane will display messages that detail each entry error.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_26.png" /> <br />Once a Journal is completed, select Quick Post or Post.&#160;When all required Journals and any optional Journals are finished, click Complete Workflow and a green check will appear for the Journals Workflow Step.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_25.png" /> <br />Depending on the security configuration, there are multiple options for Journals.&#160;If full security is in place, the end user will be able to create and submit.&#160;The approver will approve or reject, then the end user can post and complete the Workflow.</p>
+                                                <p><span class="Emphasis_Bold">Journal Line Items</span> <br />Journal data is entered into line items. You can add line items to reflect the Dimensions they are adjusting. Any dimensions not in line items must be configured in the Journal POV. <br /></p>
+                                                <p>To select a dimension member in journal line items:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Double-click the Entity, Account, Flow IC, or UD1-UD8 field.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>If you know the member name, type it into the text field. Repeat for all fields as needed.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>If you do not know the member name, use the Select Member dialog to locate the member.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>If the dimension members have a description, the members are displayed in the journal line items. For each dimension, you can set a preference to hide or show the description in journal line items. These preferences are saved on your local machine in <span class="mc-variable Variables.Product_Name variable">OneStream</span> user settings.<br /></p>
+                                                    </li>
+                                                </ol>
+                                                <p>You can filter journal line items by clicking the filter icon in the column headings. A drop-down selection box appears where you can choose from various filtering options.</p>
+                                                <p>
+                                                    <img style="width: 580;height: 268;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_filtering1_580x268.png" />
+                                                </p>
+                                                <p>This is useful when you are working with journals that contain a large amount of line items, making it easier to locate a specific subset of line items.</p>
+                                                <p>There are four line item actions buttons that sit just above the line item entries that aid in editing the journal line items:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">Add</span>: Creates a new journal line item. If an existing line is already selected, Add copies the selection. If no line is selected, the new line item is blank.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">Up</span>: Moves the selected item up in the list.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">Down</span>: Moves the selected item down in the list.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">Remove</span>: Deletes the selected line item.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Process</h3>
+                                                <p>Once in this step, click Process Cube in order to process the loaded data.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_24.png" /> <br />This icon performs No Calculate and all the standard Calculate, Translate, and Consolidate options using Calculation Definitions. Each added line item can be filtered by entity for reviewer level processes. Once the Cube is processed, the Process task will change from blue to green and move to the Confirm task. No Calculate can be used to allow the assignment of Data Management Sequences.</p>
+                                                <h3>Confirm</h3>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_23.png" /> <br />This step runs the Confirmation Rules defined for this particular Workflow.&#160;This will immediately inform users if they have passed or failed the data quality rules.&#160;The two types of statuses for this step are Warning or Error.&#160;Warning means the user is outside of the threshold, but it will not stop the process.&#160;Error means the user is outside of the threshold and this will stop the process and turn this step to red. If anything has failed, revisit one or many of the previous steps to make sure the data is accurate and complete.&#160; Once the data has passed all quality rules, the Confirm task will change from blue to green and move to the Certify task.</p>
+                                                <h3>Certify&#160;</h3>
+                                                <p>This is typically the final step in the Workflow process.&#160;This certifies and completes the phase of the Workflow.&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_22.png" /> <br />Some questions may need to be answered regarding the processes.&#160;Click each set of questions under the Questionnaires area.&#160; Answer the questions by clicking in the response cell and selecting the correct answer.&#160; Comments can also be added in order to explain the answers.&#160;The status will be displayed on the right.&#160;When this is completed, click on the Set Questionnaire Status icon and select Completed and then OK.&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_21.png" /> <br />After each group of questions is completed, the Set Certification Status icon will be enabled. Click this and select Certify in order to certify the data as complete and accurate. This will give the final green check for the month being processed and the data can now be trusted as complete and accurate by any stakeholder that is analyzing this information.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_20.png" /> <br />This is a one click option to expedite the Certify process.&#160; No questions need to be answered.&#160;This will give the final green check for the month being processed and the data can now be trusted as complete and accurate by any stakeholder that is analyzing this information.&#160;</p>
+                                                <p>This data can now be used for Consolidations by users or managers responsible for this workflow.&#160;They can look at data as it moves up and perform their own top side adjustments, confirmations, and certifications at as many levels as is appropriate for the organization.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_19.png" /> <br />Click on Dependent Status to see the status of each required Workflow task to ensure they are all completed.&#160;This will display the Workflow Profile name and all input types, the Workflow Channel, the status of each input type, the last step completed for each input type, the percentage of each step that is OK, In Process, Not Started, and steps with errors, and a record of when the last activity took place for each step.&#160; See Right-Click Options for details on these right-click functions.</p>
+                                                <p>
+                                                    <img style="width: 600;height: 126;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_18_600x126.png" /> &#160;</p>
+                                                <p>For more details on Workflow, see Workflow in <a href="9-Using-Workflow.html#About-Using-Workflow" class="MCXref xref">Workflow</a>.</p>
+                                                <h3>Multi-Period Processing</h3>
+                                                <p>Click on the Year in the Navigation Pane to enact Multi-Period Processing options:</p>
+                                                <p>
+                                                    <img style="width: 600;height: 263;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_17_600x263.png" />
+                                                </p>
+                                                <p>From here, perform multiple workflow tasks for one to many time periods, as shown above.</p>
+                                                <h2>Analysis Pane</h2>
+                                                <p>In each workflow profile for a defined period there will be an Analysis Pane under the Status Pane. For example: under Process, Confirm, and Certify tasks.</p>
+                                                <h3>Cube Views and Dashboards for Analysis&#160;</h3>
+                                                <p>This is where data can be viewed and analyzed in cube views and dashboards.&#160;If there is a grid in any dashboard or cube view, these are available for further drill down or annotation by right clicking the cell.&#160;See <a href="21-Using-OnePlace-Cube-Views.html#Using-OnePlace-Cube-Views" class="MCXref xref">Using OnePlace Cube Views</a> and <a href="22-Using-OnePlace-Dashboards.html#Using-OnePlace-Dashboards" class="MCXref xref">Using OnePlace Dashboards</a> for more details.</p>
+                                                <p>To view the Cube Calculation Status, click on Cube Views| Calculation Status to show a data grid presenting the Calculation Status of the current active Workflow POV.&#160;This will be available at the total Monthly (not an Origin process) Review, Process, or Certify tasks.&#160;See Calculation Status in <a href="2-About-the-Financial-Model.html#About-the-Financial-Model" class="MCXref xref">About the Financial Model</a> for more details on this feature.</p>
+                                                <h3>Intercompany Matching</h3>
+                                                <p>IC Matching which will show any Intercompany discrepancies.&#160;If the button is red in the status column, click the item to see the details.&#160;Each Intercompany counterparty will be visible along with counterparties with an Intercompany variance.&#160; By clicking on the counterparty, details including the Reporting Currency, Entity Currency, and Partner Currency will be visible.&#160;</p>
+                                                <p>Select the Intercompany Partner to see the status of the Intercompany issue and any annotations the partner may have made.&#160;Select the Difference row to see both parties’ statuses and annotations.&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/intercompany_matching_reports1.png" />
+                                                </p>
+                                                <p>A red triangle indicator displays in the cell when data is dynamically derived. This generally occurs when the intercompany matching report performs currency translations.</p>
+                                                <p>Right click on the Entity row to perform the following functions:</p>
+                                                <p><span class="FieldName">Set IC Transaction Status</span>
+                                                </p>
+                                                <p>This allows the user to update the status by selecting Not Started, Loaded, Adjusting, Disputed, Finalized.&#160;The user may also include comments for the counterparty to see.</p>
+                                                <p><span class="FieldName">Show Partner Workflow Status</span>
+                                                </p>
+                                                <p>This allows the user to see the Workflow status of the counterparty.</p>
+                                                <p class="FieldName">Show/Hide Dimension Details</p>
+                                                <p>This allows the user to see the Dimension details for the Intercompany accounts.</p>
+                                                <p><span class="FieldName">Drill Down</span>
+                                                </p>
+                                                <p>This will allow the user to drill down on the Dimensions in order to get more information about the Intercompany data.</p>
+                                                <p>See Drill Down in <a href="21-Using-OnePlace-Cube-Views.html#Using-OnePlace-Cube-Views" class="MCXref xref">Using OnePlace Cube Views</a> for more details on this feature.</p>
+                                                <p>See Intercompany Eliminations in <a href="2-About-the-Financial-Model.html#About-the-Financial-Model" class="MCXref xref">About the Financial Model</a> for more details on Intercompany.</p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Using-OnePlace-Workflow">Using OnePlace Workflow</a></li><li class="toc-l1"><a href="#Journals">Journals</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

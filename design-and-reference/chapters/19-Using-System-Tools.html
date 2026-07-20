@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Using System Tools — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat open"><a class="cat-link current" href="../chapters/19-Using-System-Tools.html">Using System Tools</a><ul class="cat-items"><li><a class="s-link" href="#System-Business-Rules">System Business Rules</a></li><li><a class="s-link" href="#Database">Database</a></li><li><a class="s-link" href="#Environment">Environment</a></li><li><a class="s-link" href="#Monitoring-Environments">Monitoring Environments</a></li><li><a class="s-link" href="#Web-Servers">Web Servers</a></li><li><a class="s-link" href="#Mobile-Web-Servers">Mobile Web Servers</a></li><li><a class="s-link" href="#WebTo-App-Server-Connections">WebTo App Server Connections</a></li><li><a class="s-link" href="#Working-With-Application-Server-Sets">Working With Application Server Sets</a></li><li><a class="s-link" href="#Application-Server-Behavior">Application Server Behavior</a></li><li><a class="s-link" href="#Database-Servers-Connection-Items">Database Servers (Connection Items)</a></li><li><a class="s-link" href="#OneStream-Database-Servers-Schema-Items">OneStream Database Servers (Schema Items)</a></li><li><a class="s-link" href="#Azure-Configurations">Azure Configurations</a></li><li><a class="s-link" href="#File-Explorer">File Explorer</a></li><li><a class="s-link" href="#File-Share">File Share</a></li><li><a class="s-link" href="#Whitelist-File-Extensions">Whitelist File Extensions</a><ul class="cat-items"><li><a class="s-link" href="#Overview">Overview</a></li><li><a class="s-link" href="#Whitelist-Files-Extensions-Prerequisites">Whitelist Files Extensions Prerequisites</a></li><li><a class="s-link" href="#Define-the-List-of-File-Extensions">Define the List of File Extensions</a></li><li><a class="s-link" href="#Add-Documents-using-File-Explorer">Add Documents using File Explorer</a></li><li><a class="s-link" href="#Troubleshooting">Troubleshooting</a></li><li><a class="s-link" href="#Conclusion">Conclusion</a></li></ul></li><li><a class="s-link" href="#Application-Database-System-Database">Application Database/System Database</a></li><li><a class="s-link" href="#Load-Extract-System-Artifacts">Load/Extract System Artifacts</a></li><li><a class="s-link" href="#Time-Dimensions">Time Dimensions</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Using-System-Tools" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor1338"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />System Tools</h1>
+                                                <p>There are a variety of system tools that can be used to manage the <span class="mc-variable Variables.Product_Name variable">OneStream</span> application. These tools include system business rules, database, tools that allow you to check the overall health of the application environment, and the File Explorer to name a few. In this section you will learn how to use these and other tools to manage the application system.</p>
+                                            </div></div></section><section id="System-Business-Rules" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor188"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />System Business Rules</h2>
+                                                <p>You can use System Extender Business Rules with Azure Server Sets for enhanced scalability at the Azure Database and Server Sets level. You can perform Server and eDTU scaling manually or using System Business Rules.&#160;If System Business Rules is selected as a Scaling Type, then a user-defined System Extender Business Rule determines if scaling is needed. You must implement the scaling function and return the proper scaling object by adding a System Extender Business Rule and assigning it appropriately. </p>
+                                                <p>Under each Case statement, use these rules and related Args and BRApis to check the current Server Set capacity, query metrics about a Server Set or Azure Database, and identify the impact of the Server Sets volume or level of Azure Database deployed. See "Azure Database Connection Setting and Server Sets" in the <span class="Emphasis_Italic">Installation and Configuration Guide</span>. </p>
+                                                <p>Example starting point of empty System Extender Business Rule upon creation: </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/System%20Tools1_600x272.png" style="width: 600;height: 272;" />
+                                                </p>
+                                                <h3>Sample System Business Rule</h3>
+                                                <p>Metric are passed to this function to help users determine if a server or database needs scaling. For server scaling, Environment metrics and Scale Set metrics are passed. For database scaling, Environment metrics and SQL Server Elastic Pool metrics are passed.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/System%20Tools_2_600x334.png" style="width: 600;height: 334;" />
+                                                </p>
+                                            </div></div></section><section id="Database" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1097"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Database</h2>
+                                                <p>The <span class="Emphasis_Bold">Database</span> screen allows System Administrators to view database tables and provides tools for managing stored data and other information. To view the <span class="Emphasis_Bold">Database</span> screen, go to <span class="Emphasis_Bold">System &gt;&#160;Tools &gt;&#160;Database</span>.</p>
+                                                <p><span class="FieldName">Database Tables</span>
+                                                </p>
+                                                <p>Go to <span class="Emphasis_Bold">Application Database &gt;&#160;Tables</span> or <span class="Emphasis_Bold">System Database &gt;&#160;Tables</span> to view all tables in the Application Database or System Database. This view provides read-only access to the data tables that can be used for debugging tasks that do not affect the database or system logs.</p>
+                                                <p>Data tables that are imported through MarketPlace Solutions have their schema name added to the beginning of the database table name and replace dbo (for example, rcm.AccessGroup and txm.AccessGroup).</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/System-Tools/ApplicationDatabase-Tables.png" />
+                                                </p>
+                                                <p><span class="FieldName">Tools</span>
+                                                </p>
+                                                <p>Database Tools allow System Administrators to manage the database.</p>
+                                                <p><span class="FieldName">Data Records</span>
+                                                </p>
+                                                <p>Go to <span class="Emphasis_Bold">Application Database &gt;&#160;Tools &gt;&#160;Data&#160;Records</span> to view data for the entire system. Filter the data using the member filter.</p>
+                                            </div></div></section><section id="Environment" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor272"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Environment</h2>
+                                                <p>This section can be used to check the overall health of the environment, which contains Web Servers, Mobile Web Servers, Application Server Sets and Database Servers. This will check the connection status as well as the configuration. </p>
+                                                <p>The Environment page is designed to give both IT and power business users a way to manage and optimize their applications and the environment that is running under. Using the Environment page, the user can monitor the environment, isolate bottlenecks, look at properties and configuration changes, and scale in/out application servers and database resources if needed. They can also customize what data to collect in log files, save collection metrics files, and replay collected performance data in many ways.</p>
+                                                <p>To access the Environment page, select <span class="Emphasis_Bold">System &gt; Tools &gt; Environment</span>.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>The Environment page is only accessible via the OneStream Windows App. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Environment1_600x234.png" style="width: 600;height: 234;" />
+                                                </p>
+                                            </div></div></section><section id="Monitoring-Environments" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor977"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Monitoring Environments</h2>
+                                                <p>Instead of logging onto the server to collect metrics, use the Monitoring page to access real time Key Performance Indicators (KPIs) across an environment. Click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Tools </span>&gt; <span class="Emphasis_Bold">Environment </span>&gt; <span class="Emphasis_Bold">Monitoring </span>to:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Access user activity and interactive KPI graphs.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Track all system components that affect stability and performance.</p>
+                                                    </li>
+                                                </ul>
+                                                <p> You can perform these tasks:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="FieldName">Open</span>: Access a metrics and configuration setting file from the File System or a local folder. </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Save As</span>: Save metrics and configurations locally or in the File System. </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Settings</span>: Specify these types of KPI metrics to monitor and the monitor frequency:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Environment </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>Application Servers </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>Database Servers </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>Server Sets </p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>Zoom into part of the chart to see running or queued activities.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Monitoring_8_429x156.png" style="width: 429;height: 156;" />
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Refresh Automatically Using a Timer</span>: Retrieve metrics based on the Play Update Frequency interval setting.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Specifying General Settings</h3>
+                                                <ul>
+                                                    <li>
+                                                        <p class="FieldName">General <span class="FieldName">Play Update Frequency (seconds)</span>: <span style="font-weight: normal;">How often to update Performance charts.</span> <br /></p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Metric and Task Time Range</span>: Indicate how much historical data to retrieve and depict on the Performance Chart. Applying a time range can help identify the cause of a server event or issue.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Y-Axis</span>: If Auto Range box is selected, the system sets the range for the Min and Max values on the Y-Axis. If cleared, you can set the Min and Max ranges on the Y-Axis.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Secondary Y-Axis</span>: Displays series of a different range of values, or different arguments (or values) in the same chart. Can be used when the numbers in a chart vary widely from data series to data series, or when there are mixed types of data.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Specifying Monitoring Settings</h3>
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="FieldName">Monitoring</span><span class="Emphasis_Bold">(Server filter)</span>: Identify specific application or database servers to evaluate.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Filter Type</span>: Specify the type of servers for which to collect metrics.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Source Filter</span>: Use to filter the Source List.<br /></p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Source List</span>: Displays the servers that meet your criteria.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Result List</span>: Displays selected <span class="FieldName">Source List</span> items for which to collect metrics.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3> Specifying Metrics Settings</h3>
+                                                <p>Metrics are collected based on the Metric Update Interval (seconds) setting in the Application Server Configuration utility. To minimize database access and maximize performance, some metrics are collected on every iteration, but some will skip iterations based on count settings defined for a metric.&#160; </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Monitoring_7_490x306.png" style="width: 490;height: 306;" />
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="FieldName">Filter Type</span>: Refine the types of application servers, database servers or server sets for which to collect metrics.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Source Filter</span>: Use to filter the Source List.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Source List</span>: Displays the list of filtered application servers, database servers or server sets.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Result List</span>: Displays the items for which to collect metrics.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>These settings shown below in the Application Server Configuration File in Environment Monitoring, determine which metrics are collected and how often.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Monitoring_6_600x331.png" style="width: 600;height: 331;" />
+                                                </p>
+                                            </div></div></section><section id="Web-Servers" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1186"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Web Servers</h2>
+                                                <p>This section lists all the web servers that are participating in that environment.&#160;Each web server will display its configuration and its audited setting.</p>
+                                                <h3>Configuration </h3>
+                                                <p>Sample Web Server configuration settings:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Web%20Servers1_572x447.png" style="width: 572;height: 447;" />
+                                                </p>
+                                                <p><span class="FieldName">Identity Provider</span>
+                                                </p>
+                                                <p>Displays single sign on identity provider if used.</p>
+                                                <p><span class="FieldName">Server Heartbeat Update Interval (seconds)</span>
+                                                </p>
+                                                <p>Used to specify how often each server updates its record that it is alive and responding to user input.</p>
+                                                <p><span class="FieldName">Name</span>
+                                                    <br />This is the name of the server as it is defined in the web configuration file.</p>
+                                                <p><span class="FieldName">WCF Address</span>
+                                                    <br />The full URL address of the server.</p>
+                                                <p><span class="FieldName">WCF Connection</span>
+                                                    <br />This examines the status of the connection. Ok = connected</p>
+                                                <p><span class="FieldName">Used for General Access</span>
+                                                    <br />This examines the web configuration file to see if it has this server configured as a general server. Settings are True or False.</p>
+                                                <p><span class="FieldName">Used for Stage Load</span>
+                                                    <br />This examines the web configuration file to see if this server is configured as a Stage server. Settings are True or False.</p>
+                                                <p><span class="FieldName">Used for Consolidation</span>
+                                                    <br />This examines the web configuration file to see if this server is configured as a consolidation server. Settings are True or False.</p>
+                                                <p><span class="FieldName">Used For Data Management</span>
+                                                    <br />This examines the web configuration file to see if this server is configured as a Data Management server.&#160; Settings are True or False. </p>
+                                                <h3>Audit</h3>
+                                                <p>Sample Web Server audit setting:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Web%20Servers_2_600x289.png" style="width: 600;height: 289;" />
+                                                </p>
+                                                <p><span class="FieldName">Property Type</span>
+                                                    <br />Type of server property in the hardware or software that was changed.</p>
+                                                <p><span class="FieldName">Property Name</span>
+                                                    <br />The name of the property in the hardware or software that was changed.</p>
+                                                <p><span class="FieldName">Value From</span>
+                                                    <br />Displays the original value of the property.</p>
+                                                <p><span class="FieldName">Value To</span>
+                                                    <br />Displays the new value of the property.</p>
+                                                <p><span class="FieldName">Description From</span>
+                                                    <br />Displays the original description of the setting if available.</p>
+                                                <p><span class="FieldName">Description To</span>
+                                                    <br />Displays the new description of the setting if available.</p>
+                                                <p><span class="FieldName">Timestamp From</span>
+                                                    <br />Displays the original date and time of the setting if available.</p>
+                                                <p><span class="FieldName">Timestamp To</span>
+                                                    <br />Displays the new date and time of the setting.</p>
+                                                <p><span class="FieldName">User From</span>
+                                                    <br />Displays the original user name if available.</p>
+                                                <p><span class="FieldName">User To</span>
+                                                    <br />Displays the user name of the person that made the change if available.</p>
+                                            </div></div></section><section id="Mobile-Web-Servers" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1495"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Mobile Web Servers</h2>
+                                                <p>Similar to web server, the mobile web servers list all the web servers that are included in that environment.&#160;It pulls the information from the ServerHeartBeat table in the Framework database.</p>
+                                                <h4>Sample Mobile Web Server Configuration</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Mobile%20Web%20Servers1_600x312.png" style="width: 600;height: 312;" />
+                                                </p>
+                                                <h4>Sample Mobile Web Server Audit</h4>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Mobile%20Web%20Servers_2_600x234.png" style="width: 600;height: 234;" /></p>
+                                            </div></div></section><section id="WebTo-App-Server-Connections" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor902"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />WebTo App Server Connections</h2>
+                                                <p>This section will list all the combined connections from the web server configuration files to all the application servers.&#160;From here the user can pause and then resume a specific connection to an application server or a load balancer (a load balancer could point to a multiple application server). See Installation and Configuration Guide. </p>
+                                                <p>Sample Web to App connection configuration:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/WebTo%20App%20Server%20Connections1_600x353.png" style="width: 600;height: 353;" />
+                                                </p>
+                                                <p><span class="FieldName">Pause</span>
+                                                    <br />Used to pause any request to a WCF Address connection. This connection could be either an Application Sever or a Load Balancer. This can be set in the web configuration file.</p>
+                                                <p><span class="FieldName">Resume</span>
+                                                    <br />Used to Resume any request to a WCF Address connection. This connection could be either an Application Sever or a Load Balancer. This can be set in the web configuration file.</p>
+                                                <p><span class="FieldName">Name</span>
+                                                    <br />This is the name of the server as it is defined in the web configuration file.</p>
+                                                <p><span class="FieldName">WCF Address</span>
+                                                    <br />The full URL address of the server.</p>
+                                                <p><span class="FieldName">WCF Connection</span>
+                                                    <br />This examines the status of the connection. Ok = connected</p>
+                                                <p><span class="FieldName">Used for General Access</span>
+                                                    <br />This examines the web configuration file to see if it has this server configured as a general server. Settings are True or False.</p>
+                                                <p><span class="FieldName">Used for Stage Load</span>
+                                                    <br />This examines the web configuration file to see if this server is configured as a Stage server. Settings are True or False.</p>
+                                                <p><span class="FieldName">Used for Consolidation</span>
+                                                    <br />This examines the web configuration file to see if this server is configured as a consolidation server. Settings are True or False.</p>
+                                                <p><span class="FieldName">Used for Data Management</span>
+                                                    <br />This examines the web configuration file to see if this server is configured as a Data Management server.&#160;Settings are True or False. </p>
+                                            </div></div></section><section id="Working-With-Application-Server-Sets" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor996"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Working With Application Server Sets</h2>
+                                                <p>Click<span class="Emphasis_Bold"> Application Server Sets</span> to view the server sets participating in an environment. Sets display based on the Server Set configuration in the Application Server Configuration Utility. A red “X” indicates offline servers. You can access configurations for each sever set and server in a server set.&#160;If a Server is hosted on Azure, you can Scale Out/ and Scale In the Scale Set manually or using a System Business Rule.</p>
+                                                <p>Sample Application Server Set:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Application%20Server%20Sets1_287x442.png" style="width: 287;height: 442;" />
+                                                </p>
+                                                <h3>Accessing Server Sets Behaviors</h3>
+                                                <p>Use the <span class="Emphasis_Bold">Behavior </span>tab to view the capability of a Server Set. You can Scale Out (remove) and Scale In (add and configure) if the Scaling Type setting is set to Manual or ManualAndBusinessRule in the Server Configuration Utility file. This enables you to expand or contract server resources manually or automatically. For scaling with Azure, select Server Sets &gt; Azure &gt; Scaling Type. This feature will be available in a future release.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Application%20Server%20Sets_7_581x355.png" style="width: 581;height: 355;" />
+                                                </p>
+                                                
+                                                <p>You can specify the following settings at the Server Set level using the Server Configuration Utility, but can override them at the individual Application Server level. </p>
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="FieldName">Process Queued Consolidation Tasks:</span> If true, the server can processes consolidation tasks.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Process Queued Data Management Tasks: </span>If true, the server can process data management tasks.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Process Queued Stage Tasks: </span>If true, the server can process stage tasks.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Queued Tasks Require Named Application Server: </span>If true, the server only runs assigned tasks.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Server Sets Configuration</h3>
+                                                <p>Use the <span class="Emphasis_Bold">Configuration </span>tab to view Server Set configurations defined with the Application Server Configuration Utility. For example:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Application%20Server%20Sets_6_574x391.png" style="width: 574;height: 391;" />
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="FieldName">Azure Resource Group Name:</span> (Azure Scale Set Only) The resource group name for the set.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Azure Scale Set Name: </span>(Azure Scale Set Only) The scale set name in the resource group.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Can Change Queuing Options On Servers: </span>If true, Administrators can change the queuing behavior - impacting stage, consolidation and data management tasks - of specific servers.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Can Pause or Resume Servers:</span> If set to true, then the user can pause and/or resume the server from the Environment page via the Pause and Resume buttons.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Can Stop or Start Servers</span> (Azure Scale Set Only): If true, users can stop / restart the server on the Environment page.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Maximum | MinimumCapacity</span> (Azure Scale Set Only): A fail-safe setting to identify the maximum | minimum number of servers.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">Process Queued Consolidation Tasks:</span> If true, the server can process consolidation tasks.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Process Queued &lt;feature&gt; Tasks: </span>If true, the server can process tasks such as data management and state tasks.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Queued Tasks Require Named Application Server: </span>If true, the server only runs its assigned tasks.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Server Names for Standard Server Sets (Supports *? Wildcards): </span>Specify server names if the standard server set type is used.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">Server Set Provider Type: </span>Specify the external authentication provider used, such as Azure.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="FieldName">System Business Rule Name</span> (Azure Scale Set Only): The name of the extender business rule for Azure scale set and database scaling. </p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Using Server Sets Audit</h3>
+                                                <p>The <span class="FieldName">Audit </span>tab identifies all property changes made in <span class="FieldName">XFAppServerConfig.xml</span>.&#160;Changes display in yellow. For example:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Application%20Server%20Sets_5_590x254.png" style="width: 590;height: 254;" />
+                                                </p>
+                                                <h3>Monitoring Server Sets Performance</h3>
+                                                <p>Use the <span class="Emphasis_Bold">Performance </span>tab to view scale set and environment metrics, highlighting sections to drill down to time-specific records.&#160;</p>
+                                            </div></div></section><section id="Application-Server-Behavior" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor683"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Application Server Behavior</h2>
+                                                <p>When selected, the user can pause and resume that server, so that none of the long duration tasks can be run on that particular server.&#160;Also, IIS can be recycled by selecting the Recycle App Pool button. Whether these buttons appear or not is based on settings in the OneStream Server Configuration Utility. </p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Application%20Server%20Behavior1_583x424.png" style="width: 583;height: 424;" /> </p>
+                                                <p><span class="FieldName">Pause</span>
+                                                    <br />Pause will stop the server from seeking more tasks to run from the queue but will let tasks that have already started, finish. </p>
+                                                <p><span class="FieldName">Resume</span>
+                                                    <br />Server will resume accepting tasks from the queue. </p>
+                                                <p><span class="FieldName">Recycle App Pool</span>
+                                                    <br />Used to recycle the specific server's application pool (reset IIS).</p>
+                                                <p><span class="FieldName">Stop - (Azure Scale Set Only)</span>
+                                                </p>
+                                                <p>Stops the server, but while in this state will continue to incur Azure compute charges. The public and internal will be preserved. </p>
+                                                <p><span class="FieldName">Stop (Deallocate)- (Azure Scale Set Only) </span>
+                                                </p>
+                                                <p>Stopping this way will mean the cost of virtual machine will not be charged, but the public and internal IP will be deleted.</p>
+                                                <h3>Application Server Configurations</h3>
+                                                <p>This tab will display the server configurations from the OneStream Server Configuration Utility pertaining to that server.</p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Application%20Server%20Behavior_8_584x331.png" style="width: 584;height: 331;" /></p>
+                                                <h3>Application Server Hardware</h3>
+                                                <p>This tab will show the machine hardware information based on settings in the OneStream Server Configuration Utility. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Application%20Server%20Behavior_7_587x458.png" style="width: 587;height: 458;" />
+                                                </p>
+                                                <h3>Application Server Audit</h3>
+                                                <p>The audit tab will keep track and display any hardware and configuration changes.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Application%20Server%20Behavior_6_578x367.png" style="width: 578;height: 367;" />
+                                                </p>
+                                                <h3>Application Server Performance</h3>
+                                                <p>This tab will display metric values pertaining to that server and the Environment.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Application%20Server%20Behavior_5_568x272.png" style="width: 568;height: 272;" />
+                                                </p>
+                                            </div></div></section><section id="Database-Servers-Connection-Items" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor172"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Database Servers (Connection Items)</h2>
+                                                <p>The Database Servers section will list all the database connections based on settings in the OneStream Server Configuration Utility and all the databases that each connection is pointing to.</p>
+                                                <p>From the database connection items, the user can expand the SQL server elastic pool if one is configured, view hardware and server properties, view audit info, look at SQL server metrics, and run some diagnostic commands to track down performance issues.</p>
+                                                <h3>Behaviors</h3>
+                                                <p>Sample database connection Behavior tab:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Database%20Servers%20Connection1_563x362.png" style="width: 563;height: 362;" />
+                                                </p>
+                                                <p>The behavior will show up if SQL Server Azure and Elastic Pool are configured and used.&#160;Using the Behavior tab, you can increase or decrease the resources available to an Elastic Pool based on resource needs.&#160;When rescaling Elastic Pool DTUs, database connections are briefly dropped. This is the same behavior as occurs when rescaling Elastic Pool DTUs for a single database (not in a pool).</p>
+                                                <h3>Configuration</h3>
+                                                <p>The configuration tab will display SQL server configuration properties.</p>
+                                                <p>Sample configuration properties:</p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Database%20Servers%20Connection_12_498x351.png" style="width: 498;height: 351;" /></p>
+                                                <h3>Hardware</h3>
+                                                <p>The hardware tab will display hardware related information pertaining to SQL server. </p>
+                                                <p>Sample hardware properties:</p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Database%20Servers%20Connection_11_509x419.png" style="width: 509;height: 419;" /></p>
+                                                <h3>Audit</h3>
+                                                <p>The audit tab will display any changes to the SQL Server properties. </p>
+                                                <p>Sample configuration audit report:</p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Database%20Servers%20Connection_10_489x288.png" style="width: 489;height: 288;" /></p>
+                                                <h3>Performance</h3>
+                                                <p>The Performance tab will display metrics pertaining to SQL Server:</p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Database%20Servers%20Connection_9_548x416.png" style="width: 548;height: 416;" /></p>
+                                                <h3>Diagnostics</h3>
+                                                <p>The Diagnostics tab allows the user to run SQL diagnostic commands to determine performance issue on the database instance.</p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Database%20Servers%20Connection_8_495x361.png" style="width: 495;height: 361;" /></p>
+                                                <ul>
+                                                    <li>
+                                                        <p>SQL Deadlock information. </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>The Deadlock SQL command will list out any deadlocks if any on the SQL server instance.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Top SQL Commands will list out the top number of SQL using the order select by the user (Total Logical Reads, Total Logical Writes, Total Worker Time)</p>
+                                                    </li>
+                                                </ul>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Database%20Servers%20Connection_7_580x266.png" style="width: 580;height: 266;" /></p>
+                                            </div></div></section><section id="OneStream-Database-Servers-Schema-Items" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor833"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />OneStream Database Servers (Schema Items)</h2>
+                                                <p>This section will list all the database schemas that this connection is pointing to.&#160;Each schema has its own configurations, audit and diagnostic tabs.</p>
+                                                <h3>Configuration</h3>
+                                                <p>The Configuration tab contains the application-specific information:</p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OneStream%20Database%20Servers1_468x338.png" style="width: 468;height: 338;" /></p>
+                                                <h3>Audit</h3>
+                                                <p>The audit tab will show if any of the application configuration has been changed.</p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OneStream%20Database%20Servers_4_563x254.png" style="width: 563;height: 254;" /></p>
+                                                <h3>Diagnostic</h3>
+                                                <p>Diagnostics tab will show a report of current schema table fragmentation. Sample of table fragmentation on the framework DB showing all tables beyond 70% fragmented:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/OneStream%20Database%20Servers_3_567x454.png" style="width: 567;height: 454;" />
+                                                </p>
+                                            </div></div></section><section id="Azure-Configurations" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1089"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Azure Configurations</h2>
+                                                <p> (Azure Only or if Azure Elastic Pool Being Used) </p>
+                                                <h3>Azure Subscription Settings</h3>
+                                                <p>The Azure Subscription Settings must be filled in, as they are used to login and retrieve Azure settings and data. This section will should be populated when using Azure Elastic Pool or if using Scale Sets (which is a feature that will available in a future release).</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Azure%20Configurations%20Azure1_600x169.png" style="width: 600;height: 169;" />
+                                                </p>
+                                                <h3>Environment Monitoring</h3>
+                                                <p>The Environment Monitoring section configures how and how often metrics are collected. What is available for metrics or monitoring is based on configurations made in the OneStream Server Configuration Utility. See Installation and Configuration Guide. </p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Azure%20Configurations%20Azure_8_544x408.png" style="width: 544;height: 408;" /></p>
+                                                <p><span class="FieldName">URL for the Automatic Recycle Service</span>
+                                                </p>
+                                                <p>Used to specify the address of the recycle management service. The protocol for the address should be set to however the service is deployed (https or http) and the port (default is 50002). The asterisk will force the service to use the fully qualified domain name of the executing server.</p>
+                                                <p><span class="FieldName">Number of Running Hours Before Automatic Recycle</span> </p>
+                                                <p>Used to specify how often the app servers should be restarted. The default is 24.0. Use 0.0 to turn off auto recycling. Fractional numbers may be used in this setting.</p>
+                                                <p><span class="FieldName">Start Hour for Automatic Recycle (0 to 24 UTC) </span>
+                                                </p>
+                                                <p>Used to specify the time period within each day that the server can be recycled. This setting is only used if Number of Running Hours Before Automatic Recycle is set to 24.0. The default setting is 5. With that value, the application servers will be recycled between 5:00am UTC and what the setting for the End Hour for Automatic Recycle is set to.</p>
+                                                <p><span class="FieldName">End Hour for Automatic Recycle (0 to 24 UTC) </span>
+                                                </p>
+                                                <p>Used to specify the time period within each day that the server can be recycled. This setting is only used if Number of Running Hours Before Automatic Recycle is set to 24.0. The default setting is 7. With that value, the application servers will be recycled between 7:00am UTC and what the setting for the Start Hour for Automatic Recycle is set to.</p>
+                                                <p><span class="FieldName">Maximum Number of Minutes to Pause Before Automatic Recycle </span>
+                                                </p>
+                                                <p>Used to specify the maximum number of minutes that the server should pause its ability to run newly queued tasks before recycling. The default setting is 30. This setting is the time period that the server will use to allow previously started tasks to finish. If there are no previously running tasks on the application server, the setting is ignored.</p>
+                                                <p><span class="FieldName">Active Check Update Interval (seconds) </span>
+                                                </p>
+                                                <p>How often system checks for system monitoring (i.e.; deadlocks ...)</p>
+                                                <p><span class="FieldName">Metric Update Interval (seconds)</span>
+                                                </p>
+                                                <p>How often system checks for metric updates.</p>
+                                                <p><span class="FieldName">Server Heartbeat Update Interval (seconds)</span>
+                                                </p>
+                                                <p>How often system updates that this server is alive.</p>
+                                                <p><span class="FieldName">Collect Environment CPU Metrics</span>
+                                                </p>
+                                                <p>How often to collect environment CPU metrics.</p>
+                                                <p class="FieldName">Collect Environment Task Metrics</p>
+                                                <p>How often to collect environment task metrics (i.e.; running tasks, Queued Tasks …)</p>
+                                                <p class="FieldName">Collect Environment Login Metrics</p>
+                                                <p>How often to collect environment user login metrics.</p>
+                                                <p class="FieldName">Collect Server Set CPU Metrics</p>
+                                                <p>How often to collect server set CPU metrics.</p>
+                                                <p class="FieldName">Collect Server Set Task Metrics</p>
+                                                <p>How often to collect server set task metrics (i.e.; running tasks, Queued Tasks …).</p>
+                                                <p class="FieldName">Collect Server Disk Metrics</p>
+                                                <p>How often to collect server disk metrics (i.e.; Average Disk read/write per sec…).</p>
+                                                <p class="FieldName">Collect Server Memory Metrics</p>
+                                                <p>How often to collect server memory metrics (i.e.; Available MBytes…).</p>
+                                                <p class="FieldName">Collect Server Network Card Metrics</p>
+                                                <p>How often to collect server network card metrics.</p>
+                                                <p class="FieldName">Collect SQL CPU Metrics</p>
+                                                <p>How often to collect SQL server CPU metrics.</p>
+                                                <p class="FieldName">Collect SQL Page Metrics</p>
+                                                <p>How often to collect SQL server Page caching metrics (i.e.; Page Life Expectancy…).</p>
+                                                <p class="FieldName">Collect SQL Memory Metrics</p>
+                                                <p>How often to collect SQL server CPU metrics.</p>
+                                                <p class="FieldName">Collect SQL Connection Metrics</p>
+                                                <p>How often to collect SQL server connection metrics (i.e.; Number of connections…).</p>
+                                                <p class="FieldName">Collect SQL Query Metrics</p>
+                                                <p>How often to collect SQL server Query metrics (i.e.; Number of Deletes/Inserts…).</p>
+                                                <p class="FieldName">Collect SQL File Metrics</p>
+                                                <p>How often to collect SQL server File growth metrics.</p>
+                                                <p class="FieldName">Collect SQL Elastic Pool CPU Metrics</p>
+                                                <p>How often to collect SQL server Elastic Pool CPU metrics (i.e.; Number of connections…).</p>
+                                                <p class="FieldName">Collect SQL Elastic Pool DTU Metrics</p>
+                                                <p>How often to collect SQL server Elastic Pool DTU metrics (i.e.; Number of connections…).</p>
+                                                <p class="FieldName">Collect SQL Elastic Pool Storage Metrics</p>
+                                                <p>How often to collect SQL server Elastic Pool Storage metrics (i.e.; disk storage usage…).</p>
+                                                <p class="FieldName">Collect SQL Elastic Pool Workload Metrics</p>
+                                                <p>How often to collect SQL server Elastic Pool Workload metrics.</p>
+                                                <p class="FieldName">Number Past Metric Readings for SQL Blocking </p>
+                                                <p>Used to select the past number of metric values for blocking analysis.</p>
+                                                <p class="FieldName">Fragmentation Iteration Count </p>
+                                                <p>Used for fragmentation check, every 10 hours if the ActiveCheckUpdateIntervalInSec is set to 60.</p>
+                                                <p class="FieldName">Fragmentation Percent Threshold </p>
+                                                <p>Used for fragmentation threshold check in percent.</p>
+                                                <p class="FieldName">Detailed Logging </p>
+                                                <p>If true, then log whenever we enter and exit the metric collection and the Active System check.</p>
+                                                <p class="FieldName">Number Hours To Retain Offline Servers </p>
+                                                <p>Remove offline servers from the heartbeat table after certain number of hours.</p>
+                                                <h3>Task Load Balancing</h3>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Azure%20Configurations%20Azure_7_591x156.png" style="width: 591;height: 156;" />
+                                                </p>
+                                                <p class="FieldName">Maximum Queued Processing Interval (seconds) </p>
+                                                <p>How often the queuing thread checks for new tasks to be run.</p>
+                                                <p class="FieldName">Number Past Metric Reading For Analysis</p>
+                                                <p>How many metric readings to retrieve for analyzing server demand.</p>
+                                                <p class="FieldName">Maximum Queued Time (minutes)</p>
+                                                <p>Maximum time to wait for a task to run before it is cancelled.</p>
+                                                <p class="FieldName">Maximum Average CPU Utilization </p>
+                                                <p>Maximum average CPU utilization before we determine that a server can't take a task.</p>
+                                                <p class="FieldName">Task Logging Only</p>
+                                                <p>If true will only logs picked up tasks.</p>
+                                                <p class="FieldName">Detailed Logging</p>
+                                                <p>If true, then log whenever we enter and exit the Task Load Balancing function and what was run.</p>
+                                                <h3>Database Server Connection</h3>
+                                                <p>The Azure section in the Database Connection Settings needs to be completed only if Azure database and/or Azure Elastic pool is used.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Azure%20Configurations%20Azure_6_590x240.png" style="width: 590;height: 240;" />
+                                                </p>
+                                                <p>Sample Azure database connection settings:</p>
+                                                <p class="FieldName">Azure Elastic Pool Max DTU Setting</p>
+                                                <p>This is a fail-safe setting that the user can’t set the DTU setting above this point.</p>
+                                                <p class="FieldName">Azure Elastic Pool Min DTU Setting </p>
+                                                <p>This is a fail-safe setting that the user can’t set the DTU setting below this point.</p>
+                                                <p class="FieldName">Elastic Pool Name </p>
+                                                <p>The name of the elastic pool used with this database connection.</p>
+                                                <p class="FieldName">Azure Resource Group </p>
+                                                <p>The resource group name that the elastic pool is in.</p>
+                                                <p class="FieldName">Azure Service Level Objective </p>
+                                                <p>The service level used.&#160;This setting is used to create application on Azure.</p>
+                                                <p class="FieldName">Azure SQL Edition </p>
+                                                <p>The Azure SQL Server edition used.</p>
+                                                <p class="FieldName">Azure SQL Scaling Type </p>
+                                                <p>Manual, Business Rule or ManualAndBusiness Rule.&#160;The is used to set the type of scaling that is used to Scale Out or Scale In the SQL Server eDTUs. The default setting should be set to Not Used.</p>
+                                                <p class="FieldName">Azure SQL Server Name </p>
+                                                <p>The name of the SQL Server.&#160;This setting is used to create application on Azure.</p>
+                                                <p class="FieldName">Azure SQL Storage Max Size </p>
+                                                <p>This is used to specify the database storage size when creating a database on AZURE.</p>
+                                                <p class="FieldName">Azure SQL System Business Rule Name</p>
+                                                <p>If SQL Scaling Type is set to BusinessRule, this setting must be set to a business rule that is used to scale in/out.&#160; The Environment metrics and the database metrics are passed to this rule to properly determine the eDTU scaling.</p>
+                                                <h3>Azure Server Sets Settings</h3>
+                                                <p>This setting is used to set up the used scale sets for the different application servers:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Azure%20Configurations%20Azure_5_498x269.png" style="width: 498;height: 269;" />
+                                                </p>
+                                                <p>The <span class="FieldName">Azure</span> section is used to set the Azure resource group name and the scale set name as it exists on Azure. The Scaling options are used to set the scaling capacity and the Scaling Type (e.g. Manual or BusinessRule).&#160; The System Business Rule Name must be set if the Scaling Type is set to Business Rule.</p>
+                                                <p>The <span class="FieldName">Behaviors</span> section is used determine how this scale set is used.&#160; Whether it can be called by the web server or it is used as a processing server for consolidations and Stage Load.</p>
+                                                <p>The <span class="FieldName">General</span> section is used to determine whether this scale set is used and who is its provider (i.e.; Azure, External …).</p>
+                                            </div></div></section><section id="File-Explorer" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor125"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />File Explorer</h2>
+                                                <p>Documents and saved Point of View settings can be stored in the Application database.</p>
+                                                <p> <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/fileexp1_35x33.png" style="width: 35;height: 33;" /> Create a new folder in the File Explorer</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/fileexp2.png" />Upload a specific file into any folder.&#160;If a user has Administrator rights or is in the ManageFileShare security role, he/she can upload and delete files in the Harvest folder. </p>
+                                                <p>A common Cube Point of View can be stored for continued reuse by multiple users.&#160;The POV can be stored for all users in the Public area or for the specific user in the User directory.&#160;To create a saved, named POV, right click the Cube POV node under Point of View within the Context Pane: </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/fileexp3_404x261.png" style="width: 404;height: 261;" /> </p>
+                                                
+                                            </div></div></section><section id="File-Share" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor8"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />File Share</h2>
+                                                <p>File Share is a self-service directory which supports file storage external from the <span class="mc-variable Variables.Product_Name variable">OneStream</span>Application and System Databases. Files stored in an Incoming folder are accessible only through that Workflow Profile.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/File%20Explorer%20icon.png" alt="File Explorer icon is two overlapping folders flat design style" title="File Explorer" />To access File Share, click the<span class="Emphasis_Bold"> File Explorer</span> button in the toolbar, or  navigate to <span class="Emphasis_Bold">System </span>&gt;<span class="Emphasis_Bold">Tools </span>&gt;<span class="Emphasis_Bold"> File Explorer</span>.</p>
+                                                <p>toolbar.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/File%20Share%20folder%20structure_195x399.png" alt="File share folder structure showing tree navigation of folders" title="File Share folder structure" style="width: 195;height: 399;" />
+                                                </p>
+                                                <h3>Folders</h3>
+                                                <h4><a name="Content"></a>Contents Folders</h4>
+                                                <p style="font-weight: normal;">Both the Application and System folders contain an auto-generated folder named Contents intended to store files larger than 300 MB. This folder is a secureable storage area that can be used in place of the File Explorer application database.</p>
+                                                <h5>Permissions</h5>
+                                                <p>The Contents folders are managed and secured by System Security Roles. To set System Security Roles, navigate to <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Security </span>&gt; <span class="Emphasis_Bold">System Security Roles</span>:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Administrator and ManageFileShare Roles have full rights.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Non-Administrators can be assigned rights to modify, fully access, or have limited access to the Content folders.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Content%20folders_241x494.png" alt="File share folder structure with Contents folders highlighted" title="Contents Folders" style="width: 241;height: 494;" />
+                                                </p>
+                                                <h4>Application Folders</h4>
+                                                <p>This folder has application specific storage.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Application%20folders_260x379.png" alt="Application folder structure tree navigation" title="Application folder structure" style="width: 260;height: 379;" />
+                                                </p>
+                                                <p class="FieldName">Batch and Harvest</p>
+                                                <p>These folders are used for automation of Connector Data Loads. When the Harvest folder loads a file, it is automatically cleared and an archive folder with a copy of the loaded file  is created. To add or delete files from the Harvest folder, you must have Administration rights or have the ManageFileShare security role.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>The archive folder and the files within it can be cleared using Data Import Schedule Manager.</p>
+                                                <p class="FieldName">Content</p>
+                                                <p>See <a href="#Content">Content Folders</a>.</p>
+                                                <p class="FieldName">Data Management</p>
+                                                <p>This is the default folder for the data management export process.</p>
+                                                <p class="FieldName">Groups</p>
+                                                <p>This folder is used for the File Viewer Component to allow viewing by Security. The file is placed in one of the folders under \\MyServerName\OneStreamShare\Applications\MyApplicationName\Groups and then placed into a folder with the same name as a User Group. The user must have permissions to that User Group to view the file. See <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#File-Viewer">File Viewer</a>.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/File%20share%20file%20viewer_427x380.png" alt="File Share Component Propeties with Component Type and Fole Source Type outlined with yellow highlight " title="File Share Component Properties" style="width: 427;height: 380;" />
+                                                </p>
+                                                <p class="FieldName">Incoming</p>
+                                                <p>This folder is used as a location to place source files for import into Stage.</p>
+                                                <p>It is also used for the File Viewer Component. During an Import Load step, click <span class="Emphasis_Bold">Load and Transform</span> &gt;<span class="Emphasis_Bold"> Select Server File</span>. Click the ellipses to display source files placed in the Import folder. See <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#File-Viewer">File Viewer</a>.</p>
+                                                <p class="FieldName">Internal</p>
+                                                <p>This folder stores the contents of the Application Database files or System Database files.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/File%20Share%20icons.png" alt="Import Application and System database icons are a folder with an incoming arrow, flat design style. Export Application and System icons are two crossed arrows, flat design style." title="File Share Import and Export icons" />These icons enable users to export this content to File Share.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>To access the File Share export and import options, the user must be granted rights to the SystemPane role and the FileExplorerPage role. When granted these rights, go to <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Tools </span>&gt;<span class="Emphasis_Bold"> File Explorer</span> and the icons will display in the toolbar.</p>
+                                                <p class="FieldName">Outgoing</p>
+                                                <p>This folder is available for use in customized processes that require a defined folder location.</p>
+                                                <h4>System Folders</h4>
+                                                <p>This folder has system specific storage.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/System%20folders_243x132.png" alt="System folder structure as tree navigation" title="System folder structure" style="width: 243;height: 132;" />
+                                                </p>
+                                                <p class="FieldName">Content</p>
+                                                <p>See <a href="#Content">Content Folders</a>.</p>
+                                                <p class="FieldName">Internal</p>
+                                                <p>This folder exports from System Database.</p>
+                                                <h3>Uploads</h3>
+                                                <p>By default, when this flag is set to <span class="Emphasis_Bold">True</span>, authorized users can upload or edit files or folders in the File Share using the OneStream File Explorer (required to use Content folder). When set to <span class="Emphasis_Bold">False</span>, no users will have upload, edit file, or edit folder access to the File Share using the OneStream File Explorer. However, normal access rules will apply for browsing files and folders in the File System section.</p>
+                                                <p>Users will receive a Security error when attempting to write or edit the files and folders while attempting to use API or non File Explorer methods.</p>
+                                                <h3>Supported File Sizes</h3>
+                                                <p>The OneStream File Explorer can be used as an application interface to the File Explorer’s Content folders. The supported file size varies by interface.</p>
+                                                <p style="font-weight: bold;">Windows Application</p>
+                                                <ul>
+                                                    <li>
+                                                        <p style="font-weight: normal;">Uploads (Applications and System): Up to 300 MB</p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="font-weight: normal;">Uploads (Content): Up to 2 GB</p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="font-weight: normal;">Downloads (Application and System): Up to 2 GB</p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="font-weight: normal;">Downloads (Content): Up to 2 GB</p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Whitelist-File-Extensions" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1878"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Whitelist File Extensions</h2>
+                                                <p>Whitelist File Extensions provide a method of identifying which kinds of documents, according to their file extensions, are allowed to be saved into the <span class="mc-variable Variables.Product_Name variable">OneStream</span> application File Explorer. Whitelisting extensions helps to alleviate the risk of uploading malicious file types into the application.</p>
+                                            </div></div></section><section id="Overview" class="doc-section lvl2"><p class="crumb">Using System Tools › Whitelist File Extensions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor583"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Overview</h3>
+                                                <p><span class="mc-variable Variables.Product_Name variable">OneStream</span> lets you save documents or upload documents from your device into the application. These documents are stored in one of three file storage root folders:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Application Database: Displays stored documents for the current application only.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>System Database: Displays stored documents for the entire system without affecting the current application.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>File Share: This is a self-service directory that temporarily stores files before they are imported into the Application or System Database.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>File Explorer is the product tool inside the Windows Application that lets you browse saved documents or upload new ones. &#160;</p>
+                                                <p>For example, a spreadsheet can be saved to any of the three root folders. A Cube POV can be saved to either the application or system folders.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/File%20Whitelist/Prerequisites1_550x338.gif" alt="Graphical user interface, application, table, Excel  Description automatically generated" style="width: 550;height: 338;" />
+                                                </p>
+                                                <p>A Cube POV can be saved to either the application or system folders.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/File%20Whitelist/Prerequisites_8_550x338.gif" alt="Graphical user interface, application  Description automatically generated" style="width: 550;height: 338;" />
+                                                </p>
+                                                <p>File Explorer is available from the main toolbar.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/File%20Whitelist/Prerequisites_7_550x338.gif" alt="Graphical user interface, application  Description automatically generated" style="width: 550;height: 338;" />
+                                                </p>
+                                                <p>File Explorer is also available on the System tab.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/File%20Whitelist/Prerequisites_6_550x338.gif" alt="Graphical user interface, application, Word  Description automatically generated" style="width: 550;height: 338;" />
+                                                </p>
+                                                <p>The Dashboard component “File Viewer” also launches the File Explorer component.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/File%20Whitelist/Prerequisites_5_550x338.gif" alt="Graphical user interface, application, Word  Description automatically generated" style="width: 550;height: 338;" />
+                                                </p>
+                                                <p>Finally, there is a BRAPI used by <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span>s or custom-developed dashboards to upload documents.</p>
+                                            </div></div></section><section id="Whitelist-Files-Extensions-Prerequisites" class="doc-section lvl2"><p class="crumb">Using System Tools › Whitelist File Extensions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1030"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Whitelist Files Extensions Prerequisites</h3>
+                                                <p>Standard File Explorer setup and security.</p>
+                                            </div></div></section><section id="Define-the-List-of-File-Extensions" class="doc-section lvl2"><p class="crumb">Using System Tools › Whitelist File Extensions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1157"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Define the List of File Extensions</h3>
+                                                <p>Whilelisted file extensions must be specified in the <span class="mc-variable Variables.Product_Name variable">OneStream</span> Application Server Configuration file.</p>
+                                                <p>To enable the whitelist and define allowed file extensions:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Go to <span class="Emphasis_Bold">Start</span> &gt; <span class="Emphasis_Bold"><span class="mc-variable Variables.Product_Name variable">OneStream</span> Software</span> &gt; <span class="Emphasis_Bold"><span class="mc-variable Variables.Product_Name variable">OneStream</span> Server Configuration Utility</span>, right-click and select <span class="Emphasis_Bold">Run as Administrator</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>On the File menu, select <span class="Emphasis_Bold">Open Application Server Configuration File</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Browse to the location of your XFAppServerConfigFile (typically located at C:\OneStreamShare\Config), select the application config file, and click <span class="Emphasis_Bold">Open</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In the Application Server Configuration Settings section, locate Whitelist File Extensions and click the ellipses (<span class="Emphasis_Bold">...</span>) on the far-right of the field.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/File%20Whitelist/Procedure1_572x331.png" alt="Graphical user interface, text, application, email  Description automatically generated" style="width: 572;height: 331;" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In the dialog box, click the plus sign (<span class="Emphasis_Bold">+</span>) then type the whitelisted file extension. For example, .txt.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/File%20Whitelist/Procedure_2_570x342.png" alt="Graphical user interface, application, Word  Description automatically generated" style="width: 570;height: 342;" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Continue adding other whitelisted file extensions.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>When you are finished, click <span class="Emphasis_Bold">OK</span>.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span> to save the changes to the Application Server Configuration File.</p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>Restart Internet Information Service (IIS).</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Cloud customers should contact support to have this configuration change made for them.</p>
+                                                        <p>Also, if you enter any of the following characters, they will be automatically removed. For example, typing .txt (with a period) becomes txt.</p>
+                                                        <table style="width: 100%;mc-table-style: url('../../../Resources/TableStyles/TableGridLight.css');" class="TableStyle-TableGridLight" cellspacing="0">
+                                                            <colgroup>
+                                                                <col style="width: 162px;" />
+                                                                <col />
+                                                                <col />
+                                                                <col />
+                                                            </colgroup>
+                                                            <tbody>
+                                                                <tr class="TableStyle-TableGridLight-Body-Body">
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">/</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">^</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">=</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyD-Column-Body">'</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-TableGridLight-Body-Body">
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">
+                                                                        <p>(empty space)</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">&amp;</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">\</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyD-Column-Body">[</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-TableGridLight-Body-Body">
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">!</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">*</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">?</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyD-Column-Body">]</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-TableGridLight-Body-Body">
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">@</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">(</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">&lt;</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyD-Column-Body">.</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-TableGridLight-Body-Body">
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">#</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">)</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">&gt;</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyD-Column-Body">&#160;</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-TableGridLight-Body-Body">
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">$</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">–</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyE-Column-Body">~</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyD-Column-Body">&#160;</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-TableGridLight-Body-Body">
+                                                                    <td class="TableStyle-TableGridLight-BodyB-Column-Body">%</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyB-Column-Body">+</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyB-Column-Body">`</td>
+                                                                    <td class="TableStyle-TableGridLight-BodyA-Column-Body">&#160;</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </li>
+                                                </ol>
+                                                
+                                            </div></div></section><section id="Add-Documents-using-File-Explorer" class="doc-section lvl2"><p class="crumb">Using System Tools › Whitelist File Extensions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor61"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Add Documents using File Explorer</h3>
+                                                <p>To add documents using File Explorer:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Navigate to any File Explorer component inside the Windows Application.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Select <span class="Emphasis_Bold">Upload File</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Browse to the file you would like to upload and click <span class="Emphasis_Bold">OK</span>.</p>
+                                                        <p>If the extension of the file is whitelisted, it will be uploaded. If not, you will receive an error message.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/File%20Whitelist/Procedure1_577x354.gif" alt="Graphical user interface, text, application, Word  Description automatically generated" style="width: 577;height: 354;" />
+                                                        </p>
+                                                    </li>
+                                                </ol>
+                                                
+                                            </div></div></section><section id="Troubleshooting" class="doc-section lvl2"><p class="crumb">Using System Tools › Whitelist File Extensions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1355"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Troubleshooting</h3>
+                                                <p>After a whitelist is defined, new files whose extension is not in the whitelist will be restricted from uploading.</p>
+                                                <p>If you upload a file that contains an exploit, malware, or a malicious script or macro, other users can download the file and infect their machine.</p>
+                                            </div></div></section><section id="Conclusion" class="doc-section lvl2"><p class="crumb">Using System Tools › Whitelist File Extensions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1155"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Conclusion</h3>
+                                                <p>Whitelisting a file extension provides a means of allowing only certain types of documents to be saved in the File Explorer. This helps to alleviate the possibility of introducing malicious file types into the system.</p>
+                                            </div></div></section><section id="Application-Database-System-Database" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor878"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Application Database/System Database</h2>
+                                                <p>The Application Database displays stored documents for the current Application only. The System Database displays stored documents for the entire system without affecting the current application.</p>
+                                                <h3>Documents</h3>
+                                                <p class="FieldName">Public </p>
+                                                <p>Files available to everyone with access. </p>
+                                                <p class="FieldName">Security Access</p>
+                                                <p>Enables a user to access an object and read the content.</p>
+                                                <p class="FieldName">Maintenance (Group)</p>
+                                                <p>Enables a user to view an object and create, modify and delete objects in Groups. If in a Maintenance Group, a user does not need to be in the Access Group. The Maintenance Group also controls user profile contents. </p>
+                                                <p class="FieldName">Users</p>
+                                                <p>Private documents only available to named users. </p>
+                                                <p class="FieldName">Internal</p>
+                                                <p>Files used internally that cannot be modified. </p>
+                                            </div></div></section><section id="Load-Extract-System-Artifacts" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor249"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Load/Extract System Artifacts</h2>
+                                                <p>You can import and export sections of the System using an XML Format. </p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>  Only System Administrators have access to this portion of the tool.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Load%20Extract%20System%20Artifacts1.png" /><span class="FieldName"> Extract</span>
+                                                    <br />Choose an item from the drop-down list, click the Extract icon to start the extract process, then name the output file.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Load%20Extract%20System%20Artifacts_6.png" /><span class="FieldName"> Load</span>
+                                                    <br />After browsing to the file, click the Load icon to initiate the process.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Load%20Extract%20System%20Artifacts_5.png" /> <span class="FieldName">Extract and Edit</span><br />This option is available for all extracts and allows the ability for the end user to edit the XML file as needed.</p>
+                                                <p>The following items can be extracted:</p>
+                                                <p class="FieldName">Security</p>
+                                                <p>This covers System Roles, Users, Security Groups, and Exclusion Groups which can be found under the System Tab |Administration| Security. The screen will display Extract Unique IDs. If this box is checked, the unique IDs OneStream assigns to each user will be extracted with the security.&#160; When moving security changes from one OneStream environment to another, trying to load the security with the unique IDs into the destination environment can result in an error if some of the records already exist.&#160;If this is the case, uncheck this box and extract without the unique IDs.&#160; Items to Extract also displays and by default All is chosen.&#160;Choose specific items in each section or turn the sections on or off.</p>
+                                                <p class="FieldName">System Dashboards</p>
+                                                <p>This has multiple sections such as Maintenance Units and Profiles.&#160;Under Maintenance Units, the Groups, Dashboard Components, Dashboard Adapters, and Dashboard Parameters all go together.&#160; System Dashboards can be found under the System Tab| Administration| Dashboards.&#160;The screen will display Items To Extract and by default All is chosen.&#160;Choose specific items in each section or turn the sections on or off.</p>
+                                                <p class="FieldName">Error Log</p>
+                                                <p>This covers the Error Log found under System Tab| Logging| Error Log. The screen will display an Extract All Items check box along with a Start Time and End Time. If the check box is notchecked, choose the Start and End Time by clicking <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Load%20Extract%20System%20Artifacts_4.png" />. Click on the extract button and define where the file will be saved.</p>
+                                                <p class="FieldName">Task Activity</p>
+                                                <p>This covers the Task Activity found under System Tab &gt; Logging &gt; Task Activity.&#160; The screen will display an Extract All Items check box along with a Start Time and End Time. If the check box is not checked, choose the Start and End Time by clicking <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Load%20Extract%20System%20Artifacts_4.png" />. Click on the extract button and define where the file will be saved.</p>
+                                                <p class="FieldName">Logon Activity</p>
+                                                <p>This covers the Logon Activity found under System Tab| Logging| Logon Activity.&#160; The screen will display an Extract All Items check box along with a Start Time and End Time. If the check box is not checked, choose the Start and End Time by clicking <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Load%20Extract%20System%20Artifacts_4.png" />. Click on the extract button and define where the file will be saved.</p>
+                                            </div></div></section><section id="Time-Dimensions" class="doc-section lvl1"><p class="crumb">Using System Tools</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1331"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Time Dimensions</h2>
+                                                <p>Applications can have a monthly or weekly Time Dimension. Time Dimension Types determine if an application uses a weekly, monthly or 12/13 period frequency, and the type of calendar (such as 445 or 454). In a new application, use a custom Time Dimension Type so users can specify the number of months in a quarter and the number of weeks in a month.&#160; </p>
+                                                <p>After you create a Time Dimension, an XML file is generated. New applications use this file to implement the desired Time Dimension. If a Time Dimension Type is not assigned to a new application database, the default Standard Type is used.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Applications created prior to 4.1.0 can convert a monthly application to weekly application using the Database Configuration Utility.&#160; Contact Support for assistance.</p>
+                                                <p><span class="Emphasis_Bold">Time Dimension Types</span>
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">Time Dimension Type Standard</span>: <span style="font-weight: normal;">Creates a Monthly Time Dimension and stores data by month in the data tables.&#160; Applications created prior to version 4.1.0 use this type.</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">StandardUsingBinaryData</span>: Creates a Monthly Time Dimension and stores data in a binary data table.&#160; Use this type if you may need to later convert an application to a Weekly Time Dimension.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">M12_3333_W52_445</span>: Creates a 12 Month, 4 quarter, 52 Week, 445 calendar Time Dimension.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">M12_3333_W52_454</span>: Creates a 12 Month, 4 quarter, 52 Week, 454 calendar Time Dimension.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">M12_3333_W52_544</span>: Creates a 12 Month, 4 quarter, 52 Week, 544 calendar Time Dimension.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">M12_3333_W53_445</span>: Creates a 12 Month, 4 quarter, 53 Week, 445 calendar Time Dimension.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">M12_3333_W53_454</span>: Creates a 12 Month, 4 quarter, 53 Week, 454 calendar Time Dimension.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">M12_3333_W53_544</span>: Creates a 12 Month, 4 quarter, 53 Week, 544 calendar Time Dimension.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">Custom</span>: Creates a Time Dimension you can use to specify the months in a quarter and the in a month. This is only available for new applications.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">Use Weeks</span>: If true, you can define a Custom Weekly Time Dimension. If False, you can create a Custom Monthly Time Dimension.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;"><span class="Emphasis_Bold">Vary Settings By Year</span>: If True, you can specify the number of weeks in a month for each year. If False, you can apply the number of weeks per month to each year.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="font-weight: normal;"><span class="Emphasis_Bold">M1- M16 Number of Weeks</span>: Specify the number of weeks per month.&#160; This coincides with the number of months per quarter, so any additional weeks required are enabled.&#160; If Vary Settings By Year property is True, select a year and customize the number of weeks in that year.&#160; </p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Using-System-Tools">Using System Tools</a></li><li class="toc-l1"><a href="#System-Business-Rules">System Business Rules</a></li><li class="toc-l1"><a href="#Database">Database</a></li><li class="toc-l1"><a href="#Environment">Environment</a></li><li class="toc-l1"><a href="#Monitoring-Environments">Monitoring Environments</a></li><li class="toc-l1"><a href="#Web-Servers">Web Servers</a></li><li class="toc-l1"><a href="#Mobile-Web-Servers">Mobile Web Servers</a></li><li class="toc-l1"><a href="#WebTo-App-Server-Connections">WebTo App Server Connections</a></li><li class="toc-l1"><a href="#Working-With-Application-Server-Sets">Working With Application Server Sets</a></li><li class="toc-l1"><a href="#Application-Server-Behavior">Application Server Behavior</a></li><li class="toc-l1"><a href="#Database-Servers-Connection-Items">Database Servers (Connection Items)</a></li><li class="toc-l1"><a href="#OneStream-Database-Servers-Schema-Items">OneStream Database Servers (Schema Items)</a></li><li class="toc-l1"><a href="#Azure-Configurations">Azure Configurations</a></li><li class="toc-l1"><a href="#File-Explorer">File Explorer</a></li><li class="toc-l1"><a href="#File-Share">File Share</a></li><li class="toc-l1"><a href="#Whitelist-File-Extensions">Whitelist File Extensions</a></li><li class="toc-l2"><a href="#Overview">Overview</a></li><li class="toc-l2"><a href="#Whitelist-Files-Extensions-Prerequisites">Whitelist Files Extensions Prerequisites</a></li><li class="toc-l2"><a href="#Define-the-List-of-File-Extensions">Define the List of File Extensions</a></li><li class="toc-l2"><a href="#Add-Documents-using-File-Explorer">Add Documents using File Explorer</a></li><li class="toc-l2"><a href="#Troubleshooting">Troubleshooting</a></li><li class="toc-l2"><a href="#Conclusion">Conclusion</a></li><li class="toc-l1"><a href="#Application-Database-System-Database">Application Database/System Database</a></li><li class="toc-l1"><a href="#Load-Extract-System-Artifacts">Load/Extract System Artifacts</a></li><li class="toc-l1"><a href="#Time-Dimensions">Time Dimensions</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

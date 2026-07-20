@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Event Listing — API Overview Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="api">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-Development-Technologies.html">Development Technologies</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Developer-Fundamentals.html">Developer Fundamentals</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Platform-Engines.html">Platform Engines</a></li><li class="cat"><a class="cat-link" href="../chapters/5-API-Structure-and-Organization.html">API Structure and Organization</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Using-System-Tools.html">Using System Tools</a></li><li class="cat open"><a class="cat-link current" href="../chapters/7-Event-Listing.html">Event Listing</a><ul class="cat-items"><li><a class="s-link" href="#Event-Firing-Sequences">Event Firing Sequences</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/8-Finance-Functions-APIs.html">Finance Functions APIs</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">API Overview Guide</span></div><section id="Event-Listing" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor722"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440939"></a>Event Listing</h1>
+                                                <h2><a name="_Toc50440940"></a>Event Handler Business Rules</h2>
+                                                <p><span>WCF Event Handler</span> <br />This allows direct interaction with the Microsoft Windows Communication Foundation which means it listens to communication between the client and the web server. The rule will intercept the communication, analyze it, and if certain criteria is met, it will run its logic.&#160; This is quite flexible and has a variety of uses such as creating, reading, deleting, and updating different types of objects in the system for users in a group or Transformation Rule changes. For example, a rule can be created to e-mail an auditor about every metadata change as it happens. </p>
+                                                <p><span class="Emphasis_Bold">Transformation Event Handler</span> <br />This can be run at various points from Import through Load. Available operations:</p>
+                                                <p>StartParseAndTransForm</p>
+                                                <p>InitializeTransFormer</p>
+                                                <p>ParseSourceData</p>
+                                                <p>LoadDataCacheFromDB</p>
+                                                <p>ProcessDerivativeRules</p>
+                                                <p>ProcessTransformationRules</p>
+                                                <p>DeleteData</p>
+                                                <p>DeleteRuleHistory</p>
+                                                <p>WriteTransFormedData</p>
+                                                <p>SummarizeTransFormedData</p>
+                                                <p>CreateRuleHistory</p>
+                                                <p>EndParseAndTransForm </p>
+                                                <p>FinalizeParseAndTransForm </p>
+                                                <p>StartRetransForm</p>
+                                                <p>EndRetransForm</p>
+                                                <p>FinalizeRetransForm</p>
+                                                <p>StartClearData</p>
+                                                <p>EndClearData</p>
+                                                <p>FinalizeClearData</p>
+                                                <p>StartValidateTransForm</p>
+                                                <p>ValidateDimension</p>
+                                                <p>EndValidateTransForm</p>
+                                                <p>FinalizeValidateTransForm</p>
+                                                <p>StartValidateIntersect</p>
+                                                <p>EndValidateIntersect</p>
+                                                <p>FinalizeValidateIntersect</p>
+                                                <p>LoadIntersect</p>
+                                                <p>StartLoadIntersect</p>
+                                                <p>EndLoadIntersect</p>
+                                                <p>FinalizeLoadIntersect</p>
+                                                <p><span class="Emphasis_Bold">Journals Event Handler</span> <br />This can be run before, during, or after a Journal operation such as Submission, Approval, or Post. Available operations: </p>
+                                                <p>SubmitJournal</p>
+                                                <p>ApproveJournal</p>
+                                                <p>RejectJournal</p>
+                                                <p>PostJournal</p>
+                                                <p>UnpostJournal</p>
+                                                <p>StartUpdateJournalWorkflow</p>
+                                                <p>EndUpdateJournalWorkflow</p>
+                                                <p>FinalizeUpdateJournalWorkflow</p>
+                                                <p><span class="Emphasis_Bold">Save Data Event Handler</span><span class="Emphasis_Bold"><br /></span>This is run in order to track all save events in an application.</p>
+                                                <p><span class="Emphasis_Bold">Forms Event Handler</span> <br />This can be run before, during, or after an operation such as Form Save. Available operations:</p>
+                                                <p>SaveForm</p>
+                                                <p>CompleteForm</p>
+                                                <p>RevertForm</p>
+                                                <p>StartUpdateFormWorkflow</p>
+                                                <p>EndUpdateFormWorkflow</p>
+                                                <p>FinalizeUpdateFormWorkflow</p>
+                                                <p><span class="Emphasis_Bold">Data Quality Event Handler</span> <br />This can be run before, during, or after data quality events like Confirmation and Certification. Available operations:</p>
+                                                <p>StartProcessCube</p>
+                                                <p>Calculate</p>
+                                                <p>Translate</p>
+                                                <p>Consolidate</p>
+                                                <p>EndProcessCube</p>
+                                                <p>FinalizeProcessCube</p>
+                                                <p>PrepareICMatch</p>
+                                                <p>StartICMatch</p>
+                                                <p>PrepareICMatchData</p>
+                                                <p>EndICMatch</p>
+                                                <p>StartConfirm</p>
+                                                <p>EndConfirm</p>
+                                                <p>FinalizeConfirm</p>
+                                                <p>SaveQuestionResponse</p>
+                                                <p>StartSetQuestionairreState</p>
+                                                <p>SaveQuestionairreState</p>
+                                                <p>EndSetQuestionairreState</p>
+                                                <p>StartSetCertifyState</p>
+                                                <p>SaveCertifyState</p>
+                                                <p>EndSetCertifyState</p>
+                                                <p>FinalizeSetCertifyState</p>
+                                                <p><span class="Emphasis_Bold">Data Management Event Handler</span> <br />This can be run before or after a Data Management Sequence or Step runs. Available operations:</p>
+                                                <p>StartSequence</p>
+                                                <p>ExecuteStep</p>
+                                                <p>EndSequence</p>
+                                                <p><span class="Emphasis_Bold">Workflow Event Handler</span> <br />This can be run before or after a Workflow execution step. Available operations:</p>
+                                                <p>UpdateWorkflowStatus<br />WorkflowLock<br />WorkflowUnlock</p>
+                                            </div></div></section><section id="Event-Firing-Sequences" class="doc-section lvl1"><p class="crumb">Event Listing</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor626"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440941"></a>Event Firing Sequences</h2>
+                                                <p>OneStream fires a series of events when completing tasks via Event Handler Business Rules.&#160; The example below explains how to read the table which provides the firing sequence when running a specific task.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/Event%20Firing%20Sequences1_625x132.png" style="width: 625;height: 132;" />
+                                                </p>
+                                                <h4>Clear Cube Data</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/EventListing6_550x373.png" style="width: 550;height: 373;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/EventListing5_550x385.png" style="width: 550;height: 385;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/EventListing4_550x120.png" style="width: 550;height: 120;" />
+                                                </p>
+                                                <h4>Clear Stage Data</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ClearStageData1_550x382.png" style="width: 550;height: 382;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ClearStageData5_550x387.png" style="width: 550;height: 387;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ClearStageData4_550x128.png" style="width: 550;height: 128;" />
+                                                </p>
+                                                <h4>Execute Data Management</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ExecuteDataManagement1_550x249.png" style="width: 550;height: 249;" />
+                                                </p>
+                                                <h4>Import Data Connection</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportDataConnection1_550x383.png" style="width: 550;height: 383;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportDataConnection5_550x381.png" style="width: 550;height: 381;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportDataConnection4_550x154.png" style="width: 550;height: 154;" />
+                                                </p>
+                                                <h4>Import Excel File</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportExcelFile1_550x369.png" style="width: 550;height: 369;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportExcelFile13_550x377.png" style="width: 550;height: 377;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportExcelFile12_550x375.png" style="width: 550;height: 375;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportExcelFile11_550x374.png" style="width: 550;height: 374;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportExcelFile10_550x380.png" style="width: 550;height: 380;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportExcelFile9_550x386.png" style="width: 550;height: 386;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportExcelFile8_550x166.png" style="width: 550;height: 166;" />
+                                                </p>
+                                                <h4>Import Text File</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportTextFile1_550x347.png" style="width: 550;height: 347;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportTextFile11_550x350.png" style="width: 550;height: 350;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportTextFile10_550x346.png" style="width: 550;height: 346;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportTextFile9_550x348.png" style="width: 550;height: 348;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportTextFile8_550x345.png" style="width: 550;height: 345;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ImportTextFile7_550x333.png" style="width: 550;height: 333;" />
+                                                </p>
+                                                <h4>Process Form</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessForm1_550x347.png" style="width: 550;height: 347;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessForm5_550x378.png" style="width: 550;height: 378;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessForm4_550x62.png" style="width: 550;height: 62;" />
+                                                </p>
+                                                <h4>Process Journal</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessJournal1_550x350.png" style="width: 550;height: 350;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessJournal7_550x359.png" style="width: 550;height: 359;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessJournal6_550x373.png" style="width: 550;height: 373;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessJournal5_550x264.png" style="width: 550;height: 264;" />
+                                                </p>
+                                                <h4>Process Workflow</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow1_550x383.png" style="width: 550;height: 383;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow38_550x383.png" style="width: 550;height: 383;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow37_550x346.png" style="width: 550;height: 346;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow36_550x380.png" style="width: 550;height: 380;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow35_550x344.png" style="width: 550;height: 344;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow34_550x383.png" style="width: 550;height: 383;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow33_550x346.png" style="width: 550;height: 346;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow32_550x382.png" style="width: 550;height: 382;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow31_550x349.png" style="width: 550;height: 349;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow30_550x383.png" style="width: 550;height: 383;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow29_550x381.png" style="width: 550;height: 381;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow28_550x383.png" style="width: 550;height: 383;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow27_550x381.png" style="width: 550;height: 381;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow26_550x359.png" style="width: 550;height: 359;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow25_550x371.png" style="width: 550;height: 371;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow24_550x379.png" style="width: 550;height: 379;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow23_550x348.png" style="width: 550;height: 348;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow22_550x376.png" style="width: 550;height: 376;" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/ProcessWorkflow21_550x288.png" style="width: 550;height: 288;" />
+                                                </p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Event-Listing">Event Listing</a></li><li class="toc-l1"><a href="#Event-Firing-Sequences">Event Firing Sequences</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Implementing Security — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat open"><a class="cat-link current" href="../chapters/7-Implementing-Security.html">Implementing Security</a><ul class="cat-items"><li><a class="s-link" href="#Application-Security">Application Security</a><ul class="cat-items"><li><a class="s-link" href="#Security-Best-Practices">Security Best Practices</a></li></ul></li><li><a class="s-link" href="#Relationship-Security">Relationship Security</a><ul class="cat-items"><li><a class="s-link" href="#Change-the-Relationship-Security">Change the Relationship Security</a></li><li><a class="s-link" href="#Security-Configurations">Security Configurations</a></li></ul></li><li><a class="s-link" href="#System-Security">System Security</a></li><li><a class="s-link" href="#Managing-a-OneStream-Environment">Managing a OneStream Environment</a></li><li><a class="s-link" href="#Disable-Inactive-Users">Disable Inactive Users</a></li><li><a class="s-link" href="#Set-the-Inactivity-Threshold">Set the Inactivity Threshold</a></li><li><a class="s-link" href="#Review-Settings">Review Settings</a></li><li><a class="s-link" href="#Business-Rules">Business Rules</a></li><li><a class="s-link" href="#System-Table">System Table</a></li><li><a class="s-link" href="#Business-Rules-2">Business Rules</a><ul class="cat-items"><li><a class="s-link" href="#Platform-Engines">Platform Engines</a></li></ul></li><li><a class="s-link" href="#Data-Management-Automation-With-PowerShell">Data Management Automation With PowerShell</a></li><li><a class="s-link" href="#Exposing-Data-Management-Automation-through-OneStream-Web-API">Exposing Data Management Automation through OneStream Web API</a></li><li><a class="s-link" href="#Extracting-and-Loading-Dimensions">Extracting and Loading Dimensions</a></li><li><a class="s-link" href="#Extracting-Dimension-Changes">Extracting Dimension Changes</a></li><li><a class="s-link" href="#Loading-the-XML-File">Loading the XML File</a></li><li><a class="s-link" href="#Project-Extract-and-Load">Project Extract and Load</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Implementing-Security" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor1077"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Implementing Security</h1>
+                                                <p>This section describes the four-pronged approach to managing security, which consists of:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p> Workflow security</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Entity security</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Account security</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Security roles </p>
+                                                    </li>
+                                                </ul>
+                                                <p>Security can be implemented on accounts or dimensions allowing you to control who can review specific dimension members. Security is determined through users and groups, with users given specific roles to determine what data can be accessed or edited. </p>
+                                            </div></div></section><section id="Application-Security" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor585"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Application Security</h2>
+                                                <p>A four-prong approach to application security consists of:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p> Workflow security</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Entity security</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Account security</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Security roles </p>
+                                                    </li>
+                                                </ul>
+                                                <p> Once you identify entities and assign them to workflow profiles, data loaders and certifiers can be determined for each entity. Data loaders load data into the system, therefore they need read/write access to entities. Data certifiers review and sign off on the loaded data, so they need read access to entities. Security can also be done on the account or any other dimension to control who can review specific dimension members.&#160; </p>
+                                                <p>Security is determined through users and groups. Users are given specific roles to determine what data is accessed or edited. For example, if a user is given the ModifyData role in an application, he/she will have write-access to any data in it.&#160; Users are also put into security groups.&#160; Groups can support native groups, exclusion groups, or groups of groups.&#160; For example, a user can be put into an entity’s read/write data group for read/write access to the entity’s data.</p>
+                                                <p>Every object has access and maintenance security rights, with the exception of Task Scheduler. Access allows the security group to view the object, while maintenance allows the groups to edit the definition of the object. This system applies to most objects, such as cube views, dashboards, transformation rules, and workflow profiles.&#160; </p>
+                                            </div></div></section><section id="Security-Best-Practices" class="doc-section lvl2"><p class="crumb">Implementing Security › Application Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor371"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Security Best Practices</h3>
+                                                <h4>Object Security </h4>
+                                                <p>There needs to be different levels of access for object types and groups of objects, such as Cube Views, Dashboards or Business Rules. Application and System Roles can be granted to User Groups which create subject area administrators and by giving certain rights to a group, such as ManageCubeViews, pseudo administrators are created for these actions. This provides the most power for a specific object type. </p>
+                                                <p>A Maintenance Group is the middle level of power for an object at the group level. For example, a Maintenance Group assigned to a specific Entity Transformation Rule Group allows the assigned users to create, edit, and delete rules within that Transformation Rule Group. </p>
+                                                <p>An Access Group is the lowest level of power for an object at the group level. This means the object can be used, but its definition cannot be edited. </p>
+                                                <h4>Confirmation Rules</h4>
+                                                <p>Confirmation Rule Groups are assigned to Confirmation Rule Profiles which are then assigned to Workflow Profiles. The run time access to these Confirmation Rules depends on to which Workflow Profile they have been assigned. If a user has Workflow Execution Access, he/she will be able to execute them.&#160; </p>
+                                                <p>The best way to control Confirmation Rules is to set Access to Everyone and Maintenance to Administrators for both Confirmation Rule Groups and Profiles.</p>
+                                                <h4>Certification Questions</h4>
+                                                <p>Certification Question Groups are assigned to Certification Question Profiles which are then assigned to Workflow Profiles.&#160;The run time access to these Certification Questions depends on to which Workflow Profile they have been assigned.&#160;If users have Workflow Execution Access, they will be able to execute them.&#160; </p>
+                                                <p>The best way to control Certification Questions is to set Access to Everyone and Maintenance to Administrators for both Certification Question Groups and Profiles.</p>
+                                                <h4>Data Sources</h4>
+                                                <p>Data Sources are assigned to Workflow Profiles. The run time access to these Data Sources depends on to which Workflow Profile they have been assigned. If a user has Workflow Execution Access, he/she will be able to execute them.&#160; </p>
+                                                <p>The best way to control Data Sources is to have to the ManageDataSources Application role, and no security settings at the object level.</p>
+                                                <h4>Transformation Rules</h4>
+                                                <p>Transformation Rule Groups are assigned to Transformation Rule Profiles which are then assigned to Workflow Profiles.&#160;In this case, an appropriate user group needs to be assigned to Access and Maintenance because users will be able to right-click on an Import Workflow Profile and view/edit their Transformation Rules.&#160;The user groups should include the users assigned to execute the Workflow Profiles to which the Transformation Rule Profile has been assigned. </p>
+                                                <p>The best way to control Transformation Rules is to set Access to Everyone and Maintenance to Administrators for most core, shared, or corporate Transformation Rule Groups For some specific Transformation Rule Groups, such as an Account Transformation Rule Group that applies to a specific location, assign the appropriate user groups to Access and Maintenance. Block access to the Maintenance screen for anyone except administrators because this could potentially allow users more access than they need. </p>
+                                                <h4>Form and Journal Templates</h4>
+                                                <p>Form or Journal Groups are assigned to Form/Journal Profiles which are then assigned to Workflow Profiles.&#160;The run time access to these Forms or Journals depends on to which Workflow Profile they have been assigned.&#160;If a user has Workflow Execution Access, he/she will be able to execute them.&#160;&#160;&#160; </p>
+                                                <p>The best way to control Form and Journal Templates is to set Access to Everyone and Maintenance to Administrators for both Form/Journal Groups and Profiles.&#160; </p>
+                                                <h4>Cube Views</h4>
+                                                <p>The best way to control Cube View Groups is to set Access to Everyone and Maintenance to Administrators and anyone else building a Cube View.&#160;To keep the assignment of Cube View Groups to multiple Cube View Profiles flexible, the Cube View Groups need to remain smaller in size.&#160;For Cube View Profiles, set Access to anyone who will need to see these Cube Views in OnePlace, Excel, or assign them to Workflow Profiles, Forms, or Dashboards.&#160;Set Maintenance to anyone who needs to change the assignment of the Cube View Groups to Cube View Profiles.</p>
+                                                <p>OneStream recommends setting the Can Modify Data, Can Calculate, Can Translate, and Can Consolidate properties to False.&#160;This can be pre-set for all new Cube Views by creating an example or Cube View Template which can be copied to create new ones.&#160;Some examples of when this will not be needed is if the Cube Views are going to be read by administrators only, the Cube Views will be used as a data entry form or are only going to be visible in a formatted report or chart.</p>
+                                                <h4>System and Application Dashboards</h4>
+                                                <p>When assigning Dashboard Groups to Profiles, the Visibility is extremely important.&#160;For example, if a user has access to a Dashboard Profile in OnePlace, but not to a certain Dashboard Group in that Profile, the user will not be able see the Dashboards in that group.&#160;Also, if a user has access to the Dashboard Groups, but not the Profiles, he/she will not be able to see the Dashboards in OnePlace.&#160;If a Cube View is assigned to an Application Dashboard, and the user only has access to the Cube View, he/she will not see the Dashboard.&#160;Lastly, if a Dashboard is pointing to an Entity, Scenario, or Cube Data to which the user does not have access, he/she will see one of the following: NoAccess in Data Explorer for the cells the user cannot see, a blank cell in the Data Explorer Report, or No Data Series if he/she is viewing a chart.&#160; </p>
+                                                <p> The best way to control Dashboard Groups is to set Access to Everyone and Maintenance to Administrators and anyone else building a Dashboard.&#160;In order to keep the assignment of Dashboard Groups to multiple Dashboard Profiles flexible, the Dashboard Groups need to remain smaller in size. When assigning Maintenance for Dashboard Profiles, give access to anyone who needs to see the Dashboard in OnePlace, assign it to a Workflow Profile, or change the assignments of Dashboard Groups to Dashboard Profiles.&#160;&#160;&#160; </p>
+                                                <p>Use multiple Dashboard Maintenance Units in order to keep them a reasonable size making it easier to manage multiple objects and access. Dashboard Parameters can also be used across all Dashboards and do not need to be copied across all Maintenance Units. Security has no bearing on the use of Parameters.</p>
+                                                <h4>Workflow Security </h4>
+                                                <p>Security groups for Workflow Execution, which is the ability to process a Workflow for a specific Workflow Profile, Certification Signoff and the separate ability to Process, Approve and Post Journals, exist for all Workflow Profiles. In certain cases, the user simply needs the Access and Workflow Execution Group Access to run Workflow. For example, the user does not need Access or Maintenance Group access to Data Sources or Transformation Rules in order to run through the Import Workflow. </p>
+                                                <p>In some cases, having access to certain objects is necessary along with Workflow Execution Group Membership.&#160;The Manage App Role has to do with creating, reading, updating, and deleting Journal and Form Templates (metadata) themselves, not just instances of these objects at run time. It is expected that 90% of Workflow users will not have any of the Application Roles, but their access will be controlled by the Access Group for those Journal/Form Template Groups and Profiles. Workflow users also need Workflow Execution Group access in order to perform import, forms, and journal actions. The user does not have to be in the Manage Application role to create a Journal or enter data in the Form.&#160;Workflow security governs access to the forms. If the user is in the ManageJournalTemplates Application Role group, he/she can create any Journal needed for the Workflow Profiles to which they have proper execution access.</p>
+                                                <p>Users need to have at least Access Group privileges to the Cube Root Workflow Profile node to edit Workflow Profiles with having the ManageWorkflowProfiles role. Otherwise they will not be able to see any Workflow Profiles under the Cube Root Workflow Profile. </p>
+                                                <p>The order to follow when assigning access to Workflow Profiles and data is to first assign Read and Read/Write Groups to the Entities involved. Next, create an Access Group, Data Group, and Approver Group for each Workflow Profile and include the appropriate Entity groups.&#160; </p>
+                                                <h3>Import </h3>
+                                                <p>First, determine whether the users can load data to the Workflow for the assigned Entities and then determine whether they load both GL (BS and PL) and Supplemental data, or one or the other.&#160;Next, decide if the users for the assigned Entities can certify the loaded data as part of the Workflow.&#160; </p>
+                                                <h3>Forms </h3>
+                                                <p>First, determine whether the users can manually input data into a form and certify it as part of the Workflow for the assigned Entities.</p>
+                                                <h3>Adjustments</h3>
+                                                <p>First, determine whether the users can manually input data into a journal and certify it as part of the Workflow for the assigned Entities. </p>
+                                                <h3>Entity Security </h3>
+                                                <p>Entity Security controls the overall read/write access to Entity data and controls whether Cube Security should be used. When creating Entity security groups for the Read Data Group and the Read/Write Data Group, the groups should be named in a logical convention such as XXXX_View or XXXX_Mod. The Entity Read/Write Data Group should be designed first because it is needed for data loading in Workflows.&#160;The Workflow Execution Security Group should be assigned to all the Entities’ Read/Write Security Group for the Workflow to gain loading access to the Entities. </p>
+                                                <p>When setting up View Security Groups for Entities, first consider how users need to view their data whether it is by segment or region. Determine whether it makes more sense to have one Entity View Group per Entity, or to create one Entity View Group per segment and apply one Entity View Security Group to many Entities’ Read Data Group.&#160;All the Entities’ View Groups below the Parent must be assigned to the Parent Level Entity View Group in order to gain access to data at the Parent Level Entity and View Entities below it. Try to minimize the amount of View Entity Security Groups where possible.&#160; </p>
+                                            </div></div></section><section id="Relationship-Security" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor150"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Relationship Security</h2>
+                                                <p>You can change the security model to allow who controls viewing or modifying the relationship members in the consolidation dimension. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Relationship%20Security1_312x153.png" style="width: 312;height: 153;" />
+                                                </p>
+                                                <p>For the Use Parent for Relationship Consolidation dimension Members functionality: </p>
+                                                <ul>
+                                                    <li>
+                                                        <p>If set to False, the user’s entity rights control their rights to all members of the consolidation dimension. This is the default security model.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>If set to True, the user’s rights to the relationship members of the consolidation dimension are determined by their rights to the current entity’s immediate parent.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>Users have either read or read/write access to view or modify their entity so they can see their entire entity from all of the relationship members.</p>
+                                                <p>You can allow the relationship security portion of the consolidation dimension to be controlled by the access to the parent entity in the immediate hierarchy.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>This is strictly a parent and child relationship. </p>
+                                                <p>Set this feature to True when:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>A user’s rights to the non-relationship consolidation dimension members (local and translated) are determined by the user’s rights to the entity itself.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>A user’s rights to the relationship consolidation dimension members is determined by the user’s rights to the immediate parent entity.</p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Change-the-Relationship-Security" class="doc-section lvl2"><p class="crumb">Implementing Security › Relationship Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1743"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Change the Relationship Security</h3>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Relationship%20Security_8_612x341.png" style="width: 612;height: 341;" />
+                                                </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>From the Application tab, under Cube, click <span class="Emphasis_Bold">Cubes</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Select a Cube.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In the Cube Properties tab, in <span class="Emphasis_Bold">Use Parent Security for Relationship Consolidation Dimension Members</span>, select <span class="Emphasis_Bold">True</span>.</p>
+                                                    </li>
+                                                    <p>
+                                                        <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Relationship%20Security_7_550x305.png" style="width: 550;height: 305;" />
+                                                    </p>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span> to save the cube properties. You have now changed the security model for the read or write relationship for the consolidation dimension members to be based on the security rights to the immediate parent entity.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click <span class="Emphasis_Bold">Refresh</span> to refresh the application.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In Cube Views, go to the Designer tab and click <span class="Emphasis_Bold">Open Data Explorer</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Relationship%20Security_6_604x335.png" style="width: 604;height: 335;" />
+                                                </p>
+                                                <p>All of the security is changed.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Relationship%20Security_5_601x330.png" style="width: 601;height: 330;" />
+                                                </p>
+                                                <p>Notice the following changes to security:&#160; </p>
+                                                <ul>
+                                                    <li>
+                                                        <p>In the first screenshot, all the consolidation dimension members are available across Houston.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>When you switch on the new security, in the previous screenshot, the user has rights to <span class="filename">USClubs</span> then looking at the Houston member there, all the consolidation dimension members are available.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Looking at the last group, the user has no rights to Texas, based on the NoAccess to Local and Translated.&#160; In Houston you can see the relationship members changed to NoAccess.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>The reason why USClubs turns to NoAccess is because the user apparently has no rights to the parent NAClubs, which is not displayed on the report.</p>
+                                                    </li>
+                                                </ul>
+                                                <p class="FieldName">Data Security </p>
+                                                <p>Data security controls the overall read/write access to analytic models. There are several steps to see if you have access to data.&#160; First, it that you have the ModifyData role in the application, otherwise you do not have write access to data. Next, ensures you have either the access group or maintenance group for a cube, or you do not have access to any of the cube’s data. It will then check the scenario and Entity’s Read Data Group and Read Write Data Group to ensure access. Finally checks the Data Cell Access Security at the cube level. If you have access to the data and use Excel or any other method to import data, it ensures the entity being written to belongs to a workflow profile with an active forms channel that is not locked or certified. If any of these steps result in no access, the process stops.</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>There are several ways to guarantee data is secure. Throughout the dimensions, different security groups are available, and an administrator can decide what users belong to each group. </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>The scenario dimension has both Read Data Group and Read and Write Data Group.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>The entity dimension uses both security groups from the scenario and adds display member group and Use Cube Data Access.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>The display member group only refers to the member display access level, not the data access level. Use Cube Data Access is used if slice filters are being applied at the cube level to apply additional layers of security for specified security groups.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>The account, flow, and all user-defined dimensions also use display member group.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>At the cube level, more security is put in place through groups, member filters, and complex layered security.&#160; A cube slice filters a data entry form to the right member set, such as choosing the cost center in which a user can enter data. For slice filters to take effect, the user must first be granted access to the cube, scenario, and entity. Slice security cannot increase access to data that was not administered first through Users and Groups. An administrator can also lock down more than one dimension by using cube data access and can control user visibility by only giving access to certain accounts. Finally, data cell conditional input and data management access security can be used. These are not security settings but can still control how a dimension can be used for input and how a cube is modified.&#160;&#160; </p>
+                                                <p class="FieldName">Application and System Security</p>
+                                                <p>dimensions, cubes, business rules, data management, and File Explorer each have an access and maintenance group. <span class="mc-variable Variables.Product_Name variable">OneStream</span> recommends limiting access to these groups and assigning the screens to administrators. It is also recommended to give the ManageData role to administrators for data management and to give ManageTaskScheduler and TaskScheduler roles in Task Scheduler. The ManageFileShare role should also just be given to administrators. Anyone granted access to a folder in File Explorer has access to every file and folder through <span class="mc-variable Solution_Names.prodname-OPL variable">OnePlace</span>.&#160; For FX rates, limit access by giving administrators the ManageFXRates role and selecting a set of power users.&#160; </p>
+                                            </div></div></section><section id="Security-Configurations" class="doc-section lvl2"><p class="crumb">Implementing Security › Relationship Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor745"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Security Configurations</h3>
+                                                <h4>Restrict Users to an Application</h4>
+                                                <p>Setting up access to an application can be done within the application security roles. When an application is first created, the OpenApplication defaults to <span class="filename">Everyone</span>. If specific people have access to log into <span class="mc-variable Variables.Product_Name variable">OneStream</span>, but only need access to specific applications, then security groups can be assigned to the OpenApplication role. Once the security group is created, users can be assigned to it. This can be done by performing the following steps:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Go to <span class="Emphasis_Bold">System</span> &gt; <span class="Emphasis_Bold">Administration</span> &gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Create a new security group.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Assign all users who should have access to the application to the new security group.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Refresh the application in order for this new security group to appear in all drop down menus.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Go to <span class="Emphasis_Bold">Application</span>  &gt; <span class="Emphasis_Bold">Tools</span> &gt; <span class="Emphasis_Bold">Security Roles</span> &gt;&#160;<span class="Emphasis_Bold">OpenApplication</span>.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Security%20Configurations1.png" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click the drop-down and select the new security group.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>. </p>
+                                                    </li>
+                                                </ol>
+                                                <h4>Restrict Data Input by Origin</h4>
+                                                <p>There may be times where data should be loaded through the Import origin but should not be loaded using the Forms origin. This can be handled in the data cell conditional input. For example, users may be able to load trial balance data through the Import origin, but other users submit statistical data through the Forms origin. The data cell conditional input ensures the statistical data does not overwrite the Trial Balance data in Actual. Perform the following steps to do this:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Go to <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Cube</span> &gt; <span class="Emphasis_Bold">Cubes</span> &gt; <span class="Emphasis_Bold">Data Access</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Go to <span class="Emphasis_Bold">Data Cell Conditional Input</span>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Security%20Configurations_10.png" /> to create a new line.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Security%20Configurations_9.png" />, or double click on the cell to make changes to the member filter. Add the dimension intersection to restrict data loading. In this case it restricts users from loading to the Trial Balance account through the Forms origin.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In the In Filter field, choose a behavior and choose the Read Only Access level.&#160; </p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Security%20Configurations_8_405x93.png" style="width: 405;height: 93;" />
+                                                        </p>
+                                                    </li>
+                                                </ol>
+                                                <h4>Omitting Data Cell Conditional Input by Scenario</h4>
+                                                <p>Data cell conditional input restricts access to certain intersections or slices of the cube. This behavior might not be desired for all scenarios, time periods or other elements, so this is a simple way to omit these rules for specific elements. The following method is useful when there are many data cell conditional input rules not defined by a scenario at the time of creation. After these rules are created, however, a scenario becomes a factor for historical data. </p>
+                                                <p>For example, there may be many read-only intersections in Actual to which users should not load data. These rules are setup in the data cell conditional input section within Application| Cube|Cube|Data Access. However, for historical purposes, there may be data in these intersections that was there prior to the filters being applied. The scenario to which the data is being copied needs to allow access because the historical data in these intersections may need to be copied for analysis.&#160; </p>
+                                                <p>Create a new data cell conditional input rule for the entire scenario, set the behavior to Increase Access And Stop, set the Access Level to Read Only. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Security%20Configurations_7.png" />
+                                                </p>
+                                                <p>Position this new rule at the top of the Data Cell Conditional Input for the scenario.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Security%20Configurations_6_550x118.png" style="width: 550;height: 118;" />
+                                                </p>
+                                                <p>The behavior option Increases Access And Stop is being used because if the current cell matches the filter, access is being increased and all subsequent data access rules are being ignored below.&#160; In this case, the Preserve Scenario has access to everything, and the subsequent Data Cell Conditional access rules are ignored or not applied for Preserve.&#160; </p>
+                                            </div></div></section><section id="System-Security" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor741"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />System Security</h2>
+                                                <p>System Security applies to the framework.&#160;There are some key assumptions around how the different roles or security groups work. First, it is important to understand the hierarchy of certain System Security Roles and Security Groups: </p>
+                                                <p class="FieldName" style="font-weight: bold;"><b>System Security Role</b>
+                                                </p>
+                                                <p>The System Role, such as ManageSystemDashboards, means the user has a higher privilege and does not need to be in any Maintenance Group or Access Group to see, edit, or delete all objects of that type. Having the ManageSystemDashboards System Security Role means the user can create, edit and delete any System Dashboard, System Dashboard Group, or Profile.</p>
+                                                <p class="FieldName" style="font-weight: bold;"><b>Maintenance Group</b>
+                                                </p>
+                                                <p>The Maintenance Group means users cannot only see an object, but can create new objects in Groups, edit, and delete them.&#160;Users do not need to be in the Access Group for an object if they are in the Maintenance Group.&#160;The Maintenance Group can also control the contents of Profiles.</p>
+                                                <p class="FieldName" style="font-weight: normal;"><b>Access Group</b>
+                                                </p>
+                                                <p>The Access Group means users can see the object and read its contents.</p>
+                                            </div></div></section><section id="Managing-a-OneStream-Environment" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor487"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Managing a OneStream Environment</h2>
+                                                <p>Management of all changes to the system are recommended to follow best practice procedures.&#160; Whether the changes derive from a OneStream software upgrade, or through regular application maintenance, all changes are recommended to be first deployed and tested in a development environment. There are additional benefits of making a recent copy of the production Application database, renaming it and using this as a base for these changes. Search for “Rename Application” in the Installation and Configuration Guide.</p>
+                                                <p>Prior to being deployed to a production environment, it is recommended to extract changes from the development environment and assess this deployment of changes in a separate test environment.  </p>
+                                                <p>Deploying changes to a production environment should avoid times during high load and high application activity.&#160; Changes to these types of application artifacts especially should not be performed against a production environment experiencing heavy activity: </p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Business Rules, whether they contain Global functions or not</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Confirmation Rules</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Metadata, especially when using member formulas</p>
+                                                    </li>
+                                                </ul>
+                                                <p>Applying changes like this while the production system is under a high level of activity may have a negative impact on servers and have the potential to cause running processes to produce an error. </p>
+                                                <p>Standard environments are recommended to schedule production changes during slow periods or non-work hours.&#160; Large environments should consider using the Pause functionality within the Environment tab to allow activity to wind down. These large environment managers should also consider the<span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span>, Process Blocker, which allows a pause of critical processes to perform maintenance on the system, without having to shut down the entire application.&#160; Process Blocker allows current tasks to be completed, while any new requests are queued, allowing the changes to be applied safely and effectively. Once these changes are in place, it is recommended to significantly limit the ability for users to make such changes during high volume. </p>
+                                                <p>It is key that servers get a chance to recycle for good system memory health. IIS also has an Idle Time-Out setting for our OneStreamAppAppPool. This setting should be set to 0 since OneStream has other settings to recycle IIS. For active, global environments with Data Management Sequences regularly being executed, a recycle of IIS is recommended every 24 hours for these OneStream App Servers. Please discuss this situation with OneStream Support to find what is recommended, as each situation may vary. </p>
+                                            </div></div></section><section id="Disable-Inactive-Users" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1141"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Disable Inactive Users</h2>
+                                                <p>Disable inactive users gives you the ability to create an authorization policy to disable users after a specific amount of logon inactivity, keeping only active users in the system.</p>
+                                            </div></div></section><section id="Set-the-Inactivity-Threshold" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1510"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Set the Inactivity Threshold</h2>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">File</span> &gt; <span class="Emphasis_Bold">Open Application Server Configuration File</span>.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Set%20the%20Inactivity%20Threshold1.png" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Open the configuration file.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Set%20the%20Inactivity%20Threshold_10.png" /></p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold">Security</span>.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Set%20the%20Inactivity%20Threshold_9_550x356.png" style="width: 550;height: 356;" /></p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Set the Logon Inactivity Threshold (days) to the number of days of inactivity before the user can no longer access the system.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Set%20the%20Inactivity%20Threshold_8_575x129.png" style="width: 575;height: 129;" /></p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click <span class="Emphasis_Bold">OK</span>.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Set%20the%20Inactivity%20Threshold_7_550x319.png" style="width: 550;height: 319;" /></p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Reset IIS to recognize the changes.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Set%20the%20Inactivity%20Threshold_6_550x330.png" style="width: 550;height: 330;" /></p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Review-Settings" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor566"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Review Settings</h2>
+                                                <p>The Administrator is the only role that the inactivity threshold does not apply.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">System</span> &gt; <span class="Emphasis_Bold">Security</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Users</span> to review the threshold setting.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Review%20Settings1_573x427.png" style="width: 573;height: 427;" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>If the Remaining Allowed Inactivity is&#160;<b>0 Days</b>, that means the user no longer has access.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Review%20Settings_6_510x380.png" style="width: 510;height: 380;" />
+                                                        </p>
+                                                        <p>That user gets a message telling them they have been disabled if they log on.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Review%20Settings_5.png" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>To enable their access, click <span class="Emphasis_Bold">System</span>  &gt; <span class="Emphasis_Bold">Security</span>. </p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Review%20Settings_4_550x91.png" style="width: 550;height: 91;" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Select the user.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Click the <span class="Emphasis_Bold">Is Enabled</span> drop-down.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Select <span class="Emphasis_Bold">True</span>.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>.</p>
+                                                    </li>
+                                                    <p>The Remaining Allowed Inactivity field updates allowing the user to log back in within the time frame specified.</p>
+                                                </ol>
+                                            </div></div></section><section id="Business-Rules" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor774"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Business Rules</h2>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Application</span> &gt; <span class="Emphasis_Bold">Business Rules</span> &gt; <span class="Emphasis_Bold">Extensibility Rules</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>The three new business rules are GetStatusByID, GetStatusByName, and LogoninactivityThresholdForAdmin.<br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Business%20Rules1.png" /></p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="System-Table" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1450"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />System Table</h2>
+                                                <ol start="1">
+                                                    <li value="1">
+                                                        <p>Go to <span class="Emphasis_Bold">System &gt; Database &gt; System Database&gt; Tables</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>There is a table name UserLogonStatus <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/System%20Table1.png" /></p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Business-Rules-2" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1623"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Business Rules</h2>
+                                                <p>A Business Rule is a VB.Net Class meaning each Business Rule is an independent object encapsulating VB.Net code.&#160;A Business Rule can be a one-line call to write a log message, or it can be a full code library containing other custom VB.Net Classes, Methods and Properties.</p>
+                                                <p>This section provides a detailed explanation of the following:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Platform Engines</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Business Rule structure and fundamentals</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Business Rule Classifications</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Specific Business Rule Types </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Business Rule organization</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>OneStream Business Rule framework</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Best practices for Business Rule architecture</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Business Rule organization and referencing</p>
+                                                    </li>
+                                                </ul>
+                                                <p class="Caution" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;CAUTION: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>CAUTION: </b></span></span></span>When creating custom business rules that write to the error log, use care to prevent writing sensitive information to the log. When writing to the error log, the OneStream application attempts to filter sensitive information and redact it. Information in the log that is filtered is replaced with <code>[Redacted]</code>.</p>
+                                                <p class="Important" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;IMPORTANT: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>IMPORTANT: </b></span></span></span>Whether it be OneStream, Partner, or Customer, we strongly advise against any sensitive or confidential information be included in business rules.</p>
+                                                <p>See the  <span class="Emphasis_Italic">API Overview Guide</span>. </p>
+                                            </div></div></section><section id="Platform-Engines" class="doc-section lvl2"><p class="crumb">Implementing Security › Business Rules</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor400"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Platform Engines</h3>
+                                                <p>The platform is comprised of multiple processing engines. These engines have distinct responsibilities with respect to system processing and consequently they expose different API interfaces to the Business Rules they call.&#160;This section provides a brief overview of each engine in the platform and describes the engine’s core responsibilities.</p>
+                                                <h2>Workflow Engine</h2>
+                                                <p>The Workflow Engine is thought of as the controlling engine or the puppeteer.&#160;The main responsibility of this engine is to control and track the status of the business processes defined in the Workflow hierarchies.&#160;This engine is primarily accessed through the BRApi and can be called from other engines in order to check Workflow status during process execution.&#160;The Workflow Engine provides a very rich event model allowing each Workflow process to be evaluated and reinforced with customer specific business logic if required (see Appendix 2: Event Listing).</p>
+                                                <h2>Stage Engine</h2>
+                                                <p>The Stage Engine performs the task of sourcing and transforming external data into valid analytic data points.&#160;The main responsibility of this engine is to read source data (files or systems) and parse the information into a tabular format.&#160;This allows the data to be transformed or mapped to valid Members defined by the Finance Engine.&#160;The Stage Engine is an in-memory, multi-threaded engine that provides the opportunity to interact with source data as it is being parsed and transformed. In addition to parsing and transforming data, the Stage Engine also has a sophisticated calculation that enables data to be derived and evaluated based on incoming source data. The Stage Engine provides quality services to source data by validating, mapping, and executing Derivative Check Rules.</p>
+                                                <h2>Finance Engine</h2>
+                                                <p>The Finance Engine is an in-memory financial analytic engine. The main responsibility of this engine is to enrich and aggregate base data cells into consolidated multi-Dimensional information. The Finance Engine provides the opportunity to define sophisticated financial calculations through centralized Business Rules as well as member specific Business Rules (Member Formulas). It works concurrently with the Stage Engine to validate incoming intersections and works with the Data Quality Engine to execute Confirmation Rules which are used to validate analytic data values.</p>
+                                                <h2><a name="Data"></a>Data Quality Engine</h2>
+                                                <p>The Data Quality Engine is responsible for controlling data confirmation and certification processes.&#160;This Confirmation Engine is used to define and control the sequence of data value checks required to assert the information submitted from a source system is correct.&#160;The Certification Engine is responsible for managing user certifications and determining the Workflow dependents’ completion status.&#160;This engine is primarily accessed through the BRApi and may be called from other engines in order to check data quality status during process execution.</p>
+                                                <h2>Data Management Engine</h2>
+                                                <p>The Data Management Engine provides task automation services to the platform.&#160;This engine executes batches of commands that are organized into sequences which contain steps. Steps represent entry points or mechanisms to execute features of other engines.&#160;For example, the Clear Data Step uses the services of the Finance Engine. In addition, the Data Management Engine can execute a Business Rule Step which executes a custom Business Rule as part of a Data Management Sequence.&#160;This is an incredibly powerful capability because it provides the ability to string together any combination of predefined processing steps with custom Business Rule steps. </p>
+                                                <h2>Presentation Engine</h2>
+                                                <p>The Presentation Engine provides extensive data visualization services to the Platform.&#160; The Presentation Engine is made up of the following component engines: Cube View Engine, Dashboard Engine, Parameter Engine, Book Engine and Extensible Document Engine.&#160;The Presentation Engine is responsible for managing and delivering content to the end user as well as providing a development environment for custom user interface elements. This engine enables the<span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span>application development capabilities and continues to evolve with each product release.&#160;Like the Data Management Engine, the Presentation Engine interacts with and can call the services of all other engines in the product.</p>
+                                                <h2>Scaling Engine</h2>
+                                                <p>This feature will be made available in a future release.</p>
+                                                <p>The Scaling Engine provides services that will determine whether the customer wants to Scale their Server Set or Database Elastic Pool on the Platform. This is only available to Cloud (Azure) and does not pertain to On-Premise solutions. For example, customer must be utilizing Azure Scale Set, and/or SQL Server Elastic Pool functionality. This provides the ability to create or delete a VM and/or increase/decrease database resources based on the logic that is designated in the System Extender Business Rules to meet the customer needs.</p>
+                                            </div></div></section><section id="Data-Management-Automation-With-PowerShell" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor379"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Data Management Automation With PowerShell</h2>
+                                                <p>PowerShell is an object-oriented programming language and interactive command line shell for Microsoft Windows.&#160;It was designed to automate system tasks, such as batch processing and create systems management tools for common processes.PowerShell includes over 130 standard command line tools for functions that formerly required users to create scripts in VB, VBScript or C#.</p>
+                                                <p>PowerShell offers a variety of ways to automate tasks which include:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;">Cmdlets : Very small .NET classes that appear as system commands.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;">Scripts: Combinations of cmdlets and associated logic.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;">Executables: Standalone tools.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Instantiation of Standard .NET Classes</h3>
+                                                <p> PowerShell integrates with the .NET environment and can be embedded in other applications. Over one hundred cmdlets are included and can be used separately or combined to automate more complex tasks. You can also create and share cmdlets.</p>
+                                                <p>PowerShell is built into Windows Server 2008 and Windows 7, provided as an optional feature during installation. You can use Windows Task Scheduler to automate PowerShell script execution.&#160; </p>
+                                                <h3>Using PowerShell Script Editor</h3>
+                                                <p>To run PowerShell on Windows 7 or a later version:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Select Windows &gt; Start, then enter "PowerShell".</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Select All Programs &gt; Accessories |Windows PowerShell.&#160; </p>
+                                                    </li>
+                                                </ul>
+                                                <p>You can use these programs with PowerShell: </p>
+                                                <ul>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;">Windows PowerShell ISE: An integrated script editor you can use to type PowerShell commands and to edit and run PowerShell script files. These are text files with a ps1 extension.&#160; </p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="FieldName" style="font-weight: normal;">Windows PowerShell: A command line execution tool similar to a DOS prompt.&#160;You can use this tool to run commands or script files but you cannot create or modify scripts. &#160; </p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Configuring PowerShell for the Client API</h3>
+                                                <p>Perform these steps on each machine that will use PowerShell before it can be used with the Client API:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Execute a PowerShell command enabling the execution of unsigned scripts.&#160;</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Create or alter the PowerShell execution and IDE configuration files, so the script engine understands how to use the .Net Framework v4.0.&#160;</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Install OneStream Studio on each machine executing PowerShell scripts.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3>Running Unsigned Scripts</h3>
+                                                <p>Initially, this code needs to run in a PowerShell command prompt to enable PowerShell to run unsigned scripts created on the local computer:</p>
+                                                <p><code>set-executionpolicy remotesigned</code>
+                                                </p>
+                                                <h3>Configuration for .Net Framework v.4.0</h3>
+                                                <p>To use the OneStreamClientApi with PowerShell, PowerShell must be configured to use the .NET Framework v4.0.&#160;Perform these tasks:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Modify or create these files if they do not exist in C:\Windows\System32\WindowsPowerShell\v1.0: </p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>powershell.exe.config </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>powershell_ise.exe.config&#160; </p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Add this required content to each file:</p><pre xml:space="preserve">&lt;?xml version="1.0"?&gt; <br />&lt;configuration&gt; <br />&#160;&#160;&#160; &lt;startup useLegacyV2RuntimeActivationPolicy="true"&gt; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;supportedRuntime version="v4.0.30319"/&gt; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;supportedRuntime version="v2.0.50727"/&gt; <br />&#160;&#160;&#160; &lt;/startup&gt; <br />&lt;/configuration&gt;</pre>
+                                                        <p>For more information, see: <a href="http://tfl09.blogspot.com/2010/08/using-newer-versions-of-net-with.html">http://tfl09.blogspot.com/2010/08/using-newer-versions-of-net-with.html</a>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p> Install OneStream Studio.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3>Learning PowerShell</h3>
+                                                <p>Microsoft provides extensive resources to help IT professionals leverage PowerShell. For more information, see: <a href="http://technet.microsoft.com/en-us/scriptcenter/powershell.aspx">http://technet.microsoft.com/en-us/scriptcenter/powershell.aspx</a></p>
+                                                <h3>Using the Client API in a PowerShell Script</h3>
+                                                <p>OneStreamClientApi specifically enables PowerShell scripts to call a function. This API exposes functions for authentication and Data Management. OneStream expanded the number of functions exposed to this API. The Client API component is installed with the Client API Installer. This API offers a simple set of functions enabling script writers to connect to the server, authenticate, execute OneStream Data Management Sequences, and perform basic data retrieval. </p>
+                                                <p>Client API Object Hierarchy</p>
+                                                <p>OneStreamClientAPI</p>
+                                                <p>LogonInfo</p>
+                                                <p>Type<br />LogonInfo</p>
+                                                <p>SI</p>
+                                                <p>Type<br />SessionInfo</p>
+                                                <p>Authentication</p>
+                                                <p>Logon</p>
+                                                <p>Parameters<br />string webServerUrl<br />string userName<br />string password<br />XFClientAuthenticationType clientAuthenticationType</p>
+                                                <p>Return Value<br />LogonInfo</p>
+                                                <p>Logoff</p>
+                                                <p>Parameters<br />None</p>
+                                                <p>Return Value<br />None</p>
+                                                <p>OpenApplication</p>
+                                                <p>Parameters<br />string Application</p>
+                                                <p>Return Value<br />LogonInfo</p>
+                                                <p>LogonAndOpenApplication</p>
+                                                <p>Parameters<br />string webServerUrl<br />string userName<br />string password<br />string application<br />XFClientAuthenticationType clientAuthenticationType</p>
+                                                <p>Return Value<br />LogoInfo</p>
+                                                <p>EncryptPassword</p>
+                                                <p>Parameters<br />string clearTextPassword<br />XFClientAuthenticationType clientAuthenticationType</p>
+                                                <p>Return Value<br />string</p>
+                                                <p>DataManagement</p>
+                                                <p>ExecuteSequence</p>
+                                                <p>Parameters<br />string sequenceName<br />string customSubstVarsAsCommaSeparatedPairs</p>
+                                                <p>Return Value<br />DataMgmtResult</p>
+                                                <p>ExecuteStep</p>
+                                                <p>Parameters<br />string dataMgmtGroupName<br />string stepName<br />string customSubstVarsAsCommaSeparatedPairs</p>
+                                                <p>Return Value<br />DataMgmtResult</p>
+                                                <p>DataProvider</p>
+                                                <p>GetAdoDataSetForCubeViewCommand</p>
+                                                <p>Parameters<br />string CubeViewName<br />bool dataTablePerCubeViewRow<br />CubeViewDataTableOptions dataTableOptions<br />string resultDataTableName<br />Dictionary&lt;string, string&gt; customSubstVars<br />bool throwExceptionOnError</p>
+                                                <p>Return Value<br />DataSet</p>
+                                                <p>GetAdoDataSetForMethodCommand</p>
+                                                <p>Parameters<br />XFCommandMethodTypeId xfCommandMethodType<br />string methodQuery<br />string resultDataTableName<br />Dictionary&lt;string, string&gt; cistomSubstVars<br />bool throwExceptionOnError</p>
+                                                <p>Return Value<br />DataSet</p>
+                                            </div></div></section><section id="Exposing-Data-Management-Automation-through-OneStream-Web-API" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1081"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Exposing Data Management Automation through OneStream Web API</h2>
+                                                <p>OneStream Web API is a RESTful web service designed to expose OneStream Data Automation functions when interacting with third-party API client applications. </p>
+                                                <p>OneStream Web API must be installed on a web server. It also must be configured for external authentication providers supporting OAuth2.0/OpenID Connect authorization protocol. Identity Providers currently supported are Okta, Azure AD (Microsoft Entra ID), and PingFederate.</p>
+                                                <p>OneStream Web API is API client agnostic. It accepts and outputs data in JSON format making it possible for every API client application that supports this format to also interact with this service. One of the most widely used API clients is Postman, a Windows app. For more information about how to configure OneStreamWeb API to interact with Postman see the autogenerated documentation at http(s)://[servername]:[port]/onestreamapi.</p>
+                                                <h3>OneStream Web API endpoints:</h3>
+                                                <p>Authentication endpoint. Represents a RESTful service for Authentication.</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>POST api/Authentication/LogonAndReturnCookie</p>
+                                                        <p>Used primarily by the Enablement Team to verify Web API installation completed successfully. Returns a one-time cookie value that holds authentication state or a message indicating failure along with a proper HTTP code.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>DataManagement endpoint. Represents a RESTful service of Data Management.</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>POST api/DataManagement/ExecuteSequence: </p>
+                                                        <p>Executes a Data Management Sequence and returns a success/failure message along with a proper HTTP code.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>POST api/DataManagement/ExecuteStep</p>
+                                                        <p>Executes a Data management Step and returns a success/failure message along with a proper HTTP code.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>DataProvider endpoint. Represents a RESTful service of Data Provider</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>POST api/DataProvider/GetAdoDataSetForAdapter </p>
+                                                        <p>Returns a JSON representation of a DataSet a given Dashboard Adapter or a failure message along with a proper HTTP code.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>POST api/DataProvider/GetAdoDataSetForCubeViewCommand</p>
+                                                        <p>Returns a JSON representation of a DataSet for a given Cube View or a failure message along with a proper HTTP code.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>POST api/DataProvider/GetAdoDataSetForSqlCommand</p>
+                                                        <p>Returns a JSON representation of a DataSet for a given SQL Query or a failure message along with a proper HTTP code.&#160; Administrator role is required for this functionality.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>POST api/DataProvider/GetAdoDataSetForMethodCommand</p>
+                                                        <p>Returns a JSON representation of a DataSet for a given pre-defined list of method commands used by XFDataProvider to fill a DataSet or a failure message along with a proper HTTP code. Administrator role is required for this functionality.</p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Extracting-and-Loading-Dimensions" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor845"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Extracting and Loading Dimensions</h2>
+                                                <p>The Application Load/Extract can find Dimension changes and export them into an xml in order to make the metadata migration process easier.</p>
+                                                <p>You can extract applications as an XML or zip file.&#160; If the file size is larger than 2Gb, you must use a zip file.</p>
+                                                <p>When importing, you may have extracted an XML file that was larger than 2Gb in size.&#160; You must do a zip extract to successfully load the file.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span> This feature only applies to Dimensions.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Extracting%20and%20Loading%20Dimensions1.png" />
+                                                </p>
+                                            </div></div></section><section id="Extracting-Dimension-Changes" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor746"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Extracting Dimension Changes</h2>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Extracting%20Dimension%20Changes1.png" />
+                                                    <br />Modified Items can consist of adding/deleting Dimension Members and/or adding/deleting Dimension Relationships.&#160; Click Find Modified Items to launch the dialog.&#160; This allows users to find Dimension changes by time and user.&#160; </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Enter a user name and a range of time in order to find Dimension Member and Dimension Member Relationship changes.&#160; Leave the User field empty in order to find changes by all users.</p>
+                                                    </li>
+                                                    <p>
+                                                        <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Extracting%20Dimension%20Changes_14.png" />
+                                                    </p>
+                                                    <p>For example, in the application’s Dimension Library, a Member was created, another Member was deleted, and a relationship was deleted.&#160; Once the user and time filters are entered, click <span class="Emphasis_Bold">OK</span>, and these changes will be highlighted.&#160; </p>
+                                                    <p>The hierarchy will indicate where changes were made.&#160; The example below indicates there was a partial change to the Dimensions.</p>
+                                                    <p>
+                                                        <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Extracting%20Dimension%20Changes_13.png" />
+                                                    </p>
+                                                    <li value="2">
+                                                        <p>Expand this to see what Dimensions were changed.</p>
+                                                    </li>
+                                                    <p>
+                                                        <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Extracting%20Dimension%20Changes_12.png" />
+                                                    </p>
+                                                    <li value="3">
+                                                        <p>Right-click on the Dimension name and click <span class="Emphasis_Bold">Select Members to Extract</span>.</p>
+                                                    </li>
+                                                    <p>
+                                                        <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Extracting%20Dimension%20Changes_11.png" />
+                                                    </p>
+                                                    <p>This launches an extraction dialog for the specific Dimension selected.&#160; </p>
+                                                    <p>
+                                                        <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Extracting%20Dimension%20Changes_10.png" />
+                                                    </p>
+                                                    <li value="4">
+                                                        <p>Find Modified Items<br />By default, everything is selected.&#160; Click Find Modified Items and enter the username and desired date range in order to find the specific changes made to the selected Dimension.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Items to Extract Tab <br />This tab displays the changes found in the hierarchy.&#160; Users can also manually select Members and Relationships to extract.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>Extract Members for Each Selected Relationship Check Box<br />Check this box in order to include the Members used in the selected relationships.&#160; </p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Search<br />Search for a specific Member in the selected Dimension.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Dimension Hierarchy<br />Scroll through the Dimension hierarchies in order to see where changes occurred and/or manually select or de-select Members or Relationships to extract.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Right-click on any Parent Member under Relationships and click Select All Descendants in order to select all Child Members within the hierarchy and include them in the extraction.</p>
+                                                    </li>
+                                                    <p>
+                                                        <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Extracting%20Dimension%20Changes_9_550x267.png" style="width: 550;height: 267;" />
+                                                    </p>
+                                                    <li value="9">
+                                                        <p>Members to Delete Tab<br />The Members to Delete tab displays any deleted Members found within the User/Time Parameters.</p>
+                                                    </li>
+                                                    <li value="10">
+                                                        <p>Include in XML Check Box<br />By default, Include in XML is not checked.&#160; Check this box in order to include the displayed Members in the extract.&#160; If checked, any Members to Delete will have an Action=Delete in the xml file and be deleted upon loading the xml into another application.</p>
+                                                    </li>
+                                                    <li value="11">
+                                                        <p>Any deleted Members found within the User/Time Parameters will display here.&#160; Click the plus sign to manually add additional Members to delete.&#160; To exclude a particular entry from the xml, select the line to exclude and click the minus sign.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Members with stored data cannot be deleted from an application.</p>
+                                                    </li> <p><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Extracting%20Dimension%20Changes_8.png" /></p><li value="12"><p>Relationships to Delete<br />The Relationships to Delete Tab displays any deleted relationships found within the User/Time Parameters.</p></li><li value="13"><p>Include in XML Check Box<br />Check this box in order to include the displayed Member relationships in the extract.&#160; If checked, any Relationships to Delete will have an Action=Delete in the xml file and be deleted upon loading the xml into another application.</p></li><li value="14"><p>Users can manually add additional relationships to delete by clicking the plus sign and indicating the Parent and Child.&#160; To exclude a particular entry from the xml, select the line to exclude and click the minus sign.</p></li></ol>
+                                            </div></div></section><section id="Loading-the-XML-File" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor694"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Loading the XML File</h2>
+                                                <p>When importing an extracted xml file, it processes in the following order:</p>
+                                                <ol start="1">
+                                                    <li value="1">
+                                                        <p>New or changed Members</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Deleted Members</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>New Relationships</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Deleted Relationships</p>
+                                                    </li>
+                                                </ol>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>The processing order is important because if any errors occur during the xml file load, OneStream applies as many modifications as it can up to the point of the error.&#160; For example, an xml file contains ten Member changes, three deleted Members and one new relationship.&#160; If an error occurs when trying to delete the first Member, the ten Member changes will still take place because they are processed first during the xml load.&#160; Any modifications in the xml prior to the error will occur and any after the error will not.</p>
+                                                <p>If a user receives an error during the load process, the error must be resolved in order to complete the metadata migration.</p>
+                                                <h4>Common Load Errors and Resolutions</h4>
+                                                <ol start="1">
+                                                    <li value="1">
+                                                        <p>Deleting a Member with data<br />If a Member without data is deleted from the source application, but that same Member contains data in the destination application, an error occurs and the Member will not be deleted.&#160; To resolve the error, do one of the following:</p>
+                                                    </li>
+                                                    <ol style="list-style-type: lower-alpha;">
+                                                        <li value="1">
+                                                            <p>Clear the Member’s data in the destination application and reload the xml file.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>Create a new xml extract excluding that Member from the file.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>Edit the xml file to exclude the Member and the action.</p>
+                                                        </li>
+                                                    </ol>
+                                                </ol>
+                                                <ol start="2">
+                                                    <li value="2">
+                                                        <p>Deleting a Member without Data</p>
+                                                        <p>Care should be taken when deleting Entity members.&#160; Even though the member may not have data, it may be in use as an Intercompany Partner.&#160; Ensure the member is not in use on any data records, or on records as an Intercompany Partner.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Undefined Security Group<br />If a security group is assigned to a Dimension Member in the source application, but does not exist in the destination application, an error will occur.&#160; To resolve the error, do one of the following:</p>
+                                                        <ol start="1">
+                                                            <li value="1">
+                                                                <p>Create the security group in the destination application and reload the xml file.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Create a new xml extract excluding this Member and its changes from the file.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Edit the xml file to exclude the Member and the action.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                                <ol start="4">
+                                                    <li value="4">
+                                                        <p>Undefined FX Rate Type<br />If a FX Rate Type is assigned to a Scenario Member in the source application, but does not exist in the destination application, an error will occur.&#160; To resolve the error, do one of the following:</p>
+                                                        <ol start="1">
+                                                            <li value="1">
+                                                                <p>Create the FX Rate Type in the destination application and reload the file.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Create a new xml extract excluding this Member and its changes from the file.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Edit the xml file to exclude the Member and the action.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Invalid Characters in the XML File<br />If the xml file was edited and invalid characters were entered for a Member name, an error will occur.&#160; To resolve the error, do one of the following:</p>
+                                                        <ol>
+                                                            <li value="1">
+                                                                <p>Make the Member modifications in the source application and extract an xml file without invalid characters.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Edit the xml file and remove the invalid characters.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Project-Extract-and-Load" class="doc-section lvl1"><p class="crumb">Implementing Security</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor82"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Project Extract and Load</h2>
+                                                <p>This extract is for Application Project Designers who are building solutions that span many artifacts, such as Dashboard Maintenance Units, Business Rules, Cubes, Dimensions, Cube Views, etc. A good example is a person designing a solution to be hosted on MarktetPlace.&#160; This application Extract and Load option allows all the defined objects, such as Dashboards and Business Rules, to be collected as a single file export package and to be later reloaded as a package.&#160; XFProject is used as a convenient way to organize <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span> or similar solutions into a folder structure which can be integrated with a version control system such as “Git.” Doing so could enable more than one team member to work on a solution simultaneously. The developer must create an XML file which is the definition for the contents of the Project export.</p>
+                                                <h4>Project File</h4>
+                                                <p>The Application Designer must first manually define an XML file to support the export of objects as aF Project File. The file is saved with the file extension of .xfProj and saved to a local project folder which could also support a version control system.</p>
+                                                <p>Sample File:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/XF%20Project%20Extract%20and%20Load1_550x78.png" style="width: 550;height: 78;" /> <br /></p>
+                                                <p>File Structure:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>xfProject: The root node to start a .xfProj which contains two attributes:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>TopFolderPath: Will create and define the starting folder location of where the specified files are extracted to.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>DefaultZipFileName: Will create a standard default file name for .zip file extracts.</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>projectItems: A list structure containing the project items needed to extract (no attributes needed).</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>projectItem: The item reflecting what is needed to extract from OneStream or load from the file system. It has 4 attributes:</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>ProjectItemType:</p>
+                                                                <ul>
+                                                                    <li>
+                                                                        <p>BusinessRule</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>Cube</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>CubeViewGroup</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>CubeView</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>CubeViewProfile</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardMaintenanceUnit</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardFile</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardString</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardParameter</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardGroup</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardAdapter</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardComponent</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>Dashboard</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardProfile</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DataManagementGroup</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DataManagementStep</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DataManagementSequence</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DataManagementProfile</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DataSource</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>Dimension</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>TransformationRuleGroup</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>TransformationRuleProfile</p>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                <p>FolderPath: The name of the sub folder where the project item type is extracted to.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>Name: The name of the project item.</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>IncludeDescendants: Default is true and only affects these project item types:</p>
+                                                                <ul>
+                                                                    <li>
+                                                                        <p>CubeViewGroup</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardGroup</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DashboardMaintenanceUnit</p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>DataManagementGroup</p>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <h4>File Extract</h4>
+                                                <p>The .xfProj file is placed in a local folder, such as the user’s desktop.&#160; The defined folderpath folders will be generated here as the target location for application exports and loads.&#160; There are two file extract options available on the Windows App.</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>.zip: The export option will collect all the objects defined in the .xfProj file as a Zip file to the location of the .xfproj file.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>File: The standard export will export all the objects defined in the .xfProj file to the folderpath locations defined in .xfproj file.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/XF%20Project%20Extract%20and%20Load_10.png" />
+                                                </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Navigate to <span class="Emphasis_Bold">Application &gt; Load &gt; Extract</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Select the <span class="Emphasis_Bold">Extract</span>tab.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Browse and select the <span class="Emphasis_Bold">.xfProj</span> file.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>(Optional) From the OneStream Windows Client, select or de-select <span class="Emphasis_Bold">Extract to Zip</span> as required.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click the <span class="Emphasis_Bold">Extract toolbar</span> button.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>Example:</p>
+                                                <p>The contents will be generated in the defined folder paths.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/XF%20Project%20Extract%20and%20Load_9_550x324.png" style="width: 550;height: 324;" />
+                                                </p>
+                                                <h4>Zip Extract</h4>
+                                                <p>The zip file extract will create an application zip file containing all the objects defined.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/XF%20Project%20Extract%20and%20Load_8_550x390.png" style="width: 550;height: 390;" />
+                                                </p>
+                                                <h4>File Load .xfProj</h4>
+                                                <p>The file load using the defined .xfProj file provides a seamless link to the project files.&#160; When loading an .xfProj file, the user is presented with options to “Merge” or “Replace” the target files. The only files affected are those defined by the .xfproj file.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>If you select <span class="Emphasis_Bold">Replace</span>, it will only remove files that differ for CubeViewGroups, DataManagementGroups, DashboardMaintenanceUnits, and DashboardGroups. For all other items (such as, business rules or extensibility rules), if you select <span class="Emphasis_Bold">Replace</span>it will act as a Merge.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Navigate to <span class="Emphasis_Bold">Application &gt; Load &gt;&#160;Extract</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the <span class="Emphasis_Bold">Load</span>tab.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Browse and select the <span class="Emphasis_Bold">.xfProj</span> file.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click the <span class="Emphasis_Bold">Load toolbar</span> button.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/XF%20Project%20Extract%20and%20Load_7.png" />
+                                                </p>
+                                                <ol start="5">
+                                                    <li value="5">
+                                                        <p>Select the Load Method, Merge or Replace.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/XF%20Project%20Extract%20and%20Load_6.png" />
+                                                </p>
+                                                <h3>Zip Load</h3>
+                                                <p>The zip file load functions as any other application file load.&#160; The contents of the file are merged into the application.&#160; The zip file load is not supported by alternative merge or replace file load options.</p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Implementing-Security">Implementing Security</a></li><li class="toc-l1"><a href="#Application-Security">Application Security</a></li><li class="toc-l2"><a href="#Security-Best-Practices">Security Best Practices</a></li><li class="toc-l1"><a href="#Relationship-Security">Relationship Security</a></li><li class="toc-l2"><a href="#Change-the-Relationship-Security">Change the Relationship Security</a></li><li class="toc-l2"><a href="#Security-Configurations">Security Configurations</a></li><li class="toc-l1"><a href="#System-Security">System Security</a></li><li class="toc-l1"><a href="#Managing-a-OneStream-Environment">Managing a OneStream Environment</a></li><li class="toc-l1"><a href="#Disable-Inactive-Users">Disable Inactive Users</a></li><li class="toc-l1"><a href="#Set-the-Inactivity-Threshold">Set the Inactivity Threshold</a></li><li class="toc-l1"><a href="#Review-Settings">Review Settings</a></li><li class="toc-l1"><a href="#Business-Rules">Business Rules</a></li><li class="toc-l1"><a href="#System-Table">System Table</a></li><li class="toc-l1"><a href="#Business-Rules-2">Business Rules</a></li><li class="toc-l2"><a href="#Platform-Engines">Platform Engines</a></li><li class="toc-l1"><a href="#Data-Management-Automation-With-PowerShell">Data Management Automation With PowerShell</a></li><li class="toc-l1"><a href="#Exposing-Data-Management-Automation-through-OneStream-Web-API">Exposing Data Management Automation through OneStream Web API</a></li><li class="toc-l1"><a href="#Extracting-and-Loading-Dimensions">Extracting and Loading Dimensions</a></li><li class="toc-l1"><a href="#Extracting-Dimension-Changes">Extracting Dimension Changes</a></li><li class="toc-l1"><a href="#Loading-the-XML-File">Loading the XML File</a></li><li class="toc-l1"><a href="#Project-Extract-and-Load">Project Extract and Load</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

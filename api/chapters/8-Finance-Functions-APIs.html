@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Functions APIs — API Overview Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="api">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-Development-Technologies.html">Development Technologies</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Developer-Fundamentals.html">Developer Fundamentals</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Platform-Engines.html">Platform Engines</a></li><li class="cat"><a class="cat-link" href="../chapters/5-API-Structure-and-Organization.html">API Structure and Organization</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Event-Listing.html">Event Listing</a></li><li class="cat open"><a class="cat-link current" href="../chapters/8-Finance-Functions-APIs.html">Finance Functions APIs</a><ul class="cat-items"><li><a class="s-link" href="#Member-ID">Member ID</a><ul class="cat-items"><li><a class="s-link" href="#Api-Pov-Time-MemberId">Api.Pov.Time.MemberId</a></li><li><a class="s-link" href="#Api-Pov-Entity-MemberId">Api.Pov.Entity.MemberId</a></li><li><a class="s-link" href="#Api-Pov-Account-MemberId">Api.Pov.Account.MemberId</a></li></ul></li><li><a class="s-link" href="#Dimension-Primary-Key-DimPk">Dimension Primary Key - DimPk</a><ul class="cat-items"><li><a class="s-link" href="#DimPK-Usage">DimPK Usage</a></li></ul></li><li><a class="s-link" href="#Dimension-Type-Id">Dimension Type Id</a><ul class="cat-items"><li><a class="s-link" href="#DimTypeID-Usage">DimTypeID Usage</a></li></ul></li><li><a class="s-link" href="#Data-Unit-Dimension-POV">Data Unit Dimension POV</a><ul class="cat-items"><li><a class="s-link" href="#Data-Unit-Dimension-POV-Usage">Data Unit Dimension POV Usage</a></li></ul></li><li><a class="s-link" href="#Time-Functions">Time Functions</a><ul class="cat-items"><li><a class="s-link" href="#Api-Time-GetYearFromId">Api.Time.GetYearFromId</a></li><li><a class="s-link" href="#Api-Time-GetPeriodNumFromId">Api.Time.GetPeriodNumFromId</a></li><li><a class="s-link" href="#Api-Time-GetNumDaysInTimePeriod">Api.Time.GetNumDaysInTimePeriod</a></li><li><a class="s-link" href="#Api-Time-AddTimePeriods">Api.Time.AddTimePeriods</a></li><li><a class="s-link" href="#Api-Time-AddYears">Api.Time.AddYears</a></li></ul></li><li><a class="s-link" href="#Using-Member-Functions-for-Calculations">Using Member Functions for Calculations</a><ul class="cat-items"><li><a class="s-link" href="#GetMember">GetMember</a></li><li><a class="s-link" href="#GetMemberId">GetMemberId</a></li><li><a class="s-link" href="#GetBaseMembers">GetBaseMembers</a></li></ul></li><li><a class="s-link" href="#Writing-Stored-Calculations">Writing Stored Calculations</a><ul class="cat-items"><li><a class="s-link" href="#Overload-Function">Overload Function</a></li><li><a class="s-link" href="#IsDurableCalculatedData">IsDurableCalculatedData</a></li><li><a class="s-link" href="#Eval-Function">Eval Function</a></li><li><a class="s-link" href="#Summary">Summary</a></li></ul></li><li><a class="s-link" href="#Remove-Functions">Remove Functions</a><ul class="cat-items"><li><a class="s-link" href="#RemoveZeros">RemoveZeros</a></li><li><a class="s-link" href="#RemoveNoData">RemoveNoData</a></li><li><a class="s-link" href="#Remove-Functions-Usage">Remove Functions Usage</a></li></ul></li><li><a class="s-link" href="#GetDataBuffer-Functions">GetDataBuffer Functions</a><ul class="cat-items"><li><a class="s-link" href="#GetDataBuffer-Function">GetDataBuffer Function</a></li><li><a class="s-link" href="#GetDataBuffer-Usage">GetDataBuffer Usage</a></li><li><a class="s-link" href="#Unbalanced-Math-Functions">Unbalanced Math Functions</a></li><li><a class="s-link" href="#GetDataBufferUsingFormula-Function">GetDataBufferUsingFormula Function</a></li></ul></li></ul></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">API Overview Guide</span></div><section id="Finance-Functions-APIs" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor1692"></a>
+                                                    <MadCap:concept term="API Overview" />Finance Functions APIs</h1>
+                                            </div></div></section><section id="Member-ID" class="doc-section lvl1"><p class="crumb">Finance Functions APIs</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1705"></a>
+                                                    <MadCap:concept term="API Overview" />Member ID</h2>
+                                                <p>There are many functions that use MemberID as an integer to pass in as a property. These functions get the current POV of the specific Dimension member to perform a variety of tasks, such as:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Get Current Year based on Time POV </p>
+                                                        <ul>
+                                                            <li>Example: Api.Time.GetYearFromId(api.Pov.Time.MemberId)</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>Get Text field value from Entity POV<ul><li>Example: Api.Entity.Text(api.Pov.Entity.MemberId, 1)</li></ul></li>
+                                                    <li>Get Account Type based on current Account POV<ul><li>Example: Api.Account.GetAccountType(api.Pov.Account.MemberId)</li></ul></li>
+                                                </ul>
+                                                <p>When working with formulas and calculations, it is better to work with MemberId versus Member Name.</p>
+                                            </div></div></section><section id="Api-Pov-Time-MemberId" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Member ID</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1094"></a>
+                                                    <MadCap:concept term="API Overview" />Api.Pov.Time.MemberId</h3>
+                                                <p>Api.Pov.Time.MemberId is obtained from the Time Member Id for the current POV being executed during the calculation.&#160;The Time.MemberId is stored as an unique integer to represent a single Time member. The uniqueness is determined by the combination of the Year and Period.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member1.png" />
+                                                </p>
+                                                <p>H1 = 001&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p>
+                                                <p>Q1 = 002</p>
+                                                <p>M1 = 003&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p>
+                                                <p>M2 = 004</p>
+                                                <p>M3 = 005</p>
+                                                <p>Q2 = 006</p>
+                                                <p>M4 = 007</p>
+                                                <p>M5 = 008</p>
+                                                <p>M6 = 009</p>
+                                                <p>H2 = 010</p>
+                                                <p>Q3 = 011</p>
+                                                <p>M7 = 012</p>
+                                                <p>M8 = 013</p>
+                                                <p>M9 = 014</p>
+                                                <p>Q4 = 015</p>
+                                                <p>M10 = 016</p>
+                                                <p>M11 = 017</p>
+                                                <p>M12 = 018</p>
+                                                <p>The Time MemberId is constructed like this:&#160; 2019003000</p>
+                                                <p>The api.Pov.Time.MemberId is used as a property in many functions.&#160;Here are some of the most common functions:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>api.Time.GetYearFromId</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>api.Time.GetPeriodNumFromId</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>api.Time.GetNumDaysInTimePeriod</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>api.Time.AddTimePeriods</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>api.Time.AddYears</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Api.Pov.Time.MemberId Usage</h3>
+                                                <p>Example using api.Pov.Time.MemberId:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_14.png" />
+                                                </p>
+                                                <p>ErrorLog result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_13.png" />
+                                                </p>
+                                                <p>Example using api.Pov.Time.MemberId in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_12.png" />
+                                                </p>
+                                                
+                                            </div></div></section><section id="Api-Pov-Entity-MemberId" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Member ID</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1768"></a>
+                                                    <MadCap:concept term="API Overview" />Api.Pov.Entity.MemberId</h3>
+                                                <p>Api.Pov.Entity.MemberId is obtained from the Entity Member Id for the current Entity POV being executed during the calculation.&#160;The Entity.MemberId is stored as a unique integer to represent a single Entity member.&#160;The Entity Member Id is also found using the Grid View in the Entity Dimension Library.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_18.png" />
+                                                </p>
+                                                <p>Api.Pov.Entity.MemberId is used as a property in many functions.&#160; Here are some of the most common functions:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Get Local Currency Id for current Entity POV.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Entity.GetLocalCurrencyId(api.Pov.Entity.MemberId)</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>Get Local Currency Cons Member Name for current Entity POV.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: </p>
+                                                                <p>api.Entity.GetLocalCurrencyConsMember(api.Pov.Entity.MemberId).Name</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>Get value in Text Field for Dimension Members prior to executing formula calculation.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Entity.Text(api.Pov.Entity.MemberId, 1)</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>Get Percent Consolidation for Parent Child Relationship and specific to user localization.&#160;Can also determine by Scenario Type and Time.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Entity.PercentConsolidation(api.Pov.Entity.MemberId, api.Pov.Parent.MemberId, api.Pov.ScenarioTypeId, api.Pov.Time.MemberId).XFToStringForFormula</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>Get Percent Ownership for Parent Child Relationship and specific to user localization.&#160;Can also determine by Scenario Type and Time.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Entity.PercentOwnership(api.Pov.Entity.MemberId, api.Pov.Parent.MemberId, api.Pov.ScenarioTypeId, api.Pov.Time.MemberId).XFToStringForFormula</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <h3>Api.Pov.Entity.MemberId Usage</h3>
+                                                <p>Example using api.Pov.Entity.MemberId:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_17.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_16.png" />
+                                                </p>
+                                                <p>Example using api.Pov.Entity.MemberId in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_15.png" />
+                                                </p>
+                                            </div></div></section><section id="Api-Pov-Account-MemberId" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Member ID</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor441"></a>
+                                                    <MadCap:concept term="API Overview" />Api.Pov.Account.MemberId</h3>
+                                                <p>Api.Pov.Account.MemberId is obtained from the Account Member Id for the current Account POV being executed during the calculation.&#160;The Account.MemberId is stored as a unique integer to represent a single Account member.&#160;The Account Member Id is also found using the Grid View in the Account Dimension Library.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_22.png" />
+                                                </p>
+                                                <p>Api.Pov.Account.MemberId is used as a property in many functions.&#160;Here are some of the most common functions:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Get Account Type based on current Account POV</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Account.GetAccountType(api.Pov.Account.MemberId)</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>Get value in Text Field for Dimension Members prior to executing formula calculation</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Account.Text(api.Pov.Account.MemberId, 1)</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <h3>Api.Pov.Account.MemberId Usage</h3>
+                                                <p>Example using api.Pov.Account.MemberId :</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_21.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_20.png" />
+                                                </p>
+                                                <p>Example using api.Pov.Account.MemberId in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_19_612x101.png" style="width: 612;height: 101;" />
+                                                </p>
+                                            </div></div></section><section id="Dimension-Primary-Key-DimPk" class="doc-section lvl1"><p class="crumb">Finance Functions APIs</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor386"></a>
+                                                    <MadCap:concept term="API Overview" />Dimension Primary Key - DimPk</h2>
+                                                <p>DimPk is known as Dimension Primary Key. This is a unique primary key that is assigned to Dimensions when they are created. It is a combination of the DimTypeId and the DimId.</p>
+                                                <p>DimPk is commonly used to identify which Dimension should be used when checking for members as base members or descendants in a specific Dimension. DimPk is commonly used in the following functions:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Get Dimension Primary Key of a Specific Dimension</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Dimensions.GetDim("UD1DimName").DimPk</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>Check if it is a Base Member of a Specific Ancestor</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Members.IsBase(dimPk, ancestorMemberId, baseMemberId, dimDisplayOptions)</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>Get Base Members of Parent from GetMember</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Members.GetBaseMembers(api.Pov.UD1Dim.DimPk, parent.MemberId, Nothing)</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="DimPK-Usage" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Dimension Primary Key - DimPk</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1938"></a>
+                                                    <MadCap:concept term="API Overview" />DimPK Usage</h3>
+                                                <p>Example using DimPK :</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%202%20Using%20DimPk1.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%202%20Using%20DimPk_4.png" />
+                                                </p>
+                                                <p>Example using api.Pov.UD1Dim.DimPk in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%202%20Using%20DimPk_3_611x115.png" style="width: 611;height: 115;" />
+                                                </p>
+                                            </div></div></section><section id="Dimension-Type-Id" class="doc-section lvl1"><p class="crumb">Finance Functions APIs</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1286"></a>
+                                                    <MadCap:concept term="API Overview" />Dimension Type Id</h2>
+                                                <p>Dimension Type Id is a property of DimPk.&#160;The Dimension Type Id is a unique integer Id that is assigned to a Dimension.&#160;The DimTypeId is found in the Dim table and the DimTypeId represents each Dimension.</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Entity = 0</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Scenario = 2</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Account = 5</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Flow = 6</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>UD1 = 9</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>UD2 = 10</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>UD3 = 11</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>UD4 = 12</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>UD5 = 13</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>UD6 = 14</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>UD7 = 15</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>UD8 = 16</p>
+                                                    </li>
+                                                </ul>
+                                                <p>The DimTypeId is used in various functions.&#160;DimTypeId is most commonly used with the GetMember or GetMemberId functions where the first property in the function is DimTypeId.&#160;In this case, GetMember and GetMemberId needs to know which Dimension Id to use for the member the function is looking for.</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Get a specific Member in a specific Dimension</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Members.GetMember(DimType.Account.Id, "AcctMemberName")</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>Get Member Id for a specific Member in a specific Dimension</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Members.GetMemberId(DimType.Account.Id, "AcctMemberName")</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="DimTypeID-Usage" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Dimension Type Id</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1690"></a>
+                                                    <MadCap:concept term="API Overview" />DimTypeID Usage</h3>
+                                                <p>Example using DimTypeId :</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%203%20Using%20Dimension1.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%203%20Using%20Dimension_4.png" />
+                                                </p>
+                                                <p>Example using DimType.Account.Id in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%203%20Using%20Dimension_3.png" />
+                                                </p>
+                                            </div></div></section><section id="Data-Unit-Dimension-POV" class="doc-section lvl1"><p class="crumb">Finance Functions APIs</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor456"></a>
+                                                    <MadCap:concept term="API Overview" />Data Unit Dimension POV</h2>
+                                                <p>Stored calculations run based on the Data Unit POV.&#160;The Data Unit Dimension consists of Cube, Entity, Parent, Consolidation, Time, and Scenario.&#160; </p>
+                                                <p>Because stored calculations run off Data Unit Dimensions, these Dimensions are used as part of If Statements to execute calculations on conditions.&#160;The Data Unit Dimensions should not be used as destination data buffers, and should not be used on the left hand side of the equation in a api.Data.Calculate formula. </p>
+                                                <p>Account related Dimensions such as Account, Flow, and UD’s are not available at run-time of the calculations.&#160;Therefore, they cannot be used in the If Statements for stored calculations. However, they are available for Dynamic Calculations.&#160; </p>
+                                                <p>Run for POV and Check Member Names for Data Unit Dimensions Before Executing Calculation:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>If api.Pov.Cube.Name.XFEqualsIgnoreCase("CubeName") Then</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>If api.Pov.Entity.Name.XFEqualsIgnoreCase("EntityName") Then</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>If api.Pov.Scenario.Name.XFEqualsIgnoreCase("ScenarioName") Then</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>If api.Pov.Cons.Name.XFEqualsIgnoreCase("USD") Then</p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Data-Unit-Dimension-POV-Usage" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Data Unit Dimension POV</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1640"></a>
+                                                    <MadCap:concept term="API Overview" />Data Unit Dimension POV Usage</h3>
+                                                <p>Example using api.Pov.Entity.Name :</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%204%20Using%20Data%20Unit1.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%204%20Using%20Data%20Unit_6.png" />
+                                                </p>
+                                                <p>Example using api.Pov.Entity.Name in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%204%20Using%20Data%20Unit_5.png" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%204%20Using%20Data%20Unit_4.png" />
+                                                </p>
+                                            </div></div></section><section id="Time-Functions" class="doc-section lvl1"><p class="crumb">Finance Functions APIs</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1282"></a>
+                                                    <MadCap:concept term="API Overview" />Time Functions</h2>
+                                                <p>The following APIs are some of the most common time functions:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#Api-Time-GetYearFromId">api.Time.GetYearFromId</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Api-Time-GetPeriodNumFromId">api.Time.GetPeriodNumFromId</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Api-Time-GetNumDaysInTimePeriod">api.Time.GetNumDaysInTimePeriod</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Api-Time-AddTimePeriods">api.Time.AddTimePeriods</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#Api-Time-AddYears">api.Time.AddYears</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Api-Time-GetYearFromId" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Time Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1260"></a>
+                                                    <MadCap:concept term="API Overview" />Api.Time.GetYearFromId</h3>
+                                                <p>This function gets the year from the current POV Time Id.&#160;It evaluates the year and then introduces logic to execute the formula.&#160; </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%201%20Using%20Api%20Pov%20Member_12.png" />
+                                                </p>
+                                            </div></div></section><section id="Api-Time-GetPeriodNumFromId" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Time Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1837"></a>
+                                                    <MadCap:concept term="API Overview" />Api.Time.GetPeriodNumFromId</h3>
+                                                <p>This function gets the period number from the current POV Time Id. The period is static and is configured with either months or weeks followed by the period number.&#160;For example: M1 – M12 or W1 – W54. It evaluates the period number and then introduces logic to execute the formula.</p>
+                                                <h3>Api.Time.GetPeriodNumFromId Usage</h3>
+                                                <p>Example using api.Time.GetPeriodNumFromId :</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time1.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_13.png" />
+                                                </p>
+                                                <p>Example using api.Time.GetPeriodNumFromId in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_12.png" />
+                                                </p>
+                                            </div></div></section><section id="Api-Time-GetNumDaysInTimePeriod" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Time Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1852"></a>
+                                                    <MadCap:concept term="API Overview" />Api.Time.GetNumDaysInTimePeriod</h3>
+                                                <p>This function gets the number of days from the current POV Time Id. The number of days are already programmed depending on the month that is selected.&#160;It evaluates the number of days for a period and then introduces logic to execute the formula.&#160;</p>
+                                                <h3>Api.Time.GetNumDaysInTimePeriod Usage</h3>
+                                                <p>Example using api.Time.GetNumDaysInTimePeriod:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_16.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_15.png" />
+                                                </p>
+                                                <p>Example using api.Time.GetNumDaysInTimePeriod in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_14.png" />
+                                                </p>
+                                            </div></div></section><section id="Api-Time-AddTimePeriods" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Time Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor834"></a>
+                                                    <MadCap:concept term="API Overview" />Api.Time.AddTimePeriods</h3>
+                                                <p>This function adds time periods to the current POV Time Id. It passes that data to different functions like GetPeriodNumFromId and then introduces logic to execute the formula.</p>
+                                                <h3>Api.Time.AddTimePeriods Usage</h3>
+                                                <p>Example using api.Time.AddTimePeriods:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_19.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_18.png" />
+                                                </p>
+                                                <p>Example using api.Time.AddTimePeriods in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_17_611x194.png" style="width: 611;height: 194;" />
+                                                </p>
+                                            </div></div></section><section id="Api-Time-AddYears" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Time Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor552"></a>
+                                                    <MadCap:concept term="API Overview" />Api.Time.AddYears</h3>
+                                                <p>This function adds years to the current POV Time Id. It passes that data to different functions like GetYearFromId or GetPeriodNumFromId and then introduces logic to execute the formula.&#160;</p>
+                                                <h3>Api.Time.AddYears Usage</h3>
+                                                <p>Example using api.Time.AddYears:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_22.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_21.png" />
+                                                </p>
+                                                <p>Example using api.Time.AddYears in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%205%20Using%20Common%20Time_20.png" />
+                                                </p>
+                                            </div></div></section><section id="Using-Member-Functions-for-Calculations" class="doc-section lvl1"><p class="crumb">Finance Functions APIs</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor296"></a>
+                                                    <MadCap:concept term="API Overview" />Using Member Functions for Calculations</h2>
+                                                <p>Calculation Member functions are commonly used through the Finance Api’s for accessing general information for any specified Member within a dimension. The Member functions allow a rule writer to identify members, get member information, and identify base and parent members to execute within Member Formulas and Business Rules.</p>
+                                                <p>The following are some of the most common Member functions for calculations:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#GetMember">GetMember</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#GetMemberId">GetMemberID</a>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#GetBaseMembers">GetBaseMembers</a>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="GetMember" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Using Member Functions for Calculations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor90"></a>
+                                                    <MadCap:concept term="API Overview" />GetMember</h3>
+                                                <p>This function gets a specific dimension member. It is used for different functions like api.Data.FormulaVariables, GetBaseMembers function, custom member lists, and when working with Member Id within data buffers for processes like custom consolidation.</p>
+                                                <h3>GetMember Usage</h3>
+                                                <p>Example using GetMember:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%206%20Using%20Member%20Functions1.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%206%20Using%20Member%20Functions_8.png" />
+                                                </p>
+                                                <p>Example using GetMember in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%203%20Using%20Dimension_3.png" />
+                                                </p>
+                                            </div></div></section><section id="GetMemberId" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Using Member Functions for Calculations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1707"></a>
+                                                    <MadCap:concept term="API Overview" />GetMemberId</h3>
+                                                <p>This function gets a specific dimension member Id. This technique is commonly used when working with source Data Buffers where the cells for a specific member Id need to be changed.</p>
+                                                <h3>GetMemberID Usage</h3>
+                                                <p>Example using GetMemberId:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%206%20Using%20Member%20Functions_11.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%206%20Using%20Member%20Functions_10.png" />
+                                                </p>
+                                                
+                                                <p>Example using GetMemberId in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%206%20Using%20Member%20Functions_9_612x317.png" style="width: 612;height: 317;" />
+                                                </p>
+                                            </div></div></section><section id="GetBaseMembers" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Using Member Functions for Calculations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor506"></a>
+                                                    <MadCap:concept term="API Overview" />GetBaseMembers</h3>
+                                                <p>This function gets base members from a specific parent member. It is commonly used when working with Member Lists as part of FinanceFunctionType.MemberList, or to get base members to loop through specific dimensions for api.Data.GetDataCell.</p>
+                                                <h3>GetBaseMembers Usage</h3>
+                                                <p>Example using GetBaseMembers:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%206%20Using%20Member%20Functions_14.png" />
+                                                </p>
+                                                <p>ErrorLog Result:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%206%20Using%20Member%20Functions_13.png" />
+                                                </p>
+                                                <p>Example using GetBaseMembers in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%206%20Using%20Member%20Functions_12_625x143.png" style="width: 625;height: 143;" />
+                                                </p>
+                                            </div></div></section><section id="Writing-Stored-Calculations" class="doc-section lvl1"><p class="crumb">Finance Functions APIs</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor152"></a>
+                                                    <MadCap:concept term="API Overview" />Writing Stored Calculations</h2>
+                                                <p>When writing a Member Formula or a Business Rule for a Stored Calculation, the new calculated numbers store data for that Cube, Entity, Parent, Cons, Scenario, and Time combination. For example, a Data Unit.</p>
+                                                <p>Return is never seen in a Member Formula for Formula Pass.&#160;Instead of being returned, many numbers are calculated and stored. When running a Calculation, Translation, or Consolidation, it calls the Member Formula once for an entire Data Unit.&#160; <span class="mc-variable Variables.Product_Name variable">OneStream</span> does not tell with which Account, Flow, or User Defined the numbers are being saved.</p>
+                                                <p>Initially, this may be confusing because Member Formulas are often written in an account’s Formula property, and administrators believe <span class="mc-variable Variables.Product_Name variable">OneStream</span> will only allow that specific Member Formula to write to that specific account.&#160;However, putting a Member Formula in an account’s Formula property is only for organizational purposes.&#160;When <span class="mc-variable Variables.Product_Name variable">OneStream</span> calls that formula, it is currently calculating a Data Unit and will initialize the API engine with only the Data Unit Dimensions.</p>
+                                                <p>Basic stored formulas are commonly used via the Api.Data.Calculate api function.&#160; Api.Data.Calculate is used in three different ways:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><span style="font-family: Arial;">Api.Data.Calculate using Formula as String, Overload Functions, Eval Function, and IsDurableCalculatedData</span>
+                                                        </p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%207%20Using%203%20Different1_550x55.png" style="width: 550;height: 55;" />
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span style="font-family: Arial;">Api.Data.Calculate using Formula as String and IsDurableCalculatedData</span>
+                                                        </p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%207%20Using%203%20Different_8_550x52.png" style="width: 550;height: 52;" />
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span style="font-family: Arial;">Api.Data.Calculate using Formula as String and Eval Function</span>
+                                                        </p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%207%20Using%203%20Different_7_550x36.png" style="width: 550;height: 36;" />
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div></div></section><section id="Overload-Function" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Writing Stored Calculations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor375"></a>
+                                                    <MadCap:concept term="API Overview" />Overload Function</h3>
+                                                <p>The most common function is Api.Data.Calculate, which sets the value of one or more dimension values (left side of formula) equal to another (right side). Final arguments (optional) are added to the formula for Overload Functions, Evals, and Durable Data.&#160; </p>
+                                                <p>The Api.Data.Calculate function must abide by the data explosion rules, which means that the left side and the right side of the formulas are balanced with the same dimension values on both sides.&#160;If a Member is specified for a Dimension anywhere on the right side of the equation, you must explicitly specify something for that Dimension on the left side of the equation.</p>
+                                                <p>This variation of the Api.Data.Calculate provides Member Filters (all optional) which can be used to filter the results before saving them to the target or destination.&#160;This function is the most powerful of the Api.Data.Calculate functions as it allows you to filter intersections.&#160;In addition, the Eval function adds the ability to filter down the number of individual data cells processed by data cell attributes such as CellAmount or CellStatus.</p>
+                                                <p>This function is commonly used to filter the source data buffer by base members of an Account related dimension.&#160;For example, A#Sales may be the source data buffer but the need for all products is not required for the calculation.&#160;Instead, A#Sales may need to be calculated by the base members of Clubs.&#160;By using Clubs.Base for A#Sales, the A#Sales data buffer has been reduced to only include Clubs.Base.&#160; </p>
+                                                <h3>Api.Data.Calculate Usage</h3>
+                                                <p>Example using Overload Function in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%207%20Using%203%20Different_9_550x93.png" style="width: 550;height: 93;" />
+                                                </p>
+                                            </div></div></section><section id="IsDurableCalculatedData" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Writing Stored Calculations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1387"></a>
+                                                    <MadCap:concept term="API Overview" />IsDurableCalculatedData</h3>
+                                                <p> This variation of Api.Data.Calculate lets you define whether data is durable or not. Durable data is not cleared automatically when a Data Unit is re-calculated.&#160;It can only be cleared by calling api.Data.ClearCalculatedData with the clearDurableCalculatedData Boolean property set to True.&#160;As part of the standard Calculation sequence that runs during a Calculate or Consolidate, Durable data will be ignored from processing the clear, unless the clear is specifically defined within the Business Rule or Member Formula.</p>
+                                                <p>The most common reason to set the IsDurableCalculatedData to True is for seeding purposes.&#160;As part of the first seeding, the goal may be to seed from one Scenario to another just once and never seed it again.&#160;In this case, the seeded data should not be cleared at any point during the Calculate or Consolidate process.&#160;This technique is commonly used in Budget or Forecast processes where you are executing the seeding through a Dashboard. The formula may be applied as a FinanceFunctionType.CustomCalculate or a FinanceFunctionType.Calculate in a Business Rule.</p>
+                                                <h3>IsCurableCalculatedData Usage</h3>
+                                                <p>Example using IsDurableCalculatedData in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%207%20Using%203%20Different_10_550x164.png" style="width: 550;height: 164;" />
+                                                </p>
+                                            </div></div></section><section id="Eval-Function" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Writing Stored Calculations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor677"></a>
+                                                    <MadCap:concept term="API Overview" />Eval Function</h3>
+                                                <p>Eval has an advanced capability that lets you get at the individual Data Cells in any Data Unit created while processing an api.Data.Calculate script. It allows Eval() to be wrapped around a subset of the formula’s math in order to evaluate the Data Buffer that was just created by running that math.</p>
+                                                <p>Prior to the 5.0 version and the introduction of the RemoveNoData function, Eval was commonly used to evaluate individual data cells in a source data buffer to process based on cell amount or cell status. Evaluating the number of No Data Cells for a Data Unit is an important factor for performance and calculation efficiencies.&#160;</p>
+                                                <p>Eval was initially an important function to evaluate individual data cells but it has been replaced with newer techniques such as GetDataBuffer and GetDataBufferUsingFormula, and looping through cells within the data buffer, as well as the Remove functions.</p>
+                                                <h3>Eval Function Usage</h3>
+                                                <p>Example using Eval in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%207%20Using%203%20Different_11_550x506.png" style="width: 550;height: 506;" />
+                                                </p>
+                                            </div></div></section><section id="Summary" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Writing Stored Calculations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1563"></a>
+                                                    <MadCap:concept term="API Overview" />Summary</h3>
+                                                <p>The Api.Data.Calculate is the easiest and simplest way to write a formula as a Member Formula or a Business Rule.&#160;The construction of an Api.Data.Calculate formula must be balanced on each side of the formula with the appropriate dimensions to prevent data explosion. There are three different ways to use the Api.Data.Calculate function: Formula with Overload, Formula with IsDurableCalculatedData, and Formula with Eval. </p>
+                                                <p>From a performance perspective:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Never use the Api.Data.Calculate in a loop when using variables.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Use Remove functions whenever possible especially for sparse data models with lots of NODATA cells.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>GetDataBuffer and GetDataBufferUsingFormula may have a better performance impact.&#160;Try replacing Api.Data.Calculate when doing math with GetDataBuffer math.&#160;In some cases, performance is better by using GetDataBuffer functions in place of Api.Data.Calculate.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Remove-Functions" class="doc-section lvl1"><p class="crumb">Finance Functions APIs</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor646"></a>
+                                                    <MadCap:concept term="API Overview" />Remove Functions</h2>
+                                                <p>Remove Functions were introduced in the 5.0 release.&#160;They replaced the reasons to use the Eval function. The basic need of the Eval function was to evaluate the individual data cells within a source data buffer to apply logic for processing. In many cases, <span class="mc-variable Variables.Product_Name variable">OneStream</span> did not want to process data cells in source data buffers that had a Cell Status of NODATA or Cell Amount = 0. With the 5.0 release, functions do that without the need for writing additional logic.</p>
+                                                <p>The <span class="Emphasis_Bold">RemoveNoData</span> and <span class="Emphasis_Bold">RemoveZeros</span> functions provide the ability to not process individual data cells within a source data buffer. They wrap the Remove() around a subset of the formula to prevent processing of individual data cells from within a source data buffer.&#160;Remove functions are used in Member Formulas or Business Rules.</p>
+                                                <p>Remove functions are used for performance reasons.&#160;Data Units may contain a great amount of NODATA data cells or 0 value data cells. These cells could be needlessly processed during calculation execution if these functions are not used in a Api.Data.Calculate formula.</p>
+                                            </div></div></section><section id="RemoveZeros" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Remove Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor734"></a>
+                                                    <MadCap:concept term="API Overview" />RemoveZeros</h3>
+                                                <p>RemoveZeros is used to remove data cells with a cell amount of 0 from the source data buffer.&#160;In addition, this function removes data cells with a cell status of NODATA from the source data buffer.&#160;It is important to evaluate if the 0s are needed for the Api.Data.Calculate formula during calculation execution.</p>
+                                            </div></div></section><section id="RemoveNoData" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Remove Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor851"></a>
+                                                    <MadCap:concept term="API Overview" />RemoveNoData</h3>
+                                                <p>RemoveNoData removes data cells with a cell status of NODATA ONLY from the source data buffer.&#160;Unlike the RemoveZeros function, this function does not remove data cells with a cell amount of 0.</p>
+                                                <p>NODATA cells and 0 cells can be found using the following methods:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Review the Data Unit Statistics when you right-click on a cell in Cube View.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Review the Application Analysis Dashboard and check the Entity Data Statistics Report.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>This is based on the Data Unit and Entity Data Statistics. There may be many Member Formulas and Business Rules that are driving data creation. Therefore, all formulas would need to be evaluated to determine whether these Remove functions are used.&#160;The higher the percentage ratio of NODATA cells to Total Number of Stored Records, the more important it is to use these Remove functions.</p>
+                                                <p>Example =&#160; 3,203 Stored Records with 2,019 of those Stored Records as NODATA cells.&#160;Nearly 65% of the Data Unit has NODATA cells to process which causes extra calculation time.</p>
+                                                <p>The Review functions can be found in Key Functions under Snippets.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%208%20Using%20Remove%20Functions1.png" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%208%20Using%20Remove%20Functions_4_550x137.png" style="width: 550;height: 137;" />
+                                                </p>
+                                            </div></div></section><section id="Remove-Functions-Usage" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › Remove Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor811"></a>
+                                                    <MadCap:concept term="API Overview" />Remove Functions Usage</h3>
+                                                <p>Example using RemoveZeros in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%208%20Using%20Remove%20Functions_6.png" />
+                                                </p>
+                                                <p>Example using RemoveNoData in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%208%20Using%20Remove%20Functions_5.png" />
+                                                </p>
+                                            </div></div></section><section id="GetDataBuffer-Functions" class="doc-section lvl1"><p class="crumb">Finance Functions APIs</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor308"></a>
+                                                    <MadCap:concept term="API Overview" />GetDataBuffer Functions</h2>
+                                                <p>A Member Script may not be defined for the Api.Data.Calculate function because multiple Data Cells, which seem completely unrelated to each other, are being processed and none of the Dimension Members are constant.&#160;For those situations, use the GetDataBuffer and SetDataBuffer functions.</p>
+                                                <p>GetDataBuffer and SetDataBuffer are more fundamental than using an Eval function.&#160;They allow you to read numbers using a Member Script, process or modify each cell in the result, and then save the changes.&#160;Common GetDataBuffer functions include:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>GetDataBuffer</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>GetDataBufferForCustomShareCalculation</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>GetDataBufferForCustomElimCalculation</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>GetDataBufferUsingFormula</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>SetDataBuffer</p>
+                                                    </li>
+                                                </ul>
+                                                <p>When using api.Data.Calculate functions, it is important to know which Member a formula is attached to. For example, if the formula starts with Api.Data.Calculate(“A#Sales1 = …”), put the formula in the Sales1 account Member’s Formula setting. </p>
+                                                <p>However, when using GetDataBuffer functions, the formula may not be writing to a specific Member. Every Data Cell saved is possibly written to a different dimension member.&#160;In this case, the logic can be developed in a Business Rule and could be created as a Sub routine to execute throughout Finance Business Rules.</p>
+                                            </div></div></section><section id="GetDataBuffer-Function" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › GetDataBuffer Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1812"></a>
+                                                    <MadCap:concept term="API Overview" />GetDataBuffer Function</h3>
+                                                <p>GetDataBuffer retrieves a Data Unit’s values during a particular consolidation, calculation, or translation.&#160;When using GetDataBuffer, this is equivalent to the source data buffer or to the right side of the equation for Api.Data.Calculate.&#160;Depending on which GetDataBuffer function you are using, three or four properties can be used.&#160;</p>
+                                                <p>For the basic GetDataBuffer, three properties are used:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p> ScriptMethodType As DataApiScriptMethodType</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>SourceDataBufferScript As String</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>ExpressionDestinationInfo As ExpressionDestinationInfo</p>
+                                                    </li>
+                                                </ul>
+                                                <p>The scriptMethodType typically uses the Calculate option for DataApiScriptMethodType.</p>
+                                                <p>The sourceDataBufferScript is equivalent to the right side of the equation for the Api.Data.Calculate.</p>
+                                                <p>The expressionDestinationInfo is equivalent to the left side of the equation for the Api.Data.Calculate.&#160;Frequently, this gets manipulated using the Dimension Id, passing in the Dimension Member Id for the data buffer primary key.</p>
+                                                <p>The GetDataBuffer can be used in various ways, and is not limited to the following:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Use Data Buffers to perform Data Buffer math. In some cases, this can perform better than an Api.Data.Calculate.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Use GetDataBuffer in place of Api.Data.Calculate to use in Sub routines which execute code and instructions, are stored in memory, and are used within Functions throughout Finance Business Rules.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="GetDataBuffer-Usage" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › GetDataBuffer Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1609"></a>
+                                                    <MadCap:concept term="API Overview" />GetDataBuffer Usage</h3>
+                                                <p>Example using GetDataBuffer with Data Buffer Math in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%209%20Using%20GetDataBuffer1_550x190.png" style="width: 550;height: 190;" />
+                                                </p>
+                                                <p>Example using GetDataBuffer and SetDataBuffer in Business Rule Using Sub Routine in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%209%20Using%20GetDataBuffer_8.png" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%209%20Using%20GetDataBuffer_7_550x386.png" style="width: 550;height: 386;" />
+                                                </p>
+                                                
+                                            </div></div></section><section id="Unbalanced-Math-Functions" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › GetDataBuffer Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1201"></a>
+                                                    <MadCap:concept term="API Overview" />Unbalanced Math Functions</h3>
+                                                <h3>Unbalanced Math Functions</h3>
+                                                <p>Unbalanced math functions are required when performing math with two Data Buffers, where the second Data Buffer needs to specify additional dimensionality. The term Unbalanced is used because the script for the second Data Buffer can represent a different set of Dimensions from the other Data Buffer in the api.Data.Calculate text.&#160;These functions prevent data explosion.&#160;The four Unbalanced Math functions are:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>AddUnbalanced</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Data.Calculate("A#TargetAccount = AddUnbalanced(A#OperatingSales, A#DriverAccount:U2#Global, U2#Global)")</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>SubtractUnbalanced</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Data.Calculate("A#TargetAccount = SubtractUnbalanced(A#OperatingSales, A#DriverAccount:U2#Global, U2#Global)")</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>MultiplyUnbalanced</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Data.Calculate("A#TargetAccount =MultiplyUnbalanced (A#OperatingSales, A#DriverAccount:U2#Global, U2#Global)")</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <p>DivideUnbalanced</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Example: api.Data.Calculate("A#TargetAccount =DivideUnbalanced (A#OperatingSales, A#DriverAccount:U2#Global, U2#Global)")</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <p>When using Unbalanced Math functions, the first two parameters represent the first and second Data Buffers on which to perform the function.&#160;The third parameter represents the Members to use from the second Data Buffer when performing math with every intersection in the first Data Buffer. The math favors the intersections in the first Data Buffer without creating additional intersections. </p>
+                                                <p>It is important that the dimensionality of the Target (left side of the equation) matches the dimensionality of the first data buffer on the right side of the equation (argument 1).</p>
+                                                <p>Often, these functions would be used when one source data buffer is doing math with a specific data cell intersection.&#160;This could be a rate, driver, or some data cell input.</p>
+                                                <h3>Unbalanced Math Functions Usage</h3>
+                                                <p>Example using MultiplyUnbalanced in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%209%20Using%20GetDataBuffer_9_550x67.png" style="width: 550;height: 67;" />
+                                                </p>
+                                            </div></div></section><section id="GetDataBufferUsingFormula-Function" class="doc-section lvl2"><p class="crumb">Finance Functions APIs › GetDataBuffer Functions</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor662"></a>
+                                                    <MadCap:concept term="API Overview" />GetDataBufferUsingFormula Function</h3>
+                                                <p>The GetDataBufferUsingFormula function uses an entire math expression to calculate a final data buffer.&#160;GetDataBufferUsingFormula can perform the same data buffer math as Api.Data.Calculate, but the result is assigned to a variable, where Api.Data.Calculate actually saves the calculated data.&#160; </p>
+                                                <p>GetDataBufferUsingFormula calculates multiple source data buffers first.&#160;Then, the result of the math is stored in memory using a Formula Variable.&#160;Finally, the Formula Variable is used anywhere within the Member Formula or Business Rule. This function is commonly used during rule writing for Planning Business Rules using MultiplyUnbalanced,&#160; DivideUnbalanced, Trailing functions such as trailing 12 months, and Allocations.&#160; </p>
+                                                <p>When using GetDataBufferUsingFormula, FilterMembers and RemoveMembers are used in conjunction to shrink down dimensional members in the source Data Buffer.</p>
+                                                <h3>FilterMembers</h3>
+                                                <p>FilterMembers change a data buffer and only include numbers for the specified Dimensions. The first parameter is the starting data buffer. This can be a variable name or an entire math equation in parentheses.&#160;There can be as many parameters as needed to specify Member Filters and different Member Filters can be used for multiple Dimension types.&#160;The resulting filtered data buffer will only contain numbers that match the Members in the filters.</p>
+                                                <h3>GetDataBufferUsingFormula Usage</h3>
+                                                <p>Example using GetDataBufferUsingFormula in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%209%20Using%20GetDataBuffer_11_550x139.png" style="width: 550;height: 139;" />
+                                                </p>
+                                                <p>Example using GetDataBufferUsingFormula with FilterMembers and MultipleUnbalanced in a working formula:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/OneStream%20Finance%20Business%20Rules%20-%20Common%20Finance%20BR%20Functions%20v5/Chapter%209%20Using%20GetDataBuffer_10_550x114.png" style="width: 550;height: 114;" />
+                                                </p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Finance-Functions-APIs">Finance Functions APIs</a></li><li class="toc-l1"><a href="#Member-ID">Member ID</a></li><li class="toc-l2"><a href="#Api-Pov-Time-MemberId">Api.Pov.Time.MemberId</a></li><li class="toc-l2"><a href="#Api-Pov-Entity-MemberId">Api.Pov.Entity.MemberId</a></li><li class="toc-l2"><a href="#Api-Pov-Account-MemberId">Api.Pov.Account.MemberId</a></li><li class="toc-l1"><a href="#Dimension-Primary-Key-DimPk">Dimension Primary Key - DimPk</a></li><li class="toc-l2"><a href="#DimPK-Usage">DimPK Usage</a></li><li class="toc-l1"><a href="#Dimension-Type-Id">Dimension Type Id</a></li><li class="toc-l2"><a href="#DimTypeID-Usage">DimTypeID Usage</a></li><li class="toc-l1"><a href="#Data-Unit-Dimension-POV">Data Unit Dimension POV</a></li><li class="toc-l2"><a href="#Data-Unit-Dimension-POV-Usage">Data Unit Dimension POV Usage</a></li><li class="toc-l1"><a href="#Time-Functions">Time Functions</a></li><li class="toc-l2"><a href="#Api-Time-GetYearFromId">Api.Time.GetYearFromId</a></li><li class="toc-l2"><a href="#Api-Time-GetPeriodNumFromId">Api.Time.GetPeriodNumFromId</a></li><li class="toc-l2"><a href="#Api-Time-GetNumDaysInTimePeriod">Api.Time.GetNumDaysInTimePeriod</a></li><li class="toc-l2"><a href="#Api-Time-AddTimePeriods">Api.Time.AddTimePeriods</a></li><li class="toc-l2"><a href="#Api-Time-AddYears">Api.Time.AddYears</a></li><li class="toc-l1"><a href="#Using-Member-Functions-for-Calculations">Using Member Functions for Calculations</a></li><li class="toc-l2"><a href="#GetMember">GetMember</a></li><li class="toc-l2"><a href="#GetMemberId">GetMemberId</a></li><li class="toc-l2"><a href="#GetBaseMembers">GetBaseMembers</a></li><li class="toc-l1"><a href="#Writing-Stored-Calculations">Writing Stored Calculations</a></li><li class="toc-l2"><a href="#Overload-Function">Overload Function</a></li><li class="toc-l2"><a href="#IsDurableCalculatedData">IsDurableCalculatedData</a></li><li class="toc-l2"><a href="#Eval-Function">Eval Function</a></li><li class="toc-l2"><a href="#Summary">Summary</a></li><li class="toc-l1"><a href="#Remove-Functions">Remove Functions</a></li><li class="toc-l2"><a href="#RemoveZeros">RemoveZeros</a></li><li class="toc-l2"><a href="#RemoveNoData">RemoveNoData</a></li><li class="toc-l2"><a href="#Remove-Functions-Usage">Remove Functions Usage</a></li><li class="toc-l1"><a href="#GetDataBuffer-Functions">GetDataBuffer Functions</a></li><li class="toc-l2"><a href="#GetDataBuffer-Function">GetDataBuffer Function</a></li><li class="toc-l2"><a href="#GetDataBuffer-Usage">GetDataBuffer Usage</a></li><li class="toc-l2"><a href="#Unbalanced-Math-Functions">Unbalanced Math Functions</a></li><li class="toc-l2"><a href="#GetDataBufferUsingFormula-Function">GetDataBufferUsingFormula Function</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>API Structure and Organization — API Overview Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="api">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-Development-Technologies.html">Development Technologies</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Developer-Fundamentals.html">Developer Fundamentals</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Platform-Engines.html">Platform Engines</a></li><li class="cat open"><a class="cat-link current" href="../chapters/5-API-Structure-and-Organization.html">API Structure and Organization</a><ul class="cat-items"><li><a class="s-link" href="#In-Solution-Development">In-Solution Development</a></li><li><a class="s-link" href="#Custom-Development">Custom Development</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/6-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Event-Listing.html">Event Listing</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Finance-Functions-APIs.html">Finance Functions APIs</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">API Overview Guide</span></div><section id="API-Structure-and-Organization" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor766"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440929"></a>API Structure and Organization</h1>
+                                                <h2><a name="_Toc50440930"></a>Namespaces</h2>
+                                                <p>.Net Core organizes code libraries into subject areas called Namespaces. The process begins with identifying the Namespaces <span class="Emphasis_Italic">(libraries)</span> required for the procedure being created. Namespaces provide distinction to the objects and methods that exist in a code library.&#160;As a best practice, Namespaces typically start with the name of the company that created the code library. This prevents naming conflicts for objects that share a common name, but were created by different software providers.</p>
+                                                <p>In an effort to keep coding syntax as terse as possible, .Net Core allows the user to specify common Namespaces to use at the top of a Business Rule. These lines are preceded by the key word <span class="Emphasis_Italic">Imports.</span> Adding Imports Statements prevents having to type an object’s fully qualified name within a Namespace.</p>
+                                                <p>All Business Rules are prepopulated with both the commonly used Microsoft Namespaces as well as the OneStream specific Namespaces. For example, adding the statement <span class="Emphasis_Italic">Imports System.Math</span> to a Business Rule enables access to objects in the <span class="Emphasis_Italic">System.Math</span> Namespace.&#160; Instead of typing <span class="Emphasis_Italic">System.Math.Round(100.05,0), </span>type <span class="Emphasis_Italic">Round(100.05,0).</span></p>
+                                                <p>The example below shows the Namespace references used in a standard Extensibility Rule.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/Chapter%205%20API%20Structure%20and1_550x207.png" style="width: 550;height: 207;" />
+                                                </p>
+                                                <h3>Namespaces Defined</h3>
+                                                <p>OneStream is a large and sophisticated software platform and consequently a great deal of effort went into organizing the code base into a hierarchical set of Namespaces. This section defines the Namespace hierarchy and explains the primary purpose of the code libraries in each Namespace.&#160;It is important to understand structure and meaning of the platform Namespaces because most API methods accept and return objects defined within specific Namespaces.&#160;By understanding the structure of the Namespace hierarchy, developers can browse for objects using intelli-sense in the syntax editor.&#160;</p>
+                                                <h3>Namespace Hierarchy</h3>
+                                                <p>The hierarchy below denotes the platform Namespaces and the object libraries contained within them.&#160;This hierarchy is explored from within the Business Rule syntax editor by typing <span class="Emphasis_Italic">OneStream.</span> and navigating through the intelli-sense popup lists.&#160;This technique helps find objects to pass into an API function, objects returned from an API function, or common helper classes available in the platform.</p><pre xml:space="preserve">OneStream (Root Namespace)</pre><pre xml:space="preserve">OneStream.BusinessRule</pre><pre xml:space="preserve">OneStream.BusinessRule.Finance</pre><pre xml:space="preserve">OneStream.BusinessRule.Parser</pre><pre xml:space="preserve">OneStream.BusinessRule.Connector</pre><pre xml:space="preserve">OneStream.BusinessRule.ConditionalRule</pre><pre xml:space="preserve">OneStream.BusinessRule.DerivativeRule</pre><pre xml:space="preserve">OneStream.BusinessRule.DashboardDataSet</pre><pre xml:space="preserve">OneStream.BusinessRule.DashboardExtender</pre><pre xml:space="preserve">OneStream.BusinessRule.DashboardStringFunction</pre><pre xml:space="preserve">OneStream.BusinessRule.Extender</pre><pre xml:space="preserve">OneStream.Client</pre><pre xml:space="preserve">OneStream.Client.SharedUI</pre><pre xml:space="preserve">OneStream.Client.SharedUI.FinanceMsgStrings</pre><pre xml:space="preserve">OneStream.Client.SharedUI.FinanceUIStrings</pre><pre xml:space="preserve">OneStream.Client.SharedUI.GeneralMsgStrings</pre><pre xml:space="preserve">OneStream.Client.SharedUI.GeneralUIStrings</pre><pre xml:space="preserve">OneStream.Client.SharedUI.StageMsgStrings</pre><pre xml:space="preserve">OneStream.Client.SharedUI.StageUIStrings</pre><pre xml:space="preserve">OneStream.Client.SharedUI.StringResourceFileType</pre><pre xml:space="preserve">OneStream.Client.SharedUI.StringResourceHelper</pre><pre xml:space="preserve">OneStream.Client.SharedUI.XFStrings</pre><pre xml:space="preserve">OneStream.Finance</pre><pre xml:space="preserve">OneStream.Finance.Engine</pre><pre xml:space="preserve">OneStream.Finance.Engine.DataApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.EvalDataBufferDelegate</pre><pre xml:space="preserve">OneStream.Finance.Engine.FinanceRulesApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IAccountApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.ICalcStatusApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IConsApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.ICubesApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IDimensionsApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IEntityApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IFlowApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IFunctionsApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IFxRatesApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IMembersApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IPovApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IScenarioApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.ITimeApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IUDApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IViewApi</pre><pre xml:space="preserve">OneStream.Finance.Engine.IWorkflowApi</pre><pre xml:space="preserve">OneStream.Stage</pre><pre xml:space="preserve">OneStream.Stage.Engine</pre><pre xml:space="preserve">OneStream.Stage.Engine.Parser</pre><pre xml:space="preserve">OneStream.Stage.Engine.ParserDimension</pre><pre xml:space="preserve">OneStream.Stage.Engine.TransformerDataCache</pre><pre xml:space="preserve">OneStream.Stage.Engine.Transformer</pre><pre xml:space="preserve">OneStream.Stage.Engine.TransformerDimension</pre><pre xml:space="preserve">OneStream.Stage.Engine.TransformRuleCache</pre><pre xml:space="preserve">OneStream.Shared</pre><pre xml:space="preserve">OneStream.Shared.Engine</pre><pre xml:space="preserve">OneStream.Shared.Engine.ExternalWcfClient</pre><pre xml:space="preserve">OneStream.Shared.Engine.TaskActivityStepWrapperItem</pre><pre xml:space="preserve">OneStream.Shared.Database</pre><pre xml:space="preserve">OneStream.Shared.Database.DbConnInfo</pre><pre xml:space="preserve">OneStream.Shared.Common</pre><pre xml:space="preserve">OneStream.Shared.Common.(Various Constants, Helper Classes &amp; Data Transfer Objects ‘DTO’ )</pre><pre xml:space="preserve">OneStream.Shared.Wcf</pre><pre xml:space="preserve">OneStream.Shared.Wcf.(Various Constants &amp; Data Transfer Objects ‘DTO’)</pre>
+                                                <h3>Microsoft Financial Calls</h3>
+                                                <p>Financial calls are part of the Microsoft.VisualBasic namespace, and can be used to for calculations such as: </p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Depreciation</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Present and future values</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Interest rates</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Rates of return</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Payments</p>
+                                                    </li>
+                                                </ul>
+                                                <p>These functions are available to anyone with access to Business Rules. They can be explored within the Business Rule syntax editor by typing Microsoft.VisualBasic.Financial then navigating through the intelli-sense popup lists.</p>
+                                                <p>To view all methods from the Microsoft.Visual Basic Financial class used in a Business Rule:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Navigate to the Business Rule Editor:</p>
+                                                        <ol>
+                                                            <li value="1">
+                                                                <p>In the <span class="mc-variable Variables.CompanyName variable">OneStream Software</span> application, click the <b>Application</b> tab.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Under Tools, click <b>Business Rules</b>.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Expand the appropriate Business Rules category or click <b>Search</b> on the toolbar.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the <b>Formula</b> tab.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>In the editor window, type <span class="Emphasis_Bold">Microsoft.Visualbasic.Financial</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>A list of methods displays.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/API%20Overview%20Guide/business_rule_methods1_604x427.png" alt="Listing of Business Rule Methods" style="width: 604;height: 427;" />
+                                                </p>
+                                            </div></div></section><section id="In-Solution-Development" class="doc-section lvl1"><p class="crumb">API Structure and Organization</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor140"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440931"></a>In-Solution Development</h2>
+                                                <p>In-solution development is the process of creating OneStream Business Rules to deliver domain specific solutions.&#160; This means that all Business Rules are executed within the application server process space.&#160; The code written is only executed on the application servers where OneStream is deployed.&#160; </p>
+                                                <p>Developing within the application server environment enables solution developers to focus on the business problem instead of common programming concerns.&#160; The platform takes care of managing connections, moving data between application tiers, and load balancing server activities.</p>
+                                                <p>In some cases, in-solution development is seen as a limitation because the developer is restricted to coding within the application server tier.&#160; However, in most cases the efficiency and quality gained by developing within the platform out ways any limitations imposed by coding at the application server tier.</p>
+                                            </div></div></section><section id="Custom-Development" class="doc-section lvl1"><p class="crumb">API Structure and Organization</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1083"></a>
+                                                    <MadCap:concept term="API Overview" /><a name="_Toc50440932"></a>Custom Development</h2>
+                                                <p>Custom development refers to stand alone application development that interacts with the platform at the web server tier.&#160; </p>
+                                                <h4>Custom Web Development</h4>
+                                                <p>The platform has the ability to display web pages within a custom Dashboard.&#160; This allows completely custom web applications to surface within the <span class="mc-variable Variables.OneStream_Solution variable">OneStream Solution</span> . OneStream can pass information about the user’s POV and Workflow as URL Parameters enabling the custom web application to act as part of an integrated solution.</p>
+                                                <p>With this capability, developers are free to create and incorporate any solution they can imagine.</p>
+                                                
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#API-Structure-and-Organization">API Structure and Organization</a></li><li class="toc-l1"><a href="#In-Solution-Development">In-Solution Development</a></li><li class="toc-l1"><a href="#Custom-Development">Custom Development</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

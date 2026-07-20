@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Journals Overview — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat open"><a class="cat-link current" href="../chapters/11-Journals-Overview.html">Journals Overview</a><ul class="cat-items"><li><a class="s-link" href="#Journals-Toolbar">Journals Toolbar</a></li><li><a class="s-link" href="#Create-a-New-Journal">Create a New Journal</a><ul class="cat-items"><li><a class="s-link" href="#Create-Journal">Create Journal</a></li><li><a class="s-link" href="#Create-Journal-Using-Selected-Template">Create Journal Using Selected Template</a></li><li><a class="s-link" href="#Create-Journal-Using-File">Create Journal Using File</a></li></ul></li><li><a class="s-link" href="#Open-a-Journal">Open a Journal</a></li><li><a class="s-link" href="#Loading-Journal-Data">Loading Journal Data</a></li><li><a class="s-link" href="#Delete-a-Journal">Delete a Journal</a></li><li><a class="s-link" href="#Process-a-Journal">Process a Journal</a><ul class="cat-items"><li><a class="s-link" href="#Validate-a-Journal">Validate a Journal</a></li><li><a class="s-link" href="#Reject-a-Journal">Reject a Journal</a></li><li><a class="s-link" href="#Post-a-Journal">Post a Journal</a></li><li><a class="s-link" href="#Unpost-a-Journal">Unpost a Journal</a></li></ul></li><li><a class="s-link" href="#Journal-Templates">Journal Templates</a><ul class="cat-items"><li><a class="s-link" href="#Journal-Template-Properties">Journal Template Properties</a></li><li><a class="s-link" href="#Journal-Template-Group-Properties">Journal Template Group Properties</a></li><li><a class="s-link" href="#Security">Security</a></li></ul></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat"><a class="cat-link" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Journals-Overview" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor890"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Journals Overview</h1>
+                                                <p>Journals are used to record business transactions in the accounting records of a business from an enterprise resource planning perspective. Journals are typically used in financial consolidation projects to record closing adjustments. Journals display account amounts and indicate whether the accounts are balanced. In the <span class="mc-variable Variables.Product_Name variable">OneStream</span> app, journals are written to the AdjInput member of the origin dimension.</p>
+                                                <p>You can open or create journals from the OnePlace Workflow tab. Select a Workflow Profile, Scenario, Time&#160;Period, and then click the journal you want to open.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_overview1_470x380.png" style="width: 470;height: 380;" />
+                                                </p>
+                                            </div></div></section><section id="Journals-Toolbar" class="doc-section lvl1"><p class="crumb">Journals Overview</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor598"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Journals Toolbar</h2>
+                                                <p>The Journals toolbar contains many tools for working with journals. This section describes each tool in detail.</p>
+                                                <p>
+                                                    <img style="width: 617;height: 88;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_toolbar_updated1_617x88.png" />
+                                                </p>
+                                                <h2>Input Journals</h2>
+                                                <p>Once in this step, there will be two options under Workflow Journal Templates: Required and Optional.&#160;The required Journals will have to be completed before you can move on from this step.&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_31.png" /> <span class="Emphasis_Bold">Create Journal</span><br />Click this to create a Journal if a template is not available.&#160;If this button is disabled, it is because the workflow profile is configured to only allow you to create journals based on existing templates.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_30.png" /> <span class="Emphasis_Bold">Create Journal Using Template</span><br />Use this to create a Journal using the selected template.&#160;Manually enter the required Journal data and Click Save.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_29.png" /> <span class="FieldName">Create Journal Using Excel or Comma Separated Values File</span><br />Click this to load a journal entry via Excel template or CSV template.&#160;See Loading Journal Data in <a href="https://documentation.onestream.com/9.0.1/Content/Design%20and%20Reference/Data Collection Guides/Data Collection Guides.html" class="MCXref xref">Collecting Data</a> for more details on using these templates.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_copy_selected_journals1.png" /> <span class="Emphasis_Bold">Copy Selected Journals</span><br />Copy existing journals into other time periods and scenarios. This is useful when you are creating similar journals, managing recurring journals, or copying Actual data into budget or what-if scenarios.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Select the journals you want to copy and click <span class="Emphasis_Bold">Copy Selected Journals</span>. You can select journals in any status but when copied, they will be set to Working status in the new time period.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click the drop-down arrow in the Target Scenario field.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Make a selection. The selection applies to all journals in that single-batch copy.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>For each journal, select one or more time periods.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Type a new journal name and description.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>You can include attachments by placing a check in the Include Attachments checkbox.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>Administrators and members of the Journal Process Group can copy journals into a specified Adjustment Workflow Profile.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>After journals are copied, WfProfile_WfUnit_Scenario_TimePeriod_Index is appended to the journal name.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/journals_delete_button1.png" /> <span class="Emphasis_Bold">Delete Selected Item</span><br />Delete one or more journals simultaneously. Journals in Working or Rejected status can be deleted. This saves time when you need to remove multiple journal entries quickly and efficiently. Select the boxes next to the journals you want to remove then click this button and confirm.<br /></p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_28.png" /> <span class="FieldName">Reapply Template Settings to Journal</span><br />This will clear the data from the selected Journal and return it to the original template.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_ud_dimensions1.png" /> <span class="Emphasis_Bold">Show UD Descriptions</span> <br />Check this checkbox to display descriptions for the eight UD Dimension Types. They will display next to the Dimension Type in the Journal POV and the line item headers. Descriptions are defined in the Application Properties, and can provide clarity on the purpose of the dimensions.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>This feature applies to the Journal page only. Reports, BRApis and Excel/CSV templates related to journals remain unchanged.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_export1.png" /><span class="Emphasis_Bold"> Export</span> <br />Export journals from within the journals page. This is useful when you are more comfortable using a spreadsheet tool to edit journal data. You can export data from one area in <span class="mc-variable Variables.Product_Name variable">OneStream</span> and import it into another area or application.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Click <span class="Emphasis_Bold">Export</span> to open the <span class="Emphasis_Bold">Select Journals to Export</span> dialog. Workflow profile and scenario are locked.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Type a <span class="Emphasis_Bold">Time Filter</span> using the T# syntax. For example, T#2023M1, or for multiple time periods, T#2023M1,T#2023M2.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Type a <span class="Emphasis_Bold">Journal Status</span>. Select a single journal status or select <span class="Emphasis_Bold">All</span> to include all statuses.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Type a <span class="Emphasis_Bold">Journal Name</span>. This optional step will find all journals that contain the text you type.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click <span class="Emphasis_Bold">OK</span> to generate an XLSX file with journals that match the selected criteria.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In the <span class="Emphasis_Bold">File Explorer</span> dialog, browse to where you want to save the XLSX file. Data from all journals that match the selection criteria is saved.</p>
+                                                    </li>
+                                                </ol>
+                                                <p><b>Journal Entry Checkboxes</b> <br />Select multiple journal entries in the same state (e.g., completed, posted, approved, etc.) in order to Submit, Post, Approve, or Quick Post them at the same time. Select multiple journal entries in either the Working or Rejected status to delete them at the same time.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_27.png" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_validate_icon1.png" /> <span class="Emphasis_Bold">Validate</span><br />You can ensure that dimension members selected in the journal are valid cube intersections based on constraints configured in the dimension library. If validation errors exist, they will display in a Validation pane allowing you to view them as you make edits to the journal. This helps you save time by validating entries earlier in the process.</p>
+                                                <p>You must have the Journal Processing security role to use this feature and dimension member constraints must first be configured in the dimension library.</p>
+                                                <p>To use this feature:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Open a journal that is in Working status.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Validate</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>If invalid data is found, the Validation pane will display messages that detail each entry error.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_26.png" /> <br />Once a Journal is completed, select Quick Post or Post.&#160;When all required Journals and any optional Journals are finished, click Complete Workflow and a green check will appear for the Journals Workflow Step.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_25.png" /> <br />Depending on the security configuration, there are multiple options for Journals.&#160;If full security is in place, the end user will be able to create and submit.&#160;The approver will approve or reject, then the end user can post and complete the Workflow.</p>
+                                                <p><span class="Emphasis_Bold">Journal Line Items</span> <br />Journal data is entered into line items. You can add line items to reflect the Dimensions they are adjusting. Any dimensions not in line items must be configured in the Journal POV. <br /></p>
+                                                <p>To select a dimension member in journal line items:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Double-click the Entity, Account, Flow IC, or UD1-UD8 field.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>If you know the member name, type it into the text field. Repeat for all fields as needed.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>If you do not know the member name, use the Select Member dialog to locate the member.</p>
+                                                        <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>If the dimension members have a description, the members are displayed in the journal line items. For each dimension, you can set a preference to hide or show the description in journal line items. These preferences are saved on your local machine in <span class="mc-variable Variables.Product_Name variable">OneStream</span> user settings.<br /></p>
+                                                    </li>
+                                                </ol>
+                                                <p>You can filter journal line items by clicking the filter icon in the column headings. A drop-down selection box appears where you can choose from various filtering options.</p>
+                                                <p>
+                                                    <img style="width: 580;height: 268;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_filtering1_580x268.png" />
+                                                </p>
+                                                <p>This is useful when you are working with journals that contain a large amount of line items, making it easier to locate a specific subset of line items.</p>
+                                                <p>There are four line item actions buttons that sit just above the line item entries that aid in editing the journal line items:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">Add</span>: Creates a new journal line item. If an existing line is already selected, Add copies the selection. If no line is selected, the new line item is blank.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">Up</span>: Moves the selected item up in the list.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">Down</span>: Moves the selected item down in the list.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">Remove</span>: Deletes the selected line item.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Process</h3>
+                                                <p>Once in this step, click Process Cube in order to process the loaded data.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_24.png" /> <br />This icon performs No Calculate and all the standard Calculate, Translate, and Consolidate options using Calculation Definitions. Each added line item can be filtered by entity for reviewer level processes. Once the Cube is processed, the Process task will change from blue to green and move to the Confirm task. No Calculate can be used to allow the assignment of Data Management Sequences.</p>
+                                                <h3>Confirm</h3>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_23.png" /> <br />This step runs the Confirmation Rules defined for this particular Workflow.&#160;This will immediately inform users if they have passed or failed the data quality rules.&#160;The two types of statuses for this step are Warning or Error.&#160;Warning means the user is outside of the threshold, but it will not stop the process.&#160;Error means the user is outside of the threshold and this will stop the process and turn this step to red. If anything has failed, revisit one or many of the previous steps to make sure the data is accurate and complete.&#160; Once the data has passed all quality rules, the Confirm task will change from blue to green and move to the Certify task.</p>
+                                                <h3>Certify&#160;</h3>
+                                                <p>This is typically the final step in the Workflow process.&#160;This certifies and completes the phase of the Workflow.&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_22.png" /> <br />Some questions may need to be answered regarding the processes.&#160;Click each set of questions under the Questionnaires area.&#160; Answer the questions by clicking in the response cell and selecting the correct answer.&#160; Comments can also be added in order to explain the answers.&#160;The status will be displayed on the right.&#160;When this is completed, click on the Set Questionnaire Status icon and select Completed and then OK.&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_21.png" /> <br />After each group of questions is completed, the Set Certification Status icon will be enabled. Click this and select Certify in order to certify the data as complete and accurate. This will give the final green check for the month being processed and the data can now be trusted as complete and accurate by any stakeholder that is analyzing this information.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_20.png" /> <br />This is a one click option to expedite the Certify process.&#160; No questions need to be answered.&#160;This will give the final green check for the month being processed and the data can now be trusted as complete and accurate by any stakeholder that is analyzing this information.&#160;</p>
+                                                <p>This data can now be used for Consolidations by users or managers responsible for this workflow.&#160;They can look at data as it moves up and perform their own top side adjustments, confirmations, and certifications at as many levels as is appropriate for the organization.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_19.png" /> <br />Click on Dependent Status to see the status of each required Workflow task to ensure they are all completed.&#160;This will display the Workflow Profile name and all input types, the Workflow Channel, the status of each input type, the last step completed for each input type, the percentage of each step that is OK, In Process, Not Started, and steps with errors, and a record of when the last activity took place for each step.&#160; See Right-Click Options for details on these right-click functions.</p>
+                                                <p>
+                                                    <img style="width: 600;height: 126;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_18_600x126.png" /> &#160;</p>
+                                                <p>For more details on Workflow, see Workflow in <a href="9-Using-Workflow.html#About-Using-Workflow" class="MCXref xref">Workflow</a>.</p>
+                                                <h3>Multi-Period Processing</h3>
+                                                <p>Click on the Year in the Navigation Pane to enact Multi-Period Processing options:</p>
+                                                <p>
+                                                    <img style="width: 600;height: 263;" src="../_assets/Content/Resources/Images/Design%20and%20Reference/Journals_17_600x263.png" />
+                                                </p>
+                                                <p>From here, perform multiple workflow tasks for one to many time periods, as shown above.</p>
+                                                <h2>Analysis Pane</h2>
+                                                <p>In each workflow profile for a defined period there will be an Analysis Pane under the Status Pane. For example: under Process, Confirm, and Certify tasks.</p>
+                                                <h3>Cube Views and Dashboards for Analysis&#160;</h3>
+                                                <p>This is where data can be viewed and analyzed in cube views and dashboards.&#160;If there is a grid in any dashboard or cube view, these are available for further drill down or annotation by right clicking the cell.&#160;See <a href="21-Using-OnePlace-Cube-Views.html#Using-OnePlace-Cube-Views" class="MCXref xref">Using OnePlace Cube Views</a> and <a href="22-Using-OnePlace-Dashboards.html#Using-OnePlace-Dashboards" class="MCXref xref">Using OnePlace Dashboards</a> for more details.</p>
+                                                <p>To view the Cube Calculation Status, click on Cube Views| Calculation Status to show a data grid presenting the Calculation Status of the current active Workflow POV.&#160;This will be available at the total Monthly (not an Origin process) Review, Process, or Certify tasks.&#160;See Calculation Status in <a href="2-About-the-Financial-Model.html#About-the-Financial-Model" class="MCXref xref">About the Financial Model</a> for more details on this feature.</p>
+                                                <h3>Intercompany Matching</h3>
+                                                <p>IC Matching which will show any Intercompany discrepancies.&#160;If the button is red in the status column, click the item to see the details.&#160;Each Intercompany counterparty will be visible along with counterparties with an Intercompany variance.&#160; By clicking on the counterparty, details including the Reporting Currency, Entity Currency, and Partner Currency will be visible.&#160;</p>
+                                                <p>Select the Intercompany Partner to see the status of the Intercompany issue and any annotations the partner may have made.&#160;Select the Difference row to see both parties’ statuses and annotations.&#160;</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/intercompany_matching_reports1.png" />
+                                                </p>
+                                                <p>A red triangle indicator displays in the cell when data is dynamically derived. This generally occurs when the intercompany matching report performs currency translations.</p>
+                                                <p>Right click on the Entity row to perform the following functions:</p>
+                                                <p><span class="FieldName">Set IC Transaction Status</span>
+                                                </p>
+                                                <p>This allows the user to update the status by selecting Not Started, Loaded, Adjusting, Disputed, Finalized.&#160;The user may also include comments for the counterparty to see.</p>
+                                                <p><span class="FieldName">Show Partner Workflow Status</span>
+                                                </p>
+                                                <p>This allows the user to see the Workflow status of the counterparty.</p>
+                                                <p class="FieldName">Show/Hide Dimension Details</p>
+                                                <p>This allows the user to see the Dimension details for the Intercompany accounts.</p>
+                                                <p><span class="FieldName">Drill Down</span>
+                                                </p>
+                                                <p>This will allow the user to drill down on the Dimensions in order to get more information about the Intercompany data.</p>
+                                                <p>See Drill Down in <a href="21-Using-OnePlace-Cube-Views.html#Using-OnePlace-Cube-Views" class="MCXref xref">Using OnePlace Cube Views</a> for more details on this feature.</p>
+                                                <p>See Intercompany Eliminations in <a href="2-About-the-Financial-Model.html#About-the-Financial-Model" class="MCXref xref">About the Financial Model</a> for more details on Intercompany.</p>
+                                            </div></div></section><section id="Create-a-New-Journal" class="doc-section lvl1"><p class="crumb">Journals Overview</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor948"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Create a New Journal</h2>
+                                                <p>There are three ways to create a journal as shown in the image below.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_toolbar1.png" />
+                                                </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p><span class="Emphasis_Bold">Create Journal</span>: Create a new blank journal.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p><span class="Emphasis_Bold">Create Journal Using Selected Template</span>: Create a new journal based on the selected template.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p><span class="Emphasis_Bold">Create Journal Using File</span>: Create a new journal using data from either an Excel file or a CSV file.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>In the following sections, you will create journals using the three methods listed above.</p>
+                                            </div></div></section><section id="Create-Journal" class="doc-section lvl2"><p class="crumb">Journals Overview › Create a New Journal</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor571"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Create Journal</h3>
+                                                <p>To display the Journals toolbar and create a new blank journal:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the <span class="mc-variable Variables.Product_Name variable">OneStream</span> app, click the <span class="Emphasis_Bold">OnePlace</span> tab.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Workflow</span> to expand.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the existing <span class="Emphasis_Bold">Workflow Profile</span> to change it if necessary.</p>
+                                                        <ol>
+                                                            <li value="1">
+                                                                <p>In the <span class="Emphasis_Bold">Select Workflow View</span> dialog, click the <span class="Emphasis_Bold">Workflow Profile</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Click the <span class="Emphasis_Bold">Scenario</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Click the <span class="Emphasis_Bold">Year</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="4">
+                                                                <p>Click <span class="Emphasis_Bold">OK</span>.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Expand the period tree, locate the time period, and click <span class="Emphasis_Bold">Journals</span>.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_selection1_208x223.png" style="width: 208;height: 223;" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>On the Journals toolbar, click <span class="Emphasis_Bold">Create Journal</span>.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In the Journal Properties editor, under <span class="Emphasis_Bold">General</span>, type a name for the new journal.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Under <span class="Emphasis_Bold">Journal</span>, set properties as needed.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Under <span class="Emphasis_Bold">Point of View</span>, set properties as needed.</p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>. The new journal is added to the <span class="Emphasis_Bold">Journals</span> pane to the right of the journal properties section.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Create-Journal-Using-Selected-Template" class="doc-section lvl2"><p class="crumb">Journals Overview › Create a New Journal</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1671"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Create Journal Using Selected Template</h3>
+                                                <p>Templates can be built for journals to accelerate repetitive journal creation. They allow for control over which properties are configured by the user. They can be used to create new journals.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the <span class="mc-variable Variables.Product_Name variable">OneStream</span> app, click the <span class="Emphasis_Bold">OnePlace</span> tab.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Workflow</span> to expand.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the existing <span class="Emphasis_Bold">Workflow Profile</span> to change it if necessary.</p>
+                                                        <ol>
+                                                            <li value="1">
+                                                                <p>In the <span class="Emphasis_Bold">Select Workflow View</span> dialog, click the <span class="Emphasis_Bold">Workflow Profile</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Click the <span class="Emphasis_Bold">Scenario</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Click the <span class="Emphasis_Bold">Year</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="4">
+                                                                <p>Click <span class="Emphasis_Bold">OK</span>.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Expand the period tree, locate the time period, and click <span class="Emphasis_Bold">Journals</span>.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_selection1_208x223.png" style="width: 208;height: 223;" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In the <span class="Emphasis_Bold">Workflow Journal Templates</span> pane, click a journal template to select. This will be the journal on which you will base the template.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>On the Journals toolbar, click <span class="Emphasis_Bold">Create Journal Using Selected Template</span>. It will automatically be given a name but you can change this if necessary.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Under <span class="Emphasis_Bold">Journal Template</span>, set properties as needed.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Under <span class="Emphasis_Bold">Journal</span>, set properties as needed.</p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>Under <span class="Emphasis_Bold">Point of View</span>, set properties as needed.</p>
+                                                    </li>
+                                                    <li value="10">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>. The new journal is added to the <span class="Emphasis_Bold">Journals</span> pane to the right of the journal properties section.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Create-Journal-Using-File" class="doc-section lvl2"><p class="crumb">Journals Overview › Create a New Journal</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1502"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Create Journal Using File</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the <span class="mc-variable Variables.Product_Name variable">OneStream</span> app, click the <span class="Emphasis_Bold">OnePlace</span> tab.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Workflow</span> to expand.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the existing <span class="Emphasis_Bold">Workflow Profile</span> to change it if necessary.</p>
+                                                        <ol>
+                                                            <li value="1">
+                                                                <p>In the <span class="Emphasis_Bold">Select Workflow View</span> dialog, click the <span class="Emphasis_Bold">Workflow Profile</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Click the <span class="Emphasis_Bold">Scenario</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Click the <span class="Emphasis_Bold">Year</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="4">
+                                                                <p>Click <span class="Emphasis_Bold">OK</span>.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Expand the period tree, locate the time period, and click <span class="Emphasis_Bold">Journals</span>.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_selection1_208x223.png" style="width: 208;height: 223;" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>On the Journals toolbar, click <span class="Emphasis_Bold">Create Journal Using Excel (xlsx) or Comma Separated Values (csv) File</span>.</p>
+                                                    </li>
+                                                    <li value="6">
+                                                        <p>In the <span class="Emphasis_Bold">Open</span> dialog, browse to the file and click <span class="Emphasis_Bold">Open</span>.</p>
+                                                    </li>
+                                                    <li value="7">
+                                                        <p>Under <span class="Emphasis_Bold">Journal Template</span>, set properties as needed.</p>
+                                                    </li>
+                                                    <li value="8">
+                                                        <p>Under <span class="Emphasis_Bold">Journal</span>, set properties as needed.</p>
+                                                    </li>
+                                                    <li value="9">
+                                                        <p>Under <span class="Emphasis_Bold">Point of View</span>, set properties as needed.</p>
+                                                    </li>
+                                                    <li value="10">
+                                                        <p>Click <span class="Emphasis_Bold">Save</span>. The new journal is added to the <span class="Emphasis_Bold">Journals</span> pane to the right of the journal properties section.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Open-a-Journal" class="doc-section lvl1"><p class="crumb">Journals Overview</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <div id="microcontent1">
+                                                    <h2><a name="aanchor268"></a>
+                                                        <MadCap:concept term="Design &amp; Reference" />Open a Journal</h2>
+                                                </div>
+                                                <p>You can open any journals you have created from the <span class="Emphasis_Bold">Journals</span> pane in the <span class="mc-variable Variables.Product_Name variable">OneStream</span> app.</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>In the <span class="mc-variable Variables.Product_Name variable">OneStream</span> app, click the <span class="Emphasis_Bold">OnePlace</span> tab.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Workflow</span> to expand.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click the existing <span class="Emphasis_Bold">Workflow Profile</span> to change it if necessary.</p>
+                                                        <ol>
+                                                            <li value="1">
+                                                                <p>In the <span class="Emphasis_Bold">Select Workflow View</span> dialog, click the <span class="Emphasis_Bold">Workflow Profile</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Click the <span class="Emphasis_Bold">Scenario</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Click the <span class="Emphasis_Bold">Year</span> tab and make a selection.</p>
+                                                            </li>
+                                                            <li value="4">
+                                                                <p>Click <span class="Emphasis_Bold">OK</span>.</p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Expand the period tree, locate the time period, and click <span class="Emphasis_Bold">Journals</span>. </p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_selection1_208x223.png" style="width: 208;height: 223;" />
+                                                        </p>
+                                                        <p>The <span class="Emphasis_Bold">Workflow Journal Templates</span> pane and the <span class="Emphasis_Bold">Journals</span> pane display.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_pane1_245x297.png" style="width: 245;height: 297;" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>In the <span class="Emphasis_Bold">Journals</span> pane, click the journal you would like to view. You can new set journal properties as needed and enter line items into the journal.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Loading-Journal-Data" class="doc-section lvl1"><p class="crumb">Journals Overview</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2>Loading Journal Data</h2>
+                                                <h4>Journal Excel Template</h4>
+                                                <p>When loading journal entries via Excel a specific template must be created to determine the journal properties, the Dimensions to which the entries are being made, and the debit and credit amounts.&#160;</p>
+                                                <p>OneStream reads this template using a specific Named Range which is explained later in this section.&#160;Ensure the following information is included in the Named Range.</p>
+                                                <p class="FieldName">Property Tokens</p>
+                                                <p>The first eleven rows of the Named Range in the Excel template must include the following token definitions:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data1_588x247.png" class="MaxWidth" style="width: 588;height: 247;" />
+                                                </p>
+                                                <p class="FieldName">Template Name</p>
+                                                <p>Enter a template name is applicable.&#160;If this is a free form journal, leave this blank.</p>
+                                                <p class="FieldName">Name</p>
+                                                <p>Enter the name of the journal.</p>
+                                                <p class="FieldName">Description</p>
+                                                <p>If desired, enter a description for the journal.</p>
+                                                <p class="FieldName">Journal Type*</p>
+                                                <p>Standard or Auto-reversing.&#160;Allocation is not supported for Excel or CSV import.</p>
+                                                <p class="FieldName">Balance Type*</p>
+                                                <p>Balanced, Balanced by Entity, or Unbalanced</p>
+                                                <p class="FieldName">Is Single Entity*</p>
+                                                <p>True or False</p>
+                                                <p class="FieldName">Entity Filter*</p>
+                                                <p>Use a Member Filter to specify the Entities used with this journal.&#160;</p>
+                                                <p class="FieldName">Consolidation Member</p>
+                                                <p>Enter the specific currency or Local Member of Consolidation.</p>
+                                                <p class="FieldName">Workflow Name</p>
+                                                <p>Enter the Journal Workflow name.&#160;For example, if the name of the Workflow Profile is Houston, and the Adj input type is named Journals, enter Houston.Journals.</p>
+                                                <p class="FieldName">Workflow Scenario</p>
+                                                <p>Enter the Workflow Scenario or make the template dynamic by entering the |WFScenario| Substitution Variable.</p>
+                                                <p class="FieldName">Workflow Time</p>
+                                                <p>Enter the Workflow Time or make the template dynamic by entering the |WFTime| Substitution Variable. Workflow Time support two fields. The available cell immediately to the right is option representing the CubeTimeName.&#160; This field can be used when the Scenario’s Workflow Tracking Frequency is Yearly, and the Input Frequency is Monthly. For example, the Workflow Time would be |WFTime| or 2019 and the CubeTimeName would be the period to post, 2019M7.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data_18.png" />
+                                                </p>
+                                                <p>When Tracking Frequency is Yearly and Input Frequency is Monthly:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data_17.png" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data_16.png" />
+                                                </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data_15.png" />
+                                                </p>
+                                                <p>*See Journal Templates <a href="10-Data-Collection.html#Data-Collection" class="MCXref xref">Data Collection</a> for details on these Journal properties.</p>
+                                                <p class="FieldName">Dimension Tokens</p>
+                                                <p>Next, create the Dimension Tokens necessary to load the journal to the correct Dimensions in OneStream.&#160;The Dimension tokens need to be the column header for each data row.&#160;The standard tokens used determine the Cube, Entity, Parent, Account, Flow, Intercompany, the User Defined Members, and a Label if needed. Refer to Loading Stage Data for the syntax.&#160;The journal specific tokens are as follows:</p>
+                                                <p class="FieldName">AMTDR#</p>
+                                                <p>This indicates the debited amount.</p>
+                                                <p class="FieldName">AMTCR#</p>
+                                                <p>This indicates the credited amount.</p>
+                                                <h4>Header Abbreviations</h4>
+                                                <p class="FieldName">Static Value</p>
+                                                <p>Use&#160; :[] to fix a specific Member to the entire column creating a Static Value for the specified Source Dimension. For example, F#:[None] imports the None Flow Member for every Flow row within the Named Range.&#160;This syntax applies to all Dimension Tokens.</p>
+                                                <p>After the Dimension Tokens are setup, enter the data in the corresponding column.&#160;</p>
+                                                <p>Template Example:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data_14_550x178.png" style="width: 550;height: 178;" />
+                                                </p>
+                                                <p>The final step is to create a XFJ Named Range making sure to include the definition of each property, the Dimension tokens, and the data rows.&#160;The Named Range must begin with XFJ for OneStream to read and load it correctly.&#160;Multiple XFJ Named Ranges can be used within the template over multiple tabs.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Loading of Journal Templates or previously exported Journal data only requires a Parent (P#) column value to be populated if the target Consolidation dimension member being updated is OwnerPreAdj or OwnerPostAdj. Otherwise, this entry can be left blank.</p>
+                                                <p>Named Range Example:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data_13_640x163.png" class="MaxWidth" style="width: 640;height: 163;" />
+                                                </p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>The Named Range only covers each property definition.</p>
+                                                <h4>Journal CSV Template</h4>
+                                                <p>To set up a CSV template for a Journal, the Header and Detail values must be specified.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data_12_550x212.png" style="width: 550;height: 212;" />
+                                                </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Column A Specifies Row Type<br />In the first two rows of Column A, create two Row Type Parameters specifying the Header and the Detail.&#160;In the example above, !RowType (H=Header) and !RowType (D=Detail) are used to tag the corresponding rows with H or D identifying where the Header and Detail information is located in the CSV file.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Row One Specifies the Headers<br />After the Header Parameter is configured, enter the Journal Column Headers.&#160;The required Journal Headers are JournalName, OrigniatingTemplateName, JournalDescription,JournalType, JournalBalanceType, IsSingleEntity, EntityMemberFilter, ConsName, WFProfileName, WFScenarioName, WFTimeName and CubeTimeName. For more details on these, refer to the Journal Excel Template.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Row Two Specifies the Details<br />After the Detail Parameter is configured, enter the Journal Detail Headers. The required Journal Detail Headers are JournalName, CubeName, EntityName, ParentName, AccountName, FlowName, ICName, all UDNames, DebitAmount, CreditAmount, and LineDescription.&#160;For more details on these, refer to Journal Excel Template.</p>
+                                                    </li>
+                                                </ol>
+                                                <ol start="4">
+                                                    <li value="4">
+                                                        <p>Header and Detail Tags<br />The Journal data is driven by how each row in column A is tagged.&#160;Any rows tagged with H load as the Headers and any row tagged with D load as the details.</p>
+                                                    </li>
+                                                </ol>
+                                                <h4>Loading Journal Details via Workflow</h4>
+                                                <p>After the template is configured, users can load it directly into OneStream during the Workflow process.&#160;While the Journal Input type is selected, click the <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data_11.png" /> icon in the Journal toolbar.&#160;This lets you select the desired Excel or CSV template and load it into OneStream.&#160;After the file is loaded, the journal line items will appear in the journal and the user can save it to the Cube.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Loading%20Journal%20Data_10_550x281.png" style="width: 550;height: 281;" />
+                                                </p>
+                                                <h4>Extracting/Loading Journal Details via BRApi</h4>
+                                                <p>Users can export journal details into a CSV or XSLX file and load journals from a CSV or XSLX file by configuring an Extensibility Business Rule. This allows journal details to be extracted from one application and loaded into another. Users can also extract the journal, make changes, and re-load.&#160;</p>
+                                                <p class="FieldName">Extract Journals to CSV</p>
+                                                <p>Use BRApi.Journals.Data.ExportJournalstoCSV and define the session, filepath, Workflow Profile, Scenario, Time Filter, and Journal Status.<br />BRApi.Journals.Data.ExportJournalsToCsv(si, filePath, "Houston", "Actual", "T#|WFYear|.Base", "Posted")&#160;</p>
+                                                <p class="FieldName">Extract Journals to XSLX</p>
+                                                <p>Export journals associated with defined parameters to an XSLX file using the ExportJournalsToXSLX BRApi. It is sometimes easier to read and modify journal data in an XSLX format as compared to CSV files that are generated by the ExportJournalsToCSV BRApi. Use the parameters listed in the following table.</p>
+                                                <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/TableGridLight.css');" class="TableStyle-TableGridLight" cellspacing="0">
+                                                    <colgroup>
+                                                        <col class="TableStyle-TableGridLight-Column-Column" style="width: 218px;" />
+                                                        <col class="TableStyle-TableGridLight-Column-Column" />
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr class="TableStyle-TableGridLight-Head-Header1">
+                                                            <th class="TableStyle-TableGridLight-HeadE-Column-Header1">Parameter</th>
+                                                            <th class="TableStyle-TableGridLight-HeadD-Column-Header1">Description</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">si</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Session information</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">serverFilePath</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Name and location to save the file</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">wfProfileName</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Name of the Workflow Profile</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">wfScenarioName</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Name of the Scenario</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">wfTimeMemberFilter</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">
+                                                                <p>Filters workflow profile times. For example, if the scenario's Workflow Tracking Frequency is set to Quarterly, and Input Frequency is set to Monthly, the filter searches for journals associated with the Workflow Tracking Frequency.</p>
+                                                                <p>Time must be prefixed with T#. You can type a comma separated list of times such as T#2022H1, T#2022H2.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">journalName</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">Filters journals that contain the specified text</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyB-Column-Body">journalStatus</td>
+                                                            <td class="TableStyle-TableGridLight-BodyA-Column-Body">Status of the journal. You can search by status or use All to return all statuses. You cannot type a comma separated list.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <p>The following code example uses the ExportJournalsToXslx BRApi:</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_code_example1.png" />
+                                                </p>
+                                                <p class="FieldName">Load Example</p>
+                                                <p>Use BRApi.Journals.Data.ImportAndProcessJournals and define the session, filepath, and journal tasks to complete upon loading the journal details.<br />'BRApi.Journals.Data.ImportAndProcessJournals(si, filePath, save, submit, approve, post, unpostAndOverwrite, throwOnError)</p>
+                                            </div></div></section><section id="Delete-a-Journal" class="doc-section lvl1"><p class="crumb">Journals Overview</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1761"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Delete a Journal</h2>
+                                                <p>You can delete journals that you no longer use or need. </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Navigate to the journal you would like to delete:</p>
+                                                        <ol>
+                                                            <li value="1">
+                                                                <p>In the <span class="mc-variable Variables.Product_Name variable">OneStream</span> app, click the <span class="Emphasis_Bold">OnePlace</span> tab.</p>
+                                                            </li>
+                                                            <li value="2">
+                                                                <p>Click <span class="Emphasis_Bold">Workflow</span> to expand.</p>
+                                                            </li>
+                                                            <li value="3">
+                                                                <p>Click the existing <span class="Emphasis_Bold">Workflow Profile</span> to change it if necessary.</p>
+                                                                <ol>
+                                                                    <li value="1">
+                                                                        <p>In the <span class="Emphasis_Bold">Select Workflow View</span> dialog, click the <span class="Emphasis_Bold">Workflow Profile</span> tab and make a selection.</p>
+                                                                    </li>
+                                                                    <li value="2">
+                                                                        <p>Click the <span class="Emphasis_Bold">Scenario</span> tab and make a selection.</p>
+                                                                    </li>
+                                                                    <li value="3">
+                                                                        <p>Click the <span class="Emphasis_Bold">Year</span> tab and make a selection.</p>
+                                                                    </li>
+                                                                    <li value="4">
+                                                                        <p>Click <span class="Emphasis_Bold">OK</span>.</p>
+                                                                    </li>
+                                                                </ol>
+                                                            </li>
+                                                            <li value="4">
+                                                                <p>Expand the period tree, locate the time period, and click <span class="Emphasis_Bold">Journals</span>.</p>
+                                                                <p>
+                                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_selection1_208x223.png" style="width: 208;height: 223;" />
+                                                                </p>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>In the <span class="Emphasis_Bold">Journals</span> pane, place a tick into the box next to the journal you want to delete. You can delete more than one journal at a time by ticking all of the necessary boxes.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_delete1_254x138.png" style="width: 254;height: 138;" />
+                                                        </p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold">Delete Selected Item</span>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>In the confirmation dialog, click <span class="Emphasis_Bold">Yes</span>.</p>
+                                                    </li>
+                                                </ol>
+                                            </div></div></section><section id="Process-a-Journal" class="doc-section lvl1"><p class="crumb">Journals Overview</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor970"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Process a Journal</h2>
+                                                <p>After you have created or opened a journal and entered data into the ledger, there are several actions you can perform on the journal. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_actions_toolbar1.png" />
+                                                </p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p><span class="Emphasis_Bold">Validate a journal</span>: Ensure that data is correct and that cube intersections are valid.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p><span class="Emphasis_Bold">Reject a journal</span>: Discard the journal data.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p><span class="Emphasis_Bold">Quick post a journal</span>: Apply the journal data to the associated cube.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p><span class="Emphasis_Bold">Unpost</span>: Remove the journal data from the associated cube.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>In the following sections, you will move a journal through the above processes.</p>
+                                            </div></div></section><section id="Validate-a-Journal" class="doc-section lvl2"><p class="crumb">Journals Overview › Process a Journal</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor102"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Validate a Journal</h3>
+                                                <p>You can ensure that dimension members selected in the journal are valid cube intersections based on constraints configured in the dimension library. If validation errors exist, they will display in a Validation pane so that you can view them and make edits to the journal. This helps you save time by validating entries earlier in the process.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>You must have the Journal Processing security role to use this feature and dimension member constraints must first be configured in the dimension library.</p>
+                                                <p>To validate a journal:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p><a href="#Open-a-Journal">Open the journal</a> that you would like to validate.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Validate</span>. </p>
+                                                    </li>
+                                                </ol>
+                                                <p>Journal data will be evaluated and if invalid data is found, the <span class="Emphasis_Bold">Validation</span> pane will display a message that details each entry error.</p>
+                                            </div></div></section><section id="Reject-a-Journal" class="doc-section lvl2"><p class="crumb">Journals Overview › Process a Journal</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor459"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Reject a Journal</h3>
+                                                <p>You can reject a journal after it has been submitted for approval. </p>
+                                                <p>To reject a journal:</p>
+                                                <ol>
+                                                    <li value="1"><a href="#Open-a-Journal">Open the journal</a> that you would like to reject.</li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Reject</span>. </p>
+                                                    </li>
+                                                </ol>
+                                                <p>The journal status changes to Rejected.</p>
+                                            </div></div></section><section id="Post-a-Journal" class="doc-section lvl2"><p class="crumb">Journals Overview › Process a Journal</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1414"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Post a Journal</h3>
+                                                <p>Posting a journal in the <span class="mc-variable Variables.Product_Name variable">OneStream</span> app means adding the ledger data into the associated cube, similar to moving transaction data into a general ledger. </p>
+                                                <p>To post journal data:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p><a href="#Open-a-Journal">Open the journal</a> that you would like to post.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Enter line item journal data as necessary.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Optional. If you would like to post more than one journal at a time, select the journals in the <span class="Emphasis_Bold">Journals</span> pane by placing a tick in the selection box next to the journals.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <span class="Emphasis_Bold">Quick Post</span>. A green checkmark next to the journal in the <span class="Emphasis_Bold">Journals</span> pane indicates the journal has been posted.</p>
+                                                        <p>
+                                                            <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/journals_post_checkmark1_325x140.png" style="width: 325;height: 140;" />
+                                                        </p>
+                                                    </li>
+                                                </ol>
+                                                <p>Journal data is moved into the associated cube. </p>
+                                            </div></div></section><section id="Unpost-a-Journal" class="doc-section lvl2"><p class="crumb">Journals Overview › Process a Journal</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1010"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Unpost a Journal</h3>
+                                                <p>Unposting a journal in the <span class="mc-variable Variables.Product_Name variable">OneStream</span> app means removing the ledger data from the associated cube. </p>
+                                                <p>To unpost journal data:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p><a href="#Open-a-Journal">Open the journal</a> that you would like to unpost.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Optional. If you would like to unpost more than one journal at a time, select the journals in the <span class="Emphasis_Bold">Journals</span> pane by placing a tick in the selection box next to the journals.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="Emphasis_Bold">Unpost</span>. The green checkmark next to the journal in the <span class="Emphasis_Bold">Journals</span> pane is removed, indicating the journal has been unposted.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>Journal data is removed from the associated cube.</p>
+                                            </div></div></section><section id="Journal-Templates" class="doc-section lvl1"><p class="crumb">Journals Overview</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor173"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Journal Templates</h2>
+                                                <p>Create pre-set Journal Templates in Journal Template Groups.&#160;After the Journal Template Groups are created, they are organized into Journal Template Profiles and then assigned to Workflow Profiles. For more details on Profiles, see Form Template Profiles.</p>
+                                                <p>Journal details can also be loaded via an Excel or CSV template. See "Loading Journal Data" in <a href="https://documentation.onestream.com/9.0.1/Content/Design%20and%20Reference/Data Collection Guides/Data Collection Guides.html" class="MCXref xref">Collecting Data</a> for more information.&#160; </p>
+                                            </div></div></section><section id="Journal-Template-Properties" class="doc-section lvl2"><p class="crumb">Journals Overview › Journal Templates</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1851"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Journal Template Properties</h3>
+                                                <p>This section includes various journal template properties.</p>
+                                                <h4>General</h4>
+                                                <p class="FieldName">Name</p>
+                                                <p>Name of the journal template.</p>
+                                                <p class="FieldName">Description</p>
+                                                <p>A detailed description of the journal template.</p>
+                                                <h4>Journal Template</h4>
+                                                <p class="FieldName">Journal Template Type</p>
+                                                <p>A journal template can either be standard or auto approved. If auto approved, a user can create a journal from the template with limited editing ability meaning permission to change name, description, and&#160;so forth. After pressing Save, the line items are validated, and the journal skips the approval process and becomes approved.</p>
+                                                <p> If the journal needs to be edited, it is handled like any other journal from that point forward. Someone in the Approve Journals group must reject it for the original user to edit it.&#160;Then, the regular Submit, Approve steps will occur. This approach is needed because the person who created the auto approved template only pre-approved certain numbers to be put in the system.&#160;</p>
+                                                <p>The user does not need to be in the ApproveJournals security group to do this.&#160;They only need to be in the ProcessJournals security group which is normally the group for end users to save or submit journals.&#160;&#160; </p>
+                                                <p class="FieldName">Journal Template Group</p>
+                                                <p>This displays the journal template group that was created under the new template.</p>
+                                                <p class="FieldName">Journal Requirement Level</p>
+                                                <p>This setting works together with Frequency and determines when a journal is required. The options available are Not Used (anymore), Optional, or Required.</p>
+                                                <h4>Journal Frequency</h4>
+                                                <p class="FieldName">All Time Periods</p>
+                                                <p>This allows the journal to display every period.</p>
+                                                <p class="FieldName">Monthly</p>
+                                                <p>This allows the journal to display every month. If this is for a weekly application, it will display the last week of each month.</p>
+                                                <p class="FieldName">Quarterly</p>
+                                                <p>This allows the journal to display every quarter, or four times a year.</p>
+                                                <p class="FieldName">Half Yearly</p>
+                                                <p>This allows the journal to display two times a year; once in June and December.</p>
+                                                <p class="FieldName">Yearly</p>
+                                                <p>This allows the journal to display once a year in December.</p>
+                                                <p class="FieldName">Member Filter</p>
+                                                <p>This turns on the Frequency Member filter and then the filters can be defined in that section.&#160;For example, if this journal only needs to be completed in September, use the filter T#WFYearM9.</p>
+                                                <p class="FieldName">Frequency Member Filter</p>
+                                                <p>This becomes available when Member Filter is chosen in the Forms Frequency options above, otherwise this is gray for all the others.&#160;The purpose of this option is to allow the ability to filter by time.</p>
+                                                <p>The following settings control what the user can modify when creating a journal. Settings are True or False.</p>
+                                                <p>Can Change Journal Settings<br />Can Change Journal POV<br />Can change Journal Line Items<br />Can change Journal Amounts</p>
+                                                <h4>Journal</h4>
+                                                <p class="FieldName">Journal Type</p>
+                                                <p>The options are Standard, Auto Reversing, or Allocation.&#160;When posting an Auto Reversing journal, the auto reversal journal is automatically created in the next time period and set to the Approved state. The Auto Reversal journal has all the debits and credits reversed.&#160; </p>
+                                                <p>When un-posting an Auto Reversing journal, check to make sure the auto reversal is not posted first. Ifnot, delete the Auto Reversal journal from the next time period and un-post.&#160;</p>
+                                                <p>An Allocation journal can be set up to perform simple or more intricate allocations, such as creating the weighting of the allocation, previewing the actual allocation entries, and un-posting them if they need to be run again.</p>
+                                                <h4>Journal Balance Type</h4>
+                                                <p class="FieldName">Balanced </p>
+                                                <p>The entire set of journal lines must balance between the debits and credits.</p>
+                                                <p class="FieldName">Balance by Entity </p>
+                                                <p>Debits and credits in a multi-Entity journal must balance for each entity.</p>
+                                                <p class="FieldName">Unbalanced</p>
+                                                <p>Balance check will not be performed.&#160;This is normally used for one-sided journals.</p>
+                                                <p class="FieldName">Is Single Entity </p>
+                                                <p>If True, the entity name is entered in the Journal POV and all journal lines relate to this one entity. If False, the Cube, Entity and Parent columns must be filled out for every line in the journal instance. </p>
+                                                <p class="FieldName">Entity Member Filter</p>
+                                                <p>This Member Filter will help limit the list of entities presented to the user in the Journal POV and journal lines. </p>
+                                                <p class="FieldName">Point of View</p>
+                                                <p>In order to limit the amount of setup for every journal line, the items that remain constant (e.g. Flow = None) can be set in the Journal POV instead of in every line Item.</p>
+                                                <p class="Tip" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;TIP: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>TIP: </b></span></span></span>A Journal template can be repeated on a regular basis if values are placed in the journal lines and journal’s settings require repeating upon a certain frequency. </p>
+                                            </div></div></section><section id="Journal-Template-Group-Properties" class="doc-section lvl2"><p class="crumb">Journals Overview › Journal Templates</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor337"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Journal Template Group Properties</h3>
+                                                <p>This section lists the general group properties.</p>
+                                                <h4>General (Journal Template Group)</h4>
+                                                <p class="FieldName">Name</p>
+                                                <p>The name of the Journal Template group.</p>
+                                                <p class="FieldName">Description</p>
+                                                <p>A short description of the Template group such as how or where it is used.</p>
+                                            </div></div></section><section id="Security" class="doc-section lvl2"><p class="crumb">Journals Overview › Journal Templates</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1294"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Security</h3>
+                                                <p class="FieldName">Access Group</p>
+                                                <p>Members of this group have access to the Journal Template group</p>
+                                                <p class="FieldName">Maintenance Group</p>
+                                                <p>Members of this group have the authority to maintain the Journal Template group</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Click <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Security1.png" />&#160;to use the Security page to modify users and groups before assigning them. Click <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Data%20Source%20Properties1.png" /> and begin typing the name of the group.&#160;As the first few letters are typed, groups are filtered making it easier to find and select the desired group.&#160; Select the group, press CTRL and then double-click.</p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Journals-Overview">Journals Overview</a></li><li class="toc-l1"><a href="#Journals-Toolbar">Journals Toolbar</a></li><li class="toc-l1"><a href="#Create-a-New-Journal">Create a New Journal</a></li><li class="toc-l2"><a href="#Create-Journal">Create Journal</a></li><li class="toc-l2"><a href="#Create-Journal-Using-Selected-Template">Create Journal Using Selected Template</a></li><li class="toc-l2"><a href="#Create-Journal-Using-File">Create Journal Using File</a></li><li class="toc-l1"><a href="#Open-a-Journal">Open a Journal</a></li><li class="toc-l1"><a href="#Loading-Journal-Data">Loading Journal Data</a></li><li class="toc-l1"><a href="#Delete-a-Journal">Delete a Journal</a></li><li class="toc-l1"><a href="#Process-a-Journal">Process a Journal</a></li><li class="toc-l2"><a href="#Validate-a-Journal">Validate a Journal</a></li><li class="toc-l2"><a href="#Reject-a-Journal">Reject a Journal</a></li><li class="toc-l2"><a href="#Post-a-Journal">Post a Journal</a></li><li class="toc-l2"><a href="#Unpost-a-Journal">Unpost a Journal</a></li><li class="toc-l1"><a href="#Journal-Templates">Journal Templates</a></li><li class="toc-l2"><a href="#Journal-Template-Properties">Journal Template Properties</a></li><li class="toc-l2"><a href="#Journal-Template-Group-Properties">Journal Template Group Properties</a></li><li class="toc-l2"><a href="#Security">Security</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>

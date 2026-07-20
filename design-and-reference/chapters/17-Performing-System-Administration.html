@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Performing System Administration — Design and Reference Guide</title>
+<script>(function(){try{var r=document.documentElement;var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',t);var sb=localStorage.getItem('--sbw');if(sb)r.style.setProperty('--sbw',sb);var tc=localStorage.getItem('--tocw');if(tc)r.style.setProperty('--tocw',tc);if(localStorage.getItem('navHidden'))r.setAttribute('data-nav','hidden');if(localStorage.getItem('tocHidden'))r.setAttribute('data-toc','hidden');}catch(e){}})();</script>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body data-base="../" data-guide="design-and-reference">
+<header class="navbar">
+ <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('sidebar-open')">&#9776;</button>
+ <a class="brand" href="../index.html">OneStream&nbsp;Docs</a>
+ <select id="guide-select" class="guide-switch" aria-label="Choose guide" hidden></select>
+ <div class="search-wrap"><input id="q" type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false">
+   <div id="results" class="results" hidden></div></div>
+ <button class="pane-toggle nav-toggle" title="Show/hide the navigation panel" onclick="togglePane('nav')">&#9703;</button>
+ <button class="pane-toggle toc-toggle" title="Show/hide the On-this-page panel" onclick="togglePane('toc')">&#9704;</button>
+ <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()"><span class="ti-light">&#9788;</span><span class="ti-dark">&#9789;</span></button>
+</header>
+<div class="page">
+<aside class="sidebar"><nav class="menu"><ul class="menu-list"><li class="cat"><a class="cat-link" href="../chapters/1-Introduction.html">Introduction</a></li><li class="cat"><a class="cat-link" href="../chapters/2-About-the-Financial-Model.html">About the Financial Model</a></li><li class="cat"><a class="cat-link" href="../chapters/3-Navigation.html">Navigation</a></li><li class="cat"><a class="cat-link" href="../chapters/4-Docking.html">Docking</a></li><li class="cat"><a class="cat-link" href="../chapters/5-Filter-Data-and-Reduce-Maintenance-With-Parameters.html">Filter Data and Reduce Maintenance With Parameters</a></li><li class="cat"><a class="cat-link" href="../chapters/6-Presenting-Data-With-Extensible-Documents.html">Presenting Data With Extensible Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/7-Implementing-Security.html">Implementing Security</a></li><li class="cat"><a class="cat-link" href="../chapters/8-Cube.html">Cube</a></li><li class="cat"><a class="cat-link" href="../chapters/9-Using-Workflow.html">Using Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/10-Data-Collection.html">Data Collection</a></li><li class="cat"><a class="cat-link" href="../chapters/11-Journals-Overview.html">Journals Overview</a></li><li class="cat"><a class="cat-link" href="../chapters/12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html">Presenting Data With Books, Cube Views and Other Items</a></li><li class="cat"><a class="cat-link" href="../chapters/13-Use-Application-Tools.html">Use Application Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/14-User-Authentication-and-Single-Sign-On.html">User Authentication and Single Sign-On</a></li><li class="cat"><a class="cat-link" href="../chapters/15-How-Users-are-Configured-for-Authentication.html">How Users are Configured for Authentication</a></li><li class="cat"><a class="cat-link" href="../chapters/16-About-Managing-Users-and-Groups.html">About Managing Users and Groups</a></li><li class="cat open"><a class="cat-link current" href="../chapters/17-Performing-System-Administration.html">Performing System Administration</a><ul class="cat-items"><li><a class="s-link" href="#Application-Server-Configurations">Application Server Configurations</a><ul class="cat-items"><li><a class="s-link" href="#General-System-Configurations">General System Configurations</a></li><li><a class="s-link" href="#Environment-System-Configurations">Environment System Configurations</a></li><li><a class="s-link" href="#Recycling-System-Configurations">Recycling System Configurations</a></li><li><a class="s-link" href="#Database-System-Configurations">Database System Configurations</a></li></ul></li><li><a class="s-link" href="#Audits">Audits</a></li><li><a class="s-link" href="#Manage-System-Security">Manage System Security</a></li><li><a class="s-link" href="#File-Share-Security-Roles">File Share Security Roles</a></li><li><a class="s-link" href="#System-User-Interface-Roles">System User Interface Roles</a></li><li><a class="s-link" href="#System-Security-Users-and-Groups">System Security Users and Groups</a></li><li><a class="s-link" href="#International-Settings">International Settings</a></li><li><a class="s-link" href="#Working-With-System-Applications">Working With System Applications</a></li><li><a class="s-link" href="#System-Dashboards">System Dashboards</a></li></ul></li><li class="cat"><a class="cat-link" href="../chapters/18-Logging.html">Logging</a></li><li class="cat"><a class="cat-link" href="../chapters/19-Using-System-Tools.html">Using System Tools</a></li><li class="cat"><a class="cat-link" href="../chapters/20-Using-OnePlace-Workflow.html">Using OnePlace Workflow</a></li><li class="cat"><a class="cat-link" href="../chapters/21-Using-OnePlace-Cube-Views.html">Using OnePlace Cube Views</a></li><li class="cat"><a class="cat-link" href="../chapters/22-Using-OnePlace-Dashboards.html">Using OnePlace Dashboards</a></li><li class="cat"><a class="cat-link" href="../chapters/23-Storing-Documents.html">Storing Documents</a></li><li class="cat"><a class="cat-link" href="../chapters/24-Excel-Add-In.html">Excel Add-In</a></li></ul></nav></aside>
+<div class="rz rz-left" title="Drag to resize"></div>
+<main class="content"><article class="doc"><div class="doc-head"><span class="eyebrow">Design and Reference Guide</span></div><section id="Performing-System-Administration" class="doc-section lvl0"><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h1><a name="aanchor250"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />System Security Roles</h1>
+                                                <p>The following roles apply to the entire system, not just one Application.</p>
+                                                <p><span class="FieldName">Manage System Dashboards</span> - Use to manage all System Dashboards regardless of access to certain Dashboards. This role links the SystemPane Role and the System User Interface Roles section, meaning this security role must include this group in order to be active.</p>
+                                                <p><span class="FieldName">Manage System Database Files</span> -There are two file systems in the Framework database (such as the System database) and each Application database. Users with the ManageSystemDatabaseFiles and ManageApplicationDatabaseFiles roles have read and write access to all folders and files in these file systems, respectively.&#160;Other users can be given read and/or write access to specific folders in the database file systems using the a folder’s security settings.&#160;This option ties the FileExplorerPage role from the System User Interface Roles section, meaning this security role must include this group in order to be active.</p>
+                                                <p><span class="FieldName">Manage File Share</span> - The File Share is a Windows folder that Application Servers can read and write.&#160;It is configured in the XFAppServerConfig.xml file using the FileShareRootFolder setting.&#160;The File Share is a server-side storage area where external systems or IT can stage and upload ifles. Users with the ManageFileShare role can edit these folder and files using File Explorer.</p>
+                                            </div></div></section><section id="Application-Server-Configurations" class="doc-section lvl1"><p class="crumb">Performing System Administration</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1850"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Application Server Configurations</h2>
+                                                <p>Application server configurations can now be made by Administrators and advanced IT persona. Common requests that resulted in support calls can now be addressed internally by advanced OneStream users with the proper access. This process also eliminates the need for an IIS restart for the changes to take place. Understand that as settings changed and saved, they are automatically applied every two minutes.</p>
+                                                <p>There are two system roles that manage six categories of configurations. The application maintains an audit trail so changes to the configurations are accessible. Upon install, the application server configurations are enabled by default. To mitigate misuse of configurations settings, Customer Support can disable full features, sections, and property changes via XML/App config.</p>
+                                                <h2>System Roles</h2>
+                                                <p>Two roles exist to grant Administrators and advanced IT users the ability to change server configurations:</p>
+                                                <p><b>System Security Role:</b> ManageSystemConfiguration</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Default to Nobody</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Not automatically granted to Administrator</p>
+                                                    </li>
+                                                </ul>
+                                                <p><b>System User Interface Role:</b> SystemConfigurationPage</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Default to Administrator Group - Administrators will have read-only rights</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>System User Interface Role should be “view only” to all users assigned</p>
+                                                    </li>
+                                                </ul>
+                                                <h2>System Configurations</h2>
+                                                <p>There are six categories of system configurations:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>General</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Environment</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Memory</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Multithreading</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Recycling</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Database Server Connections</p>
+                                                    </li>
+                                                </ul>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Memory and Multithreading system configurations must be enabled. Customers should contact support to have this configuration change made for them.</p>
+                                                <p>An IIS restart is not required to capture changes as they are automatically applied every two minutes. Saved changes are tracked via the Audit tab, which is available for each server configuration.</p>
+                                                <p>When enabled, permitted users can adjust system configurations in app by navigating to System&gt;Administration&gt;System Configuration.</p>
+                                            </div></div></section><section id="General-System-Configurations" class="doc-section lvl2"><p class="crumb">Performing System Administration › Application Server Configurations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1005"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />General System Configurations</h3>
+                                                <p>When the box and setting are greyed out, the property is set based on the configuration file. Deselect the box to adjust your custom value then save. This overrides the configuration file. Select the property's box again to default back to the configuration file.</p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Improperly modifying certain server configurations can impact overall environment or application performance. Consult OneStream support for recommendations.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/SysConfig%20General1.png" />
+                                                </p>
+                                                <h4>General Menu</h4>
+                                                <p style="font-weight: bold;">Use Detailed Error Logging: <span style="font-weight: normal;">When true, stack trace information is shown. When false, stack trace information is not shown.</span></p>
+                                                <p style="font-weight: bold;">User Inactivity Timeout (minutes): <span style="font-weight: normal;">Set the number of minutes a user is timed out due to inactivity.</span></p>
+                                                <p style="font-weight: bold;">Task Inactivity Timeout (minutes): <span style="font-weight: normal;">Set the number of minutes a task is timed out due to inactivity.</span></p>
+                                                <p style="font-weight: bold;">Logon Inactivity Threshold (days): <span style="font-weight: normal;">Set the Logon Inactivity Threshold (days) to the number of days of inactivity before the user can no longer access the system. Set to -1 to disable the setting.</span></p>
+                                                <p style="font-weight: bold;">Task Scheduler Validation Frequency (days): <span style="font-weight: normal;">Set the number of days in which the Task Scheduler validation runs.</span></p>
+                                                <p style="font-weight: bold;">Culture Codes: <span style="font-weight: normal;">Set the appropriate code for display settings using the standard Microsoft Local designation for each language. (ex. en-US)</span></p>
+                                                <p style="font-weight: bold;">White List File Extensions: <span style="font-weight: normal;">When blank, any file type can be saved to a root folder then uploaded. Add custom file types by clicking the box then the ellipses to restrict the types of files which will be supported in the File Explorer.</span></p>
+                                                <p style="font-weight: bold;">Num Seconds Before Logging Slow Formulas: <span style="font-weight: normal;">Set the number of seconds before slow formulas are logged. This will enable logging of formulas and impact consolidation performance. Disable when no longer required.</span></p>
+                                                <p style="font-weight: bold;">Number Seconds Before Logging Get Data Cells: <span style="font-weight: normal;">Set the number of seconds before Get Data Cells are logged. Default is 180 and should only be increased for debug purposes</span></p>
+                                                <h4>Task Activity Menu</h4>
+                                                <p><b>Log Books:</b> When set to True (default), a log is created in Task Activity when the items are included as Task Activity steps for that specific book. The intention of this feature is to verify entries in the Task Activity grid and the settings in the configuration file work as expected.</p>
+                                                <p><b>Log Cube Views:</b> When set to True, a log is created in Task Activity when a Cube View is opened, a report is run or an export to Excel is completed in the data explorer. The intention of this feature is to analyze data analysis performance.</p>
+                                                <p><b>Log Quick Views:</b> When set to True, a log is created in Task Activity when a new Quick View is created or when rows/columns are shifted/moved around. The intention of this feature is to analyze data analysis performance.</p>
+                                                <p><b>Log Get Data Cells Threshold:</b> This logs the calls to GetDataCells and GetDataCellsUsingScript. It includes context information such as the Excel file name or the Cube View name. It only creates logs if the number of Data Cells being requested is equal to or greater than the value provided in this field.</p>
+                                                <h4>Cube Views Menu</h4>
+                                                <p>The Cube View configurations will impact all Cube Views in an application environment. They are designed to optimize the Cube View performance through managing the page size and initiating paging which will maximize the availability of server resources. These settings can be overridden to tailor the design and performance of a specific Cube View, using the General Settings/Common/Paging properties found on each Cube View.</p>
+                                                <p><b>Max Number of Expanded Cube View Rows:</b> Set the max number of rows displayed when using an expanded Cube View.</p>
+                                                <p><b>Max Number of Unsuppressed Row Per Cube View Page:</b> The default value of 2000 is used, which is determined by the settings on the OneStream Server Configuration Utility, The maximum value is 100,000 rows. If the Cube View performs well, but you want 2500 rows to display, for example you may want something in the tree to display in the first page, then you would increase the rows.</p>
+                                                <p><b>Max Number Seconds To Process Cube View:</b> This setting impacts paging behavior. The default value of 20 will be used which is determined by the OneStream Server Configuration Utility. The maximum value is 600 seconds.</p>
+                                            </div></div></section><section id="Environment-System-Configurations" class="doc-section lvl2"><p class="crumb">Performing System Administration › Application Server Configurations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor282"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Environment System Configurations</h3>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/SysConfig%20Environment1.png" />
+                                                </p>
+                                                <h4>Environment</h4>
+                                                <p>The configurations allow the Administrator to tailor the environment login process for the user by providing a custom label or by triggering an acceptance criteria upon each login.</p>
+                                                <p><b>Environment Name</b>: Enter the name to be displayed (in white) for the environment. You can enter up to 150 characters.</p>
+                                                <p><b>Environment Color</b>: Specify a provided environment color or enter a hex value to display the name on a colored background.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/EnvironColorCombo1_614x369.png" style="width: 614;height: 369;" />
+                                                </p>
+                                                <p><b>Logon Agreement Type</b>: To display a specific message after a user logs on, select Custom and enter the message text.</p>
+                                                <p><b>Logon Agreement Message</b>: Enter the message text.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/CustomLogOnCombo1_619x483.png" style="width: 619;height: 483;" />
+                                                </p>
+                                                <h4>Full Width Banner</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Banner_sample1_617x75.png" style="width: 617;height: 75;" />
+                                                </p>
+                                                <p>The configurations allow you to display information across the top banner indicating varying levels of severity. The banner can be permanently displayed or dismissible.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Environment_full_width_banner_config1_615x251.png" style="width: 615;height: 251;" />
+                                                </p>
+                                                <p><b>Full Width Banner Message</b>: Enter the banner message text to be displayed.</p>
+                                                <p><b>Full Banner Display Type</b>: Indicate the severity of the message by selecting Informational, Warning, Successful, or Critical from the drop-down menu.</p>
+                                                <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/TableGridLight.css');" class="TableStyle-TableGridLight" cellspacing="0">
+                                                    <col class="TableStyle-TableGridLight-Column-Column" />
+                                                    <col class="TableStyle-TableGridLight-Column-Column" />
+                                                    <tbody>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body"><b>Type</b>
+                                                            </td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body"><b>Sample</b>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">Informational</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">
+                                                                <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Banner_informational1.png" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">Warning</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">
+                                                                <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Banner_warning1.png" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyE-Column-Body">Successful</td>
+                                                            <td class="TableStyle-TableGridLight-BodyD-Column-Body">
+                                                                <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Banner_successful1.png" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-TableGridLight-Body-Body">
+                                                            <td class="TableStyle-TableGridLight-BodyB-Column-Body">Critical</td>
+                                                            <td class="TableStyle-TableGridLight-BodyA-Column-Body">
+                                                                <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/Banner_critical1.png" />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <p><b>Can Close Full Banner</b>: When True, the banner may be dismissed after log in. When False, the banner cannot be dismissed.</p>
+                                            </div></div></section><section id="Recycling-System-Configurations" class="doc-section lvl2"><p class="crumb">Performing System Administration › Application Server Configurations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor710"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Recycling System Configurations</h3>
+                                                <p>Overtime, server memory may become increasing fragmented, which can affect performance and stability. The default configuration of a daily recycling process is standard. The System Configuration page allows the administrator to tailor when these events occur to be best suited for their implementation.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/SysConfig%20Recycling1_654x207.png" style="width: 654;height: 207;" />
+                                                </p>
+                                                <h4>Recycling Menu</h4>
+                                                <p><b>Auto Recycle Num Running Hours</b>: Default is 24, which means once a day, the server will recycle. Automatic Recycling allows Application Servers a chance to recycle, which is a recommended practice. These first four settings control this behavior.</p>
+                                                <p><b>Auto Recycle Start Hour UTC</b>: Default is 5, which means 05:00 UTC time. This is the earliest time in a day when a server can automatically recycle. It is best to set this and the End Hour to be a range of time with the lowest amount of Application Server activity.</p>
+                                                <p><b>Auto Recycle End Hour UTC</b>: Default is 7, which means 07:00 UTC time. This is the latest time in a day when a server can automatically recycle.</p>
+                                                <p><b>Auto Recycle Max Pause Time (minutes)</b>: Default is 30. This means that when it is time to recycle a server automatically, it will first pause from accepting more server tasks, but allow for existing assigned tasks to complete processing for 30 minutes before recycling. If there are no active tasks for this server, it will recycle when the time comes.</p>
+                                            </div></div></section><section id="Database-System-Configurations" class="doc-section lvl2"><p class="crumb">Performing System Administration › Application Server Configurations</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h3><a name="aanchor1136"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Database System Configurations</h3>
+                                                <p>The Database Server Connections provides the Administrator with greater visibility into the structure of their environment. Additionally, the administrator can quickly and easily establish database connections to support their model's design requirements.<br /><br />An IIS restart is not required to capture changes as they are automatically applied every two minutes. Saved changes are tracked via the Audit tab, which is available for each server configuration</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/SysConfig%20Database1.png" />
+                                                </p>
+                                                <h4>Database Server Connections</h4>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/InternalConfigSettings1_614x225.png" style="width: 614;height: 225;" />
+                                                </p>
+                                                <p><b>Internal Menu</b>
+                                                </p>
+                                                <p>Configure Database Server Connection, Security, and Timeouts settings from this menu.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/ExternalConfigSettings1_614x226.png" style="width: 614;height: 226;" />
+                                                </p>
+                                                <p><b>External Menu</b>
+                                                </p>
+                                                <p>Configure Database Server Connection, Security, Database, and Timeouts settings from this menu.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/CustomConfigSettings1_619x249.png" style="width: 619;height: 249;" />
+                                                </p>
+                                                <p><b>Custom</b>
+                                                </p>
+                                                <p>Configure Database Server Connection, Security, Database, and Timeouts settings from this menu.</p>
+                                                <p>External only and the Connection String will be visible without displaying password and Customer can Edit.</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Connection String will allow for Edits</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Connection String will display “?” where password is used</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Connection String can be modified without changing password and saved with “?” not overriding original password</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Connection String password can be modified and upon save will display “?” in UI</p>
+                                                        <ul>
+                                                            <li>
+                                                                <p>Connections Strings using the following will be masked in the UI: pwd; pass; password</p>
+                                                            </li>
+                                                            <li>
+                                                                <p>All others will display password and need to be addressed separately – majority of connection strings password will be handled above</p>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <p>Pre-existing External Connections, when moving over to Customer Connections, should use the previous name to avoid breaking any connections with Task Scheduler, Business Rules, etc.</p>
+                                            </div></div></section><section id="Audits" class="doc-section lvl1"><p class="crumb">Performing System Administration</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1772"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Audits</h2>
+                                                <p>Configuration setting changes are tracked via the Audit tab. View changes by navigating to <b>System &gt; System Configuration &gt; Audit</b>.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/ConfigAuditA_604x278.png" style="width: 604;height: 278;" />
+                                                </p>
+                                                <p>System Database Tables audits are viewed by navigating to <b>System &gt; Tools &gt; Database &gt; SystemConfig</b>.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/ConfigAuditB_628x274.png" style="width: 628;height: 274;" />
+                                                </p>
+                                                <p>The Environment will show what settings the server is currently using. The server updates every 2 minutes. Here the user can see what settings are being picked up. The “Last Updated” column shows the date and time settings were changed. Regardless of what type of connection (Internal, External, Custom) any available configurations that can be changed will show up here.</p>
+                                                <p>Environment audits are viewed by navigating to <b>System &gt; Tools &gt; Environment &gt; Application Server Sets</b></p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/ConfigAuditC_596x340.png" style="width: 596;height: 340;" />
+                                                </p>
+                                            </div></div></section><section id="Manage-System-Security" class="doc-section lvl1"><p class="crumb">Performing System Administration</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1722"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Manage System Security</h2>
+                                                <p>Manage System Security allows non-administrators to manage users, roles and groups and facilitates a comprehensive, functionally-tailored way to separate user and group responsibilities. </p>
+                                                <p>By default Administrators have access to all security roles. Assigning other groups to roles does not remove an Administrator's complete system access. Users with Manage System Security roles can access to the System User Interface Roles of SystemAdministrationLogon and SystemPane.</p>
+                                                <p>Roles are not exclusionary or limiting. If granted, users can get additional functionality through their membership in groups having corresponding role assignments. See <a href="#Performing-System-Administration" class="MCXref xref">System Security Roles</a>.</p>
+                                                <p>For example:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>A member of the IT team who is not an administrator might need to manage the system security roles.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>An employee in the Accounting department who reports to the Controller over consolidations may manage groups and not need access to other areas of the system.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>You can delete these security roles to non-Administrators:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">ManageSystemSecurityUsers</span>: Grants permission to manage users.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">ManageSystemSecurityGroups</span>: Grants permission to manage groups, exclusion groups and group membership.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="Emphasis_Bold">ManageSystemSecurityRoles</span>: Grants permission to manage system security role assignment.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3>Access System Security Roles</h3>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>From the System tab, go to <span class="Emphasis_Bold">Administration &gt; Security</span>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Select <span class="Emphasis_Bold">System Security Roles</span>.</p>
+                                                    </li>
+                                                </ol>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/ManageSystemSecurity1_550x260.png" style="width: 550;height: 260;" />
+                                                </p>
+                                                <h3><a name="Manage"></a>Manage System Security Users</h3>
+                                                <p>This role enables you to:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Create users</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Modify users</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Delete users</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Disable users</p>
+                                                    </li>
+                                                </ul>
+                                                <p>This role enables you to specify these user properties:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>General</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Authentication</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Preferences</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Custom Text</p>
+                                                    </li>
+                                                </ul>
+                                                <p><span class="Emphasis_Bold">Limitations</span>
+                                                </p>
+                                                <p>Users with the Manage System Security role cannot create, modify, or delete administrators, directly or indirectly. Also, they cannot:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Add or remove themselves to or from groups or roles.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Delete themselves.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Add other users to Manage System Security privileges.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Add or remove groups they are members of from roles.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>To manage group membership or copy users, the <span class="Emphasis_Bold">ManageSystemSecurityGroup </span>is required.</p>
+                                                <h3><a name="Manage2"></a>Manage System Security Groups</h3>
+                                                <p>This role lets you manage groups and exclusion groups. You can also:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Add or remove members to or from groups and exclusion groups.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Copy groups except groups with Administrator privileges.</p>
+                                                    </li>
+                                                </ul>
+                                                <p><span class="Emphasis_Bold">Limitations</span>
+                                                </p>
+                                                <p>Users with this role cannot:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Modify the Administrators group.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Assign users to a group that establishes Administrator privileges.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Modify your membership in other groups.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Modify the parent group of a group in which the user is a member.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3><a name="Manage3"></a>Manage System Security Roles</h3>
+                                                <p>This role lets you manage system security roles. However, you cannot:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Modify the <span class="Emphasis_Bold">ManageSystemSecurityRole </span>itself because it requires Administrator level privileges.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Assign the Everyone or Nobody groups that require Administrator level privileges.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Add a group to a role of which you are a member.</p>
+                                                    </li>
+                                                </ul>
+                                                <h3><a name="Load"></a>Load and Extract</h3>
+                                                <p>Load and Extract functionality of Security requires a user to have permissions for all three of the Manage System Security roles, as well as the System User Interface Roles of <span class="Emphasis_Bold">SystemLoadandExtractPage</span>.</p>
+                                                <p>The controls limiting Manage System Security user's capabilities is enforced during the Load and Extract process. Validation occurs by comparing the current state of security in the target environment to the changed state determined by the processing of the source file.&#160;Therefore, the validation of XML loads for Manage System Security users requires that security is pre-existing to determine the changed state.</p>
+                                                <p>For example, although Manage System Security users cannot create Administrators, if the current Administrator Groups existed in the target environment prior to the XML load, then the XML will pass the validation and will be loaded. However, when an empty or new environment exists with no pre-existing users and groups, then an Administrator would need to perform the load.</p>
+                                                <h3><a name="BRApi"></a>BRApi</h3>
+                                                <p>You can manage user and group system security using BRApi functions such as CopyUser, DeleteUser and CopyGroup. These are controlled by the assigned Manage System Security role. See <a href="#System-Security-Users-and-Groups" class="MCXref xref">System Security Users and Groups</a> for more information.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/BRApi%20Screenshot%20example1_550x295.png" style="width: 550;height: 295;" />
+                                                </p>
+                                                <p>For example, if a dashboard is created to insert new users, and a dashboard button executed a BRApi to insert a user, the system validates that the user clicking the button is in the Administrators Group or has role permission to ManageSystemSecurityUsers.</p>
+                                                <h3>Combined Roles</h3>
+                                                <p>When granted access to more than one of these roles, you gain more functionality within the scope of the designed capabilities and restrictions. For example, if you have both the role of users and groups, you can copy a User or you can also can add a user to a group. Certain functionality requires assignment of combined roles, such as Load and Extract.</p>
+                                            </div></div></section><section id="File-Share-Security-Roles" class="doc-section lvl1"><p class="crumb">Performing System Administration</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor790"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />File Share Security Roles</h2>
+                                                <p style="font-weight: bold;"><b>ManageFileShareContents</b>
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Exposes the Contents Folder in File Explorer\FileShare under Application and System.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Grants full rights to create, upload, download and delete folders.</p>
+                                                    </li>
+                                                </ul>
+                                                <p><b>AccessFileShareContents</b>
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <p>Exposes the Contents Folder in File Explorer\FileShare under Application and System.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Allows only the ability to see the Contents folder and its sub-files, and allows download.</p>
+                                                    </li>
+                                                </ul>
+                                                <p><b>RetrieveFileShareContents</b>
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <p>The Contents Folder is not exposed to the user in the File Share for Application or System using the File Explorer.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>All files are accessible through the OneStream application, such as through Dashboards and Business Rules.</p>
+                                                    </li>
+                                                </ul>
+                                                <p>See Application Security Roles in Application Tools for more information on Application based security roles.</p>
+                                                <p><span class="FieldName">Encrypt System Business Rules</span> - This allows a user to encrypt/decrypt a rule from the Business Rule screen in the System tab to obfuscate the contents of the rule from all users..</p>
+                                                <p>See Business Rules in under Application Tools for more information on Business Rule Encrypt (Decrypt) functionality and use.</p>
+                                                <p><span class="FieldName">View All Logon Activity</span> - If assigned the required access to view the System tab and the System tab | Logging | Logon Activity page, users in the assigned security group can see the Logon activity for all users in the environment.</p>
+                                                <p><span class="FieldName">View All Error Log</span> - If assigned the required access to view the System tab and the System tab | Logging | Error Log page, users in the assigned security group can see the Error Log for all users in the environment.</p>
+                                                <p><span class="FieldName">View All Task Activity</span> - Users in the assigned security group can view the tasks and detailed child-steps through the Task Activity icon in the toolbar. If they have access to the System tab and page, they can also see this information in the System tab | Logging | Task Activity page.</p>
+                                            </div></div></section><section id="System-User-Interface-Roles" class="doc-section lvl1"><p class="crumb">Performing System Administration</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1071"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />System User Interface Roles</h2>
+                                                <p>The following roles grant access to key features and tools.</p>
+                                                <p><span class="Emphasis_Bold">SystemAdministrationLogon</span>
+                                                    <br />This is for the System Administration application and set to Administration by default. When a security group is assigned to this role, it becomes available in the Application list during logon.</p>
+                                                <p><span class="Emphasis_Bold">SystemPane</span>
+                                                    <br />Based on the security group chosen, this role lets you access the System Tab found at the bottom left of the screen. By default, only administrators have access to this tab.</p>
+                                                <p><span class="Emphasis_Bold">ApplicationAdminPage</span>
+                                                    <br />Based on the security group chosen, this role lets you access the Application tab at the bottom left of the screen. By default, only administrators can access this tab.</p>
+                                                <p><span class="Emphasis_Bold">SecurityAdminPage</span>
+                                                    <br />Based on the selected security group, this role lets you view but not modify security artifacts and settings other than your password on System &gt; Administration. By default, only administrators have access to this section. </p>
+                                                <p><span class="Emphasis_Bold">SystemDashboardAdminPage</span>
+                                                    <br />Based on the security group chosen, this will allow a user access to the Dashboard section found under System Tab &gt; Administration &gt; Dashboards. This section ties to the ManageSystemDashboards which is under the System Security Roles in the above section. By default, only administrators have access to this.</p>
+                                                <p><span class="Emphasis_Bold">ApplicationServersPage</span>
+                                                    <br />Based on the security group chosen, this will allow a user access to the Application Servers section found under System Tab &gt;Tools &gt; Application Servers. By default, only administrators have access to this.</p>
+                                                <p><span class="Emphasis_Bold">DatabasePage</span>
+                                                    <br />This role lets you access the Database Page on System &gt; Tools. By default, only system administrators have access to this section.</p>
+                                                <p><span class="Emphasis_Bold">FileExplorerPage</span>
+                                                    <br />Based on the selected security group, this role lets you access the File Explorer on System &gt;Tools. This section ties to the ManageSystemDatabaseFiles and ManageFileShare roles.&#160; By default, only administrators can access the File Explorer.</p>
+                                                <p><span class="Emphasis_Bold">SystemLoadExtractPage</span>
+                                                    <br />Based on the security group chosen, this role lets you access Load/Extract on System &gt; Tools but you cannot actually import or extract items. By default, only administrators have access to this section.</p>
+                                                <p><span class="Emphasis_Bold">ErrorLogPage</span>
+                                                    <br />Based on the security group chosen, this role lets you access Error Log on System &gt; Logging. By default, only administrators can access to this section.</p>
+                                                <p><span class="Emphasis_Bold">LogonActivityPage</span>
+                                                    <br />Based on the selected security group, this role lets you access to Logon Activity on System &gt; Logging. You can view all users, but cannot log them off. By default, only administrators have access to this section.</p>
+                                                <p><span class="Emphasis_Bold">TaskActvityPage</span>
+                                                    <br />Based on the selected security group, this role lets you access Task Activity in System &gt; Logging. By default, only administrators can access to this section.</p>
+                                                <p><span class="Emphasis_Bold">TimeDimensionPage</span>
+                                                    <br />Based on the security group chosen, this will allow a user access to the Time Dimension on System &gt; Tools. By default, only administrators have access to this section.</p>
+                                            </div></div></section><section id="System-Security-Users-and-Groups" class="doc-section lvl1"><p class="crumb">Performing System Administration</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor763"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />System Security Users and Groups</h2>
+                                                <p>Administrators click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Administration </span>&gt; <span class="Emphasis_Bold">Security </span>to define and manage users, groups and system security roles (roles). Users, groups and roles are not application-specific. See <a href="16-About-Managing-Users-and-Groups.html#Creating-and-Managing-Groups" class="MCXref xref">Creating and Managing Groups</a> and <a href="16-About-Managing-Users-and-Groups.html#Creating-and-Managing-Users" class="MCXref xref">Creating and Managing Users </a>.</p>
+                                                <p>Every user must be assigned a user ID. Users can be added as native users or as references to users stored in external repositories (e.g. Active Directory).&#160; Users can be externally authenticated with these standard providers. </p>
+                                                <ul>
+                                                    <li>
+                                                        <p> LDAP</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>MSAD</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Okta</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>PingFederate</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Azure AD (Microsoft Entra ID)</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>SAML</p>
+                                                    </li>
+                                                </ul>
+                                                <p>For information about external authentication with standard providers, see the <i>Installation and Configuration Guide</i>. </p>
+                                                <h2><a name="Managing"></a>Managing Users and Groups Using BRApi Functions</h2>
+                                                <p>Administrators can manage users and groups with the following BRApi functions: </p><pre xml:space="preserve">BRApi.Security.Admin.GetUsers</pre><pre xml:space="preserve">BRApi.Security.Admin.GetUser</pre><pre xml:space="preserve">BRApi.Security.Admin.GetUser</pre><pre xml:space="preserve">BRApi.Security.Admin.SaveUser</pre><pre xml:space="preserve">BRApi.Security.Admin.RenameUser</pre><pre xml:space="preserve">BRApi.Security.Admin.DeleteUser</pre><pre xml:space="preserve">BRApi.Security.Admin.CopyUser</pre><pre xml:space="preserve">BRApi.Security.Admin.GetGroupsAndExclusionGroups</pre><pre xml:space="preserve">BRApi.Security.Admin.GetGroups</pre><pre xml:space="preserve">BRApi.Security.Admin.GetGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.GetGroupInfoEx</pre><pre xml:space="preserve">BRApi.Security.Admin.SaveGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.RenameGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.DeleteGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.CopyGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.GetExclusionGroups</pre><pre xml:space="preserve">BRApi.Security.Admin.GetExclusionGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.SaveExclusionGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.RenameExclusionGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.DeleteExclusionGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.CopyExclusionGroup</pre><pre xml:space="preserve">BRApi.Security.Admin.GetSystemRoles</pre><pre xml:space="preserve">BRApi.Security.Admin.GetApplicationRoles</pre><pre xml:space="preserve">BRApi.Security.Admin.GetRole</pre><pre xml:space="preserve">BRApi.Security.Admin.CopyExclusionGroup</pre>
+                                                <h3>Examples </h3><pre xml:space="preserve">Get a UserInfo object and change the User Description</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;Dim objUserInfo As UserInfo = BRApi.Security.Admin.GetUser(si, "Administrator")</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;If Not objUserInfo Is Nothing Then</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;objUserInfo.User.Description = "New Description"</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;BRApi.Security.Admin.SaveUser(si, objUserInfo.User, False, Nothing, TriStateBool.Unknown)</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;End If</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;</pre><pre xml:space="preserve">Get a Group and UserInfo object and add the Group to the User's list of parent Groups</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;Dim objGroupInfo As GroupInfo = BRApi.Security.Admin.GetGroup(si, "TestGroup")</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;If Not objGroupInfo Is Nothing Then</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Dim objUserInfo As UserInfo = BRApi.Security.Admin.GetUser(si, "TestUser")</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;If Not objUserInfo Is Nothing Then</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;If (Not objUserInfo.ParentGroups.ContainsKey(objGroupInfo.Group.UniqueID)) Then</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Dim parentGroupIDs As List(Of Guid) = objUserInfo.ParentGroups.Keys.ToList()</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;parentGroupIDs.Add(objGroupInfo.Group.UniqueID)</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;BRApi.Security.Admin.SaveUser(si, objUserInfo.User, True, parentGroupIDs, TriStateBool.Unknown)</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;End If</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;End If</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;End If</pre>
+                                                <h3>Create a User</h3><pre xml:space="preserve">&#160;&#160;&#160;&#160;Dim objUser As User = New User()</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;objUser.Name = "NewUser"</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;objUser.Text1 = "Test Text 1"</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;BRApi.Security.Admin.SaveUser(si, objUser, False, Nothing, TriStateBool.Unknown)</pre>
+                                                <h3>Create a Group</h3><pre xml:space="preserve">&#160;&#160;&#160;&#160;Dim objGroup As Group = New Group()</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;objGroup.Name = "NewGroup"</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;Dim objGroupInfo As GroupInfo = New GroupInfo()</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;objGroupInfo.Group = objGroup</pre><pre xml:space="preserve">&#160;&#160;&#160;&#160;BRApi.Security.Admin.SaveGroup(si, objGroupInfo, False, Nothing, TriStateBool.Unknown)</pre>
+                                            </div></div></section><section id="International-Settings" class="doc-section lvl1"><p class="crumb">Performing System Administration</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor1698"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />International Settings</h2>
+                                                <p>Culture-aware number and text formatting can be used with:</p>
+                                                <ul>
+                                                    <li>
+                                                        <p>The web-based client</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>The Excel add-in</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Server components</p>
+                                                    </li>
+                                                </ul>
+                                                <p>For consistency, we recommend that each user’s Culture setting match the Windows Regional settings of their primary computer.</p>
+                                                <h3><span class="FieldName">Specifying Culture Settings on the Client Machine Operating System</span>
+                                                </h3>
+                                                <p>Number and text formatting for Microsoft Excel is controlled by the client operating system’s Windows Regional settings.&#160; To configure these settings:</p>
+                                                <ol>
+                                                    <li value="1">
+                                                        <p>Access the operating system’s <span class="FieldName">Control Panel</span> and select <span class="FieldName">Region.</span></p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <span class="Emphasis_Bold">Format </span>and set properties to reflect regional preferences. For exmple:<br /><br /><img src="../_assets/Content/Resources/Images/Design%20and%20Reference/International%20Settings_3_276x304.png" style="width: 276;height: 304;" /></p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Click <span class="FieldName">Location</span> and set the<span class="Emphasis_Bold"> Home Location</span> to reflect the operating system’s location such as Canada, Germany or Australia.</p>
+                                                    </li>
+                                                </ol>
+                                                <h3><span class="FieldName">Specifying Server Side User Culture Settings</span>
+                                                </h3>
+                                                <p> For the web based client and server components, specify culture settings for users by modifying user profiles in Security. The necessary culture codes must first be defined in the Application Server Configuration file.</p>
+                                            </div></div></section><section id="Working-With-System-Applications" class="doc-section lvl1"><p class="crumb">Performing System Administration</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor449"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />Working With System Applications</h2>
+                                                <p>After logging on as an Administrator, you can open the System Administration application that lets you flexibly create a new application based on existing databases or copied databases. For existing Applications, click <span class="Emphasis_Bold">System </span>&gt; <span class="Emphasis_Bold">Administration </span>&gt; <span class="Emphasis_Bold">Applications</span>. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/System%20Applications1.png" /> <span class="FieldName">Create Application Reference 
+            </span><br />Click to link an application and an existing database if they are from the same release version. Select a Database Server Connection and enter a Database Schema Name. The new Application will display. </p>
+                                                <p><span class="Emphasis_Bold">Allow Database Creation Via UI</span> must be <span class="Emphasis_Bold">True </span>in the Application Server Configuration.</p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/System%20Applications_8.png" /> <span class="FieldName">Create Application Database 
+            </span><br />Click to generate a new database.</p>
+                                                <p><span class="FieldName">Application Name</span><![CDATA[
+            ]]><br />Enter the name of the new application.</p>
+                                                <p><span class="FieldName">Description</span><![CDATA[
+            ]]><br />Provide a brief description (optional).</p>
+                                                <p><span class="FieldName">Database Server Connection</span><![CDATA[
+            ]]><br />Select the database server from the drop-down list.</p>
+                                                <p><span class="FieldName">Database Schema Name</span><![CDATA[
+            ]]><br />This is created by default and stored in SQL.</p>
+                                                <p><span class="FieldName">Time Dimension Definition</span><![CDATA[
+            ]]><br />Click the ellipsis and select the desired Time Dimension XML file. See Time Dimensions in  <a href="19-Using-System-Tools.html#Using-System-Tools" class="MCXref xref">System Tools</a> for details.</p>
+                                                <p>The new application displays in the Application list when you log on.&#160; </p>
+                                                <p class="Note" data-mc-autonum="&lt;span style=&quot;color: RoyalBlue;&quot; class=&quot;mcFormatColor&quot;&gt;&lt;b&gt;NOTE: &lt;/b&gt;&lt;/span&gt;"><span class="autonumber"><span><span style="color: RoyalBlue;" class="mcFormatColor"><b>NOTE: </b></span></span></span>Database Status indicates if a selected application has an attached database.&#160; If the status is "Error", the database was deleted or detached and will not be available in the Application list.&#160; </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/System%20Applications_7.png" /> <span class="FieldName">Delete Selected Application Reference </span><br />Click to remove an application's database link. This will not delete database files, just references in the application. </p>
+                                                <p>
+                                                    <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/System%20Applications_6.png" /> <span class="FieldName">Test Database Connection</span> <br />Select an existing application and click the test checkbox <img src="../_assets/Content/Resources/Images/Design%20and%20Reference/System%20Applications_5.png" /> to verify an active connection.&#160; </p>
+                                            </div></div></section><section id="System-Dashboards" class="doc-section lvl1"><p class="crumb">Performing System Administration</p><div class="sec-body"><div role="main" id="mc-main-content">
+                                                <h2><a name="aanchor557"></a>
+                                                    <MadCap:concept term="Design &amp; Reference" />System Dashboards</h2>
+                                                <p>System Dashboards are similar to Application Dashboards but differ in that you can use OneStream Framework database objects such as security and users. Application Dashboards use Application-level data stored in Cubes. </p>
+                                                <p> See Application Dashboards in  <a href="12-Presenting-Data-With-Books-Cube-Views-and-Other-Items.html#Presenting-Data-With-Books-Cube-Views-and-Other-Items" class="MCXref xref">Presenting Data With Books, Cube Views and Dashboards</a> for information about designing Dashboards.</p>
+                                            </div></div></section></article></main><aside class="toc"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-l0"><a href="#Performing-System-Administration">Performing System Administration</a></li><li class="toc-l1"><a href="#Application-Server-Configurations">Application Server Configurations</a></li><li class="toc-l2"><a href="#General-System-Configurations">General System Configurations</a></li><li class="toc-l2"><a href="#Environment-System-Configurations">Environment System Configurations</a></li><li class="toc-l2"><a href="#Recycling-System-Configurations">Recycling System Configurations</a></li><li class="toc-l2"><a href="#Database-System-Configurations">Database System Configurations</a></li><li class="toc-l1"><a href="#Audits">Audits</a></li><li class="toc-l1"><a href="#Manage-System-Security">Manage System Security</a></li><li class="toc-l1"><a href="#File-Share-Security-Roles">File Share Security Roles</a></li><li class="toc-l1"><a href="#System-User-Interface-Roles">System User Interface Roles</a></li><li class="toc-l1"><a href="#System-Security-Users-and-Groups">System Security Users and Groups</a></li><li class="toc-l1"><a href="#International-Settings">International Settings</a></li><li class="toc-l1"><a href="#Working-With-System-Applications">Working With System Applications</a></li><li class="toc-l1"><a href="#System-Dashboards">System Dashboards</a></li></ul></aside>
+<div class="rz rz-right" title="Drag to resize"></div>
+</div>
+<script src="../app.js"></script>
+</body></html>
