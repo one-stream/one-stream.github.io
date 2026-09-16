@@ -19,8 +19,16 @@ function togglePane(which){
   fetch(root+'guides.json').then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(gs){
       if(!gs||!gs.length){sel.remove();return;}
-      sel.innerHTML=gs.map(function(g){
-        return '<option value="'+g.slug+'"'+(g.slug===cur?' selected':'')+'>'+g.title+'</option>';}).join('');
+      var opt=function(g){
+        var label=g.title.replace(/^OneStream\s+/,'');
+        return '<option value="'+g.slug+'"'+(g.slug===cur?' selected':'')+'>'+label+'</option>';};
+      var grp=function(label,items){
+        return items.length?'<optgroup label="'+label+'">'+items.map(opt).join('')+'</optgroup>':'';};
+      var books=gs.filter(function(g){return g.kind==='book';});
+      // group only when the feed actually marks books; otherwise stay flat
+      sel.innerHTML=books.length
+        ? grp('Guides',gs.filter(function(g){return g.kind!=='book';}))+grp('Books',books)
+        : gs.map(opt).join('');
       sel.hidden=false;
       sel.addEventListener('change',function(){location.href=root+sel.value+'/index.html';});
     }).catch(function(){sel.remove();});
